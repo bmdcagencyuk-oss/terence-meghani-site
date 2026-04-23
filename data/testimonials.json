@@ -1,0 +1,234 @@
+{
+  "meta": {
+    "source": "Trustpilot (trustpilot.com/review/www.bmdc.agency)",
+    "aggregateRating": 4.7,
+    "totalReviewsOnTrustpilot": 37,
+    "extractedCount": 20,
+    "avgStarsOfExtracted": 4.9,
+    "extractedAt": "2026-04-22",
+    "editorialNote": "BMDC → Terence Meghani applied. 'Formerly known as Krazy Media' bridges preserved."
+  },
+  "counts": { "short": 4, "medium": 11, "long": 5, "matched": 4 },
+  "testimonials": [
+    {
+      "id": "mu-news-uk",
+      "name": "Mu",
+      "country": "GB",
+      "stars": 5,
+      "title": "On point brand and digital messaging",
+      "date": "2023-11-01",
+      "text": "Have worked with Terri and the team for over a decade. Brought them in to help reset cyber messaging and awareness for the biggest global news media provider in the world! Amazing job! Then went on to do the same for Sainsbury's. Brilliant effort all round. Thank you.",
+      "lengthBucket": "medium",
+      "attachedToCaseStudy": "news-uk"
+    },
+    {
+      "id": "tulsi-vagjiani-self",
+      "name": "Tulsi Vagjiani",
+      "country": "GB",
+      "stars": 5,
+      "title": "A brand with a difference",
+      "date": "2023-05-16",
+      "text": "I received total professionalism from this company. From the website to the branding, it exceeded beyond my expectations.\nThe guidance I received towards my needs were met and explained thoroughly.\nI needed a modern, unique twist to my website to match my authentic flamboyant self!\nThey did not disappoint!!\nI highly recommend them. If you are looking at innovative, creative and something with a different edge, this is the company for you!",
+      "lengthBucket": "medium",
+      "attachedToCaseStudy": "tulsi-vagjiani"
+    },
+    {
+      "id": "dhiren-sanghani-vijays",
+      "name": "Dhiren Sanghani",
+      "country": "GB",
+      "stars": 5,
+      "title": "Perfect team for branding a new company!",
+      "date": "2023-11-01",
+      "text": "Perfect team for branding and start up direction. From logo and websites, Terence Meghani will work tirelessly to get your brand where it needs to be.",
+      "lengthBucket": "short",
+      "attachedToCaseStudy": "vijays-virasat"
+    },
+    {
+      "id": "k-thakrar-la-royale",
+      "name": "K Thakrar",
+      "country": "GB",
+      "stars": 5,
+      "title": "Excellent Service",
+      "date": "2024-07-09",
+      "text": "I have been dealing with the directors of the company for a long time now for our marketing, social media, web design etc. Our experience has been excellent and they have really improved our sales and presence in the hospitality market. Definitely recommend them 😊",
+      "lengthBucket": "medium",
+      "attachedToCaseStudy": "la-royale"
+    },
+    {
+      "id": "diagnostic-dynamics",
+      "name": "Diagnostic Dynamics Ltd",
+      "country": "GB",
+      "stars": 5,
+      "title": "Great company",
+      "date": "2024-03-26",
+      "text": "We had the absolute pleasure of working with Terence Meghani a few months ago and we cannot recommend them highly enough. From the very first consultation to the final delivery, every aspect of their service was nothing short of exceptional.\n\nTerry who helped us a lot has expertise in design, coupled with his deep understanding of current trends and technologies, gave us complete confidence in the companies abilities.\n\nTheir attention to detail is remarkable. Every element of the design was meticulously thought out and executed, from colour schemes and typography to layout and user experience.\n\nIf you're looking for a design company that combines creativity, professionalism, and a genuine commitment to excellence, look no further than Terence Meghani. They are a true gem in the industry.",
+      "lengthBucket": "long",
+      "attachedToCaseStudy": null
+    },
+    {
+      "id": "kp",
+      "name": "KP",
+      "country": "GB",
+      "stars": 5,
+      "title": "Exceptional Branding & Marketing Design Experience",
+      "date": "2024-08-28",
+      "text": "I recently had the pleasure of working with Terence Meghani and I can confidently say they exceeded all my expectations! From the moment we started discussing my website and branding needs, Terence demonstrated a deep understanding of my vision and brought it to life in ways I couldn't have imagined.\n\nTerence has an incredible eye for design and a thorough understanding of branding. He took my ideas and transformed them into a cohesive, visually stunning brand identity that truly reflects my business's essence.\n\nI highly recommend Terence Meghani to anyone looking for top-notch branding, marketing design, and web development services.",
+      "lengthBucket": "long",
+      "attachedToCaseStudy": null
+    },
+    {
+      "id": "r-pdsdsa",
+      "name": "R Pdsdsa",
+      "country": "GB",
+      "stars": 5,
+      "title": "Terence and his team have been exceptional",
+      "date": "2024-08-12",
+      "text": "Terence and his team have been exceptional. Have used them for years they built me a custom made website and occupy monthly SEO which has been fantastic in gaining so many enquiries every month — it's meant my business has grown strength to strength. My company Xclusive can now expand as a result. Thank you so much! Highly recommend these guys — the real deal!",
+      "lengthBucket": "medium",
+      "attachedToCaseStudy": null
+    },
+    {
+      "id": "angie",
+      "name": "Angie",
+      "country": "GB",
+      "stars": 5,
+      "title": "Ten years of collaboration",
+      "date": "2024-07-31",
+      "text": "Having worked with Krazy Media (known as Terence Meghani) for the past ten years, Terence has consistently listened to my ideas and fulfilled my requests. To keep my website up to date and in line with current trends, will always contact me first. It's never too much trouble for him to fix whatever problems I have. Terence, thank you.",
+      "lengthBucket": "medium",
+      "attachedToCaseStudy": null
+    },
+    {
+      "id": "priya-pindoria",
+      "name": "Priya Pindoria",
+      "country": "GB",
+      "stars": 5,
+      "title": "Outstanding Service",
+      "date": "2024-07-26",
+      "text": "I have had the pleasure of working with Terence Meghani for the past 10 years, and I couldn't be happier with the results. He has been instrumental in creating and maintaining our website, including designing a standout logo that perfectly represents our brand. His ability to translate our ideas into a visually appealing and functional website is a testament to his talent and expertise.",
+      "lengthBucket": "medium",
+      "attachedToCaseStudy": null
+    },
+    {
+      "id": "stax-dakid",
+      "name": "Stax DaKid",
+      "country": "GB",
+      "stars": 5,
+      "title": "Have known these guys for years",
+      "date": "2024-06-17",
+      "text": "Have known these guys for years, top top professionals at what they do. If you need Branding or just general graphics these guys will look after you",
+      "lengthBucket": "short",
+      "attachedToCaseStudy": null
+    },
+    {
+      "id": "dena",
+      "name": "Dena",
+      "country": "GB",
+      "stars": 5,
+      "title": "Highly recommended",
+      "date": "2024-07-15",
+      "text": "Highly recommended. We have been working with Terence Meghani formally known as Krazy Media for our branding and advertising for a number of years. The company has provided us a bespoke professional service tailored to our company needs.",
+      "lengthBucket": "short",
+      "attachedToCaseStudy": null
+    },
+    {
+      "id": "michael",
+      "name": "Michael",
+      "country": "GB",
+      "stars": 4,
+      "title": "Very good Service & Experience",
+      "date": "2023-12-11",
+      "text": "We had very good service & experience from Terence and the team. They developed the new website for us and assisted with the photos, text, lay out, key words etc. The team were easy to get hold of and have a vast amount of experience.",
+      "lengthBucket": "medium",
+      "attachedToCaseStudy": null
+    },
+    {
+      "id": "vinny",
+      "name": "Vinny",
+      "country": "GB",
+      "stars": 5,
+      "title": "Instrumental in our marketing",
+      "date": "2024-07-02",
+      "text": "Terence from Terence Meghani has been instrumental in managing our company website, hosting, and social media. His expertise and attention to detail have significantly improved our online presence. Terence's proactive approach and creative solutions have not only enhanced our branding but also boosted our engagement with customers.",
+      "lengthBucket": "medium",
+      "attachedToCaseStudy": null
+    },
+    {
+      "id": "vishal-narbheram",
+      "name": "Vishal Narbheram",
+      "country": "GB",
+      "stars": 5,
+      "title": "New Website",
+      "date": "2024-05-06",
+      "text": "I was looking to have a website built from scratch and had over 30 companies reach out to take on the project but Terence stood out from the crowd, he's polite, respectful, response times are speedy and the way he speaks about his work is so passionate I couldn't not work with him on this project.\n\nI personally have ADHD and OCD so I full well know I'm no easy customer to work with but Terence was so accommodating, professional, reliable and most importantly patient that it made the whole process fun... yes actually FUN!",
+      "lengthBucket": "long",
+      "attachedToCaseStudy": null
+    },
+    {
+      "id": "jasvanti-halai",
+      "name": "Jasvanti Halai",
+      "country": "GB",
+      "stars": 5,
+      "title": "Exceeded my expectations",
+      "date": "2024-03-23",
+      "text": "I have worked with Terry for over seven years now and I couldn't be happier with my website. Terry has exceeded my expectations and am very impressed with the quality of work, customer care and attention to detail.",
+      "lengthBucket": "short",
+      "attachedToCaseStudy": null
+    },
+    {
+      "id": "pop-telecom",
+      "name": "Pop Telecom",
+      "country": "GB",
+      "stars": 5,
+      "title": "Good Development team",
+      "date": "2023-07-12",
+      "text": "Aziz demonstrated a level of professionalism and expertise that set him apart. His attention to detail and commitment to delivering high-quality work were evident throughout the entire project. Unlike our previous experiences, Aziz consistently met deadlines and exceeded our expectations in terms of both efficiency and effectiveness.",
+      "lengthBucket": "medium",
+      "attachedToCaseStudy": null
+    },
+    {
+      "id": "michael-pritchett",
+      "name": "michael pritchett",
+      "country": "GB",
+      "stars": 4,
+      "title": "Excellent and Attentive Service",
+      "date": "2024-01-05",
+      "text": "Excellent and Attentive Service from Terence and the team. Terence is available to help, has extensive knowledge, experience and guides you through the process and best options. Recommended",
+      "lengthBucket": "short",
+      "attachedToCaseStudy": null
+    },
+    {
+      "id": "p-motion",
+      "name": "P.Motion Group",
+      "country": "GB",
+      "stars": 5,
+      "title": "Terence",
+      "date": "2024-01-06",
+      "text": "Terence Meghani always go above and beyond to cater, highly professional service, would definitely recommend.",
+      "lengthBucket": "short",
+      "attachedToCaseStudy": null
+    },
+    {
+      "id": "kinari-dodhia",
+      "name": "Kinari Dodhia",
+      "country": "GB",
+      "stars": 5,
+      "title": "Nearly 10 years of partnership",
+      "date": "2024-01-06",
+      "text": "Terry has been working with us for nearly 10 years now. We asked Terry to help us with our website, from taking pictures of everything to the design just turned out so amazing. Whenever we have had any issues with anything he's always been there to help. Highly recommend them as their work is not only efficient but they also are the friendliest people to work with.",
+      "lengthBucket": "medium",
+      "attachedToCaseStudy": null
+    },
+    {
+      "id": "neck-p",
+      "name": "Neck P",
+      "country": "US",
+      "stars": 5,
+      "title": "Expertise in web development",
+      "date": "2024-01-01",
+      "text": "The Terence Meghani team's expertise in web development is truly commendable. They seamlessly integrated the Directus CMS, ensuring that our website not only looks stunning but also functions flawlessly. Their proactive communication and responsiveness have fostered a strong and positive working relationship.\n\nAs we celebrate our one-year anniversary of working together, I can confidently say that choosing Terence Meghani was a game-changer for our web hosting company.",
+      "lengthBucket": "long",
+      "attachedToCaseStudy": null
+    }
+  ]
+}

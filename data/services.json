@@ -1,0 +1,89 @@
+{
+  "meta": { "coreCount": 4, "secondaryCount": 3 },
+  "services": [
+    {
+      "slug": "brand-identity",
+      "label": "Brand & Identity",
+      "icon": "Palette",
+      "tier": "core",
+      "order": 1,
+      "tagline": "Strategy, naming, visual system & voice.",
+      "shortDescription": "Strategy, naming, visual system and voice for businesses that want to be remembered.",
+      "longDescription": "Brand and identity work for founders, scale-ups, and established businesses ready to refresh or rebuild. Positioning, naming, visual system, tone of voice, and guidelines — produced to standard, applied across every touchpoint.",
+      "url": "/services/brand-identity/",
+      "keywords": ["branding agency", "brand identity designer", "brand consultant", "visual identity", "brand strategy"]
+    },
+    {
+      "slug": "ai-automation",
+      "label": "AI & Automation",
+      "icon": "Sparkles",
+      "tier": "core",
+      "order": 2,
+      "tagline": "Brand-aware AI workflows & custom GPTs.",
+      "shortDescription": "AI that sounds like your brand — custom GPTs, content operations, workflow automation.",
+      "longDescription": "AI and automation work for teams ready to deploy AI meaningfully. Custom GPTs trained on your brand voice, content operations automation, AI-powered WordPress plugins, and workflow integrations. The goal is AI that supports your team's judgement — not replaces it, and not sounds like every other AI.",
+      "url": "/services/ai-automation/",
+      "keywords": ["AI consultant", "custom GPT", "AI workflow automation", "content automation", "AI brand voice"]
+    },
+    {
+      "slug": "wordpress-plugin-development",
+      "label": "WordPress Plugin Development",
+      "icon": "Puzzle",
+      "tier": "core",
+      "order": 3,
+      "tagline": "Custom plugins & bespoke integrations.",
+      "shortDescription": "Bespoke WordPress plugins — custom features, API integrations, admin tooling, AI extensions.",
+      "longDescription": "Custom WordPress plugin development for teams outgrowing off-the-shelf plugins. Bespoke features, API integrations (Stripe, HubSpot, OpenAI, anything with an endpoint), Gutenberg blocks, WooCommerce extensions, AI-powered extensions, and plugin consolidation/refactoring. Performance-first, properly documented, yours to keep.",
+      "url": "/services/wordpress-plugin-development/",
+      "keywords": ["custom WordPress plugin developer", "bespoke WordPress plugin", "WordPress API integration", "Gutenberg development", "WooCommerce plugin"]
+    },
+    {
+      "slug": "web-development",
+      "label": "Web Development",
+      "icon": "Code",
+      "tier": "core",
+      "order": 4,
+      "tagline": "Higher-tier WordPress & headless builds.",
+      "shortDescription": "Higher-tier websites — modern stacks, fast, accessible, built to last.",
+      "longDescription": "Web development for teams who've outgrown template-builder sites. Modern stack (Next.js, React, headless WordPress when needed), performance-first engineering, proper accessibility, and documentation designed for the team who'll maintain it after handover.",
+      "url": "/services/web-development/",
+      "keywords": ["web developer London", "Next.js developer", "headless WordPress", "premium web development", "React developer UK"]
+    },
+    {
+      "slug": "ppc-paid-media",
+      "label": "PPC & Paid Media",
+      "icon": "TrendingUp",
+      "tier": "secondary",
+      "order": 5,
+      "tagline": "Paid search and social, built to convert.",
+      "shortDescription": "Paid search and social campaigns, structured around real buyer intent.",
+      "longDescription": "Paid media work for businesses ready to put budget to work meaningfully. Google Ads, Meta, LinkedIn, and TikTok — campaigns structured around actual buyer intent and measurable outcomes, with creative aligned to the brand rather than platform defaults.",
+      "url": "/services/ppc-paid-media/",
+      "keywords": ["PPC agency London", "Google Ads specialist", "Meta ads consultant", "paid media strategist"]
+    },
+    {
+      "slug": "seo-organic-growth",
+      "label": "SEO & Organic Growth",
+      "icon": "Search",
+      "tier": "secondary",
+      "order": 6,
+      "tagline": "Technical, content and local SEO.",
+      "shortDescription": "SEO as an editorial and technical discipline — not a keyword list.",
+      "longDescription": "SEO and organic growth for teams who want meaningful compound returns from search. Technical audits, content strategy, local SEO for catchment-driven businesses, and ongoing optimisation. The work is editorial-led — we earn rankings by being useful, not by gaming algorithms.",
+      "url": "/services/seo-organic-growth/",
+      "keywords": ["SEO consultant", "local SEO", "content strategy", "organic growth consultant", "SEO agency London"]
+    },
+    {
+      "slug": "growth-partnership",
+      "label": "Growth Partnership",
+      "icon": "Gem",
+      "tier": "secondary",
+      "order": 7,
+      "tagline": "Ongoing monthly engagement.",
+      "shortDescription": "Ongoing retained work — brand, AI, plugin dev and web, as your business evolves.",
+      "longDescription": "A retained monthly engagement for businesses that want the full stack — brand, AI, plugin dev, and web — supporting their growth on an ongoing basis. Flexible scope, no minimum term, cancel anytime. Best for scale-ups where priorities shift faster than a fixed-scope project allows.",
+      "url": "/engage/growth-partnership/",
+      "keywords": ["fractional brand director", "growth partner", "monthly retainer consultant", "fractional CMO"]
+    }
+  ]
+}

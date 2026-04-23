@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 500" role="img" aria-label="Terence Meghani — portrait refresh, Spring 2026">
+  <defs>
+    <radialGradient id="bgGlow" cx="50%" cy="42%" r="55%">
+      <stop offset="0%" stop-color="#7A0FFF" stop-opacity="0.18"/>
+      <stop offset="55%" stop-color="#FF4D17" stop-opacity="0.08"/>
+      <stop offset="100%" stop-color="#242627" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="400" height="500" fill="#242627"/>
+  <rect width="400" height="500" fill="url(#bgGlow)"/>
+
+  <!-- Emblem: winged W-T at 40% opacity, scaled to fit 230x180 centred -->
+  <g transform="translate(85, 135) scale(0.53)" opacity="0.4" fill="#FFFFFF">
+    <path d="M0 80 L80 20 L100 70 L50 90 L80 140 L20 160 Z" opacity="0.55"/>
+    <path d="M435.8 80 L355.8 20 L335.8 70 L385.8 90 L355.8 140 L415.8 160 Z" opacity="0.55"/>
+    <path d="M110 95 L165 245 L195 175 L225 245 L280 95 L255 95 L217.5 210 L195 135 L172.5 210 L135 95 Z"/>
+    <path d="M285 95 L385 95 L385 120 L347 120 L347 245 L322 245 L322 120 L285 120 Z"/>
+    <rect x="100" y="265" width="235" height="6" opacity="0.9"/>
+    <circle cx="217.5" cy="295" r="4" opacity="0.7"/>
+  </g>
+
+  <text x="200" y="370" text-anchor="middle"
+        font-family="'Bricolage Grotesque', system-ui, sans-serif"
+        font-size="26" font-weight="600"
+        fill="white" letter-spacing="2">TERENCE MEGHANI</text>
+
+  <text x="200" y="400" text-anchor="middle"
+        font-family="'Instrument Serif', Georgia, serif"
+        font-size="18" font-style="italic"
+        fill="rgba(255,255,255,0.75)">Brand consultant &amp; developer</text>
+
+  <text x="200" y="425" text-anchor="middle"
+        font-family="'Instrument Sans', system-ui, sans-serif"
+        font-size="13"
+        fill="rgba(255,255,255,0.52)">Hertfordshire &amp; London</text>
+
+  <line x1="170" y1="460" x2="230" y2="460" stroke="rgba(255,255,255,0.16)" stroke-width="1"/>
+  <text x="200" y="478" text-anchor="middle"
+        font-family="'JetBrains Mono', ui-monospace, monospace"
+        font-size="9" letter-spacing="2"
+        fill="rgba(255,255,255,0.52)">PORTRAIT REFRESH · SPRING 2026</text>
+</svg>
