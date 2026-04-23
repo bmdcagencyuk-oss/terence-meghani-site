@@ -10,12 +10,17 @@ import './globals.css';
 import { TopNav } from '@/components/nav/TopNav';
 import { Footer } from '@/components/common/Footer';
 import { SkipLink } from '@/components/common/SkipLink';
+import { CustomCursor } from '@/components/common/CustomCursor';
 
+// Bricolage Grotesque — variable font with width + optical-size axes.
+// v23 uses font-variation-settings on .mega .ch to animate wdth 85↔80 during
+// FUEL letter pulse, so we must expose the wdth axis here.
 const bricolage = Bricolage_Grotesque({
   subsets: ['latin'],
   variable: '--font-bricolage',
   display: 'swap',
   preload: true,
+  axes: ['wdth', 'opsz'],
 });
 
 const instrumentSans = Instrument_Sans({
@@ -85,6 +90,7 @@ export default function RootLayout({
     >
       <body>
         <PlausibleProvider domain={plausibleDomain}>
+          <CustomCursor />
           <SkipLink />
           <TopNav />
           <main id="main">{children}</main>
