@@ -1,95 +1,119 @@
-'use client';
-
 import Link from 'next/link';
-import { motion, AnimatePresence } from 'framer-motion';
-import servicesData from '@/data/services.json';
-import caseStudiesData from '@/data/case-studies.json';
+
+/**
+ * Services mega-menu — ported from v23.
+ * 3-column grid: Core services (left), Also offering (middle), Featured card (right).
+ *
+ * Styled via .mega-menu / .mm-* classes in globals.css.
+ * The grid restructure fixes the v23 overflow bug where description text
+ * wrapping to line 2 broke its indent.
+ */
+
+const coreServices = [
+  {
+    href: '/services/brand-identity/',
+    icon: '🎨',
+    title: 'Brand & Identity',
+    desc: 'Strategy, naming, visual system & voice.',
+  },
+  {
+    href: '/services/ai-automation/',
+    icon: '✦',
+    title: 'AI & Automation',
+    desc: 'Brand-aware AI workflows & custom GPTs.',
+  },
+  {
+    href: '/services/wordpress-plugin-development/',
+    icon: '🧩',
+    title: 'WordPress Plugins',
+    desc: 'Custom plugins & bespoke integrations.',
+  },
+  {
+    href: '/services/web-development/',
+    icon: '💻',
+    title: 'Web Development',
+    desc: 'Higher-tier WordPress & headless builds.',
+  },
+];
+
+const alsoOffering = [
+  { href: '/services/ppc-paid-media/',      icon: '📈', title: 'PPC & Paid Media' },
+  { href: '/services/seo-organic-growth/',  icon: '🔍', title: 'SEO & Organic Growth' },
+  { href: '/engage/growth-partnership/',    icon: '◆',  title: 'Growth Partnership' },
+];
 
 interface MegaMenuProps {
-  open: boolean;
-  onClose: () => void;
+  id: string;
+  labelledBy: string;
+  onItemClick?: () => void;
 }
 
-export function MegaMenu({ open, onClose }: MegaMenuProps) {
-  const core = servicesData.services.filter((s) => s.tier === 'core');
-  const secondary = servicesData.services.filter((s) => s.tier === 'secondary');
-  const fireaway = caseStudiesData.studies.find((s) => s.slug === 'fireaway-pizza');
-
+export function MegaMenu({ id, labelledBy, onItemClick }: MegaMenuProps) {
   return (
-    <AnimatePresence>
-      {open && (
-        <motion.div
-          role="region"
-          aria-label="Services"
-          initial={{ opacity: 0, y: -8 }}
-          animate={{ opacity: 1, y: 0 }}
-          exit={{ opacity: 0, y: -8 }}
-          transition={{ duration: 0.2, ease: [0.22, 1, 0.36, 1] }}
-          className="absolute left-1/2 top-full -translate-x-1/2 mt-3 w-[min(780px,95vw)] bg-char-2 border border-hairline rounded-xl shadow-2xl p-6 grid grid-cols-1 md:grid-cols-3 gap-6"
-          onMouseLeave={onClose}
+    <div className="mega-menu" id={id} role="menu" aria-labelledby={labelledBy}>
+      {/* Column 1 — Core services */}
+      <div className="mm-col">
+        <h6>Core services</h6>
+        <ul>
+          {coreServices.map((s) => (
+            <li key={s.href}>
+              <Link
+                href={s.href}
+                role="menuitem"
+                className="mm-item"
+                onClick={onItemClick}
+                data-cursor="link"
+              >
+                <span className="mm-icon" aria-hidden="true">{s.icon}</span>
+                <span className="mm-title">{s.title}</span>
+                <span className="mm-desc">{s.desc}</span>
+              </Link>
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      {/* Column 2 — Also offering */}
+      <div className="mm-col">
+        <h6>Also offering</h6>
+        <ul>
+          {alsoOffering.map((s) => (
+            <li key={s.href}>
+              <Link
+                href={s.href}
+                role="menuitem"
+                className="mm-item secondary"
+                onClick={onItemClick}
+                data-cursor="link"
+              >
+                <span className="mm-icon" aria-hidden="true">{s.icon}</span>
+                <span className="mm-title">{s.title}</span>
+              </Link>
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      {/* Column 3 — Featured promo card */}
+      <div className="mm-featured">
+        <span className="mm-tag">Featured</span>
+        <h4>
+          Need <em>all four?</em>
+        </h4>
+        <p>
+          Growth Partnership bundles brand, AI, plugin dev and web into one
+          monthly engagement.
+        </p>
+        <Link
+          href="/engage/growth-partnership/"
+          className="mm-cta"
+          role="menuitem"
+          onClick={onItemClick}
+          data-cursor="link"
         >
-          <div>
-            <p className="font-mono text-[10px] uppercase tracking-[0.2em] text-fog mb-3">
-              Core services
-            </p>
-            <ul className="space-y-3">
-              {core.map((s) => (
-                <li key={s.slug}>
-                  <Link
-                    href={s.url}
-                    onClick={onClose}
-                    className="block group"
-                  >
-                    <span className="block text-white font-medium group-hover:text-rocket transition-colors">
-                      {s.label}
-                    </span>
-                    <span className="block text-xs text-fog mt-0.5">{s.tagline}</span>
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
-          <div>
-            <p className="font-mono text-[10px] uppercase tracking-[0.2em] text-fog mb-3">
-              Also offering
-            </p>
-            <ul className="space-y-3">
-              {secondary.map((s) => (
-                <li key={s.slug}>
-                  <Link href={s.url} onClick={onClose} className="block group">
-                    <span className="block text-mist group-hover:text-rocket transition-colors">
-                      {s.label}
-                    </span>
-                    <span className="block text-xs text-fog mt-0.5">{s.tagline}</span>
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
-          {fireaway && (
-            <Link
-              href={`/work/${fireaway.slug}/`}
-              onClick={onClose}
-              className="bg-ink border border-hairline rounded-lg p-4 hover:border-rocket transition-colors group flex flex-col justify-between"
-            >
-              <div>
-                <p className="font-mono text-[10px] uppercase tracking-[0.2em] text-rocket">
-                  Featured case study
-                </p>
-                <p className="mt-2 text-white font-display text-xl leading-tight group-hover:text-rocket transition-colors">
-                  {fireaway.client}
-                </p>
-                <p className="mt-2 text-xs text-fog">{fireaway.excerpt}</p>
-              </div>
-              {fireaway.metric && (
-                <p className="mt-3 font-display text-3xl text-rocket leading-none">
-                  {fireaway.metric.value}
-                </p>
-              )}
-            </Link>
-          )}
-        </motion.div>
-      )}
-    </AnimatePresence>
+          Learn more <span aria-hidden="true">→</span>
+        </Link>
+      </div>
+    </div>
   );
 }

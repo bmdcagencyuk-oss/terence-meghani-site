@@ -1,120 +1,171 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import Link from 'next/link';
-import { Menu } from 'lucide-react';
-import { Emblem } from '@/components/ui/Emblem';
-import { Button } from '@/components/ui/Button';
 import { MegaMenu } from './MegaMenu';
-import { MobileMenu } from './MobileMenu';
-import { cn } from '@/lib/utils';
 
+/**
+ * Top navigation, ported from v23.
+ *
+ * Behaviours:
+ * - `.is-scrolled` class added when user scrolls past 60px (padding shrinks,
+ *   backdrop darkens, shadow appears).
+ * - Services trigger opens a mega-menu dropdown. Click outside / Escape closes.
+ * - Mobile (≤ 1080px): hamburger toggle reveals full-width menu stack.
+ * - All nav links are standard `<Link>` — use /#section for in-page anchors
+ *   from other routes; on the home page those resolve to hash navigation.
+ */
 export function TopNav() {
   const [scrolled, setScrolled] = useState(false);
-  const [megaOpen, setMegaOpen] = useState(false);
+  const [servicesOpen, setServicesOpen] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
+  const navRef = useRef<HTMLElement | null>(null);
+  const servicesLiRef = useRef<HTMLLIElement | null>(null);
 
+  // Scroll-aware state
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 80);
+    const onScroll = () => setScrolled(window.scrollY > 60);
     onScroll();
     window.addEventListener('scroll', onScroll, { passive: true });
     return () => window.removeEventListener('scroll', onScroll);
   }, []);
 
-  // Close mega menu on Escape
+  // Close mega-menu on: click outside, Escape, route change (via anchor click)
   useEffect(() => {
+    if (!servicesOpen) return;
+
     const onKey = (e: KeyboardEvent) => {
       if (e.key === 'Escape') {
-        setMegaOpen(false);
-        setMobileOpen(false);
+        setServicesOpen(false);
+        // Return focus to the trigger button for screen-reader users
+        const btn = servicesLiRef.current?.querySelector('button');
+        btn?.focus();
       }
     };
-    window.addEventListener('keydown', onKey);
-    return () => window.removeEventListener('keydown', onKey);
-  }, []);
+    const onClick = (e: MouseEvent) => {
+      const target = e.target;
+      if (!(target instanceof Node)) return;
+      if (servicesLiRef.current && !servicesLiRef.current.contains(target)) {
+        setServicesOpen(false);
+      }
+    };
+
+    document.addEventListener('keydown', onKey);
+    document.addEventListener('mousedown', onClick);
+    return () => {
+      document.removeEventListener('keydown', onKey);
+      document.removeEventListener('mousedown', onClick);
+    };
+  }, [servicesOpen]);
+
+  // When mobile menu closes (either via hamburger or link click), we also
+  // want any open submenu closed. This is handled in the click handlers
+  // (closeAll / the hamburger toggle) rather than as an effect — a cascading
+  // setState in an effect is a react-hooks/set-state-in-effect violation.
+
+  const closeAll = () => {
+    setServicesOpen(false);
+    setMobileOpen(false);
+  };
+
+  const toggleMobile = () => {
+    setMobileOpen((v) => {
+      const next = !v;
+      if (!next) setServicesOpen(false);   // closing mobile → close submenu too
+      return next;
+    });
+  };
+
+  const navClass = [
+    'nav-top',
+    scrolled   ? 'is-scrolled'    : '',
+    mobileOpen ? 'is-mobile-open' : '',
+  ]
+    .filter(Boolean)
+    .join(' ');
 
   return (
-    <>
-      <header
-        className={cn(
-          'fixed top-0 left-0 right-0 z-50 transition-all duration-300',
-          scrolled
-            ? 'bg-char/90 backdrop-blur-md border-b border-hairline-subtle'
-            : 'bg-transparent',
-        )}
-      >
-        <nav
-          className={cn(
-            'mx-auto max-w-7xl flex items-center justify-between px-6 lg:px-12 transition-all',
-            scrolled ? 'h-14' : 'h-20',
-          )}
-        >
-          <Link
-            href="/"
-            aria-label="Terence Meghani home"
-            className="text-white hover:text-rocket transition-colors"
-          >
-            <Emblem size={scrolled ? 30 : 36} color="currentColor" />
+    <nav ref={navRef} className={navClass} id="nav" aria-label="Primary">
+      {/* Brand lockup */}
+      <Link href="/" className="nav-brand" onClick={closeAll} data-cursor="link">
+        <span className="logo" aria-hidden="true">
+          <span className="emblem-mark" />
+        </span>
+        Meghani / Studio
+      </Link>
+
+      {/* Center menu */}
+      <ul className="nav-menu" role="menubar">
+        <li role="none">
+          <Link href="/#about" role="menuitem" onClick={closeAll} data-cursor="link">
+            About
           </Link>
+        </li>
 
-          <ul className="hidden lg:flex items-center gap-8 font-mono text-xs uppercase tracking-wider">
-            <li>
-              <Link href="/work/" className="text-mist hover:text-white transition-colors">
-                Work
-              </Link>
-            </li>
-            <li
-              className="relative"
-              onMouseEnter={() => setMegaOpen(true)}
-              onMouseLeave={() => setMegaOpen(false)}
-            >
-              <button
-                type="button"
-                aria-expanded={megaOpen}
-                aria-haspopup="true"
-                onClick={() => setMegaOpen((v) => !v)}
-                className="text-mist hover:text-white transition-colors flex items-center gap-1"
-              >
-                Services
-                <span aria-hidden="true" className="text-fog">▾</span>
-              </button>
-              <MegaMenu open={megaOpen} onClose={() => setMegaOpen(false)} />
-            </li>
-            <li>
-              <Link href="/about/" className="text-mist hover:text-white transition-colors">
-                About
-              </Link>
-            </li>
-            <li>
-              <Link href="/reviews/" className="text-mist hover:text-white transition-colors">
-                Reviews
-              </Link>
-            </li>
-          </ul>
+        <li
+          ref={servicesLiRef}
+          role="none"
+          className={`has-dropdown ${servicesOpen ? 'is-open' : ''}`}
+        >
+          <button
+            type="button"
+            id="servicesTrigger"
+            aria-haspopup="true"
+            aria-expanded={servicesOpen}
+            aria-controls="servicesMenu"
+            role="menuitem"
+            onClick={() => setServicesOpen((v) => !v)}
+            data-cursor="link"
+          >
+            Services <span className="caret" aria-hidden="true" />
+          </button>
+          <MegaMenu
+            id="servicesMenu"
+            labelledBy="servicesTrigger"
+            onItemClick={closeAll}
+          />
+        </li>
 
-          <div className="flex items-center gap-3">
-            <div className="hidden sm:block">
-              <Button
-                href="https://calendly.com/terencemeghani"
-                external
-                size="sm"
-                variant="primary"
-              >
-                Book a call
-              </Button>
-            </div>
-            <button
-              type="button"
-              onClick={() => setMobileOpen(true)}
-              aria-label="Open menu"
-              className="lg:hidden p-2 text-white hover:text-rocket transition-colors"
-            >
-              <Menu size={22} aria-hidden="true" />
-            </button>
-          </div>
-        </nav>
-      </header>
-      <MobileMenu open={mobileOpen} onClose={() => setMobileOpen(false)} />
-    </>
+        <li role="none">
+          <Link href="/work/" role="menuitem" onClick={closeAll} data-cursor="link">
+            Work
+          </Link>
+        </li>
+        <li role="none">
+          <Link href="/#why" role="menuitem" onClick={closeAll} data-cursor="link">
+            Why me
+          </Link>
+        </li>
+        <li role="none">
+          <Link href="/reviews/" role="menuitem" onClick={closeAll} data-cursor="link">
+            Reviews
+          </Link>
+        </li>
+      </ul>
+
+      {/* Right-side CTA */}
+      <div className="nav-right">
+        <a
+          href="https://calendly.com/terencemeghani"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="nav-cta"
+          data-cursor="go"
+        >
+          🚀 Book a call
+        </a>
+      </div>
+
+      {/* Hamburger toggle (mobile only, CSS-hidden above 1080px) */}
+      <button
+        type="button"
+        className="nav-hamburger"
+        aria-label={mobileOpen ? 'Close menu' : 'Open menu'}
+        aria-expanded={mobileOpen}
+        onClick={toggleMobile}
+      >
+        <span /><span /><span />
+      </button>
+    </nav>
   );
 }

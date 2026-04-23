@@ -291,3 +291,456 @@ body.cc-grabbing .cc        { width: 90px; height: 90px; }
 @media (hover: none), (pointer: coarse) {
   .cc, .cc-label { display: none; }
 }
+
+/* ============================================================
+   NAV — scroll-aware with mega-menu
+   ============================================================ */
+.nav-top {
+  position: fixed;
+  inset: 0 0 auto 0;
+  z-index: 60;
+  padding: 16px clamp(20px, 3vw, 40px);
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: 24px;
+  background: color-mix(in srgb, var(--color-char) 72%, transparent);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  border-bottom: 1px solid transparent;
+  transition: padding 0.3s var(--ease),
+              background 0.3s var(--ease),
+              border-color 0.3s var(--ease),
+              box-shadow 0.3s var(--ease);
+}
+.nav-top.is-scrolled {
+  padding: 10px clamp(20px, 3vw, 40px);
+  background: color-mix(in srgb, var(--color-char) 90%, transparent);
+  border-bottom-color: var(--color-hairline-2);
+  box-shadow: 0 12px 30px -20px rgba(0,0,0,0.6);
+}
+
+/* Brand lockup */
+.nav-brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  font-weight: 500;
+  color: #fff;
+  text-decoration: none;
+}
+.nav-brand .logo {
+  width: 32px;
+  height: 32px;
+  background: var(--color-rocket);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 6px;
+  transform: rotate(-4deg);
+  margin-right: 4px;
+  box-shadow: 0 4px 14px -2px color-mix(in srgb, var(--color-rocket) 70%, transparent);
+  flex-shrink: 0;
+  transition: transform 0.35s var(--ease-bounce), width 0.3s var(--ease), height 0.3s var(--ease);
+}
+.nav-top.is-scrolled .nav-brand .logo { width: 28px; height: 28px; }
+.nav-brand:hover .logo { transform: rotate(4deg) scale(1.08); }
+.nav-brand .logo .emblem-mark {
+  width: 100%;
+  height: 100%;
+  background-image: var(--emblem);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  filter: brightness(0) invert(1);
+}
+
+/* Center menu */
+.nav-menu {
+  display: flex;
+  gap: 4px;
+  list-style: none;
+  justify-self: center;
+  align-items: center;
+  margin: 0;
+  padding: 0;
+}
+.nav-menu > li { position: relative; }
+.nav-menu > li > a,
+.nav-menu > li > button {
+  font-family: var(--font-mono);
+  font-size: 11.5px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--color-mist);
+  font-weight: 500;
+  padding: 10px 14px;
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  transition: color 0.2s ease;
+  text-decoration: none;
+}
+.nav-menu > li > a:hover,
+.nav-menu > li > button:hover,
+.nav-menu > li.is-active > a,
+.nav-menu > li.is-active > button,
+.nav-menu > li.is-open > button { color: #fff; }
+
+.nav-menu > li > a::after,
+.nav-menu > li > button::after {
+  content: '';
+  position: absolute;
+  left: 14px; right: 14px;
+  bottom: 2px;
+  height: 1px;
+  background: var(--color-rocket);
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: transform 0.35s var(--ease);
+}
+.nav-menu > li.is-active > a::after,
+.nav-menu > li.is-active > button::after,
+.nav-menu > li.is-open > button::after,
+.nav-menu > li > a:hover::after,
+.nav-menu > li > button:hover::after {
+  transform: scaleX(1);
+}
+
+.nav-menu .caret {
+  width: 8px;
+  height: 8px;
+  border-right: 1.5px solid currentColor;
+  border-bottom: 1.5px solid currentColor;
+  transform: translateY(-2px) rotate(45deg);
+  transition: transform 0.3s var(--ease);
+  display: inline-block;
+}
+.nav-menu > li.is-open .caret { transform: translateY(1px) rotate(-135deg); }
+
+/* Mega menu container */
+.mega-menu {
+  position: absolute;
+  top: calc(100% + 12px);
+  left: 50%;
+  transform: translateX(-50%) translateY(-8px) scale(0.98);
+  width: min(820px, 92vw);
+  background: color-mix(in srgb, var(--color-char) 96%, transparent);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1px solid var(--color-hairline-2);
+  box-shadow: 0 30px 80px -20px rgba(0,0,0,0.6), inset 0 0 0 1px rgba(255,255,255,0.02);
+  padding: 28px;
+  display: grid;
+  grid-template-columns: 1.3fr 1fr 1fr;
+  gap: 28px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.22s var(--ease), transform 0.32s var(--ease);
+  z-index: 70;
+}
+.nav-menu > li.is-open .mega-menu {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0) scale(1);
+  pointer-events: auto;
+}
+.mega-menu::before {
+  content: '';
+  position: absolute;
+  top: -1px; left: 24px;
+  width: 48px; height: 2px;
+  background: var(--color-rocket);
+}
+
+.mega-menu h6 {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--color-fog);
+  font-weight: 600;
+  margin: 0 0 14px 0;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+.mega-menu h6::before {
+  content: '';
+  width: 12px;
+  height: 1px;
+  background: var(--color-rocket);
+}
+
+.mega-menu .mm-col { min-width: 0; }                    /* grid child overflow-guard */
+.mega-menu .mm-col ul {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin: 0;
+  padding: 0;
+}
+
+/* --- MM ITEM: overflow bug fix ---
+ * v23 bug was: title used flex (icon+text), description set padding-left:30px
+ * to align its first line with title text past the icon. When description
+ * wrapped, line 2 broke back to the container's left edge — visible gap.
+ *
+ * Fix: remove padding-left from description. Instead, put the left offset
+ * on the item itself with an indented title using negative margin. That way
+ * the description wraps consistently — every line indents the same amount.
+ */
+.mega-menu .mm-item {
+  display: grid;                            /* grid isolates title + desc rows */
+  grid-template-columns: auto 1fr;          /* icon column, content column */
+  grid-template-rows: auto auto;
+  column-gap: 8px;
+  row-gap: 3px;
+  padding: 10px 12px;
+  border-radius: 2px;
+  text-decoration: none;
+  transition: background 0.2s ease, transform 0.2s ease;
+  position: relative;
+  min-width: 0;                             /* allow content to shrink */
+}
+.mega-menu .mm-item:hover {
+  background: color-mix(in srgb, var(--color-rocket) 8%, transparent);
+  transform: translateX(2px);
+}
+.mega-menu .mm-item .mm-icon {
+  grid-row: 1;
+  grid-column: 1;
+  font-size: 13px;
+  width: 22px;
+  height: 22px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: color-mix(in srgb, var(--color-rocket) 15%, transparent);
+  border: 1px solid color-mix(in srgb, var(--color-rocket) 40%, transparent);
+  flex-shrink: 0;
+  align-self: start;
+}
+.mega-menu .mm-item .mm-title {
+  grid-row: 1;
+  grid-column: 2;
+  font-family: var(--font-display);
+  font-variation-settings: "wdth" 100, "opsz" 48, "wght" 600;
+  font-size: 14.5px;
+  color: #fff;
+  line-height: 1.2;
+  text-transform: none;
+  letter-spacing: -0.01em;
+  align-self: center;
+  min-width: 0;
+}
+.mega-menu .mm-item .mm-desc {
+  grid-row: 2;
+  grid-column: 2;                           /* description sits under title, aligned past the icon */
+  font-family: var(--font-body);
+  font-size: 12px;
+  color: var(--color-mist);
+  line-height: 1.4;
+  letter-spacing: 0;
+  text-transform: none;
+  min-width: 0;
+  overflow-wrap: break-word;                /* guard against unbroken strings */
+}
+
+.mega-menu .mm-item.secondary {
+  grid-template-rows: auto;                 /* no description row for secondary */
+}
+.mega-menu .mm-item.secondary .mm-title { font-size: 13.5px; color: var(--color-mist); }
+.mega-menu .mm-item.secondary:hover .mm-title { color: #fff; }
+.mega-menu .mm-item.secondary .mm-icon {
+  background: transparent;
+  border-color: var(--color-hairline);
+}
+
+/* Featured promo card */
+.mega-menu .mm-featured {
+  background: linear-gradient(135deg, rgba(255,77,23,0.12), rgba(122,15,255,0.08));
+  border: 1px solid color-mix(in srgb, var(--color-rocket) 30%, transparent);
+  padding: 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  position: relative;
+  overflow: hidden;
+  min-width: 0;
+}
+.mega-menu .mm-featured::before {
+  content: '';
+  position: absolute;
+  top: -40%; right: -20%;
+  width: 140px; height: 140px;
+  background-image: var(--emblem);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  filter: brightness(0) invert(1);
+  opacity: 0.05;
+  transform: rotate(12deg);
+}
+.mega-menu .mm-featured .mm-tag {
+  font-family: var(--font-mono);
+  font-size: 9.5px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--color-rocket);
+  font-weight: 700;
+}
+.mega-menu .mm-featured h4 {
+  font-family: var(--font-display);
+  font-variation-settings: "wdth" 85, "opsz" 72, "wght" 500;
+  font-size: 20px;
+  color: #fff;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  text-transform: none;
+  margin: 0;
+}
+.mega-menu .mm-featured h4 em {
+  font-family: var(--font-italic);
+  font-style: italic;
+  font-weight: 400;
+  color: var(--color-rocket);
+}
+.mega-menu .mm-featured p {
+  font-family: var(--font-body);
+  font-size: 12.5px;
+  color: var(--color-mist);
+  line-height: 1.45;
+  text-transform: none;
+  letter-spacing: 0;
+  margin: 0;
+}
+.mega-menu .mm-featured .mm-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--font-mono);
+  font-size: 10.5px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: #fff;
+  font-weight: 600;
+  margin-top: auto;
+  text-decoration: none;
+  transition: color 0.2s ease, gap 0.2s ease;
+}
+.mega-menu .mm-featured .mm-cta:hover { color: var(--color-rocket); gap: 10px; }
+
+/* Right side (CTA only — time readout skipped per product decision) */
+.nav-right {
+  justify-self: end;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+.nav-cta {
+  padding: 10px 18px;
+  background: var(--color-rocket);
+  color: #fff;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  font-weight: 600;
+  transition: all 0.25s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  text-decoration: none;
+  border: none;
+}
+.nav-cta:hover { background: var(--color-violet); }
+.nav-top.is-scrolled .nav-cta { padding: 8px 16px; font-size: 10.5px; }
+
+/* Hamburger — mobile only */
+.nav-hamburger {
+  display: none;
+  width: 36px;
+  height: 36px;
+  background: none;
+  border: 1px solid var(--color-hairline-2);
+  position: relative;
+  cursor: pointer;
+  padding: 0;
+}
+.nav-hamburger span {
+  position: absolute;
+  left: 8px; right: 8px;
+  height: 1.5px;
+  background: #fff;
+  transition: transform 0.3s var(--ease), opacity 0.2s ease, top 0.3s var(--ease);
+}
+.nav-hamburger span:nth-child(1) { top: 12px; }
+.nav-hamburger span:nth-child(2) { top: 17px; }
+.nav-hamburger span:nth-child(3) { top: 22px; }
+.nav-top.is-mobile-open .nav-hamburger span:nth-child(1) { top: 17px; transform: rotate(45deg); }
+.nav-top.is-mobile-open .nav-hamburger span:nth-child(2) { opacity: 0; }
+.nav-top.is-mobile-open .nav-hamburger span:nth-child(3) { top: 17px; transform: rotate(-45deg); }
+
+@media (max-width: 1080px) {
+  .nav-hamburger {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    justify-self: end;
+  }
+  .nav-menu,
+  .nav-right { display: none; }
+
+  .nav-top.is-mobile-open .nav-menu,
+  .nav-top.is-mobile-open .nav-right {
+    display: flex;
+    position: absolute;
+    top: 100%; left: 0; right: 0;
+    flex-direction: column;
+    gap: 8px;
+    background: var(--color-char);
+    padding: 20px clamp(20px, 3vw, 40px);
+    border-bottom: 1px solid var(--color-hairline-2);
+    justify-self: stretch;
+    align-items: stretch;
+  }
+  .nav-top.is-mobile-open .nav-menu > li > a,
+  .nav-top.is-mobile-open .nav-menu > li > button {
+    padding: 14px 0;
+    width: 100%;
+    justify-content: space-between;
+  }
+  .nav-top.is-mobile-open .mega-menu {
+    position: static;
+    transform: none;
+    width: 100%;
+    grid-template-columns: 1fr;
+    padding: 12px 0;
+    background: none;
+    border: none;
+    box-shadow: none;
+    gap: 16px;
+    display: none;
+    opacity: 0;
+  }
+  .nav-top.is-mobile-open .nav-menu > li.is-open .mega-menu {
+    display: grid;
+    opacity: 1;
+    pointer-events: auto;
+  }
+  .nav-top.is-mobile-open .nav-right {
+    padding-top: 0;
+    border-top: 1px solid var(--color-hairline-2);
+    padding-bottom: 20px;
+  }
+  .mega-menu::before { display: none; }
+}
