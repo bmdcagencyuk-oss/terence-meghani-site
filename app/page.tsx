@@ -8,6 +8,7 @@ import { Work } from '@/components/sections/Work';
 import { Why } from '@/components/sections/Why';
 import { Testimonials } from '@/components/sections/Testimonials';
 import { FAQ } from '@/components/sections/FAQ';
+import { Launch } from '@/components/sections/Launch';
 import { homeSchema } from '@/lib/schema';
 
 export default function Home() {
@@ -27,6 +28,7 @@ export default function Home() {
       <Why />
       <Testimonials />
       <FAQ />
+      <Launch />
     </>
   );
 }
