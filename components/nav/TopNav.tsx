@@ -97,7 +97,7 @@ export function TopNav() {
       {/* Center menu */}
       <ul className="nav-menu" role="menubar">
         <li role="none">
-          <Link href="/#about" role="menuitem" onClick={closeAll} data-cursor="link">
+          <Link href="/about/" role="menuitem" onClick={closeAll} data-cursor="link">
             About
           </Link>
         </li>
