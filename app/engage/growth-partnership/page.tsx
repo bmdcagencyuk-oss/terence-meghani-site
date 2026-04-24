@@ -62,7 +62,7 @@ export default function GrowthPartnershipPage() {
             </ol>
           </nav>
 
-          <div style={{ marginTop: 28, display: 'flex', alignItems: 'center', gap: 12 }}>
+          <div className="kicker-row" style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
             <Gem size={24} style={{ color: 'var(--color-rocket)' }} aria-hidden="true" strokeWidth={1.6} />
             <Kicker>Ongoing engagement</Kicker>
           </div>
@@ -81,6 +81,7 @@ export default function GrowthPartnershipPage() {
           >
             Brand, AI, plugin dev, web — one monthly retainer.
           </p>
+          <hr className="hero-rule" aria-hidden="true" />
           <p className="lead">
             A retained monthly engagement for businesses that want the full stack on
             ongoing support. Flexible scope, no minimum term, cancel anytime. Best for

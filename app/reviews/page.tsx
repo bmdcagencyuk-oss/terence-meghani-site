@@ -33,10 +33,13 @@ export default function ReviewsPage() {
             className="reviews-hero-grid"
           >
             <div>
-              <Kicker>Reviews</Kicker>
+              <div className="kicker-row">
+                <Kicker>Reviews · Trustpilot verified</Kicker>
+              </div>
               <h1>
-                4.9★ on Trustpilot. <em>37 reviews.</em>
+                4.9 / 5. <em>37 reviews.</em>
               </h1>
+              <hr className="hero-rule" aria-hidden="true" />
               <p className="lead">
                 Showing the most recent {sorted.length} of 37 verified reviews. All were
                 originally posted to Trustpilot for BMDC (the studio&rsquo;s former name)

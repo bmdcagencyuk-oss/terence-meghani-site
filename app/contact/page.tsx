@@ -20,31 +20,8 @@ const CONTACT_ROWS: Array<{ k: string; v: string; href?: string }> = [
 export default function ContactPage() {
   return (
     <>
-      <section
-        style={{
-          paddingTop: 'clamp(96px, 12vw, 160px)',
-          paddingBottom: 'clamp(64px, 9vw, 120px)',
-          background: 'var(--color-char)',
-          position: 'relative',
-          overflow: 'hidden',
-        }}
-      >
-        <span
-          aria-hidden="true"
-          style={{
-            position: 'absolute',
-            top: '-20%',
-            right: '-10%',
-            width: '60%',
-            height: '120%',
-            background:
-              'radial-gradient(circle, var(--color-rocket) 0%, transparent 55%)',
-            filter: 'blur(120px)',
-            opacity: 0.18,
-            pointerEvents: 'none',
-          }}
-        />
-        <div className="wrap" style={{ position: 'relative' }}>
+      <section className="page-hero with-glow-rocket">
+        <div className="wrap">
           <div
             style={{
               display: 'grid',
@@ -53,40 +30,14 @@ export default function ContactPage() {
             }}
           >
             <div>
-              <Kicker>Contact</Kicker>
-              <h1
-                style={{
-                  marginTop: 18,
-                  fontFamily: 'var(--font-display)',
-                  fontVariationSettings: '"wdth" 100, "opsz" 96',
-                  fontWeight: 500,
-                  fontSize: 'var(--text-display-lg)',
-                  lineHeight: 0.95,
-                  letterSpacing: '-0.04em',
-                  color: '#fff',
-                }}
-              >
-                Ready to{' '}
-                <em
-                  style={{
-                    fontFamily: 'var(--font-italic)',
-                    fontStyle: 'italic',
-                    color: 'var(--color-rocket)',
-                    fontWeight: 400,
-                  }}
-                >
-                  build?
-                </em>
+              <div className="kicker-row">
+                <Kicker>Contact · Under 4h reply</Kicker>
+              </div>
+              <h1>
+                Ready to <em>build?</em>
               </h1>
-              <p
-                style={{
-                  marginTop: 20,
-                  maxWidth: '48ch',
-                  color: 'var(--color-mist)',
-                  fontSize: 17,
-                  lineHeight: 1.6,
-                }}
-              >
+              <hr className="hero-rule" aria-hidden="true" />
+              <p className="lead">
                 Drop a brief below — or book a thirty-minute discovery call. I read every
                 enquiry personally and reply within four hours during UK business hours.
               </p>

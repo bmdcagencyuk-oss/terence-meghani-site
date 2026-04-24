@@ -16,49 +16,17 @@ export default function WorkPage() {
 
   return (
     <>
-      <section
-        style={{
-          paddingTop: 'clamp(96px, 12vw, 160px)',
-          paddingBottom: 'clamp(32px, 5vw, 56px)',
-          background: 'var(--color-char)',
-        }}
-      >
+      <section className="page-hero with-glow-rocket">
         <div className="wrap">
-          <Kicker>Work</Kicker>
-          <h1
-            style={{
-              marginTop: 20,
-              fontFamily: 'var(--font-display)',
-              fontVariationSettings: '"wdth" 100, "opsz" 96',
-              fontWeight: 500,
-              fontSize: 'var(--text-display-lg)',
-              letterSpacing: '-0.04em',
-              lineHeight: 0.95,
-              color: '#fff',
-              maxWidth: '16ch',
-            }}
-          >
+          <div className="kicker-row">
+            <Kicker>Work · 24 projects</Kicker>
+          </div>
+          <h1>
             A decade of projects that{' '}
-            <em
-              style={{
-                fontFamily: 'var(--font-italic)',
-                fontStyle: 'italic',
-                color: 'var(--color-rocket)',
-                fontWeight: 400,
-              }}
-            >
-              shipped, scaled, and stayed.
-            </em>
+            <em>shipped, scaled, and stayed.</em>
           </h1>
-          <p
-            style={{
-              marginTop: 24,
-              maxWidth: '60ch',
-              fontSize: 18,
-              lineHeight: 1.55,
-              color: 'var(--color-mist)',
-            }}
-          >
+          <hr className="hero-rule" aria-hidden="true" />
+          <p className="lead">
             Twenty-four projects across brand, web, marketing, and photography. Filter by
             discipline or scan the full set below.
           </p>
@@ -67,6 +35,7 @@ export default function WorkPage() {
 
       <section
         style={{
+          paddingTop: 'clamp(48px, 6vw, 80px)',
           paddingBottom: 'clamp(80px, 12vw, 160px)',
           background: 'var(--color-char)',
         }}

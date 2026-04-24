@@ -101,7 +101,9 @@ export default function AboutPage() {
             }}
           >
             <div>
-              <Kicker>About Terence</Kicker>
+              <div className="kicker-row">
+                <Kicker>About Terence · Est. 2014</Kicker>
+              </div>
               <h1>
                 Hi, I&rsquo;m <em>Terence.</em>
               </h1>
@@ -118,6 +120,7 @@ export default function AboutPage() {
               >
                 Creative designer, brand consultant, proud dad of two.
               </p>
+              <hr className="hero-rule" aria-hidden="true" />
               <p className="lead">
                 Based between <strong>Hertfordshire and London</strong> — helping businesses
                 build impactful brands worldwide since launching my first venture at sixteen.

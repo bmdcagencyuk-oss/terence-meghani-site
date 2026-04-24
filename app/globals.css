@@ -774,58 +774,119 @@
 /* Page hero for internal pages (services / engage / about / contact) */
 .page-hero {
   position: relative;
-  padding: clamp(120px, 15vw, 180px) 0 clamp(48px, 6vw, 96px);
+  padding: clamp(112px, 13vw, 168px) 0 clamp(56px, 7vw, 104px);
   background: var(--color-char);
   overflow: hidden;
+  isolation: isolate;
+}
+/* Huge faded emblem watermark at bottom-right — gives every internal hero
+ * a pinned visual anchor without needing per-page imagery. */
+.page-hero::after {
+  content: '';
+  position: absolute;
+  bottom: -28%;
+  right: -10%;
+  width: 640px;
+  height: 640px;
+  background-image: var(--emblem);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  filter: brightness(0) invert(1);
+  opacity: 0.025;
+  transform: rotate(-8deg);
+  pointer-events: none;
+  z-index: -1;
 }
 .page-hero.with-glow::before {
   content: '';
   position: absolute;
-  inset: -10% -10% auto auto;
+  inset: -15% -10% auto auto;
   width: 70%;
-  height: 120%;
+  height: 130%;
   background: radial-gradient(circle, var(--color-violet) 0%, transparent 55%);
   filter: blur(100px);
-  opacity: 0.28;
+  opacity: 0.32;
   pointer-events: none;
+  z-index: -1;
 }
 .page-hero.with-glow-rocket::before {
   content: '';
   position: absolute;
-  inset: -10% auto auto -10%;
+  inset: -15% auto auto -10%;
   width: 65%;
-  height: 120%;
+  height: 130%;
   background: radial-gradient(circle, var(--color-rocket) 0%, transparent 55%);
   filter: blur(120px);
-  opacity: 0.22;
+  opacity: 0.28;
   pointer-events: none;
+  z-index: -1;
 }
 .page-hero .wrap { position: relative; }
 .page-hero h1 {
   font-family: var(--font-display);
   font-variation-settings: "wdth" 100, "opsz" 96;
   font-weight: 500;
-  font-size: clamp(56px, 10vw, 160px);
-  line-height: 0.9;
+  font-size: clamp(64px, 11vw, 184px);
+  line-height: 0.88;
   letter-spacing: -0.05em;
   color: #fff;
   max-width: 18ch;
-  margin-top: 20px;
+  /* Tighter visual gap to the kicker above; use a display-tuned top margin
+   * instead of the raw line-height gap (which leaves dead space at huge
+   * display sizes). */
+  margin-top: 32px;
+  text-wrap: balance;
 }
 .page-hero h1 em {
   font-family: var(--font-italic);
   font-style: italic;
   font-weight: 400;
   color: var(--color-rocket);
+  /* Baseline-align the italic serif against the Bricolage display sans —
+   * otherwise it visibly drifts upward at large sizes. */
+  vertical-align: baseline;
+  line-height: inherit;
+  letter-spacing: -0.02em;
+  padding-right: 0.03em;
+}
+/* Accent rule below the tagline — small editorial tick, rocket coloured,
+ * that anchors the headline block to the body copy underneath. */
+.page-hero .hero-rule {
+  display: block;
+  width: 72px;
+  height: 3px;
+  background: var(--color-rocket);
+  margin: 28px 0 26px;
+  border: none;
 }
 .page-hero .lead {
-  margin-top: 22px;
-  max-width: 60ch;
-  font-size: clamp(18px, 1.6vw, 22px);
+  max-width: 62ch;
+  font-size: clamp(18px, 1.5vw, 22px);
   line-height: 1.5;
   color: var(--color-mist);
 }
 .page-hero .lead strong { color: #fff; font-weight: 500; }
+
+/* Fade-in cascade on hero chrome */
+@keyframes heroRise {
+  from { opacity: 0; transform: translateY(14px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.page-hero .crumbs,
+.page-hero .kicker-row,
+.page-hero h1,
+.page-hero h1 + p,
+.page-hero .lead,
+.page-hero .hero-rule {
+  animation: heroRise 0.7s var(--ease) both;
+}
+.page-hero .crumbs        { animation-delay: 0s; }
+.page-hero .kicker-row    { animation-delay: 0.08s; }
+.page-hero h1             { animation-delay: 0.18s; }
+.page-hero h1 + p         { animation-delay: 0.28s; }
+.page-hero .hero-rule     { animation-delay: 0.32s; }
+.page-hero .lead          { animation-delay: 0.38s; }
 
 /* Feature card grid — balanced 3-col (2 on tablet, 1 on mobile).
  * Using fixed column counts avoids the "4 + 2 orphans" look that
@@ -933,13 +994,15 @@
 @media (max-width: 900px) {
   .svc-hero-grid { grid-template-columns: 1fr; }
 }
-/* Inside the split hero, shrink H1 + tagline so nothing spills onto the aside */
+/* Inside a 2-col split hero, tune the H1 so it fits its own column without
+ * crashing the aside. Keep the size substantial (72–128px) so it still
+ * reads as display type, not a section head. */
 .svc-hero-grid h1,
 .about-hero-grid h1 {
-  font-size: clamp(52px, 7vw, 128px) !important;
-  line-height: 0.92 !important;
+  font-size: clamp(56px, 7.5vw, 128px) !important;
+  line-height: 0.9 !important;
   letter-spacing: -0.04em;
-  max-width: 12ch;
+  max-width: 14ch;
 }
 @media (max-width: 900px) {
   .about-hero-grid {

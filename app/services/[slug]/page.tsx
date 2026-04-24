@@ -341,9 +341,11 @@ export default async function ServicePage({
 
           <div className="svc-hero-grid" style={{ marginTop: 32 }}>
             <div>
-              <Kicker>
-                {service.tier === 'core' ? 'Core service' : 'Also offering'}
-              </Kicker>
+              <div className="kicker-row">
+                <Kicker>
+                  {service.tier === 'core' ? 'Core service' : 'Also offering'}
+                </Kicker>
+              </div>
               <h1>
                 {service.label.split(' ').slice(0, -1).join(' ')}{' '}
                 <em>{service.label.split(' ').slice(-1)[0]}</em>
@@ -361,6 +363,7 @@ export default async function ServicePage({
               >
                 {service.tagline}
               </p>
+              <hr className="hero-rule" aria-hidden="true" />
               <p className="lead">{service.longDescription}</p>
 
               <div style={{ marginTop: 36, display: 'flex', flexWrap: 'wrap', gap: 12 }}>
