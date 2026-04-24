@@ -11,6 +11,8 @@ import { TopNav } from '@/components/nav/TopNav';
 import { Footer } from '@/components/common/Footer';
 import { SkipLink } from '@/components/common/SkipLink';
 import { CustomCursor } from '@/components/common/CustomCursor';
+import { ScrollProgressBar } from '@/components/common/ScrollProgressBar';
+import { FloatingFab } from '@/components/common/FloatingFab';
 
 // Bricolage Grotesque — variable font with width + optical-size axes.
 // v23 uses font-variation-settings on .mega .ch to animate wdth 85↔80 during
@@ -92,6 +94,8 @@ export default function RootLayout({
         <PlausibleProvider domain={plausibleDomain}>
           <CustomCursor />
           <SkipLink />
+          <ScrollProgressBar />
+          <FloatingFab />
           <TopNav />
           <main id="main">{children}</main>
           <Footer />
