@@ -110,9 +110,9 @@ const SERVICE_CONTENT: Record<
   'brand-identity': {
     heroStats: [
       { k: 'Typical engagement', v: '5–9 weeks' },
-      { k: 'Starting from',      v: '£6.5k' },
       { k: 'Deliverables',       v: '6 modules' },
-      { k: 'Reply time',         v: '<4 hours' },
+      { k: 'Reply time',         v: 'Under 4h' },
+      { k: 'Ownership',          v: 'You keep it' },
     ],
     heroClients: ['News UK', 'Royal London', 'TEDx', 'Al Jannah'],
     deliverables: [
@@ -140,9 +140,9 @@ const SERVICE_CONTENT: Record<
   'ai-automation': {
     heroStats: [
       { k: 'Typical pilot',   v: '3–5 weeks' },
-      { k: 'Starting from',   v: '£5k' },
       { k: 'Deliverables',    v: '6 modules' },
       { k: 'Ship cycle',      v: 'Pilot → prod' },
+      { k: 'Reply time',      v: 'Under 4h' },
     ],
     heroClients: ['News UK', 'Royal London', 'TEDx'],
     deliverables: [
@@ -169,9 +169,9 @@ const SERVICE_CONTENT: Record<
   'wordpress-plugin-development': {
     heroStats: [
       { k: 'Typical engagement', v: '4–12 weeks' },
-      { k: 'Starting from',      v: '£4k' },
       { k: 'Deliverables',       v: '7 modules' },
       { k: 'Code ownership',     v: 'You keep it' },
+      { k: 'Reply time',         v: 'Under 4h' },
     ],
     heroClients: ['DCD Connect', 'Japex', 'Sainsbury\'s'],
     deliverables: [
@@ -200,9 +200,9 @@ const SERVICE_CONTENT: Record<
   'web-development': {
     heroStats: [
       { k: 'Typical engagement', v: '6–14 weeks' },
-      { k: 'Starting from',      v: '£8k' },
       { k: 'Deliverables',       v: '7 modules' },
       { k: 'Platform lock',      v: 'None' },
+      { k: 'Reply time',         v: 'Under 4h' },
     ],
     heroClients: ['Tulsi Vagjiani', 'Vijay\'s Virasat', 'MHV Clinic'],
     deliverables: [
@@ -230,10 +230,10 @@ const SERVICE_CONTENT: Record<
   },
   'ppc-paid-media': {
     heroStats: [
-      { k: 'Typical retainer', v: '£2k–8k/mo' },
-      { k: 'Platforms',        v: '4+ channels' },
-      { k: 'Reporting',        v: 'Monthly' },
-      { k: 'Minimum term',     v: '3 months' },
+      { k: 'Cadence',       v: 'Monthly' },
+      { k: 'Platforms',     v: '4+ channels' },
+      { k: 'Reporting',     v: 'Monthly' },
+      { k: 'Minimum term',  v: '3 months' },
     ],
     heroClients: ['Fireaway', 'Japex', 'MHV Clinic'],
     deliverables: [
@@ -250,7 +250,7 @@ const SERVICE_CONTENT: Record<
   },
   'seo-organic-growth': {
     heroStats: [
-      { k: 'Typical retainer', v: '£1.5k–5k/mo' },
+      { k: 'Cadence',          v: 'Monthly' },
       { k: 'Audit turnaround', v: '1–2 weeks' },
       { k: 'Reporting',        v: 'Monthly' },
       { k: 'Minimum term',     v: '6 months' },

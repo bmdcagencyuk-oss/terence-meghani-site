@@ -499,46 +499,107 @@
   line-height: 1.35;
 }
 
+/* Case-study act — editorial 2-col split:
+ *   left: huge stage number + title, sticky while reading
+ *   right: prose (+ optional metric card)
+ * Stacks to single column below 960px.
+ */
 .cs-act {
-  padding: clamp(64px, 9vw, 120px) 0;
+  position: relative;
+  padding: clamp(80px, 11vw, 160px) 0;
   background: var(--color-char);
+  overflow: hidden;
 }
 .cs-act.alt { background: var(--color-char-2); }
+.cs-act::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 1px;
+  background: linear-gradient(90deg,
+    transparent 0%,
+    var(--color-hairline) 20%,
+    var(--color-hairline) 80%,
+    transparent 100%);
+}
+.cs-act .wrap {
+  display: grid;
+  grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+  gap: clamp(32px, 5vw, 80px);
+  align-items: start;
+}
+.cs-act .head {
+  position: sticky;
+  top: clamp(100px, 10vw, 140px);
+  padding-right: 20px;
+}
+.cs-act .stage {
+  display: block;
+  font-family: var(--font-display);
+  font-variation-settings: "wdth" 85, "opsz" 96;
+  font-weight: 500;
+  font-size: clamp(120px, 18vw, 260px);
+  line-height: 0.85;
+  letter-spacing: -0.06em;
+  color: transparent;
+  -webkit-text-stroke: 1.5px color-mix(in srgb, var(--color-rocket) 75%, transparent);
+  user-select: none;
+  pointer-events: none;
+  margin-bottom: 12px;
+}
 .cs-act .num {
   font-family: var(--font-mono);
   font-size: 11px;
   letter-spacing: 0.2em;
   text-transform: uppercase;
   color: var(--color-rocket);
+  font-weight: 600;
 }
 .cs-act h2 {
-  margin-top: 8px;
+  margin-top: 10px;
   font-family: var(--font-display);
-  font-variation-settings: "wdth" 100, "opsz" 72;
+  font-variation-settings: "wdth" 100, "opsz" 96;
   font-weight: 500;
-  font-size: var(--text-display-md);
-  letter-spacing: -0.03em;
-  line-height: 1;
+  font-size: clamp(40px, 5.5vw, 88px);
+  letter-spacing: -0.035em;
+  line-height: 0.95;
   color: #fff;
-  max-width: 14ch;
 }
 .cs-act h2 em {
   font-family: var(--font-italic);
   font-style: italic;
+  font-weight: 400;
   color: var(--color-rocket);
 }
 .cs-act .prose {
-  margin-top: 28px;
-  max-width: 64ch;
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 24px;
   color: var(--color-mist);
-  font-size: 17px;
+  font-size: 18px;
   line-height: 1.65;
+  max-width: 68ch;
+}
+.cs-act .prose p:first-child::first-letter {
+  font-family: var(--font-display);
+  font-variation-settings: "wdth" 85, "opsz" 96;
+  font-weight: 600;
+  font-size: 3.4em;
+  line-height: 0.85;
+  color: #fff;
+  float: left;
+  padding: 6px 14px 0 0;
+  margin-top: 4px;
 }
 .cs-act .prose strong { color: #fff; font-weight: 500; }
 .cs-act .prose em { color: var(--color-rocket); font-family: var(--font-italic); font-style: italic; }
+@media (max-width: 960px) {
+  .cs-act .wrap { grid-template-columns: 1fr; }
+  .cs-act .head { position: static; padding-right: 0; }
+  .cs-act .stage { font-size: clamp(96px, 22vw, 200px); }
+  .cs-act .prose { font-size: 17px; }
+  .cs-act .prose p:first-child::first-letter { font-size: 2.8em; }
+}
 
 .cs-metric {
   margin-top: 32px;
@@ -748,12 +809,28 @@
 }
 .page-hero .lead strong { color: #fff; font-weight: 500; }
 
-/* Feature card grid — used for deliverables/practices/includes */
+/* Feature card grid — balanced 3-col (2 on tablet, 1 on mobile).
+ * Using fixed column counts avoids the "4 + 2 orphans" look that
+ * auto-fit leaves on wide screens.
+ */
 .feature-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 20px;
 }
+@media (max-width: 960px) {
+  .feature-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 620px) {
+  .feature-grid { grid-template-columns: 1fr; }
+}
+/* Odd trailing item (7 items on a 3-col grid → last card) spans full width
+ * so the row doesn't look half-empty. */
+.feature-grid > :last-child:nth-child(3n + 1) {
+  grid-column: 1 / -1;
+}
+.feature-grid > :nth-last-child(2):nth-child(3n + 1) { grid-column: span 2; }
+.feature-grid > :nth-last-child(2):nth-child(3n + 1) ~ * { grid-column: span 1; }
 .feature-card {
   position: relative;
   padding: 32px 28px 28px;
@@ -831,12 +908,19 @@
 /* Service-page hero visual panel (right side) */
 .svc-hero-grid {
   display: grid;
-  grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
-  gap: clamp(40px, 6vw, 80px);
+  grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr);
+  gap: clamp(40px, 5vw, 72px);
   align-items: start;
 }
 @media (max-width: 900px) {
   .svc-hero-grid { grid-template-columns: 1fr; }
+}
+/* Inside the split hero, shrink H1 + tagline so nothing spills onto the aside */
+.svc-hero-grid h1 {
+  font-size: clamp(52px, 7vw, 112px) !important;
+  line-height: 0.92 !important;
+  letter-spacing: -0.04em;
+  max-width: 12ch;
 }
 .svc-visual {
   position: relative;
@@ -912,10 +996,13 @@
   font-family: var(--font-display);
   font-variation-settings: "wdth" 85, "opsz" 72;
   font-weight: 600;
-  font-size: 22px;
+  font-size: 19px;
   color: #fff;
-  line-height: 1.1;
+  line-height: 1.15;
   letter-spacing: -0.015em;
+  overflow-wrap: break-word;
+  word-break: normal;
+  hyphens: auto;
 }
 .svc-visual .stat .v em {
   font-family: var(--font-italic);
