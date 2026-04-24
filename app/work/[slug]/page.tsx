@@ -4,6 +4,7 @@ import { CaseStudyHero } from '@/components/case-study/CaseStudyHero';
 import { CaseStudyMeta } from '@/components/case-study/CaseStudyMeta';
 import { CaseStudyAct, ActProse } from '@/components/case-study/CaseStudyAct';
 import { CaseStudyMetric } from '@/components/case-study/CaseStudyMetric';
+import { CaseStudyScope } from '@/components/case-study/CaseStudyScope';
 import { CaseStudyQuote } from '@/components/case-study/CaseStudyQuote';
 import { CaseStudyGallery } from '@/components/case-study/CaseStudyGallery';
 import { CaseStudyVideos } from '@/components/case-study/CaseStudyVideos';
@@ -76,6 +77,7 @@ export default async function CaseStudyPage({
           <CaseStudyAct number="03" label="Outcome" id="outcome">
             <ActProse text={narrative.outcome} />
             {cs.metric && <CaseStudyMetric metric={cs.metric} />}
+            <CaseStudyScope study={cs} />
           </CaseStudyAct>
         </>
       )}

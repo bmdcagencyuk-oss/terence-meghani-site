@@ -509,6 +509,9 @@
   padding: clamp(80px, 11vw, 160px) 0;
   background: var(--color-char);
   overflow: hidden;
+  /* Floor so short copy (e.g. an outcome with two lines) still reads as a
+   * deliberate section rather than a void around a sticky heading. */
+  min-height: clamp(480px, 64vh, 720px);
 }
 .cs-act.alt { background: var(--color-char-2); }
 .cs-act::before {
@@ -602,17 +605,32 @@
 }
 
 .cs-metric {
-  margin-top: 32px;
+  margin-top: 36px;
   display: grid;
   grid-template-columns: auto 1fr;
   align-items: end;
   gap: 24px 32px;
-  padding: 28px 32px;
+  padding: 36px 36px 32px;
   border: 1px solid color-mix(in srgb, var(--color-rocket) 50%, transparent);
   background: linear-gradient(135deg,
-    color-mix(in srgb, var(--color-rocket) 14%, transparent) 0%,
-    color-mix(in srgb, var(--color-violet) 8%, transparent) 100%);
+    color-mix(in srgb, var(--color-rocket) 18%, transparent) 0%,
+    color-mix(in srgb, var(--color-violet) 10%, transparent) 100%);
+  box-shadow: 0 30px 60px -30px color-mix(in srgb, var(--color-rocket) 40%, transparent);
+  position: relative;
+  overflow: hidden;
 }
+.cs-metric::before {
+  content: '';
+  position: absolute;
+  top: -40%;
+  right: -20%;
+  width: 320px;
+  height: 320px;
+  background: radial-gradient(circle, color-mix(in srgb, var(--color-rocket) 35%, transparent) 0%, transparent 60%);
+  filter: blur(30px);
+  pointer-events: none;
+}
+.cs-metric > * { position: relative; }
 .cs-metric .value {
   font-family: var(--font-italic);
   font-style: italic;
