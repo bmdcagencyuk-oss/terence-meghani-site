@@ -1,4 +1,4 @@
-import type { Metadata } from 'next';
+import type { Metadata, Viewport } from 'next';
 import {
   Bricolage_Grotesque,
   Instrument_Sans,
@@ -62,6 +62,24 @@ export const metadata: Metadata = {
     'web developer Hertfordshire',
   ],
   authors: [{ name: 'Terence Meghani' }],
+  alternates: {
+    canonical: '/',
+    languages: {
+      'en-GB': '/',
+      'x-default': '/',
+    },
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+      'max-video-preview': -1,
+    },
+  },
   openGraph: {
     type: 'website',
     locale: 'en_GB',
@@ -77,6 +95,14 @@ export const metadata: Metadata = {
   },
 };
 
+export const viewport: Viewport = {
+  width: 'device-width',
+  initialScale: 1,
+  viewportFit: 'cover',
+  themeColor: '#242627',
+  colorScheme: 'dark',
+};
+
 export default function RootLayout({
   children,
 }: {
@@ -87,7 +113,7 @@ export default function RootLayout({
 
   return (
     <html
-      lang="en"
+      lang="en-GB"
       className={`${bricolage.variable} ${instrumentSans.variable} ${instrumentSerif.variable} ${jetbrainsMono.variable}`}
     >
       <body>
