@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import { Kicker } from '@/components/ui/Kicker';
+import { Button } from '@/components/ui/Button';
 import { LaunchCTA } from '@/components/launch/LaunchCTA';
 import { getAllTestimonials } from '@/lib/case-studies';
 import { reviewsSchema } from '@/lib/schema';
@@ -12,7 +13,6 @@ export const metadata: Metadata = {
 
 export default function ReviewsPage() {
   const testimonials = getAllTestimonials();
-  // Sort by date descending
   const sorted = [...testimonials].sort((a, b) => b.date.localeCompare(a.date));
 
   return (
@@ -21,54 +21,126 @@ export default function ReviewsPage() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(reviewsSchema(testimonials)) }}
       />
-      <section className="pt-32 pb-12 bg-char">
-        <div className="mx-auto max-w-5xl px-6 lg:px-12">
-          <Kicker>Reviews</Kicker>
-          <h1
-            className="mt-6 font-display text-white"
-            style={{ fontSize: 'var(--text-display-lg)' }}
+      <section className="page-hero with-glow-rocket">
+        <div className="wrap">
+          <div
+            style={{
+              display: 'grid',
+              gap: 'clamp(24px, 4vw, 64px)',
+              gridTemplateColumns: 'minmax(0, 1.3fr) minmax(0, 1fr)',
+              alignItems: 'end',
+            }}
+            className="reviews-hero-grid"
           >
-            4.9★ on Trustpilot.{' '}
-            <em className="font-italic italic text-rocket">37 reviews.</em>
-          </h1>
-          <p className="mt-6 max-w-2xl text-lg text-mist">
-            Showing the most recent {sorted.length} of 37 verified reviews. All were
-            originally posted to Trustpilot for BMDC (the studio&rsquo;s former name) and
-            carry across to Terence Meghani.
-          </p>
-          <a
-            href="https://www.trustpilot.com/review/bmdc.agency"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="mt-6 inline-flex items-center gap-2 text-rocket font-mono text-xs uppercase tracking-wider hover:gap-3 transition-all"
-          >
-            View on Trustpilot ↗
-          </a>
+            <div>
+              <Kicker>Reviews</Kicker>
+              <h1>
+                4.9★ on Trustpilot. <em>37 reviews.</em>
+              </h1>
+              <p className="lead">
+                Showing the most recent {sorted.length} of 37 verified reviews. All were
+                originally posted to Trustpilot for BMDC (the studio&rsquo;s former name)
+                and carry across to Terence Meghani.
+              </p>
+              <div style={{ marginTop: 28, display: 'flex', flexWrap: 'wrap', gap: 12 }}>
+                <Button
+                  href="https://www.trustpilot.com/review/bmdc.agency"
+                  external
+                  variant="primary"
+                >
+                  View on Trustpilot ↗
+                </Button>
+                <Button href="https://calendly.com/terencemeghani" external variant="secondary">
+                  Book a call
+                </Button>
+              </div>
+            </div>
+
+            <aside
+              style={{
+                padding: '32px 32px 36px',
+                background: 'var(--color-char-2)',
+                border: '1px solid var(--color-hairline-2)',
+                display: 'flex',
+                flexDirection: 'column',
+                gap: 14,
+              }}
+            >
+              <span
+                style={{
+                  fontFamily: 'var(--font-mono)',
+                  fontSize: 10.5,
+                  letterSpacing: '0.2em',
+                  textTransform: 'uppercase',
+                  color: 'var(--color-fog)',
+                }}
+              >
+                Aggregate rating
+              </span>
+              <div style={{ display: 'flex', alignItems: 'baseline', gap: 10 }}>
+                <span
+                  style={{
+                    fontFamily: 'var(--font-display)',
+                    fontVariationSettings: '"wdth" 100, "opsz" 96',
+                    fontWeight: 700,
+                    fontSize: 'clamp(60px, 7vw, 96px)',
+                    lineHeight: 1,
+                    color: '#fff',
+                  }}
+                >
+                  4.9
+                </span>
+                <span
+                  style={{
+                    fontFamily: 'var(--font-mono)',
+                    fontSize: 13,
+                    letterSpacing: '0.16em',
+                    textTransform: 'uppercase',
+                    color: 'var(--color-mist)',
+                  }}
+                >
+                  / 5
+                </span>
+              </div>
+              <span style={{ color: 'var(--color-rocket)', letterSpacing: '0.1em', fontSize: 20 }}>
+                ★★★★★
+              </span>
+              <span
+                style={{
+                  marginTop: 12,
+                  paddingTop: 14,
+                  borderTop: '1px solid var(--color-hairline-2)',
+                  fontFamily: 'var(--font-mono)',
+                  fontSize: 11,
+                  letterSpacing: '0.14em',
+                  textTransform: 'uppercase',
+                  color: 'var(--color-mist)',
+                }}
+              >
+                {sorted.length} verified · source: Trustpilot
+              </span>
+            </aside>
+          </div>
         </div>
       </section>
 
-      <section className="pb-20 bg-char">
-        <div className="mx-auto max-w-5xl px-6 lg:px-12 grid grid-cols-1 md:grid-cols-2 gap-5">
-          {sorted.map((t) => (
-            <article
-              key={t.id}
-              className="bg-char-2 border border-hairline-subtle rounded-xl p-6 flex flex-col"
-            >
-              <div className="flex items-center justify-between">
-                <span className="text-rocket font-mono">{'★'.repeat(t.stars)}</span>
-                <time className="font-mono text-[10px] uppercase tracking-wider text-fog">
-                  {t.date}
-                </time>
-              </div>
-              <h2 className="mt-4 font-display text-xl text-white">{t.title}</h2>
-              <p className="mt-3 text-mist leading-relaxed whitespace-pre-line flex-1">
-                {t.text}
-              </p>
-              <footer className="mt-5 pt-4 border-t border-hairline-subtle font-mono text-[10px] uppercase tracking-wider text-fog">
-                — {t.name} · {t.country}
-              </footer>
-            </article>
-          ))}
+      <section className="section-pad" style={{ background: 'var(--color-char)' }}>
+        <div className="wrap">
+          <div className="reviews-grid">
+            {sorted.map((t) => (
+              <article key={t.id} className="review-card">
+                <span className="stars" aria-label={`${t.stars} of 5 stars`}>
+                  {'★'.repeat(t.stars)}
+                </span>
+                <h2 className="rc-title">{t.title}</h2>
+                <p className="rc-body">{t.text}</p>
+                <footer>
+                  <span>— {t.name}</span>
+                  <time dateTime={t.date}>{t.date}</time>
+                </footer>
+              </article>
+            ))}
+          </div>
         </div>
       </section>
 

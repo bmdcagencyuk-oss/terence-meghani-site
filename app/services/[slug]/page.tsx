@@ -190,38 +190,47 @@ export default async function ServicePage({
 
   return (
     <>
-      <section className="pt-32 pb-16 bg-char">
-        <div className="mx-auto max-w-5xl px-6 lg:px-12">
-          <nav aria-label="Breadcrumb" className="font-mono text-[10px] uppercase tracking-[0.2em] text-fog">
-            <ol className="flex items-center gap-2">
-              <li><Link href="/" className="hover:text-rocket transition-colors">Home</Link></li>
+      <section className="page-hero with-glow">
+        <div className="wrap">
+          <nav className="crumbs" aria-label="Breadcrumb">
+            <ol>
+              <li><Link href="/">Home</Link></li>
               <li aria-hidden="true">›</li>
-              <li><Link href="/#services" className="hover:text-rocket transition-colors">Services</Link></li>
+              <li><Link href="/#services">Services</Link></li>
               <li aria-hidden="true">›</li>
-              <li className="text-rocket">{service.label}</li>
+              <li style={{ color: 'var(--color-rocket)' }}>{service.label}</li>
             </ol>
           </nav>
 
-          <Kicker className="mt-10 text-rocket">
-            {service.tier === 'core' ? 'Core service' : 'Also offering'}
-          </Kicker>
-          <h1
-            className="mt-6 font-display text-white"
-            style={{ fontSize: 'var(--text-display-lg)' }}
-          >
-            {service.label}
+          <div style={{ marginTop: 28 }}>
+            <Kicker>
+              {service.tier === 'core' ? 'Core service' : 'Also offering'}
+            </Kicker>
+          </div>
+          <h1>
+            {service.label.split(' ').slice(0, -1).join(' ')}{' '}
+            <em>{service.label.split(' ').slice(-1)[0]}</em>
           </h1>
-          <p className="mt-4 font-italic italic text-2xl text-rocket">
+          <p
+            style={{
+              marginTop: 18,
+              fontFamily: 'var(--font-italic)',
+              fontStyle: 'italic',
+              fontSize: 'clamp(22px, 2vw, 30px)',
+              lineHeight: 1.25,
+              color: 'var(--color-rocket)',
+              maxWidth: '30ch',
+            }}
+          >
             {service.tagline}
           </p>
-          <p className="mt-8 max-w-2xl text-lg text-mist leading-relaxed">
-            {service.longDescription}
-          </p>
-          <div className="mt-10 flex flex-wrap items-center gap-4">
-            <Button href="https://calendly.com/terencemeghani" external variant="primary" size="lg">
+          <p className="lead">{service.longDescription}</p>
+
+          <div style={{ marginTop: 36, display: 'flex', flexWrap: 'wrap', gap: 12 }}>
+            <Button href="https://calendly.com/terencemeghani" external variant="primary">
               Book a call
             </Button>
-            <Button href="/contact/" variant="secondary" size="lg">
+            <Button href="/contact/" variant="secondary">
               Send a brief
             </Button>
           </div>
@@ -230,49 +239,52 @@ export default async function ServicePage({
 
       {/* Deliverables */}
       {content.deliverables.length > 0 && (
-        <section className="section-pad bg-char-2">
-          <div className="mx-auto max-w-5xl px-6 lg:px-12">
-            <Kicker>Deliverables</Kicker>
-            <h2
-              className="mt-6 font-display text-white"
-              style={{ fontSize: 'var(--text-display-md)' }}
-            >
-              What&rsquo;s{' '}
-              <em className="font-italic italic text-rocket">included.</em>
-            </h2>
-            <ul className="mt-12 grid grid-cols-1 md:grid-cols-2 gap-x-10 gap-y-4">
-              {content.deliverables.map((d) => (
-                <li
-                  key={d}
-                  className="flex items-start gap-3 text-lg text-mist border-b border-hairline-subtle pb-4"
-                >
-                  <span className="text-rocket shrink-0">·</span>
-                  <span>{d}</span>
-                </li>
+        <section className="section-pad" style={{ background: 'var(--color-char-2)' }}>
+          <div className="wrap">
+            <div className="sec-head">
+              <div>
+                <span className="sec-eyebrow"><Kicker>Deliverables</Kicker></span>
+                <h2>
+                  What&rsquo;s <em>included.</em>
+                </h2>
+              </div>
+              <span className="sec-aside">
+                {String(content.deliverables.length).padStart(2, '0')} · items
+              </span>
+            </div>
+            <div className="feature-grid">
+              {content.deliverables.map((d, i) => (
+                <article key={d} className="feature-card">
+                  <span className="num">{String(i + 1).padStart(2, '0')}</span>
+                  <span className="title">{d}</span>
+                </article>
               ))}
-            </ul>
+            </div>
           </div>
         </section>
       )}
 
       {/* Process */}
       {content.process && (
-        <section className="section-pad bg-char">
-          <div className="mx-auto max-w-5xl px-6 lg:px-12">
-            <Kicker>Process</Kicker>
-            <h2
-              className="mt-6 font-display text-white"
-              style={{ fontSize: 'var(--text-display-md)' }}
-            >
-              How a typical{' '}
-              <em className="font-italic italic text-rocket">engagement runs.</em>
-            </h2>
-            <ol className="mt-12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <section className="section-pad" style={{ background: 'var(--color-char)' }}>
+          <div className="wrap">
+            <div className="sec-head">
+              <div>
+                <span className="sec-eyebrow"><Kicker>Process</Kicker></span>
+                <h2>
+                  How a typical <em>engagement runs.</em>
+                </h2>
+              </div>
+              <span className="sec-aside">
+                {String(content.process.length).padStart(2, '0')} · phases
+              </span>
+            </div>
+            <ol className="stepper" style={{ listStyle: 'none', padding: 0 }}>
               {content.process.map((p) => (
-                <li key={p.step} className="border-l-2 border-rocket pl-5">
-                  <span className="font-mono text-xs text-rocket tracking-[0.2em]">{p.step}</span>
-                  <h3 className="mt-2 font-display text-2xl text-white">{p.title}</h3>
-                  <p className="mt-2 text-sm text-mist leading-relaxed">{p.body}</p>
+                <li key={p.step} className="step">
+                  <div className="bullet">{p.step}</div>
+                  <h3 className="step-title">{p.title}</h3>
+                  <p className="step-body">{p.body}</p>
                 </li>
               ))}
             </ol>
@@ -282,50 +294,55 @@ export default async function ServicePage({
 
       {/* Featured case studies */}
       {featuredStudies.length > 0 && (
-        <section className="section-pad bg-char-2">
-          <div className="mx-auto max-w-7xl px-6 lg:px-12">
-            <Kicker>Featured work</Kicker>
-            <h2
-              className="mt-6 font-display text-white"
-              style={{ fontSize: 'var(--text-display-md)' }}
-            >
-              Where this{' '}
-              <em className="font-italic italic text-rocket">shows up.</em>
-            </h2>
-            <div className="mt-10 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+        <section className="section-pad" style={{ background: 'var(--color-char-2)' }}>
+          <div className="wrap">
+            <div className="sec-head">
+              <div>
+                <span className="sec-eyebrow"><Kicker>Featured work</Kicker></span>
+                <h2>
+                  Where this <em>shows up.</em>
+                </h2>
+              </div>
+              <Link
+                href="/work/"
+                className="sec-aside"
+                style={{ display: 'inline-flex', alignItems: 'center', gap: 8, color: 'var(--color-rocket)' }}
+              >
+                View all 24 projects <ArrowRight size={14} aria-hidden="true" />
+              </Link>
+            </div>
+            <div className="cs-related-grid">
               {featuredStudies.map((s) => (
                 <WorkCard key={s.slug} study={s} />
               ))}
             </div>
-            <Link
-              href="/work/"
-              className="mt-10 inline-flex items-center gap-2 text-rocket font-mono text-xs uppercase tracking-wider hover:gap-3 transition-all"
-            >
-              View all 24 projects <ArrowRight size={14} aria-hidden="true" />
-            </Link>
           </div>
         </section>
       )}
 
       {/* Service FAQ */}
       {content.faq && content.faq.length > 0 && (
-        <section className="section-pad bg-char">
-          <div className="mx-auto max-w-3xl px-6 lg:px-12">
-            <Kicker>Questions</Kicker>
-            <h2
-              className="mt-6 font-display text-white"
-              style={{ fontSize: 'var(--text-display-md)' }}
-            >
-              Answered.
-            </h2>
-            <dl className="mt-12 divide-y divide-hairline-subtle border-y border-hairline-subtle">
-              {content.faq.map((f) => (
-                <div key={f.q} className="py-6">
-                  <dt className="font-display text-xl text-white">{f.q}</dt>
-                  <dd className="mt-3 text-mist leading-relaxed">{f.a}</dd>
-                </div>
+        <section className="section-pad" style={{ background: 'var(--color-char)' }}>
+          <div className="wrap">
+            <div className="sec-head">
+              <div>
+                <span className="sec-eyebrow"><Kicker>Questions</Kicker></span>
+                <h2>
+                  Answered, <em>honestly.</em>
+                </h2>
+              </div>
+            </div>
+            <div className="accordion" style={{ maxWidth: 980 }}>
+              {content.faq.map((f, i) => (
+                <details key={f.q} open={i === 0}>
+                  <summary>
+                    <span className="q">{f.q}</span>
+                    <span className="plus" aria-hidden="true">+</span>
+                  </summary>
+                  <div className="a">{f.a}</div>
+                </details>
               ))}
-            </dl>
+            </div>
           </div>
         </section>
       )}

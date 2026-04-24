@@ -4,7 +4,6 @@ import { Gem, Check } from 'lucide-react';
 import { Kicker } from '@/components/ui/Kicker';
 import { Button } from '@/components/ui/Button';
 import { LaunchCTA } from '@/components/launch/LaunchCTA';
-import { cn } from '@/lib/utils';
 
 export const metadata: Metadata = {
   title: 'Growth Partnership — Terence Meghani',
@@ -13,11 +12,12 @@ export const metadata: Metadata = {
 };
 
 const INCLUDED = [
-  'Monthly strategy call (90 min)',
-  'Agreed hours per month across all practices',
-  'Priority turnaround on urgent work',
-  'Quarterly brand & performance review',
-  'Access to trusted specialist network when needed',
+  { n: '01', t: 'Monthly strategy call',         d: '90-minute working session covering priorities, progress, and the next month’s plan.' },
+  { n: '02', t: 'Agreed hours per month',        d: 'Banked across every practice — brand, AI, plugins, web. Use them where they land hardest.' },
+  { n: '03', t: 'Priority turnaround',           d: 'Urgent work jumps the queue. Typical reply under four hours during UK business hours.' },
+  { n: '04', t: 'Quarterly review',              d: 'Brand and performance review every three months — what’s working, what to change.' },
+  { n: '05', t: 'Specialist network access',     d: 'Trusted collaborators (photo, motion, copy) brought in at cost when scope demands.' },
+  { n: '06', t: 'No minimum term',               d: 'Month-to-month, cancel with 30 days’ notice. Unused hours roll one month forward.' },
 ];
 
 const TIERS = [
@@ -50,115 +50,113 @@ const TIERS = [
 export default function GrowthPartnershipPage() {
   return (
     <>
-      <section className="pt-32 pb-16 bg-char">
-        <div className="mx-auto max-w-5xl px-6 lg:px-12">
-          <nav aria-label="Breadcrumb" className="font-mono text-[10px] uppercase tracking-[0.2em] text-fog">
-            <ol className="flex items-center gap-2">
-              <li><Link href="/" className="hover:text-rocket transition-colors">Home</Link></li>
+      <section className="page-hero with-glow">
+        <div className="wrap">
+          <nav className="crumbs" aria-label="Breadcrumb">
+            <ol>
+              <li><Link href="/">Home</Link></li>
               <li aria-hidden="true">›</li>
-              <li><Link href="/#services" className="hover:text-rocket transition-colors">Services</Link></li>
+              <li><Link href="/#services">Services</Link></li>
               <li aria-hidden="true">›</li>
-              <li className="text-rocket">Growth Partnership</li>
+              <li style={{ color: 'var(--color-rocket)' }}>Growth Partnership</li>
             </ol>
           </nav>
 
-          <div className="mt-10 flex items-center gap-3">
-            <Gem size={28} className="text-rocket" aria-hidden="true" strokeWidth={1.6} />
-            <Kicker className="text-rocket mb-0">Ongoing engagement</Kicker>
+          <div style={{ marginTop: 28, display: 'flex', alignItems: 'center', gap: 12 }}>
+            <Gem size={24} style={{ color: 'var(--color-rocket)' }} aria-hidden="true" strokeWidth={1.6} />
+            <Kicker>Ongoing engagement</Kicker>
           </div>
-          <h1
-            className="mt-6 font-display text-white"
-            style={{ fontSize: 'var(--text-display-lg)' }}
-          >
-            Growth{' '}
-            <em className="font-italic italic text-rocket">Partnership.</em>
+          <h1>
+            Growth <em>Partnership.</em>
           </h1>
-          <p className="mt-4 font-italic italic text-2xl text-mist">
-            Ongoing monthly engagement.
+          <p
+            style={{
+              marginTop: 18,
+              fontFamily: 'var(--font-italic)',
+              fontStyle: 'italic',
+              fontSize: 'clamp(22px, 2vw, 30px)',
+              color: 'var(--color-rocket)',
+              maxWidth: '30ch',
+            }}
+          >
+            Brand, AI, plugin dev, web — one monthly retainer.
           </p>
-          <p className="mt-8 max-w-2xl text-lg text-mist leading-relaxed">
-            A retained monthly engagement for businesses that want the full stack — brand,
-            AI, plugin dev, and web — supporting their growth on an ongoing basis.
-            Flexible scope, no minimum term, cancel anytime.
+          <p className="lead">
+            A retained monthly engagement for businesses that want the full stack on
+            ongoing support. Flexible scope, no minimum term, cancel anytime. Best for
+            scale-ups where priorities shift faster than a fixed-scope project allows.
           </p>
-          <p className="mt-4 max-w-2xl text-lg text-mist leading-relaxed">
-            Best for scale-ups where priorities shift faster than a fixed-scope project
-            allows, and where having a senior brand + tech partner on retainer is more
-            valuable than assembling a new team every quarter.
-          </p>
+          <div style={{ marginTop: 36, display: 'flex', flexWrap: 'wrap', gap: 12 }}>
+            <Button href="https://calendly.com/terencemeghani" external variant="primary">
+              Book a call
+            </Button>
+            <Button href="/contact/" variant="secondary">
+              Send a brief
+            </Button>
+          </div>
         </div>
       </section>
 
       {/* What's included */}
-      <section className="section-pad bg-char-2">
-        <div className="mx-auto max-w-4xl px-6 lg:px-12">
-          <Kicker>What&rsquo;s included</Kicker>
-          <h2
-            className="mt-6 font-display text-white"
-            style={{ fontSize: 'var(--text-display-md)' }}
-          >
-            Every{' '}
-            <em className="font-italic italic text-rocket">tier includes.</em>
-          </h2>
-          <ul className="mt-10 grid grid-cols-1 md:grid-cols-2 gap-x-10 gap-y-5">
+      <section className="section-pad" style={{ background: 'var(--color-char-2)' }}>
+        <div className="wrap">
+          <div className="sec-head">
+            <div>
+              <span className="sec-eyebrow"><Kicker>What&rsquo;s included</Kicker></span>
+              <h2>
+                Every tier <em>includes.</em>
+              </h2>
+            </div>
+            <span className="sec-aside">06 · core benefits</span>
+          </div>
+          <div className="feature-grid">
             {INCLUDED.map((item) => (
-              <li key={item} className="flex items-start gap-3 text-lg text-mist">
-                <Check size={20} className="text-rocket shrink-0 mt-1" aria-hidden="true" strokeWidth={2} />
-                <span>{item}</span>
-              </li>
+              <article key={item.n} className="feature-card">
+                <span className="num">{item.n}</span>
+                <span className="title">
+                  <Check
+                    size={18}
+                    style={{ verticalAlign: '-4px', marginRight: 6, color: 'var(--color-rocket)' }}
+                    aria-hidden="true"
+                    strokeWidth={2.2}
+                  />
+                  {item.t}
+                </span>
+                <span className="desc">{item.d}</span>
+              </article>
             ))}
-          </ul>
+          </div>
         </div>
       </section>
 
       {/* Tiers */}
-      <section className="section-pad bg-char">
-        <div className="mx-auto max-w-6xl px-6 lg:px-12">
-          <Kicker>Tiers</Kicker>
-          <h2
-            className="mt-6 font-display text-white"
-            style={{ fontSize: 'var(--text-display-md)' }}
-          >
-            Three{' '}
-            <em className="font-italic italic text-rocket">commitment levels.</em>
-          </h2>
-          <div className="mt-12 grid grid-cols-1 md:grid-cols-3 gap-5">
+      <section className="section-pad" style={{ background: 'var(--color-char)' }}>
+        <div className="wrap">
+          <div className="sec-head">
+            <div>
+              <span className="sec-eyebrow"><Kicker>Tiers</Kicker></span>
+              <h2>
+                Three <em>commitment levels.</em>
+              </h2>
+            </div>
+            <span className="sec-aside">No lock-in · cancel anytime</span>
+          </div>
+          <div className="tier-grid">
             {TIERS.map((t) => (
-              <div
-                key={t.name}
-                className={cn(
-                  'border-2 rounded-2xl p-8 flex flex-col',
-                  t.highlight
-                    ? 'border-rocket bg-char-2 relative'
-                    : 'border-hairline-subtle bg-char-2',
-                )}
-              >
-                {t.highlight && (
-                  <span className="absolute -top-3 left-8 bg-rocket text-white font-mono text-[10px] uppercase tracking-wider px-3 py-1 rounded-full">
-                    Most common
-                  </span>
-                )}
-                <h3 className="font-display text-3xl text-white">{t.name}</h3>
-                <div className="mt-4 flex items-baseline gap-1">
-                  <span
-                    className="font-display text-rocket tabular-nums"
-                    style={{ fontSize: 'clamp(2.5rem, 5vw, 3.5rem)' }}
-                  >
-                    {t.price}
-                  </span>
-                  <span className="font-mono text-sm text-fog">{t.per}</span>
+              <div key={t.name} className={`tier${t.highlight ? ' highlight' : ''}`}>
+                <span className="name">{t.name}</span>
+                <div className="price">
+                  <span className="amount">{t.price}</span>
+                  <span className="per">{t.per}</span>
                 </div>
-                <div className="mt-2 font-mono text-xs uppercase tracking-wider text-mist">
-                  {t.hours} included
-                </div>
-                <p className="mt-5 text-sm text-mist leading-relaxed">{t.blurb}</p>
-                <div className="mt-auto pt-8">
+                <span className="hours">{t.hours} per month</span>
+                <p className="blurb">{t.blurb}</p>
+                <div style={{ marginTop: 'auto', paddingTop: 18 }}>
                   <Button
                     href="https://calendly.com/terencemeghani"
                     external
                     variant={t.highlight ? 'primary' : 'secondary'}
-                    size="md"
-                    className="w-full justify-center"
+                    className="w-full"
                   >
                     Book a call
                   </Button>
@@ -166,9 +164,18 @@ export default function GrowthPartnershipPage() {
               </div>
             ))}
           </div>
-
-          <p className="mt-10 text-center text-fog font-mono text-[10px] uppercase tracking-wider">
-            All tiers: no minimum term · cancel anytime · unused hours roll one month
+          <p
+            style={{
+              marginTop: 40,
+              textAlign: 'center',
+              fontFamily: 'var(--font-mono)',
+              fontSize: 11,
+              letterSpacing: '0.14em',
+              textTransform: 'uppercase',
+              color: 'var(--color-fog)',
+            }}
+          >
+            All tiers · no minimum term · cancel anytime · unused hours roll one month
           </p>
         </div>
       </section>
