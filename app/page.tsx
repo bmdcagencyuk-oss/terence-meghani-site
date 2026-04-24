@@ -3,6 +3,7 @@ import { HazardStripe } from '@/components/sections/HazardStripe';
 import { Ticker } from '@/components/sections/Ticker';
 import { About } from '@/components/sections/About';
 import { Manifesto } from '@/components/sections/Manifesto';
+import { Services } from '@/components/sections/Services';
 import { homeSchema } from '@/lib/schema';
 
 export default function Home() {
@@ -17,6 +18,7 @@ export default function Home() {
       <Ticker />
       <About />
       <Manifesto />
+      <Services />
     </>
   );
 }
