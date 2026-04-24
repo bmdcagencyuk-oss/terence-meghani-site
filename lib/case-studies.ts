@@ -21,6 +21,7 @@ export type CaseStudy = {
   metric?: { value: string; label: string; source: string };
   heroImage: string;
   heroImageAlt: string;
+  gallery?: string[];
   testimonialId?: string;
   related: string[];
 };

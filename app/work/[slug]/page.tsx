@@ -5,6 +5,7 @@ import { CaseStudyMeta } from '@/components/case-study/CaseStudyMeta';
 import { CaseStudyAct, ActProse } from '@/components/case-study/CaseStudyAct';
 import { CaseStudyMetric } from '@/components/case-study/CaseStudyMetric';
 import { CaseStudyQuote } from '@/components/case-study/CaseStudyQuote';
+import { CaseStudyGallery } from '@/components/case-study/CaseStudyGallery';
 import { CaseStudyRelated } from '@/components/case-study/CaseStudyRelated';
 import { LaunchCTA } from '@/components/launch/LaunchCTA';
 import {
@@ -79,6 +80,10 @@ export default async function CaseStudyPage({
       )}
 
       {testimonial && <CaseStudyQuote testimonial={testimonial} client={cs.client} />}
+
+      {cs.gallery && cs.gallery.length > 1 && (
+        <CaseStudyGallery images={cs.gallery} alt={cs.heroImageAlt} />
+      )}
 
       <CaseStudyRelated related={related} />
 

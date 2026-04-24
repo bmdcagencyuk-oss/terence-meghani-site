@@ -12,12 +12,36 @@
     "lastUpdated": "2026-04-23"
   },
   "filterChips": [
-    { "id": "all",         "label": "All",         "count": 24 },
-    { "id": "brand",       "label": "Brand",       "count": 15 },
-    { "id": "web",         "label": "Web",         "count": 17 },
-    { "id": "marketing",   "label": "Marketing",   "count": 17 },
-    { "id": "ppc",         "label": "PPC",         "count": 3  },
-    { "id": "photography", "label": "Photography", "count": 12 }
+    {
+      "id": "all",
+      "label": "All",
+      "count": 24
+    },
+    {
+      "id": "brand",
+      "label": "Brand",
+      "count": 15
+    },
+    {
+      "id": "web",
+      "label": "Web",
+      "count": 17
+    },
+    {
+      "id": "marketing",
+      "label": "Marketing",
+      "count": 17
+    },
+    {
+      "id": "ppc",
+      "label": "PPC",
+      "count": 3
+    },
+    {
+      "id": "photography",
+      "label": "Photography",
+      "count": 12
+    }
   ],
   "studies": [
     {
@@ -26,15 +50,35 @@
       "projectTitle": "Brand Direction & Illustration",
       "year": 2023,
       "industry": "News publishing",
-      "services": ["Brand direction", "Illustration", "Tone of voice", "Development"],
-      "tags": ["Brand", "Web"],
+      "services": [
+        "Brand direction",
+        "Illustration",
+        "Tone of voice",
+        "Development"
+      ],
+      "tags": [
+        "Brand",
+        "Web"
+      ],
       "featured": true,
       "featuredOrder": 1,
       "excerpt": "Brand direction and bespoke illustration for News UK's internal security awareness programme.",
-      "heroImage": "https://res.cloudinary.com/dmdp4f2wp/images/v1720123837/news-uk-coaster-design-2/news-uk-coaster-design-2.jpg",
+      "heroImage": "https://res.cloudinary.com/dmdp4f2wp/image/upload/v1718736249/news-uk-roller-banner-mockup_qmktch.png",
       "heroImageAlt": "News UK branded coaster illustration detail",
       "testimonialId": "mu-news-uk",
-      "related": ["tedx-university-of-salford", "dcd-connect", "taur-security"]
+      "related": [
+        "tedx-university-of-salford",
+        "dcd-connect",
+        "taur-security"
+      ],
+      "gallery": [
+        "https://res.cloudinary.com/dmdp4f2wp/image/upload/v1718736249/news-uk-roller-banner-mockup_qmktch.png",
+        "https://res.cloudinary.com/dmdp4f2wp/image/upload/v1718737906/news-uk-posters-2_tlf5mv.png",
+        "https://res.cloudinary.com/dmdp4f2wp/images/v1720123778/Mun/Mun.jpg",
+        "https://res.cloudinary.com/dmdp4f2wp/images/v1720123799/Subhash/Subhash.jpg",
+        "https://res.cloudinary.com/dmdp4f2wp/images/v1720123810/news-uk-poster-mockup-2/news-uk-poster-mockup-2.jpg",
+        "https://res.cloudinary.com/dmdp4f2wp/images/v1720123837/news-uk-coaster-design-2/news-uk-coaster-design-2.jpg"
+      ]
     },
     {
       "slug": "al-jannah-villa-marrakech",
@@ -43,14 +87,37 @@
       "year": 2023,
       "industry": "Luxury private rental",
       "location": "Marrakech, Morocco",
-      "services": ["Brand identity", "Web"],
-      "tags": ["Brand", "Web"],
+      "services": [
+        "Brand identity",
+        "Web"
+      ],
+      "tags": [
+        "Brand",
+        "Web"
+      ],
       "featured": true,
       "featuredOrder": 2,
       "excerpt": "Brand identity and website for a private six-bedroom luxury retreat in the Moroccan countryside.",
-      "heroImage": "https://res.cloudinary.com/dmdp4f2wp/images/v1720780716/al-jannah-villa-marrakech-logo-design/al-jannah-villa-marrakech-logo-design.jpg",
+      "heroImage": "https://res.cloudinary.com/dmdp4f2wp/image/upload/v1718740785/_MG_4184_navykv.jpg",
       "heroImageAlt": "Al Jannah Villa Marrakech brand identity",
-      "related": ["the-hollybush-bar-restaurant", "la-royale", "vijays-virasat"]
+      "related": [
+        "the-hollybush-bar-restaurant",
+        "la-royale",
+        "vijays-virasat"
+      ],
+      "gallery": [
+        "https://res.cloudinary.com/dmdp4f2wp/image/upload/v1718740785/_MG_4184_navykv.jpg",
+        "https://res.cloudinary.com/dmdp4f2wp/images/v1720780716/al-jannah-villa-marrakech-logo-design/al-jannah-villa-marrakech-logo-design.jpg",
+        "https://res.cloudinary.com/dmdp4f2wp/images/v1720783980/MG_4343/MG_4343.jpg",
+        "https://terencemeghani.com/wp-content/uploads/2024/12/MG_4145_qspjkn.jpg",
+        "https://terencemeghani.com/wp-content/uploads/2024/12/MG_4184_navykv.jpg",
+        "https://terencemeghani.com/wp-content/uploads/2024/12/MG_4253_igcve3.jpg",
+        "https://terencemeghani.com/wp-content/uploads/2024/12/MG_4439_slomi4.jpg",
+        "https://terencemeghani.com/wp-content/uploads/2024/12/MG_4674_pl0mqn.jpg",
+        "https://terencemeghani.com/wp-content/uploads/2024/12/MG_4884_zszknu.jpg",
+        "https://terencemeghani.com/wp-content/uploads/2024/12/MG_5063_iq8luo.jpg",
+        "https://terencemeghani.com/wp-content/uploads/2024/12/We-Krazy-al-jannah-villa-marrakech_npkoq3.jpg"
+      ]
     },
     {
       "slug": "tedx-university-of-salford",
@@ -58,14 +125,52 @@
       "projectTitle": "Event Branding",
       "year": 2023,
       "industry": "Higher education / events",
-      "services": ["Brand", "Marketing"],
-      "tags": ["Brand", "Marketing"],
+      "services": [
+        "Brand",
+        "Marketing"
+      ],
+      "tags": [
+        "Brand",
+        "Marketing"
+      ],
       "featured": true,
       "featuredOrder": 3,
       "excerpt": "Event identity and promotional system for an independently-licensed TEDx event.",
-      "heroImage": "https://res.cloudinary.com/dmdp4f2wp/images/tedx-salford/tedx-salford.jpg",
+      "heroImage": "https://res.cloudinary.com/dmdp4f2wp/image/upload/v1718894769/Terence-Meghani-Krazy-Media-TEDX-026980_d94z3s.jpg",
       "heroImageAlt": "TEDx University of Salford event branding",
-      "related": ["dcd-connect", "news-uk", "the-hollybush-bar-restaurant"]
+      "related": [
+        "dcd-connect",
+        "news-uk",
+        "the-hollybush-bar-restaurant"
+      ],
+      "gallery": [
+        "https://res.cloudinary.com/dmdp4f2wp/image/upload/v1718894769/Terence-Meghani-Krazy-Media-TEDX-026980_d94z3s.jpg",
+        "https://res.cloudinary.com/dmdp4f2wp/image/upload/v1718894810/Terence-Meghani-Krazy-Media-TEDX-026673_nbrzgb.jpg",
+        "https://res.cloudinary.com/dmdp4f2wp/image/upload/v1718894833/Terence-Meghani-Krazy-Media-TEDX-026813_qebylx.jpg",
+        "https://res.cloudinary.com/dmdp4f2wp/image/upload/v1718894858/tedx-138_ewc2de.jpg",
+        "https://res.cloudinary.com/dmdp4f2wp/image/upload/v1718894895/tedx-poster-scaled-1_obhtxz.jpg",
+        "https://res.cloudinary.com/dmdp4f2wp/image/upload/v1718894925/01_tddft5.jpg",
+        "https://res.cloudinary.com/dmdp4f2wp/image/upload/v1718894930/Poster_01_i2uhre.jpg",
+        "https://res.cloudinary.com/dmdp4f2wp/image/upload/v1718894971/Schedule_c8vj56.jpg",
+        "https://res.cloudinary.com/dmdp4f2wp/image/upload/v1718894981/Poster_04_mqxbhg.jpg",
+        "https://res.cloudinary.com/dmdp4f2wp/images/v1720788752/tedx-156/tedx-156.jpg",
+        "https://res.cloudinary.com/dmdp4f2wp/images/v1720788848/Terence-Meghani-Krazy-Media-TEDX-6992/Terence-Meghani-Krazy-Media-TEDX-6992.jpg",
+        "https://res.cloudinary.com/dmdp4f2wp/images/v1720788996/Terence-Meghani-Krazy-Media-TEDX-026750/Terence-Meghani-Krazy-Media-TEDX-026750.jpg",
+        "https://res.cloudinary.com/dmdp4f2wp/images/v1720789092/Terence-Meghani-Krazy-Media-TEDX-026635/Terence-Meghani-Krazy-Media-TEDX-026635.jpg",
+        "https://res.cloudinary.com/dmdp4f2wp/images/v1720789196/Krazy-Media-TEDX-026654/Krazy-Media-TEDX-026654.jpg",
+        "https://terencemeghani.com/wp-content/uploads/2023/10/SC-1Media-Kit-8-copy-10_1.jpg",
+        "https://terencemeghani.com/wp-content/uploads/2023/10/SC-1Media-Kit-8-copy-10_2.jpg",
+        "https://terencemeghani.com/wp-content/uploads/2023/10/SC-1Media-Kit-8-copy-2-1.jpg",
+        "https://terencemeghani.com/wp-content/uploads/2023/10/SC-1Media-Kit-8-copy-4.jpg",
+        "https://terencemeghani.com/wp-content/uploads/2023/10/SC-1Media-Kit-8-copy-6.jpg",
+        "https://terencemeghani.com/wp-content/uploads/2023/10/SC-1Media-Kit-8-copy-7.jpg",
+        "https://terencemeghani.com/wp-content/uploads/2023/10/SC-1Media-Kit-8-copy-8.jpg",
+        "https://terencemeghani.com/wp-content/uploads/2023/10/SC-1Media-Kit-8-copy.jpg",
+        "https://terencemeghani.com/wp-content/uploads/2023/10/SC-1Media-Kit-8.jpg",
+        "https://terencemeghani.com/wp-content/uploads/2023/10/steve-robinson-02.jpg",
+        "https://terencemeghani.com/wp-content/uploads/2023/10/steve-robinson.jpg",
+        "https://terencemeghani.com/wp-content/uploads/2023/10/tulsi-vagjiani-02.jpg"
+      ]
     },
     {
       "slug": "dcd-connect",
@@ -74,14 +179,57 @@
       "year": 2023,
       "industry": "Enterprise events / digital infrastructure",
       "location": "Westminster Plaza, London",
-      "services": ["Brand support", "Event marketing", "Photography"],
-      "tags": ["Marketing", "Photography"],
+      "services": [
+        "Brand support",
+        "Event marketing",
+        "Photography"
+      ],
+      "tags": [
+        "Marketing",
+        "Photography"
+      ],
       "featured": true,
       "featuredOrder": 4,
       "excerpt": "Photography and marketing support for Europe's largest data centre industry event at Westminster Plaza.",
-      "heroImage": "https://res.cloudinary.com/dmdp4f2wp/image/upload/v1720304223/dcd_westminister_plaza_hotel-16_diyzna.jpg",
+      "heroImage": "https://res.cloudinary.com/dmdp4f2wp/image/upload/v1720303941/dcd_westminister_plaza_hotel-3_g0ofg0.jpg",
       "heroImageAlt": "DCD Connect at Westminster Plaza",
-      "related": ["tedx-university-of-salford", "news-uk", "japex-automotive"]
+      "related": [
+        "tedx-university-of-salford",
+        "news-uk",
+        "japex-automotive"
+      ],
+      "gallery": [
+        "https://res.cloudinary.com/dmdp4f2wp/image/upload/v1720303941/dcd_westminister_plaza_hotel-3_g0ofg0.jpg",
+        "https://res.cloudinary.com/dmdp4f2wp/image/upload/v1720304080/dcd_westminister_plaza_hotel-59_ivfptj.jpg",
+        "https://res.cloudinary.com/dmdp4f2wp/image/upload/v1720304223/dcd_westminister_plaza_hotel-16_diyzna.jpg",
+        "https://res.cloudinary.com/dmdp4f2wp/image/upload/v1720304280/dcd_westminister_plaza_hotel-154_p1csry.jpg",
+        "https://res.cloudinary.com/dmdp4f2wp/image/upload/v1720304330/dcd_westminister_plaza_hotel-165_fz2j2t.jpg",
+        "https://res.cloudinary.com/dmdp4f2wp/image/upload/v1720304382/dcd_westminister_plaza_hotel-161_lx4nye.jpg",
+        "https://res.cloudinary.com/dmdp4f2wp/image/upload/v1720304415/dcd_westminister_plaza_hotel-176_adoekv.jpg",
+        "https://res.cloudinary.com/dmdp4f2wp/image/upload/v1720304450/dcd_westminister_plaza_hotel-188_padrow.jpg",
+        "https://res.cloudinary.com/dmdp4f2wp/image/upload/v1720304487/dcd_westminister_plaza_hotel-204_t7simi.jpg",
+        "https://res.cloudinary.com/dmdp4f2wp/image/upload/v1720304529/dcd_westminister_plaza_hotel-242_otqu2y.jpg",
+        "https://res.cloudinary.com/dmdp4f2wp/image/upload/v1720304595/dcd_westminister_plaza_hotel-311_ufwian.jpg",
+        "https://res.cloudinary.com/dmdp4f2wp/image/upload/v1720304637/dcd_westminister_plaza_hotel-367_u6ktmw.jpg",
+        "https://res.cloudinary.com/dmdp4f2wp/image/upload/v1720304690/dcd_westminister_plaza_hotel-486_im3nbv.jpg",
+        "https://res.cloudinary.com/dmdp4f2wp/image/upload/v1720304757/dcd_westminister_plaza_hotel-379_vuvmbu.jpg",
+        "https://res.cloudinary.com/dmdp4f2wp/image/upload/v1720304802/dcd_westminister_plaza_hotel-175_datxo0.jpg",
+        "https://res.cloudinary.com/dmdp4f2wp/image/upload/v1720304836/dcd_westminister_plaza_hotel-155_iqo2ft.jpg",
+        "https://res.cloudinary.com/dmdp4f2wp/image/upload/v1720304887/dcd_westminister_plaza_hotel-138_r81qz4.jpg",
+        "https://res.cloudinary.com/dmdp4f2wp/image/upload/v1720304936/dcd_westminister_plaza_hotel-158_rrmbtp.jpg",
+        "https://res.cloudinary.com/dmdp4f2wp/image/upload/v1720305033/dcd_westminister_plaza_hotel-388_kgrqcs.jpg",
+        "https://res.cloudinary.com/dmdp4f2wp/image/upload/v1720305075/dcd_westminister_plaza_hotel-426_cdmit2.jpg",
+        "https://res.cloudinary.com/dmdp4f2wp/image/upload/v1720305141/dcd_westminister_plaza_hotel-540_r360hs.jpg",
+        "https://res.cloudinary.com/dmdp4f2wp/image/upload/v1720305205/dcd_westminister_plaza_hotel-612_fm2qcx.jpg",
+        "https://res.cloudinary.com/dmdp4f2wp/image/upload/v1720305225/dcd_westminister_plaza_hotel-615_ssdtqd.jpg",
+        "https://res.cloudinary.com/dmdp4f2wp/image/upload/v1720305226/dcd_westminister_plaza_hotel-620_apuldb.jpg",
+        "https://res.cloudinary.com/dmdp4f2wp/image/upload/v1720305277/dcd_westminister_plaza_hotel-628_o4o97w.jpg",
+        "https://res.cloudinary.com/dmdp4f2wp/image/upload/v1720305281/dcd_westminister_plaza_hotel-633_bkxgeh.jpg",
+        "https://res.cloudinary.com/dmdp4f2wp/image/upload/v1720305318/dcd_westminister_plaza_hotel-618_esiqfx.jpg",
+        "https://res.cloudinary.com/dmdp4f2wp/image/upload/v1720305339/dcd_westminister_plaza_hotel-623_i5djzx.jpg",
+        "https://res.cloudinary.com/dmdp4f2wp/image/upload/v1720305387/dcd_westminister_plaza_hotel-525_uj9t8r.jpg",
+        "https://res.cloudinary.com/dmdp4f2wp/image/upload/v1720305436/dcd_westminister_plaza_hotel-479_xm9spr.jpg"
+      ]
     },
     {
       "slug": "fireaway-pizza",
@@ -89,19 +237,51 @@
       "projectTitle": "Digital Marketing & Photography",
       "year": 2023,
       "industry": "Quick-service restaurants",
-      "services": ["Marketing", "Photography", "SEO"],
-      "tags": ["Web", "Marketing", "Photography"],
+      "services": [
+        "Marketing",
+        "Photography",
+        "SEO"
+      ],
+      "tags": [
+        "Web",
+        "Marketing",
+        "Photography"
+      ],
       "featured": true,
       "featuredOrder": 5,
-      "excerpt": "Digital marketing and commissioned photography for a UK pizza chain — 75% organic growth.",
+      "excerpt": "Digital marketing and commissioned photography for a UK pizza chain \u2014 75% organic growth.",
       "metric": {
         "value": "+75%",
         "label": "Organic search traffic",
         "source": "6 months post-launch"
       },
-      "heroImage": "https://res.cloudinary.com/dmdp4f2wp/images/v1721659607/Fireaway-East-Sheen-Krazy-Media-029677/Fireaway-East-Sheen-Krazy-Media-029677.jpg",
+      "heroImage": "https://res.cloudinary.com/dmdp4f2wp/images/v1720120845/Krazy-Media-Fireaway-026063/Krazy-Media-Fireaway-026063.jpg",
       "heroImageAlt": "Fireaway Pizza East Sheen restaurant",
-      "related": ["japex-automotive", "the-hollybush-bar-restaurant", "vijays-virasat"]
+      "related": [
+        "japex-automotive",
+        "the-hollybush-bar-restaurant",
+        "vijays-virasat"
+      ],
+      "gallery": [
+        "https://res.cloudinary.com/dmdp4f2wp/images/v1720120845/Krazy-Media-Fireaway-026063/Krazy-Media-Fireaway-026063.jpg",
+        "https://res.cloudinary.com/dmdp4f2wp/images/v1720123254/316658520_146827944773369_5013743385595637982_n/316658520_146827944773369_5013743385595637982_n.jpg",
+        "https://res.cloudinary.com/dmdp4f2wp/images/v1720123259/317078134_148554274600736_134367592505003192_n/317078134_148554274600736_134367592505003192_n.jpg",
+        "https://res.cloudinary.com/dmdp4f2wp/images/v1720123266/319001294_151205497668947_3000881877687493582_n/319001294_151205497668947_3000881877687493582_n.jpg",
+        "https://res.cloudinary.com/dmdp4f2wp/images/v1720123274/Order-now-2-2/Order-now-2-2.jpg",
+        "https://res.cloudinary.com/dmdp4f2wp/images/v1720123282/Fireaway-Firestarter-3-2/Fireaway-Firestarter-3-2.jpg",
+        "https://res.cloudinary.com/dmdp4f2wp/images/v1720123289/halloween-3-2/halloween-3-2.jpg",
+        "https://res.cloudinary.com/dmdp4f2wp/images/v1720123297/Grand-Opening/Grand-Opening.jpg",
+        "https://res.cloudinary.com/dmdp4f2wp/images/v1720123336/Krazy-Media-Fireaway-025428-1/Krazy-Media-Fireaway-025428-1.jpg",
+        "https://res.cloudinary.com/dmdp4f2wp/images/v1720123373/Krazy-Media-Fireaway-025651/Krazy-Media-Fireaway-025651.jpg",
+        "https://res.cloudinary.com/dmdp4f2wp/images/v1720123382/Fireaway-East-Sheen-Krazy-Media-029452/Fireaway-East-Sheen-Krazy-Media-029452.jpg",
+        "https://res.cloudinary.com/dmdp4f2wp/images/v1720791520/Fireaway-Pizza-Neasden-028444/Fireaway-Pizza-Neasden-028444.jpg",
+        "https://res.cloudinary.com/dmdp4f2wp/images/v1721659343/Fireaway-East-Sheen-Krazy-Media-028978/Fireaway-East-Sheen-Krazy-Media-028978.jpg",
+        "https://res.cloudinary.com/dmdp4f2wp/images/v1721659447/Fireaway-East-Sheen-Krazy-Media-029464/Fireaway-East-Sheen-Krazy-Media-029464.jpg",
+        "https://res.cloudinary.com/dmdp4f2wp/images/v1721659521/Fireaway-East-Sheen-Krazy-Media-029189_67095e6f5/Fireaway-East-Sheen-Krazy-Media-029189_67095e6f5.jpg",
+        "https://res.cloudinary.com/dmdp4f2wp/images/v1721659607/Fireaway-East-Sheen-Krazy-Media-029677/Fireaway-East-Sheen-Krazy-Media-029677.jpg",
+        "https://res.cloudinary.com/dmdp4f2wp/images/w_2560,h_1706,c_scale/v1720791471/Krazy-Media-Fireaway-025604/Krazy-Media-Fireaway-025604.jpg",
+        "https://res.cloudinary.com/dmdp4f2wp/images/w_2560,h_1707,c_scale/v1720791414/Krazy-Media-Fireaway-025563/Krazy-Media-Fireaway-025563.jpg"
+      ]
     },
     {
       "slug": "japex-automotive",
@@ -110,14 +290,54 @@
       "year": 2023,
       "industry": "Automotive servicing",
       "location": "Kings Langley, Hertfordshire",
-      "services": ["Marketing", "Photography"],
-      "tags": ["Marketing", "Photography"],
+      "services": [
+        "Marketing",
+        "Photography"
+      ],
+      "tags": [
+        "Marketing",
+        "Photography"
+      ],
       "featured": true,
       "featuredOrder": 6,
       "excerpt": "Digital marketing and on-site photography for a specialist servicing centre in Kings Langley.",
-      "heroImage": "https://res.cloudinary.com/dmdp4f2wp/images/japex-automotive/japex-automotive-hero.jpg",
+      "heroImage": "https://res.cloudinary.com/dmdp4f2wp/images/v1722252653/Japex-Automotive-bmdc-agency-341/Japex-Automotive-bmdc-agency-341.jpg",
       "heroImageAlt": "Japex Automotive service centre photography",
-      "related": ["protech-motors", "fireaway-pizza", "metro-laundrette-dry-cleaners"]
+      "related": [
+        "protech-motors",
+        "fireaway-pizza",
+        "metro-laundrette-dry-cleaners"
+      ],
+      "gallery": [
+        "https://res.cloudinary.com/dmdp4f2wp/images/v1722252653/Japex-Automotive-bmdc-agency-341/Japex-Automotive-bmdc-agency-341.jpg",
+        "https://res.cloudinary.com/dmdp4f2wp/images/v1722252661/Japex-Automotive-bmdc-agency-271/Japex-Automotive-bmdc-agency-271.jpg",
+        "https://res.cloudinary.com/dmdp4f2wp/images/v1722252673/Japex-Automotive-bmdc-agency-178/Japex-Automotive-bmdc-agency-178.jpg",
+        "https://res.cloudinary.com/dmdp4f2wp/images/v1722252684/Japex-Automotive-bmdc-agency-160/Japex-Automotive-bmdc-agency-160.jpg",
+        "https://res.cloudinary.com/dmdp4f2wp/images/v1722252686/Japex-Automotive-bmdc-agency-154/Japex-Automotive-bmdc-agency-154.jpg",
+        "https://res.cloudinary.com/dmdp4f2wp/images/v1722252688/Japex-Automotive-bmdc-agency-148/Japex-Automotive-bmdc-agency-148.jpg",
+        "https://res.cloudinary.com/dmdp4f2wp/images/v1722252690/Japex-Automotive-bmdc-agency-130/Japex-Automotive-bmdc-agency-130.jpg",
+        "https://res.cloudinary.com/dmdp4f2wp/images/v1722252692/Japex-Automotive-bmdc-agency-117/Japex-Automotive-bmdc-agency-117.jpg",
+        "https://res.cloudinary.com/dmdp4f2wp/images/v1722252694/Japex-Automotive-bmdc-agency-103/Japex-Automotive-bmdc-agency-103.jpg",
+        "https://res.cloudinary.com/dmdp4f2wp/images/v1722252696/Japex-Automotive-bmdc-agency-83/Japex-Automotive-bmdc-agency-83.jpg",
+        "https://res.cloudinary.com/dmdp4f2wp/images/v1722252700/Japex-Automotive-bmdc-agency-71/Japex-Automotive-bmdc-agency-71.jpg",
+        "https://res.cloudinary.com/dmdp4f2wp/images/v1722252714/Japex-Automotive-bmdc-agency-31/Japex-Automotive-bmdc-agency-31.jpg",
+        "https://res.cloudinary.com/dmdp4f2wp/images/v1722252719/Japex-Automotive-bmdc-agency-2/Japex-Automotive-bmdc-agency-2.jpg",
+        "https://terencemeghani.com/wp-content/uploads/2023/10/Concept-1Artboard-1-copy-11_1.jpg",
+        "https://terencemeghani.com/wp-content/uploads/2023/10/Concept-1Artboard-1-copy-11_2.jpg",
+        "https://terencemeghani.com/wp-content/uploads/2023/10/Concept-1Artboard-1-copy-12_1.jpg",
+        "https://terencemeghani.com/wp-content/uploads/2023/10/Concept-1Artboard-1-copy-12_2.jpg",
+        "https://terencemeghani.com/wp-content/uploads/2023/10/Concept-1Artboard-1-copy-14.jpg",
+        "https://terencemeghani.com/wp-content/uploads/2023/10/Concept-1Artboard-1-copy-2.jpg",
+        "https://terencemeghani.com/wp-content/uploads/2023/10/Concept-1Artboard-1-copy-3.jpg",
+        "https://terencemeghani.com/wp-content/uploads/2023/10/Concept-1Artboard-1-copy-4.jpg",
+        "https://terencemeghani.com/wp-content/uploads/2023/10/Concept-1Artboard-1-copy-5.jpg",
+        "https://terencemeghani.com/wp-content/uploads/2023/10/Concept-1Artboard-1-copy-6.jpg",
+        "https://terencemeghani.com/wp-content/uploads/2023/10/Concept-1Artboard-1-copy-7.jpg",
+        "https://terencemeghani.com/wp-content/uploads/2023/10/Concept-1Artboard-1-copy-8.jpg",
+        "https://terencemeghani.com/wp-content/uploads/2023/10/Concept-1Artboard-1-copy-9.jpg",
+        "https://terencemeghani.com/wp-content/uploads/2023/10/Concept-1Artboard-1-copy.jpg",
+        "https://terencemeghani.com/wp-content/uploads/2023/10/Concept-1Artboard-1.jpg"
+      ]
     },
     {
       "slug": "tulsi-vagjiani",
@@ -125,14 +345,40 @@
       "projectTitle": "Personal Brand Identity & Web",
       "year": 2023,
       "industry": "Motivational speaking",
-      "services": ["Brand identity", "Web", "Marketing", "Photography"],
-      "tags": ["Brand", "Web", "Marketing", "Photography"],
+      "services": [
+        "Brand identity",
+        "Web",
+        "Marketing",
+        "Photography"
+      ],
+      "tags": [
+        "Brand",
+        "Web",
+        "Marketing",
+        "Photography"
+      ],
       "featured": false,
       "excerpt": "Personal brand for a national motivational speaker and Guardian-featured plane-crash survivor.",
-      "heroImage": "https://res.cloudinary.com/dmdp4f2wp/images/tulsi-vagjiani/tulsi-vagjiani-hero.jpg",
+      "heroImage": "https://res.cloudinary.com/dmdp4f2wp/images/v1720122509/krazy-media-branding-marketing-0840/krazy-media-branding-marketing-0840.webp",
       "heroImageAlt": "Tulsi Vagjiani personal brand identity",
       "testimonialId": "tulsi-vagjiani-self",
-      "related": ["sefia-london", "chear-beauty", "kbmd"]
+      "related": [
+        "sefia-london",
+        "chear-beauty",
+        "kbmd"
+      ],
+      "gallery": [
+        "https://res.cloudinary.com/dmdp4f2wp/images/v1720122509/krazy-media-branding-marketing-0840/krazy-media-branding-marketing-0840.webp",
+        "https://res.cloudinary.com/dmdp4f2wp/images/v1720122576/A9EC9534-0488-4007-91DD-6303DEFB751B/A9EC9534-0488-4007-91DD-6303DEFB751B.webp",
+        "https://res.cloudinary.com/dmdp4f2wp/images/v1720122610/krazy-media-branding-marketing-0502/krazy-media-branding-marketing-0502.webp?_i=AA",
+        "https://res.cloudinary.com/dmdp4f2wp/images/v1720122621/tulsi-vagjiani-mobile-mockup-2/tulsi-vagjiani-mobile-mockup-2.webp",
+        "https://res.cloudinary.com/dmdp4f2wp/images/v1720122630/tulsi-vagjiani-mobile-mockup-01-2/tulsi-vagjiani-mobile-mockup-01-2.webp",
+        "https://res.cloudinary.com/dmdp4f2wp/images/v1720122640/tulsi-vagjiani-mobile-mockup-02-2/tulsi-vagjiani-mobile-mockup-02-2.webp",
+        "https://res.cloudinary.com/dmdp4f2wp/images/v1721481388/tulsi-vagjiani-logo-design/tulsi-vagjiani-logo-design.jpg",
+        "https://res.cloudinary.com/dmdp4f2wp/images/v1721482636/tulsi-vagjiani-logo-design-2/tulsi-vagjiani-logo-design-2.jpg",
+        "https://res.cloudinary.com/dmdp4f2wp/images/v1721485040/lumina12-what-do-you-see-20/lumina12-what-do-you-see-20.jpg",
+        "https://res.cloudinary.com/dmdp4f2wp/images/v1721485044/lumina12-what-do-you-see-4-1/lumina12-what-do-you-see-4-1.jpg"
+      ]
     },
     {
       "slug": "triage-vets",
@@ -141,13 +387,53 @@
       "year": 2023,
       "industry": "Veterinary medicine",
       "location": "Mill Hill, London (NW7)",
-      "services": ["Brand identity", "Website", "Marketing", "Photography"],
-      "tags": ["Brand", "Web", "Marketing", "Photography"],
+      "services": [
+        "Brand identity",
+        "Website",
+        "Marketing",
+        "Photography"
+      ],
+      "tags": [
+        "Brand",
+        "Web",
+        "Marketing",
+        "Photography"
+      ],
       "featured": false,
       "excerpt": "Full-stack brand system for an RCVS-accredited independent veterinary practice in Mill Hill.",
-      "heroImage": "https://res.cloudinary.com/dmdp4f2wp/images/triage-vets/triage-vets-hero.jpg",
+      "heroImage": "https://res.cloudinary.com/dmdp4f2wp/image/upload/v1720122908/krazy-media-72.jpg",
       "heroImageAlt": "Triage Vets brand identity",
-      "related": ["mhv-clinic", "high-five-family-fitness", "protech-motors"]
+      "related": [
+        "mhv-clinic",
+        "high-five-family-fitness",
+        "protech-motors"
+      ],
+      "gallery": [
+        "https://res.cloudinary.com/dmdp4f2wp/image/upload/v1720122908/krazy-media-72.jpg",
+        "https://res.cloudinary.com/dmdp4f2wp/images/v1720107122/triage-vets-12jpg/triage-vets-12jpg.jpg",
+        "https://res.cloudinary.com/dmdp4f2wp/images/v1720107128/TVArtboard-1-copy-3/TVArtboard-1-copy-3.jpg",
+        "https://res.cloudinary.com/dmdp4f2wp/images/v1720107137/tv-social-2/tv-social-2.jpg",
+        "https://res.cloudinary.com/dmdp4f2wp/images/v1720107142/tv-social-4/tv-social-4.jpg",
+        "https://res.cloudinary.com/dmdp4f2wp/images/v1720107148/testdfsArtboard-1-copy-2/testdfsArtboard-1-copy-2.jpg",
+        "https://res.cloudinary.com/dmdp4f2wp/images/v1720107211/krazy-media-89/krazy-media-89.jpg",
+        "https://res.cloudinary.com/dmdp4f2wp/images/v1720107219/krazy-media-45/krazy-media-45.jpg",
+        "https://res.cloudinary.com/dmdp4f2wp/images/v1721472810/triage-vets-logo-design/triage-vets-logo-design.jpg",
+        "https://res.cloudinary.com/dmdp4f2wp/images/v1721474254/triage-vets-logo-design-colour-paltette/triage-vets-logo-design-colour-paltette.jpg",
+        "https://res.cloudinary.com/dmdp4f2wp/images/v1721474366/triage-vets-logo-design-concept-4/triage-vets-logo-design-concept-4.jpg",
+        "https://res.cloudinary.com/dmdp4f2wp/images/v1721475409/triage-vets-26/triage-vets-26.jpg",
+        "https://res.cloudinary.com/dmdp4f2wp/images/v1721475458/triage-vets-33/triage-vets-33.jpg",
+        "https://res.cloudinary.com/dmdp4f2wp/images/v1721476102/krazy-media-54/krazy-media-54.jpg",
+        "https://res.cloudinary.com/dmdp4f2wp/images/v1721476137/krazy-media-68/krazy-media-68.jpg",
+        "https://res.cloudinary.com/dmdp4f2wp/images/v1721476264/krazy-media-34/krazy-media-34.jpg",
+        "https://res.cloudinary.com/dmdp4f2wp/images/v1721476281/krazy-media-39/krazy-media-39.jpg",
+        "https://res.cloudinary.com/dmdp4f2wp/images/v1721476351/krazy-media-77/krazy-media-77.jpg",
+        "https://res.cloudinary.com/dmdp4f2wp/images/v1721476361/krazy-media-80/krazy-media-80.jpg",
+        "https://terencemeghani.com/wp-content/uploads/2024/12/design_for_social_post.jpg",
+        "https://terencemeghani.com/wp-content/uploads/2024/12/triage-vets-new.webp",
+        "https://terencemeghani.com/wp-content/uploads/2024/12/triage-vets-old.webp",
+        "https://terencemeghani.com/wp-content/uploads/2024/12/tv-social-3.jpg",
+        "https://terencemeghani.com/wp-content/uploads/2024/12/tv-social.jpg"
+      ]
     },
     {
       "slug": "kbmd",
@@ -157,13 +443,35 @@
       "industry": "Chartered certified accountancy",
       "location": "Kenton, Harrow",
       "founded": 1996,
-      "services": ["Brand identity"],
-      "tags": ["Brand"],
+      "services": [
+        "Brand identity"
+      ],
+      "tags": [
+        "Brand"
+      ],
       "featured": false,
       "excerpt": "Brand refresh for a long-established Harrow accountancy built to match the firm it already was.",
-      "heroImage": "https://res.cloudinary.com/dmdp4f2wp/images/kbmd/kbmd-hero.jpg",
+      "heroImage": "https://terencemeghani.com/wp-content/uploads/2023/01/kbmd-design-1.jpg",
       "heroImageAlt": "KBMD Chartered Accountants brand identity",
-      "related": ["kemp-services", "taur-security", "hd-security-systems"]
+      "related": [
+        "kemp-services",
+        "taur-security",
+        "hd-security-systems"
+      ],
+      "gallery": [
+        "https://terencemeghani.com/wp-content/uploads/2023/01/kbmd-design-1.jpg",
+        "https://terencemeghani.com/wp-content/uploads/2023/01/kbmd-design-2.jpg",
+        "https://terencemeghani.com/wp-content/uploads/2023/01/kbmd-design-3.jpg",
+        "https://terencemeghani.com/wp-content/uploads/2023/01/kbmd-design-4.jpg",
+        "https://terencemeghani.com/wp-content/uploads/2023/01/kbmd-design-5.jpg",
+        "https://terencemeghani.com/wp-content/uploads/2023/01/kbmd-logo-design-2.jpg",
+        "https://terencemeghani.com/wp-content/uploads/2023/01/kbmd-logo-design-3.jpg",
+        "https://terencemeghani.com/wp-content/uploads/2023/01/kbmd-logo-design-4.jpg",
+        "https://terencemeghani.com/wp-content/uploads/2023/01/kbmd-logo-design-5.jpg",
+        "https://terencemeghani.com/wp-content/uploads/2023/01/kbmd-logo-design-6.jpg",
+        "https://terencemeghani.com/wp-content/uploads/2023/01/kbmd-logo-design-7.jpg",
+        "https://terencemeghani.com/wp-content/uploads/2023/01/kbmd-Sign-Mockup.jpg"
+      ]
     },
     {
       "slug": "vijays-virasat",
@@ -172,14 +480,49 @@
       "year": 2023,
       "industry": "Hospitality / Indian cuisine",
       "location": "East London",
-      "services": ["Brand", "Web", "Marketing", "Photography"],
-      "tags": ["Brand", "Web", "Marketing", "Photography"],
+      "services": [
+        "Brand",
+        "Web",
+        "Marketing",
+        "Photography"
+      ],
+      "tags": [
+        "Brand",
+        "Web",
+        "Marketing",
+        "Photography"
+      ],
       "featured": false,
       "excerpt": "Brand, web and marketing for a three-generation family Indian restaurant in East London.",
-      "heroImage": "https://res.cloudinary.com/dmdp4f2wp/images/vijays-virasat/vijays-virasat-hero.jpg",
+      "heroImage": "https://res.cloudinary.com/dmdp4f2wp/image/upload/v1718738423/vijays-virasat-menu-01_pdi4ej.png",
       "heroImageAlt": "Vijay's Virasat restaurant brand identity",
       "testimonialId": "dhiren-sanghani-vijays",
-      "related": ["the-hollybush-bar-restaurant", "la-royale", "fireaway-pizza"]
+      "related": [
+        "the-hollybush-bar-restaurant",
+        "la-royale",
+        "fireaway-pizza"
+      ],
+      "gallery": [
+        "https://res.cloudinary.com/dmdp4f2wp/image/upload/v1718738423/vijays-virasat-menu-01_pdi4ej.png",
+        "https://res.cloudinary.com/dmdp4f2wp/image/upload/v1718738493/vijays-virasat-feedback-cards_peml0v.png",
+        "https://res.cloudinary.com/dmdp4f2wp/image/upload/v1718738577/vijays-virasat-business-cards_pvgo12.png",
+        "https://res.cloudinary.com/dmdp4f2wp/image/upload/v1718738674/www.krazymedia.co_.uk-1_vznerj.jpg",
+        "https://res.cloudinary.com/dmdp4f2wp/image/upload/v1718738711/www.krazymedia.co_.uk-62_gurtd5.jpg",
+        "https://res.cloudinary.com/dmdp4f2wp/image/upload/v1718738899/www.krazymedia.co_.uk-79_yp4psf.jpg",
+        "https://res.cloudinary.com/dmdp4f2wp/image/upload/v1718738945/We-Krazy-vijays-virasat-1-3_reyyb9.jpg",
+        "https://res.cloudinary.com/dmdp4f2wp/image/upload/v1718738995/Upstairs-Bar-Artwork-01_ukmzqq.jpg",
+        "https://res.cloudinary.com/dmdp4f2wp/image/upload/v1718887350/www.krazymedia.co.uk-22_r8xsyo.jpg",
+        "https://res.cloudinary.com/dmdp4f2wp/image/upload/v1718888099/vijays-virasat-social_r4vley.jpg",
+        "https://res.cloudinary.com/dmdp4f2wp/image/upload/v1718888231/Buffet-FB-3_uaolvi.jpg",
+        "https://res.cloudinary.com/dmdp4f2wp/image/upload/v1718888539/Champions-League_mborr6.jpg",
+        "https://res.cloudinary.com/dmdp4f2wp/image/upload/v1718888657/TV-1_hpju1c.jpg",
+        "https://res.cloudinary.com/dmdp4f2wp/images/v1721468376/vijays-virasat-logo-design-1/vijays-virasat-logo-design-1.jpg",
+        "https://res.cloudinary.com/dmdp4f2wp/images/v1721469591/vijays-virasat-concept-logo-design-2/vijays-virasat-concept-logo-design-2.jpg",
+        "https://res.cloudinary.com/dmdp4f2wp/images/v1721469876/vijays-virasat-concept-logo-design-3/vijays-virasat-concept-logo-design-3.jpg",
+        "https://res.cloudinary.com/dmdp4f2wp/images/v1721470198/vijays-virasat-concept-logo-design-2-1/vijays-virasat-concept-logo-design-2-1.jpg",
+        "https://terencemeghani.com/wp-content/uploads/2024/12/vijays-virasat-concept-logo-design-6.jpg",
+        "https://terencemeghani.com/wp-content/uploads/2024/12/vijays-virasat-concept-logo-design-7.jpg"
+      ]
     },
     {
       "slug": "protech-motors",
@@ -187,13 +530,46 @@
       "projectTitle": "Automotive Brand & Marketing",
       "year": 2023,
       "industry": "Automotive servicing",
-      "services": ["Brand", "Web", "Marketing", "Photography"],
-      "tags": ["Brand", "Web", "Marketing", "Photography"],
+      "services": [
+        "Brand",
+        "Web",
+        "Marketing",
+        "Photography"
+      ],
+      "tags": [
+        "Brand",
+        "Web",
+        "Marketing",
+        "Photography"
+      ],
       "featured": false,
       "excerpt": "Brand, web, marketing and photography for an independent garage business.",
-      "heroImage": "https://res.cloudinary.com/dmdp4f2wp/images/protech-motors/protech-motors-hero.jpg",
+      "heroImage": "https://res.cloudinary.com/dmdp4f2wp/image/upload/v1721402632/terence-meghani-official-Protech-8852.jpg",
       "heroImageAlt": "Protech Autocentres brand identity",
-      "related": ["japex-automotive", "taur-security", "hd-security-systems"]
+      "related": [
+        "japex-automotive",
+        "taur-security",
+        "hd-security-systems"
+      ],
+      "gallery": [
+        "https://res.cloudinary.com/dmdp4f2wp/image/upload/v1721402632/terence-meghani-official-Protech-8852.jpg",
+        "https://res.cloudinary.com/dmdp4f2wp/images/v1721400321/protech-motors-logo-design/protech-motors-logo-design.jpg",
+        "https://res.cloudinary.com/dmdp4f2wp/images/v1721402065/protech-motors-logo-design-5/protech-motors-logo-design-5.jpg",
+        "https://res.cloudinary.com/dmdp4f2wp/images/v1721402071/protech-motors-logo-design-6/protech-motors-logo-design-6.jpg",
+        "https://res.cloudinary.com/dmdp4f2wp/images/v1721402156/protech-motors-front-design/protech-motors-front-design.jpg",
+        "https://res.cloudinary.com/dmdp4f2wp/images/v1721402364/terence-meghani-official-Protech-8913/terence-meghani-official-Protech-8913.jpg",
+        "https://res.cloudinary.com/dmdp4f2wp/images/v1721402501/terence-meghani-official-Protech-8945/terence-meghani-official-Protech-8945.jpg",
+        "https://res.cloudinary.com/dmdp4f2wp/images/v1721402517/terence-meghani-official-Protech-8968/terence-meghani-official-Protech-8968.jpg",
+        "https://res.cloudinary.com/dmdp4f2wp/images/v1721402541/terence-meghani-official-Protech-9029/terence-meghani-official-Protech-9029.jpg",
+        "https://res.cloudinary.com/dmdp4f2wp/images/v1721402562/terence-meghani-official-Protech-8906/terence-meghani-official-Protech-8906.jpg",
+        "https://res.cloudinary.com/dmdp4f2wp/images/v1721402582/terence-meghani-official-Protech-8818/terence-meghani-official-Protech-8818.jpg",
+        "https://terencemeghani.com/wp-content/uploads/2024/12/GREY-FLEECE-FRONT.jpg",
+        "https://terencemeghani.com/wp-content/uploads/2024/12/GREY-POLO-BACK.jpg",
+        "https://terencemeghani.com/wp-content/uploads/2024/12/protech-business-cards.jpg",
+        "https://terencemeghani.com/wp-content/uploads/2024/12/protech-car-design.jpg",
+        "https://terencemeghani.com/wp-content/uploads/2024/12/protech-web-design.jpg",
+        "https://terencemeghani.com/wp-content/uploads/2024/12/WHITE-FLEECE-FRONT.jpg"
+      ]
     },
     {
       "slug": "metro-laundrette-dry-cleaners",
@@ -201,13 +577,45 @@
       "projectTitle": "Local Services Brand & Web",
       "year": 2023,
       "industry": "Local services",
-      "services": ["Brand", "Web", "Marketing", "Photography"],
-      "tags": ["Brand", "Web", "Marketing", "Photography"],
+      "services": [
+        "Brand",
+        "Web",
+        "Marketing",
+        "Photography"
+      ],
+      "tags": [
+        "Brand",
+        "Web",
+        "Marketing",
+        "Photography"
+      ],
       "featured": false,
       "excerpt": "Brand, web and marketing for an established high-street laundry and dry-cleaning business.",
-      "heroImage": "https://res.cloudinary.com/dmdp4f2wp/images/metro-laundrette/metro-laundrette-hero.jpg",
+      "heroImage": "https://res.cloudinary.com/dmdp4f2wp/image/upload/v1718739277/5terence-meghani-official-Metro-30_l21nm7.jpg",
       "heroImageAlt": "Metro Laundrette & Dry Cleaners brand identity",
-      "related": ["kemp-services", "high-five-family-fitness", "hd-security-systems"]
+      "related": [
+        "kemp-services",
+        "high-five-family-fitness",
+        "hd-security-systems"
+      ],
+      "gallery": [
+        "https://res.cloudinary.com/dmdp4f2wp/image/upload/v1718739277/5terence-meghani-official-Metro-30_l21nm7.jpg",
+        "https://res.cloudinary.com/dmdp4f2wp/image/upload/v1718739311/terence-meghani-official-Metro-53_ez98hk.jpg",
+        "https://res.cloudinary.com/dmdp4f2wp/image/upload/v1718739336/terence-meghani-official-Metro-50_gszybd.jpg",
+        "https://res.cloudinary.com/dmdp4f2wp/image/upload/v1718739400/1-terence-meghani-official-Metro-1_uk2bus.jpg",
+        "https://res.cloudinary.com/dmdp4f2wp/image/upload/v1718739439/BACK-TO-SCHOOL-FLYER-2_hrpgli.jpg",
+        "https://res.cloudinary.com/dmdp4f2wp/image/upload/v1718739465/A-frame-A1-v7_vqdbcu.jpg",
+        "https://res.cloudinary.com/dmdp4f2wp/image/upload/v1718739582/Metro-Poster_Mockup_ejoktb.jpg",
+        "https://res.cloudinary.com/dmdp4f2wp/image/upload/v1720314391/metro-laundrette-and-dry-cleaners-logo-blue_kmee7b.jpg",
+        "https://res.cloudinary.com/dmdp4f2wp/image/upload/v1720315418/terence_meghani_official_-_Metro-31_cnnnny.jpg",
+        "https://res.cloudinary.com/dmdp4f2wp/image/upload/v1720315618/0B4A3708_ytxkon.jpg",
+        "https://terencemeghani.com/wp-content/uploads/2024/12/04-self-service.jpg",
+        "https://terencemeghani.com/wp-content/uploads/2024/12/603-self-service.jpg",
+        "https://terencemeghani.com/wp-content/uploads/2024/12/Colorful-Socmed-Post-5.jpg",
+        "https://terencemeghani.com/wp-content/uploads/2024/12/diwali-1.jpg",
+        "https://terencemeghani.com/wp-content/uploads/2024/12/Oct-2-2.jpg",
+        "https://terencemeghani.com/wp-content/uploads/2024/12/School.jpg"
+      ]
     },
     {
       "slug": "london-kings-clothing",
@@ -216,13 +624,64 @@
       "year": 2023,
       "industry": "Urban fashion / streetwear",
       "market": "UK-wide",
-      "services": ["Brand", "Web", "Marketing", "Photography"],
-      "tags": ["Brand", "Web", "Marketing", "Photography"],
+      "services": [
+        "Brand",
+        "Web",
+        "Marketing",
+        "Photography"
+      ],
+      "tags": [
+        "Brand",
+        "Web",
+        "Marketing",
+        "Photography"
+      ],
       "featured": false,
       "excerpt": "Brand, web and marketing for a UK-wide urban clothing label.",
-      "heroImage": "https://res.cloudinary.com/dmdp4f2wp/images/london-kings/london-kings-hero.jpg",
+      "heroImage": "https://res.cloudinary.com/dmdp4f2wp/image/upload/v1720307529/london-kings-clothing-logo_u8pgxb.jpg",
       "heroImageAlt": "London Kings Clothing brand identity",
-      "related": ["sefia-london", "chear-beauty", "vijays-virasat"]
+      "related": [
+        "sefia-london",
+        "chear-beauty",
+        "vijays-virasat"
+      ],
+      "gallery": [
+        "https://res.cloudinary.com/dmdp4f2wp/image/upload/v1720307529/london-kings-clothing-logo_u8pgxb.jpg",
+        "https://res.cloudinary.com/dmdp4f2wp/image/upload/v1720308838/bmdc-fanatix-LKC-020865_i9dzar.jpg",
+        "https://res.cloudinary.com/dmdp4f2wp/image/upload/v1720308935/bmdc-fanatix-LKC-123213_pisrhy.jpg",
+        "https://res.cloudinary.com/dmdp4f2wp/image/upload/v1720309244/bmdc-slick-dot-LKC-65433_duojtn.jpg",
+        "https://res.cloudinary.com/dmdp4f2wp/image/upload/v1720309248/bmdc-slick-dot-LKC-46342_rei6rx.jpg",
+        "https://res.cloudinary.com/dmdp4f2wp/image/upload/v1720310473/Terence-Meghani-Official-4928_nw9rmv.jpg",
+        "https://res.cloudinary.com/dmdp4f2wp/image/upload/v1720310498/Terence-Meghani-Official-4737_vgitzc.jpg",
+        "https://res.cloudinary.com/dmdp4f2wp/image/upload/v1720310513/Terence-Meghani-Official-3979_wnbijb.jpg",
+        "https://res.cloudinary.com/dmdp4f2wp/image/upload/v1720310591/Terence-Meghani-Official-4968_djj3ky.jpg",
+        "https://res.cloudinary.com/dmdp4f2wp/image/upload/v1720310729/Terence-Meghani-Official-4732_hvxarw.jpg",
+        "https://res.cloudinary.com/dmdp4f2wp/image/upload/v1720310845/Terence-Meghani-Official-4775_fc81sp.jpg",
+        "https://res.cloudinary.com/dmdp4f2wp/image/upload/v1720311029/terencemeghanicom-71_wxk69j.jpg",
+        "https://res.cloudinary.com/dmdp4f2wp/image/upload/v1720311038/terencemeghanicom-94_tabxxm.jpg",
+        "https://res.cloudinary.com/dmdp4f2wp/image/upload/v1720311059/terencemeghanicom-127_ymlwzf.jpg",
+        "https://res.cloudinary.com/dmdp4f2wp/image/upload/v1720311183/terencemeghanicom-27_a9upyb.jpg",
+        "https://res.cloudinary.com/dmdp4f2wp/image/upload/v1720311192/terencemeghanicom-56_fmlibp.jpg",
+        "https://res.cloudinary.com/dmdp4f2wp/image/upload/v1720311232/terencemeghanicom-106_sswbfk.jpg",
+        "https://res.cloudinary.com/dmdp4f2wp/image/upload/v1720311280/terencemeghanicom-64_u70omm.jpg",
+        "https://res.cloudinary.com/dmdp4f2wp/image/upload/v1720311331/terencemeghanicom-149_fibql1.jpg",
+        "https://res.cloudinary.com/dmdp4f2wp/image/upload/v1720311350/terencemeghanicom-159_ghzcth.jpg",
+        "https://res.cloudinary.com/dmdp4f2wp/image/upload/v1720311382/terencemeghanicom-155_zapb4y.jpg",
+        "https://res.cloudinary.com/dmdp4f2wp/image/upload/v1720311883/Krazy-Media-LKC-020619_fg4d6c.jpg",
+        "https://res.cloudinary.com/dmdp4f2wp/image/upload/v1720311890/Krazy-Media-LKC-020622_xrgqem.jpg",
+        "https://res.cloudinary.com/dmdp4f2wp/image/upload/v1720311912/Krazy-Media-LKC-020697_yi1rvf.jpg",
+        "https://res.cloudinary.com/dmdp4f2wp/image/upload/v1720311926/Krazy-Media-LKC-020474_xtc9oe.jpg",
+        "https://res.cloudinary.com/dmdp4f2wp/image/upload/v1720312198/Krazy-Media-LKC-021112_huuct9.jpg",
+        "https://res.cloudinary.com/dmdp4f2wp/image/upload/v1720312213/Krazy-Media-LKC-021047_kj7sou.jpg",
+        "https://res.cloudinary.com/dmdp4f2wp/image/upload/v1720312229/Krazy-Media-LKC-021128_uebo9d.jpg",
+        "https://res.cloudinary.com/dmdp4f2wp/image/upload/v1720312235/Krazy-Media-LKC-021136_q4ptov.jpg",
+        "https://res.cloudinary.com/dmdp4f2wp/image/upload/v1720312265/Krazy-Media-LKC-020955_pi5zgc.jpg",
+        "https://res.cloudinary.com/dmdp4f2wp/image/upload/v1720312281/Krazy-Media-LKC-020832_gfcui6.jpg",
+        "https://res.cloudinary.com/dmdp4f2wp/image/upload/v1720312296/Krazy-Media-LKC-020826_mryajg.jpg",
+        "https://terencemeghani.com/wp-content/uploads/2024/12/01_npfjsk.jpg",
+        "https://terencemeghani.com/wp-content/uploads/2024/12/02_mks7tn.jpg",
+        "https://terencemeghani.com/wp-content/uploads/2024/12/LK-1_g8jqpk.jpg"
+      ]
     },
     {
       "slug": "hd-security-systems",
@@ -230,13 +689,28 @@
       "projectTitle": "Landing Page & Business Cards",
       "year": 2023,
       "industry": "Security",
-      "services": ["Web"],
-      "tags": ["Web"],
+      "services": [
+        "Web"
+      ],
+      "tags": [
+        "Web"
+      ],
       "featured": false,
       "excerpt": "Web and landing page for a specialist security installer.",
-      "heroImage": "https://res.cloudinary.com/dmdp4f2wp/images/hd-security/hd-security-hero.jpg",
+      "heroImage": "https://terencemeghani.com/wp-content/uploads/2024/09/hd-security-01.jpg",
       "heroImageAlt": "HD Security Systems landing page",
-      "related": ["taur-security", "kemp-services", "triage-vets"]
+      "related": [
+        "taur-security",
+        "kemp-services",
+        "triage-vets"
+      ],
+      "gallery": [
+        "https://terencemeghani.com/wp-content/uploads/2024/09/hd-security-01.jpg",
+        "https://terencemeghani.com/wp-content/uploads/2024/09/hd-security-02.jpg",
+        "https://terencemeghani.com/wp-content/uploads/2024/09/hd-security-03.jpg",
+        "https://terencemeghani.com/wp-content/uploads/2024/09/hd-security-04.jpg",
+        "https://terencemeghani.com/wp-content/uploads/2024/09/hd-security-05.jpg"
+      ]
     },
     {
       "slug": "ecoboxes",
@@ -244,13 +718,34 @@
       "projectTitle": "Sustainable Packaging Marketing",
       "year": 2023,
       "industry": "Sustainable packaging",
-      "services": ["Brand", "Web", "Marketing", "PPC"],
-      "tags": ["Brand", "Web", "Marketing", "PPC"],
+      "services": [
+        "Brand",
+        "Web",
+        "Marketing",
+        "PPC"
+      ],
+      "tags": [
+        "Brand",
+        "Web",
+        "Marketing",
+        "PPC"
+      ],
       "featured": false,
       "excerpt": "Digital marketing and PPC for a sustainable packaging business.",
-      "heroImage": "https://res.cloudinary.com/dmdp4f2wp/images/ecoboxes/ecoboxes-hero.jpg",
+      "heroImage": "https://res.cloudinary.com/dmdp4f2wp/images/v1720122830/Eco-Boxes-ecoboxesuk-\u2022-Instagram-photos-and-videos/Eco-Boxes-ecoboxesuk-\u2022-Instagram-photos-and-videos.jpg",
       "heroImageAlt": "Ecoboxes sustainable packaging",
-      "related": ["chear-beauty", "mhv-clinic", "high-five-family-fitness"]
+      "related": [
+        "chear-beauty",
+        "mhv-clinic",
+        "high-five-family-fitness"
+      ],
+      "gallery": [
+        "https://res.cloudinary.com/dmdp4f2wp/images/v1720122830/Eco-Boxes-ecoboxesuk-\u2022-Instagram-photos-and-videos/Eco-Boxes-ecoboxesuk-\u2022-Instagram-photos-and-videos.jpg",
+        "https://res.cloudinary.com/dmdp4f2wp/images/v1720122843/Benefits-Bagasse-Compartment-Meal-Box/Benefits-Bagasse-Compartment-Meal-Box.jpg",
+        "https://res.cloudinary.com/dmdp4f2wp/images/v1720122849/Unveiling-the-Perks-of-the-Plain-White-Hot-Cup-Drink-Cup/Unveiling-the-Perks-of-the-Plain-White-Hot-Cup-Drink-Cup.jpg",
+        "https://res.cloudinary.com/dmdp4f2wp/images/v1720122878/Mobile-ecoboxes/Mobile-ecoboxes.png",
+        "https://res.cloudinary.com/dmdp4f2wp/images/v1720122893/Mobile-ecoboxes-2/Mobile-ecoboxes-2.png"
+      ]
     },
     {
       "slug": "high-five-family-fitness",
@@ -259,13 +754,41 @@
       "year": 2023,
       "industry": "Fitness / family classes",
       "location": "YMCA Leavesden Country Park, Abbots Langley",
-      "services": ["Web", "Marketing"],
-      "tags": ["Web", "Marketing"],
+      "services": [
+        "Web",
+        "Marketing"
+      ],
+      "tags": [
+        "Web",
+        "Marketing"
+      ],
       "featured": false,
       "excerpt": "Web and marketing for a Hertfordshire family fitness business running parent-and-child classes.",
-      "heroImage": "https://res.cloudinary.com/dmdp4f2wp/images/high-five-fitness/high-five-hero.jpg",
+      "heroImage": "https://terencemeghani.com/wp-content/uploads/2025/01/high-five-fitness-watford-01.jpg",
       "heroImageAlt": "High Five Family Fitness classes",
-      "related": ["mhv-clinic", "metro-laundrette-dry-cleaners", "triage-vets"]
+      "related": [
+        "mhv-clinic",
+        "metro-laundrette-dry-cleaners",
+        "triage-vets"
+      ],
+      "gallery": [
+        "https://terencemeghani.com/wp-content/uploads/2025/01/high-five-fitness-watford-01.jpg",
+        "https://terencemeghani.com/wp-content/uploads/2025/01/high-five-fitness-watford-02.jpg",
+        "https://terencemeghani.com/wp-content/uploads/2025/01/high-five-fitness-watford-104-1536x1024.jpg",
+        "https://terencemeghani.com/wp-content/uploads/2025/01/high-five-fitness-watford-12.jpg",
+        "https://terencemeghani.com/wp-content/uploads/2025/01/high-five-fitness-watford-13.jpg",
+        "https://terencemeghani.com/wp-content/uploads/2025/01/high-five-fitness-watford-130-1.jpg",
+        "https://terencemeghani.com/wp-content/uploads/2025/01/high-five-fitness-watford-14.jpg",
+        "https://terencemeghani.com/wp-content/uploads/2025/01/high-five-fitness-watford-15.jpg",
+        "https://terencemeghani.com/wp-content/uploads/2025/01/high-five-fitness-watford-20.jpg",
+        "https://terencemeghani.com/wp-content/uploads/2025/01/high-five-fitness-watford-21-1536x1024.jpg",
+        "https://terencemeghani.com/wp-content/uploads/2025/01/high-five-fitness-watford-56-1536x1024.jpg",
+        "https://terencemeghani.com/wp-content/uploads/2025/01/high-five-fitness-watford-65-1536x1024.jpg",
+        "https://terencemeghani.com/wp-content/uploads/2025/01/high-five-fitness-watford-68-1536x1024.jpg",
+        "https://terencemeghani.com/wp-content/uploads/2025/01/high-five-fitness-watford-82-1536x1024.jpg",
+        "https://terencemeghani.com/wp-content/uploads/2025/01/high-five-fitness-watford-84.jpg",
+        "https://terencemeghani.com/wp-content/uploads/2025/01/high-five-fitness-watford-87-1536x1024.jpg"
+      ]
     },
     {
       "slug": "mhv-clinic",
@@ -273,13 +796,30 @@
       "projectTitle": "Wellness Clinic Web & PPC",
       "year": 2023,
       "industry": "Healthcare / wellness",
-      "services": ["Web", "Marketing", "PPC"],
-      "tags": ["Web", "Marketing", "PPC"],
+      "services": [
+        "Web",
+        "Marketing",
+        "PPC"
+      ],
+      "tags": [
+        "Web",
+        "Marketing",
+        "PPC"
+      ],
       "featured": false,
       "excerpt": "Web and paid search for a wellness clinic.",
-      "heroImage": "https://res.cloudinary.com/dmdp4f2wp/images/mhv-clinic/mhv-clinic-hero.jpg",
+      "heroImage": "https://terencemeghani.com/wp-content/uploads/2025/01/mhv-clinic-web-development-02.jpg",
       "heroImageAlt": "MHV Clinic website",
-      "related": ["triage-vets", "chear-beauty", "ecoboxes"]
+      "related": [
+        "triage-vets",
+        "chear-beauty",
+        "ecoboxes"
+      ],
+      "gallery": [
+        "https://terencemeghani.com/wp-content/uploads/2025/01/mhv-clinic-web-development-02.jpg",
+        "https://terencemeghani.com/wp-content/uploads/2025/01/mhv-clinic-web-development-03.jpg",
+        "https://terencemeghani.com/wp-content/uploads/2025/01/mhv-clinic-web-development.jpg"
+      ]
     },
     {
       "slug": "ddg-windows-london",
@@ -288,13 +828,25 @@
       "year": 2023,
       "industry": "Home improvement / double-glazing",
       "location": "London",
-      "services": ["Brand"],
-      "tags": ["Brand"],
+      "services": [
+        "Brand"
+      ],
+      "tags": [
+        "Brand"
+      ],
       "featured": false,
       "excerpt": "Brand refresh for a London-based double-glazing specialist.",
-      "heroImage": "https://res.cloudinary.com/dmdp4f2wp/images/ddg-windows/ddg-windows-hero.jpg",
+      "heroImage": "https://res.cloudinary.com/dmdp4f2wp/image/upload/v1721060991/DDG-Colour-Palette_kc50us.jpg",
       "heroImageAlt": "DDG Windows brand identity",
-      "related": ["kbmd", "hd-security-systems", "kemp-services"]
+      "related": [
+        "kbmd",
+        "hd-security-systems",
+        "kemp-services"
+      ],
+      "gallery": [
+        "https://res.cloudinary.com/dmdp4f2wp/image/upload/v1721060991/DDG-Colour-Palette_kc50us.jpg",
+        "https://res.cloudinary.com/dmdp4f2wp/images/v1721476970/04_sketch_mockup/04_sketch_mockup.jpg"
+      ]
     },
     {
       "slug": "chear-beauty",
@@ -302,13 +854,39 @@
       "projectTitle": "Luxury Beauty Web & Marketing",
       "year": 2023,
       "industry": "Beauty / natural cosmetics",
-      "services": ["Web", "Marketing", "PPC"],
-      "tags": ["Web", "Marketing", "PPC"],
+      "services": [
+        "Web",
+        "Marketing",
+        "PPC"
+      ],
+      "tags": [
+        "Web",
+        "Marketing",
+        "PPC"
+      ],
       "featured": false,
       "excerpt": "Web and marketing for a luxury natural-beauty brand.",
-      "heroImage": "https://res.cloudinary.com/dmdp4f2wp/images/chear-beauty/chear-beauty-hero.jpg",
+      "heroImage": "https://res.cloudinary.com/dmdp4f2wp/images/v1721486764/chear-beauty-logo-design/chear-beauty-logo-design.jpg",
       "heroImageAlt": "Chear Beauty luxury website",
-      "related": ["sefia-london", "ecoboxes", "london-kings-clothing"]
+      "related": [
+        "sefia-london",
+        "ecoboxes",
+        "london-kings-clothing"
+      ],
+      "gallery": [
+        "https://res.cloudinary.com/dmdp4f2wp/images/v1721486764/chear-beauty-logo-design/chear-beauty-logo-design.jpg",
+        "https://res.cloudinary.com/dmdp4f2wp/images/v1721489835/chear-beauty-logo-design-2/chear-beauty-logo-design-2.jpg",
+        "https://res.cloudinary.com/dmdp4f2wp/images/v1721490637/chear-ad-mockup/chear-ad-mockup.jpg",
+        "https://res.cloudinary.com/dmdp4f2wp/images/v1721492046/chear-desktop-mockup_63730395d/chear-desktop-mockup_63730395d.jpg",
+        "https://terencemeghani.com/wp-content/uploads/2023/10/2024Bio-Chear.jpg",
+        "https://terencemeghani.com/wp-content/uploads/2023/10/2024GC.jpg",
+        "https://terencemeghani.com/wp-content/uploads/2023/10/2024Glycol.jpg",
+        "https://terencemeghani.com/wp-content/uploads/2023/10/2024Lemo.jpg",
+        "https://terencemeghani.com/wp-content/uploads/2023/10/acneArtboard-1.jpg",
+        "https://terencemeghani.com/wp-content/uploads/2023/10/KojicArtboard-1.jpg",
+        "https://terencemeghani.com/wp-content/uploads/2023/10/Post_02Lavender.jpg",
+        "https://terencemeghani.com/wp-content/uploads/2023/10/XmasAcne.jpg"
+      ]
     },
     {
       "slug": "kemp-services",
@@ -316,13 +894,26 @@
       "projectTitle": "Commercial Cleaning Website",
       "year": 2023,
       "industry": "Commercial cleaning",
-      "services": ["Web"],
-      "tags": ["Web"],
+      "services": [
+        "Web"
+      ],
+      "tags": [
+        "Web"
+      ],
       "featured": false,
       "excerpt": "Web development for a commercial cleaning specialist.",
-      "heroImage": "https://res.cloudinary.com/dmdp4f2wp/images/kemp-services/kemp-services-hero.jpg",
+      "heroImage": "https://res.cloudinary.com/dmdp4f2wp/image/upload/v1736847145/kemp-services_freiiq.png",
       "heroImageAlt": "Kemp Services website",
-      "related": ["hd-security-systems", "metro-laundrette-dry-cleaners", "kbmd"]
+      "related": [
+        "hd-security-systems",
+        "metro-laundrette-dry-cleaners",
+        "kbmd"
+      ],
+      "gallery": [
+        "https://res.cloudinary.com/dmdp4f2wp/image/upload/v1736847145/kemp-services_freiiq.png",
+        "https://res.cloudinary.com/dmdp4f2wp/images/v1721922926/kemp-services-website-development/kemp-services-website-development.jpg",
+        "https://res.cloudinary.com/dmdp4f2wp/images/v1721923574/kemp-services-website-development-2/kemp-services-website-development-2.jpg"
+      ]
     },
     {
       "slug": "the-hollybush-bar-restaurant",
@@ -330,13 +921,33 @@
       "projectTitle": "Hospitality Brand Identity",
       "year": 2023,
       "industry": "Hospitality",
-      "services": ["Brand", "Marketing"],
-      "tags": ["Brand", "Marketing"],
+      "services": [
+        "Brand",
+        "Marketing"
+      ],
+      "tags": [
+        "Brand",
+        "Marketing"
+      ],
       "featured": false,
-      "excerpt": "Brand identity for a local bar-restaurant — logo, business cards, and menu design.",
-      "heroImage": "https://res.cloudinary.com/dmdp4f2wp/images/hollybush/hollybush-hero.jpg",
+      "excerpt": "Brand identity for a local bar-restaurant \u2014 logo, business cards, and menu design.",
+      "heroImage": "https://res.cloudinary.com/dmdp4f2wp/images/v1722028617/the-hollybush-bar-restaurant-logo-design-5/the-hollybush-bar-restaurant-logo-design-5.jpg",
       "heroImageAlt": "The Hollybush Bar & Restaurant brand identity",
-      "related": ["la-royale", "vijays-virasat", "fireaway-pizza"]
+      "related": [
+        "la-royale",
+        "vijays-virasat",
+        "fireaway-pizza"
+      ],
+      "gallery": [
+        "https://res.cloudinary.com/dmdp4f2wp/images/v1722028617/the-hollybush-bar-restaurant-logo-design-5/the-hollybush-bar-restaurant-logo-design-5.jpg",
+        "https://res.cloudinary.com/dmdp4f2wp/images/v1722029118/the-hollybush-bar-restaurant-sign-design-6/the-hollybush-bar-restaurant-sign-design-6.jpg",
+        "https://res.cloudinary.com/dmdp4f2wp/images/v1722029678/the-hollybush-bar-restaurant-facade-design-6/the-hollybush-bar-restaurant-facade-design-6.jpg",
+        "https://res.cloudinary.com/dmdp4f2wp/images/v1722031484/the-hollybush-bar-restaurant-food-menu-design-6/the-hollybush-bar-restaurant-food-menu-design-6.jpg",
+        "https://res.cloudinary.com/dmdp4f2wp/images/v1722031910/the-hollybush-bar-restaurant-food-menu-design-7/the-hollybush-bar-restaurant-food-menu-design-7.jpg",
+        "https://terencemeghani.com/wp-content/uploads/2023/10/the-hollybush-bar-restaurant-logo-design-2.jpg",
+        "https://terencemeghani.com/wp-content/uploads/2023/10/the-hollybush-bar-restaurant-logo-design-3-2.jpg",
+        "https://terencemeghani.com/wp-content/uploads/2023/10/the-hollybush-bar-restaurant-logo-design-4.jpg"
+      ]
     },
     {
       "slug": "sefia-london",
@@ -344,13 +955,40 @@
       "projectTitle": "Luxury Fashion Photography",
       "year": 2023,
       "industry": "Luxury fashion",
-      "services": ["Photography"],
-      "tags": ["Photography"],
+      "services": [
+        "Photography"
+      ],
+      "tags": [
+        "Photography"
+      ],
       "featured": false,
       "excerpt": "Commissioned luxury fashion photography for a footwear, jewellery and accessories brand.",
-      "heroImage": "https://res.cloudinary.com/dmdp4f2wp/images/sefia-london/sefia-london-hero.jpg",
+      "heroImage": "https://res.cloudinary.com/dmdp4f2wp/image/upload/v1718805358/www.krazymedia.co.uk-7_ihctbw.jpg",
       "heroImageAlt": "Sefia London luxury fashion photography",
-      "related": ["chear-beauty", "london-kings-clothing", "tulsi-vagjiani"]
+      "related": [
+        "chear-beauty",
+        "london-kings-clothing",
+        "tulsi-vagjiani"
+      ],
+      "gallery": [
+        "https://res.cloudinary.com/dmdp4f2wp/image/upload/v1718805358/www.krazymedia.co.uk-7_ihctbw.jpg",
+        "https://res.cloudinary.com/dmdp4f2wp/image/upload/v1718805364/www.krazymedia.co.uk-18_h5hjns.jpg",
+        "https://res.cloudinary.com/dmdp4f2wp/image/upload/v1718805366/www.krazymedia.co.uk-31_fuxxjc.jpg",
+        "https://res.cloudinary.com/dmdp4f2wp/image/upload/v1718805369/www.krazymedia.co.uk-33_bdp1et.jpg",
+        "https://res.cloudinary.com/dmdp4f2wp/image/upload/v1718805375/www.krazymedia.co.uk-14_b5gweg.jpg",
+        "https://res.cloudinary.com/dmdp4f2wp/image/upload/v1718805377/www.krazymedia.co.uk-32_nb0zhr.jpg",
+        "https://res.cloudinary.com/dmdp4f2wp/image/upload/v1718805377/www.krazymedia.co.uk-36_aejlrk.jpg",
+        "https://res.cloudinary.com/dmdp4f2wp/image/upload/v1718805377/www.krazymedia.co.uk-38_ds1zet.jpg",
+        "https://res.cloudinary.com/dmdp4f2wp/image/upload/v1718805381/www.krazymedia.co.uk-41_dlfuag.jpg",
+        "https://res.cloudinary.com/dmdp4f2wp/image/upload/v1718805382/www.krazymedia.co.uk-39_x2kqna.jpg",
+        "https://res.cloudinary.com/dmdp4f2wp/image/upload/v1718805825/www.krazymedia.co.uk-9_xgrdsk.jpg",
+        "https://res.cloudinary.com/dmdp4f2wp/image/upload/v1718805826/www.krazymedia.co.uk-16_mxqiiy.jpg",
+        "https://res.cloudinary.com/dmdp4f2wp/image/upload/v1718805889/www.krazymedia.co.uk-51_cjlynj.jpg",
+        "https://res.cloudinary.com/dmdp4f2wp/image/upload/v1718805927/www.krazymedia.co.uk-30_ppuwmv.jpg",
+        "https://res.cloudinary.com/dmdp4f2wp/image/upload/v1718805934/www.krazymedia.co.uk-39_x4d3ue.jpg",
+        "https://res.cloudinary.com/dmdp4f2wp/image/upload/v1718806612/terence-meghani-fashion-photography-1_onyrmi.jpg",
+        "https://res.cloudinary.com/dmdp4f2wp/image/upload/v1718806671/terence-meghani-fashion-photography-6_xxjnzf.jpg"
+      ]
     },
     {
       "slug": "taur-security",
@@ -358,13 +996,52 @@
       "projectTitle": "Security Services Brand System",
       "year": 2023,
       "industry": "Security services",
-      "services": ["Brand", "Web", "Marketing", "Photography"],
-      "tags": ["Brand", "Web", "Marketing", "Photography"],
+      "services": [
+        "Brand",
+        "Web",
+        "Marketing",
+        "Photography"
+      ],
+      "tags": [
+        "Brand",
+        "Web",
+        "Marketing",
+        "Photography"
+      ],
       "featured": false,
-      "excerpt": "Full brand identity system for a security services provider — uniforms, vehicles, digital.",
-      "heroImage": "https://res.cloudinary.com/dmdp4f2wp/images/taur-security/taur-security-hero.jpg",
+      "excerpt": "Full brand identity system for a security services provider \u2014 uniforms, vehicles, digital.",
+      "heroImage": "https://terencemeghani.com/wp-content/uploads/2023/01/Krazy-Media-Fireaway-024739.jpg",
       "heroImageAlt": "Taur Security brand identity",
-      "related": ["hd-security-systems", "protech-motors", "kbmd"]
+      "related": [
+        "hd-security-systems",
+        "protech-motors",
+        "kbmd"
+      ],
+      "gallery": [
+        "https://terencemeghani.com/wp-content/uploads/2023/01/Krazy-Media-Fireaway-024739.jpg",
+        "https://terencemeghani.com/wp-content/uploads/2023/01/Krazy-Media-Fireaway-024959.jpg",
+        "https://terencemeghani.com/wp-content/uploads/2023/01/Krazy-Media-Taur-Security-022576.jpg",
+        "https://terencemeghani.com/wp-content/uploads/2023/01/Krazy-Media-Taur-Security-022699.jpg",
+        "https://terencemeghani.com/wp-content/uploads/2023/01/Krazy-Media-Taur-Security-022783.jpg",
+        "https://terencemeghani.com/wp-content/uploads/2023/01/Krazy-Media-Taur-Security-022964.jpg",
+        "https://terencemeghani.com/wp-content/uploads/2023/01/Krazy-Media-Taur-Security-023102.jpg",
+        "https://terencemeghani.com/wp-content/uploads/2023/01/Krazy-Media-Taur-Security-023199.jpg",
+        "https://terencemeghani.com/wp-content/uploads/2023/01/Krazy-Media-Taur-Security-023270.jpg",
+        "https://terencemeghani.com/wp-content/uploads/2023/01/Krazy-Media-Taur-Security-023353.jpg",
+        "https://terencemeghani.com/wp-content/uploads/2023/01/Krazy-Media-taur-security-024745.jpg",
+        "https://terencemeghani.com/wp-content/uploads/2023/01/taur-security-01.jpg",
+        "https://terencemeghani.com/wp-content/uploads/2023/01/taur-security-04.jpg",
+        "https://terencemeghani.com/wp-content/uploads/2023/01/taur-security-05.jpg",
+        "https://terencemeghani.com/wp-content/uploads/2023/01/taur-security-06.jpg",
+        "https://terencemeghani.com/wp-content/uploads/2023/01/taur-security-07.jpg",
+        "https://terencemeghani.com/wp-content/uploads/2023/01/taur-security-08.jpg",
+        "https://terencemeghani.com/wp-content/uploads/2023/01/taur-security-09.jpg",
+        "https://terencemeghani.com/wp-content/uploads/2023/01/taur-security-10.jpg",
+        "https://terencemeghani.com/wp-content/uploads/2023/01/taur-security-11.jpg",
+        "https://terencemeghani.com/wp-content/uploads/2025/01/taur01.jpg",
+        "https://terencemeghani.com/wp-content/uploads/2025/01/taur02.jpg",
+        "https://terencemeghani.com/wp-content/uploads/2025/01/taur03.jpg"
+      ]
     },
     {
       "slug": "la-royale",
@@ -373,14 +1050,28 @@
       "year": 2023,
       "industry": "Weddings & events",
       "location": "819-821 High Road, Tottenham, North London",
-      "services": ["Brand", "Web", "Marketing", "Photography"],
-      "tags": ["Brand", "Web", "Marketing", "Photography"],
+      "services": [
+        "Brand",
+        "Web",
+        "Marketing",
+        "Photography"
+      ],
+      "tags": [
+        "Brand",
+        "Web",
+        "Marketing",
+        "Photography"
+      ],
       "featured": false,
       "excerpt": "Brand, web and marketing for a Tottenham wedding and events venue.",
-      "heroImage": "https://res.cloudinary.com/dmdp4f2wp/images/la-royale/la-royale-hero.jpg",
+      "heroImage": "",
       "heroImageAlt": "La Royale Banqueting Suites brand identity",
       "testimonialId": "k-thakrar-la-royale",
-      "related": ["the-hollybush-bar-restaurant", "vijays-virasat", "al-jannah-villa-marrakech"]
+      "related": [
+        "the-hollybush-bar-restaurant",
+        "vijays-virasat",
+        "al-jannah-villa-marrakech"
+      ]
     }
   ]
 }
