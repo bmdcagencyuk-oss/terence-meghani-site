@@ -4,8 +4,16 @@ import { WorkCard } from './WorkCard';
 
 type Props = { related: CaseStudy[] };
 
+/**
+ * Related projects — fixed three-column grid on wide screens so the card row
+ * aligns cleanly without auto-fill leaving empty tracks. Collapses 3 -> 2 -> 1
+ * at 960 and 640px.
+ */
 export function CaseStudyRelated({ related }: Props) {
   if (!related.length) return null;
+  // Cap at three so the fixed 3-col grid never shows a half-empty row.
+  const items = related.slice(0, 3);
+
   return (
     <section className="section-pad" style={{ background: 'var(--color-char)' }}>
       <div className="wrap">
@@ -24,15 +32,8 @@ export function CaseStudyRelated({ related }: Props) {
         >
           More from the studio.
         </h2>
-        <div
-          style={{
-            marginTop: 40,
-            display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))',
-            gap: 24,
-          }}
-        >
-          {related.map((s) => (
+        <div className="cs-related-grid">
+          {items.map((s) => (
             <WorkCard key={s.slug} study={s} />
           ))}
         </div>

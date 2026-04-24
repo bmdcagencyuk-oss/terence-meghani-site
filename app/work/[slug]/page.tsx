@@ -6,6 +6,7 @@ import { CaseStudyAct, ActProse } from '@/components/case-study/CaseStudyAct';
 import { CaseStudyMetric } from '@/components/case-study/CaseStudyMetric';
 import { CaseStudyQuote } from '@/components/case-study/CaseStudyQuote';
 import { CaseStudyGallery } from '@/components/case-study/CaseStudyGallery';
+import { CaseStudyVideos } from '@/components/case-study/CaseStudyVideos';
 import { CaseStudyRelated } from '@/components/case-study/CaseStudyRelated';
 import { LaunchCTA } from '@/components/launch/LaunchCTA';
 import {
@@ -79,11 +80,15 @@ export default async function CaseStudyPage({
         </>
       )}
 
-      {testimonial && <CaseStudyQuote testimonial={testimonial} client={cs.client} />}
-
       {cs.gallery && cs.gallery.length > 1 && (
         <CaseStudyGallery images={cs.gallery} alt={cs.heroImageAlt} />
       )}
+
+      {cs.videos && cs.videos.length > 0 && (
+        <CaseStudyVideos videos={cs.videos} client={cs.client} />
+      )}
+
+      {testimonial && <CaseStudyQuote testimonial={testimonial} client={cs.client} />}
 
       <CaseStudyRelated related={related} />
 

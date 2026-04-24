@@ -4,6 +4,19 @@ import { Kicker } from '@/components/ui/Kicker';
 
 type Props = { study: CaseStudy };
 
+function italicLastWord(title: string) {
+  const words = title.split(' ');
+  if (words.length < 2) {
+    return <em>{title}</em>;
+  }
+  return (
+    <>
+      {words.slice(0, -1).join(' ')}{' '}
+      <em>{words[words.length - 1]}</em>
+    </>
+  );
+}
+
 export function CaseStudyHero({ study }: Props) {
   return (
     <section className="cs-hero">
@@ -21,22 +34,35 @@ export function CaseStudyHero({ study }: Props) {
         <div style={{ marginTop: 28 }}>
           <Kicker>Case study · {study.year}</Kicker>
         </div>
-        <h1>
-          {study.projectTitle.includes(' ')
-            ? (
-                <>
-                  {study.projectTitle.split(' ').slice(0, -1).join(' ')}{' '}
-                  <em>{study.projectTitle.split(' ').slice(-1)[0]}</em>
-                </>
-              )
-            : <em>{study.projectTitle}</em>}
-        </h1>
-        <p className="client">{study.client} · {study.industry}</p>
+
+        <h1>{italicLastWord(study.projectTitle)}</h1>
+
+        <p className="client">
+          {study.client} · {study.industry}
+          {study.location ? ` · ${study.location}` : ''}
+        </p>
+
+        {study.excerpt && (
+          <p
+            style={{
+              marginTop: 20,
+              maxWidth: '62ch',
+              fontSize: 18,
+              lineHeight: 1.55,
+              color: 'var(--color-mist)',
+            }}
+          >
+            {study.excerpt}
+          </p>
+        )}
 
         {study.heroImage && (
           <div
             className="image"
-            style={{ backgroundImage: `url('${study.heroImage}')` }}
+            style={{
+              backgroundImage: `url('${study.heroImage}')`,
+              aspectRatio: '21 / 9',
+            }}
             role="img"
             aria-label={study.heroImageAlt}
           />

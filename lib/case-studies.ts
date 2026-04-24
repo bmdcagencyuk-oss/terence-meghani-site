@@ -22,6 +22,7 @@ export type CaseStudy = {
   heroImage: string;
   heroImageAlt: string;
   gallery?: string[];
+  videos?: string[];
   testimonialId?: string;
   related: string[];
 };

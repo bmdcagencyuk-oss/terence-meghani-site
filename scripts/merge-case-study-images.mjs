@@ -24,23 +24,30 @@ const scraped = fs
   .filter(Boolean)
   .map((line) => JSON.parse(line));
 
-const bySlug = new Map(scraped.map((s) => [s.slug, s.images]));
+const bySlug = new Map(scraped.map((s) => [s.slug, s]));
 
 let updated = 0;
 let untouched = 0;
 
 for (const study of data.studies) {
-  const images = bySlug.get(study.slug);
-  if (!images || images.length === 0) {
+  const entry = bySlug.get(study.slug);
+  const images = entry?.images ?? [];
+  const videos = entry?.videos ?? [];
+  if (images.length === 0 && videos.length === 0) {
     untouched++;
     continue;
   }
-  study.gallery = images;
-  // Prefer the first scraped image as hero — these are actually rendered on
-  // the live site, unlike several of the fabricated Cloudinary URLs.
-  study.heroImage = images[0];
-  if (!study.heroImageAlt) {
-    study.heroImageAlt = `${study.client} — ${study.projectTitle}`;
+  if (images.length > 0) {
+    study.gallery = images;
+    // Prefer the first scraped image as hero — these are actually rendered on
+    // the live site, unlike several of the fabricated Cloudinary URLs.
+    study.heroImage = images[0];
+    if (!study.heroImageAlt) {
+      study.heroImageAlt = `${study.client} — ${study.projectTitle}`;
+    }
+  }
+  if (videos.length > 0) {
+    study.videos = videos;
   }
   updated++;
 }

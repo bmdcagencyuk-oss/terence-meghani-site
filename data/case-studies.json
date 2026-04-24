@@ -78,6 +78,9 @@
         "https://res.cloudinary.com/dmdp4f2wp/images/v1720123799/Subhash/Subhash.jpg",
         "https://res.cloudinary.com/dmdp4f2wp/images/v1720123810/news-uk-poster-mockup-2/news-uk-poster-mockup-2.jpg",
         "https://res.cloudinary.com/dmdp4f2wp/images/v1720123837/news-uk-coaster-design-2/news-uk-coaster-design-2.jpg"
+      ],
+      "videos": [
+        "https://res.cloudinary.com/dmdp4f2wp/video/upload/v1718726995/news_uk_leaflet_uqxo0g.webm"
       ]
     },
     {
@@ -117,6 +120,9 @@
         "https://terencemeghani.com/wp-content/uploads/2024/12/MG_4884_zszknu.jpg",
         "https://terencemeghani.com/wp-content/uploads/2024/12/MG_5063_iq8luo.jpg",
         "https://terencemeghani.com/wp-content/uploads/2024/12/We-Krazy-al-jannah-villa-marrakech_npkoq3.jpg"
+      ],
+      "videos": [
+        "https://res.cloudinary.com/dmdp4f2wp/video/upload/v1720305084/al-jannah-villa-marrakech-4.webm"
       ]
     },
     {
@@ -170,6 +176,17 @@
         "https://terencemeghani.com/wp-content/uploads/2023/10/steve-robinson-02.jpg",
         "https://terencemeghani.com/wp-content/uploads/2023/10/steve-robinson.jpg",
         "https://terencemeghani.com/wp-content/uploads/2023/10/tulsi-vagjiani-02.jpg"
+      ],
+      "videos": [
+        "https://res.cloudinary.com/dmdp4f2wp/video/upload/v1718633526/01_oy0t8t.webm",
+        "https://res.cloudinary.com/dmdp4f2wp/video/upload/v1718633562/Story_11_cere1n.webm",
+        "https://res.cloudinary.com/dmdp4f2wp/video/upload/v1718633565/Story_04_wrrxmq.webm",
+        "https://res.cloudinary.com/dmdp4f2wp/video/upload/v1718633578/Tulsi_cgqf13.webm",
+        "https://res.cloudinary.com/dmdp4f2wp/video/upload/v1718633636/tedx_z1hm8s.webm",
+        "https://res.cloudinary.com/dmdp4f2wp/video/upload/v1718653570/Dr-Alisha-Damani_ombww2.webm",
+        "https://res.cloudinary.com/dmdp4f2wp/video/upload/v1718716047/Story_07_rjsbt2.webm",
+        "https://res.cloudinary.com/dmdp4f2wp/video/upload/v1718716173/Story_06_oncqln.webm",
+        "https://res.cloudinary.com/dmdp4f2wp/video/upload/v1718716338/Story_09_bku1im.webm"
       ]
     },
     {
@@ -249,7 +266,7 @@
       ],
       "featured": true,
       "featuredOrder": 5,
-      "excerpt": "Digital marketing and commissioned photography for a UK pizza chain \u2014 75% organic growth.",
+      "excerpt": "Digital marketing and commissioned photography for a UK pizza chain — 75% organic growth.",
       "metric": {
         "value": "+75%",
         "label": "Organic search traffic",
@@ -433,6 +450,9 @@
         "https://terencemeghani.com/wp-content/uploads/2024/12/triage-vets-old.webp",
         "https://terencemeghani.com/wp-content/uploads/2024/12/tv-social-3.jpg",
         "https://terencemeghani.com/wp-content/uploads/2024/12/tv-social.jpg"
+      ],
+      "videos": [
+        "https://res.cloudinary.com/dmdp4f2wp/video/upload/v1721475880/tv2_halbls.mp4"
       ]
     },
     {
@@ -615,6 +635,12 @@
         "https://terencemeghani.com/wp-content/uploads/2024/12/diwali-1.jpg",
         "https://terencemeghani.com/wp-content/uploads/2024/12/Oct-2-2.jpg",
         "https://terencemeghani.com/wp-content/uploads/2024/12/School.jpg"
+      ],
+      "videos": [
+        "https://res.cloudinary.com/dmdp4f2wp/video/upload/v1718633747/render_2160p_c2rtzc.webm",
+        "https://res.cloudinary.com/dmdp4f2wp/video/upload/v1718633806/Instagram_Stories_12_1_pmgnrv.webm",
+        "https://res.cloudinary.com/dmdp4f2wp/video/upload/v1718633826/July-Metro-4_b3eqow.webm",
+        "https://res.cloudinary.com/dmdp4f2wp/video/upload/v1718633848/2_1_kijwjn.webm"
       ]
     },
     {
@@ -732,7 +758,7 @@
       ],
       "featured": false,
       "excerpt": "Digital marketing and PPC for a sustainable packaging business.",
-      "heroImage": "https://res.cloudinary.com/dmdp4f2wp/images/v1720122830/Eco-Boxes-ecoboxesuk-\u2022-Instagram-photos-and-videos/Eco-Boxes-ecoboxesuk-\u2022-Instagram-photos-and-videos.jpg",
+      "heroImage": "https://res.cloudinary.com/dmdp4f2wp/images/v1720122830/Eco-Boxes-ecoboxesuk-•-Instagram-photos-and-videos/Eco-Boxes-ecoboxesuk-•-Instagram-photos-and-videos.jpg",
       "heroImageAlt": "Ecoboxes sustainable packaging",
       "related": [
         "chear-beauty",
@@ -740,11 +766,14 @@
         "high-five-family-fitness"
       ],
       "gallery": [
-        "https://res.cloudinary.com/dmdp4f2wp/images/v1720122830/Eco-Boxes-ecoboxesuk-\u2022-Instagram-photos-and-videos/Eco-Boxes-ecoboxesuk-\u2022-Instagram-photos-and-videos.jpg",
+        "https://res.cloudinary.com/dmdp4f2wp/images/v1720122830/Eco-Boxes-ecoboxesuk-•-Instagram-photos-and-videos/Eco-Boxes-ecoboxesuk-•-Instagram-photos-and-videos.jpg",
         "https://res.cloudinary.com/dmdp4f2wp/images/v1720122843/Benefits-Bagasse-Compartment-Meal-Box/Benefits-Bagasse-Compartment-Meal-Box.jpg",
         "https://res.cloudinary.com/dmdp4f2wp/images/v1720122849/Unveiling-the-Perks-of-the-Plain-White-Hot-Cup-Drink-Cup/Unveiling-the-Perks-of-the-Plain-White-Hot-Cup-Drink-Cup.jpg",
         "https://res.cloudinary.com/dmdp4f2wp/images/v1720122878/Mobile-ecoboxes/Mobile-ecoboxes.png",
         "https://res.cloudinary.com/dmdp4f2wp/images/v1720122893/Mobile-ecoboxes-2/Mobile-ecoboxes-2.png"
+      ],
+      "videos": [
+        "https://res.cloudinary.com/dmdp4f2wp/video/upload/v1718634721/ecoboxes_animation_lyh7gk.webm"
       ]
     },
     {
@@ -930,7 +959,7 @@
         "Marketing"
       ],
       "featured": false,
-      "excerpt": "Brand identity for a local bar-restaurant \u2014 logo, business cards, and menu design.",
+      "excerpt": "Brand identity for a local bar-restaurant — logo, business cards, and menu design.",
       "heroImage": "https://res.cloudinary.com/dmdp4f2wp/images/v1722028617/the-hollybush-bar-restaurant-logo-design-5/the-hollybush-bar-restaurant-logo-design-5.jpg",
       "heroImageAlt": "The Hollybush Bar & Restaurant brand identity",
       "related": [
@@ -1009,7 +1038,7 @@
         "Photography"
       ],
       "featured": false,
-      "excerpt": "Full brand identity system for a security services provider \u2014 uniforms, vehicles, digital.",
+      "excerpt": "Full brand identity system for a security services provider — uniforms, vehicles, digital.",
       "heroImage": "https://terencemeghani.com/wp-content/uploads/2023/01/Krazy-Media-Fireaway-024739.jpg",
       "heroImageAlt": "Taur Security brand identity",
       "related": [

@@ -7,22 +7,33 @@ type Props = {
 };
 
 /**
- * Image gallery for a case-study detail page.
- * Renders the full reel minus the first image (already used as the hero).
- * First image in each "row" after the lead spans full-width; the rest tile
- * in a dense auto-fill grid so portrait + landscape crops coexist cleanly.
+ * Rhythmic gallery — 12-col grid with a repeating 6/6/12/4/4/4 span pattern so
+ * landscape and portrait crops coexist without guessing intrinsic dimensions.
+ * The first image in the array belongs to the hero; we slice it off here.
+ *
+ *    row 1   [   A (6)   ][   B (6)   ]
+ *    row 2   [          C (12)        ]
+ *    row 3   [ D (4) ][ E (4) ][ F (4) ]
+ *
+ * Repeat for every 5 trailing frames. Items auto-fill remaining tracks, and
+ * fall back to a single-column stack below 720px.
  */
+function spanFor(i: number): { gridColumn: string; aspectRatio: string } {
+  const r = i % 5;
+  if (r === 0) return { gridColumn: 'span 6', aspectRatio: '4 / 3' };
+  if (r === 1) return { gridColumn: 'span 6', aspectRatio: '4 / 3' };
+  if (r === 2) return { gridColumn: 'span 12', aspectRatio: '16 / 7' };
+  return { gridColumn: 'span 4', aspectRatio: '4 / 5' };
+}
+
 export function CaseStudyGallery({ images, alt }: Props) {
   const rest = images.slice(1);
   if (rest.length === 0) return null;
 
-  // First trailing image is the feature — full-width, taller.
-  const [feature, ...tiles] = rest;
-
   return (
     <section className="section-pad" style={{ background: 'var(--color-char-2)' }}>
       <div className="wrap">
-        <Kicker>Gallery</Kicker>
+        <Kicker>Selected frames</Kicker>
         <h2
           style={{
             marginTop: 14,
@@ -35,7 +46,7 @@ export function CaseStudyGallery({ images, alt }: Props) {
             lineHeight: 1,
           }}
         >
-          Selected{' '}
+          From the{' '}
           <em
             style={{
               fontFamily: 'var(--font-italic)',
@@ -44,70 +55,48 @@ export function CaseStudyGallery({ images, alt }: Props) {
               fontWeight: 400,
             }}
           >
-            frames.
+            project.
           </em>
         </h2>
 
-        <div style={{ marginTop: 40, display: 'flex', flexDirection: 'column', gap: 16 }}>
-          {feature && (
-            <div
-              style={{
-                position: 'relative',
-                width: '100%',
-                aspectRatio: '16 / 9',
-                background: 'var(--color-char-3)',
-                border: '1px solid var(--color-hairline-2)',
-                overflow: 'hidden',
-              }}
-            >
-              <img
-                src={feature}
-                alt={alt}
-                loading="lazy"
+        <div
+          className="cs-gallery-grid"
+          style={{
+            marginTop: 40,
+            display: 'grid',
+            gridTemplateColumns: 'repeat(12, minmax(0, 1fr))',
+            gap: 16,
+          }}
+        >
+          {rest.map((src, i) => {
+            const span = spanFor(i);
+            return (
+              <figure
+                key={src + i}
                 style={{
-                  width: '100%',
-                  height: '100%',
-                  objectFit: 'cover',
-                  display: 'block',
+                  gridColumn: span.gridColumn,
+                  aspectRatio: span.aspectRatio,
+                  margin: 0,
+                  background: 'var(--color-char-3)',
+                  border: '1px solid var(--color-hairline-2)',
+                  overflow: 'hidden',
+                  position: 'relative',
                 }}
-              />
-            </div>
-          )}
-
-          {tiles.length > 0 && (
-            <div
-              style={{
-                display: 'grid',
-                gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))',
-                gap: 16,
-              }}
-            >
-              {tiles.map((src, i) => (
-                <div
-                  key={src + i}
+              >
+                <img
+                  src={src}
+                  alt={i === 0 ? alt : ''}
+                  loading="lazy"
                   style={{
-                    position: 'relative',
-                    aspectRatio: '4 / 5',
-                    background: 'var(--color-char-3)',
-                    border: '1px solid var(--color-hairline-2)',
-                    overflow: 'hidden',
+                    width: '100%',
+                    height: '100%',
+                    objectFit: 'cover',
+                    display: 'block',
                   }}
-                >
-                  <img
-                    src={src}
-                    alt=""
-                    loading="lazy"
-                    style={{
-                      width: '100%',
-                      height: '100%',
-                      objectFit: 'cover',
-                      display: 'block',
-                    }}
-                  />
-                </div>
-              ))}
-            </div>
-          )}
+                />
+              </figure>
+            );
+          })}
         </div>
       </div>
     </section>
