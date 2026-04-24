@@ -59,10 +59,7 @@ export function CaseStudyHero({ study }: Props) {
         {study.heroImage && (
           <div
             className="image"
-            style={{
-              backgroundImage: `url('${study.heroImage}')`,
-              aspectRatio: '21 / 9',
-            }}
+            style={{ backgroundImage: `url('${study.heroImage}')` }}
             role="img"
             aria-label={study.heroImageAlt}
           />

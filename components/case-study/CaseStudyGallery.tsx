@@ -7,27 +7,12 @@ type Props = {
 };
 
 /**
- * Rhythmic gallery — 12-col grid with a repeating 6/6/12/4/4/4 span pattern so
- * landscape and portrait crops coexist without guessing intrinsic dimensions.
- * The first image in the array belongs to the hero; we slice it off here.
- *
- *    row 1   [   A (6)   ][   B (6)   ]
- *    row 2   [          C (12)        ]
- *    row 3   [ D (4) ][ E (4) ][ F (4) ]
- *
- * Repeat for every 5 trailing frames. Items auto-fill remaining tracks, and
- * fall back to a single-column stack below 720px.
+ * Masonry gallery using CSS `columns`. Every image retains its native aspect
+ * ratio — no cropping, no "guess the span" rhythmic grid. Columns collapse
+ * 3 → 2 → 1 at 960px and 640px via globals.css.
  */
-function spanFor(i: number): { gridColumn: string; aspectRatio: string } {
-  const r = i % 5;
-  if (r === 0) return { gridColumn: 'span 6', aspectRatio: '4 / 3' };
-  if (r === 1) return { gridColumn: 'span 6', aspectRatio: '4 / 3' };
-  if (r === 2) return { gridColumn: 'span 12', aspectRatio: '16 / 7' };
-  return { gridColumn: 'span 4', aspectRatio: '4 / 5' };
-}
-
 export function CaseStudyGallery({ images, alt }: Props) {
-  const rest = images.slice(1);
+  const rest = images.slice(1); // first image already rendered in the hero
   if (rest.length === 0) return null;
 
   return (
@@ -59,44 +44,22 @@ export function CaseStudyGallery({ images, alt }: Props) {
           </em>
         </h2>
 
-        <div
-          className="cs-gallery-grid"
-          style={{
-            marginTop: 40,
-            display: 'grid',
-            gridTemplateColumns: 'repeat(12, minmax(0, 1fr))',
-            gap: 16,
-          }}
-        >
-          {rest.map((src, i) => {
-            const span = spanFor(i);
-            return (
-              <figure
-                key={src + i}
+        <div className="cs-masonry" style={{ marginTop: 40 }}>
+          {rest.map((src, i) => (
+            <figure key={src + i} className="cs-masonry-item">
+              <img
+                src={src}
+                alt={i === 0 ? alt : ''}
+                loading="lazy"
                 style={{
-                  gridColumn: span.gridColumn,
-                  aspectRatio: span.aspectRatio,
-                  margin: 0,
+                  width: '100%',
+                  height: 'auto',
+                  display: 'block',
                   background: 'var(--color-char-3)',
-                  border: '1px solid var(--color-hairline-2)',
-                  overflow: 'hidden',
-                  position: 'relative',
                 }}
-              >
-                <img
-                  src={src}
-                  alt={i === 0 ? alt : ''}
-                  loading="lazy"
-                  style={{
-                    width: '100%',
-                    height: '100%',
-                    objectFit: 'cover',
-                    display: 'block',
-                  }}
-                />
-              </figure>
-            );
-          })}
+              />
+            </figure>
+          ))}
         </div>
       </div>
     </section>

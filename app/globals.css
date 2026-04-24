@@ -276,58 +276,73 @@
 /* ============================================================
    INTERNAL-PAGE CARDS (work grid + testimonials grid + service detail)
    ============================================================ */
+/* Work card — image-dominant cover with text overlay at the bottom.
+ * Whole card is an <a>; hover lifts it, brightens image, and nudges the CTA.
+ */
 .work-card {
   position: relative;
-  display: flex;
-  flex-direction: column;
-  background: var(--color-char-2);
-  border: 1px solid var(--color-hairline-2);
+  display: block;
+  aspect-ratio: 4 / 5;
   overflow: hidden;
+  background: var(--color-char-3);
+  border: 1px solid var(--color-hairline-2);
   color: inherit;
   text-decoration: none;
-  transition: transform 0.4s var(--ease), border-color 0.3s ease, box-shadow 0.3s ease;
+  transition: transform 0.4s var(--ease), border-color 0.3s ease,
+              box-shadow 0.3s ease;
+  isolation: isolate;
 }
 .work-card:hover {
   transform: translateY(-6px);
   border-color: var(--color-rocket);
-  box-shadow: 0 24px 48px -20px color-mix(in srgb, var(--color-rocket) 30%, transparent);
+  box-shadow: 0 30px 60px -24px color-mix(in srgb, var(--color-rocket) 35%, transparent);
 }
 .work-card .cover {
-  aspect-ratio: 4 / 3;
+  position: absolute; inset: 0;
   background-size: cover;
   background-position: center;
-  position: relative;
-  transition: transform 0.8s var(--ease);
   filter: saturate(0.9) contrast(1.03);
+  transition: transform 0.8s var(--ease), filter 0.4s ease;
+  z-index: 0;
 }
-.work-card:hover .cover { transform: scale(1.04); filter: saturate(1.05) contrast(1.08); }
-.work-card .cover::after {
+.work-card:hover .cover {
+  transform: scale(1.06);
+  filter: saturate(1.05) contrast(1.08);
+}
+/* Gradient shade so bottom text always reads */
+.work-card::after {
   content: '';
   position: absolute; inset: 0;
-  background: linear-gradient(180deg, transparent 55%, rgba(0,0,0,0.45) 100%);
+  z-index: 1;
+  background:
+    linear-gradient(180deg, transparent 35%, rgba(10,10,11,0.3) 55%, rgba(10,10,11,0.88) 100%);
+  pointer-events: none;
 }
 .work-card .body {
+  position: absolute;
+  left: 0; right: 0; bottom: 0;
+  z-index: 2;
   padding: 22px 22px 24px;
   display: flex;
   flex-direction: column;
-  gap: 10px;
-  flex: 1;
+  gap: 8px;
+  color: #fff;
 }
 .work-card .meta {
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  gap: 10px;
   font-family: var(--font-mono);
   font-size: 10.5px;
-  letter-spacing: 0.14em;
+  letter-spacing: 0.16em;
   text-transform: uppercase;
-  color: var(--color-fog);
+  color: rgba(255,255,255,0.75);
 }
 .work-card h3 {
   font-family: var(--font-display);
   font-variation-settings: "wdth" 100, "opsz" 72;
   font-weight: 500;
-  font-size: clamp(22px, 2.4vw, 30px);
+  font-size: clamp(22px, 2.2vw, 28px);
   line-height: 1.05;
   letter-spacing: -0.02em;
   color: #fff;
@@ -335,39 +350,46 @@
 .work-card .client {
   font-family: var(--font-italic);
   font-style: italic;
-  font-size: 15px;
-  color: var(--color-mist);
+  font-size: 14.5px;
+  color: rgba(255,255,255,0.8);
 }
 .work-card .tags {
   display: flex;
   flex-wrap: wrap;
   gap: 6px;
-  margin-top: auto;
-  padding-top: 14px;
+  margin-top: 4px;
 }
 .work-card .tag {
   font-family: var(--font-mono);
   font-size: 9.5px;
-  letter-spacing: 0.12em;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
-  padding: 4px 8px;
-  background: rgba(255,255,255,0.04);
-  border: 1px solid var(--color-hairline-2);
-  color: var(--color-mist);
+  padding: 3px 8px;
+  background: rgba(255,255,255,0.10);
+  backdrop-filter: blur(6px);
+  border: 1px solid rgba(255,255,255,0.16);
+  color: #fff;
 }
 .work-card .cta {
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  margin-top: 12px;
+  margin-top: 10px;
+  padding: 8px 14px;
+  background: rgba(255,255,255,0.1);
+  backdrop-filter: blur(6px);
   font-family: var(--font-mono);
   font-size: 10.5px;
   letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: var(--color-rocket);
-  transition: gap 0.25s ease;
+  color: #fff;
+  align-self: flex-start;
+  transition: background 0.25s ease, color 0.25s ease, gap 0.25s ease;
 }
-.work-card:hover .cta { gap: 10px; }
+.work-card:hover .cta {
+  background: var(--color-rocket);
+  gap: 10px;
+}
 
 /* Filter chips for /work and /reviews */
 .chip-row {
@@ -447,7 +469,9 @@
   aspect-ratio: 16 / 9;
   background-size: cover;
   background-position: center;
+  background-color: var(--color-char-3);
   border: 1px solid var(--color-hairline-2);
+  box-shadow: 0 40px 80px -30px rgba(0,0,0,0.6);
 }
 
 .cs-meta {
@@ -589,11 +613,25 @@
   color: var(--color-fog);
 }
 
-/* Case-study gallery — 12-col rhythmic grid, collapses to single column */
-@media (max-width: 720px) {
-  .cs-gallery-grid { grid-template-columns: 1fr !important; }
-  .cs-gallery-grid > figure { grid-column: 1 / -1 !important; aspect-ratio: 4 / 3 !important; }
+/* Case-study gallery — CSS-columns masonry (native aspect, no cropping) */
+.cs-masonry {
+  column-count: 3;
+  column-gap: 16px;
 }
+.cs-masonry-item {
+  margin: 0 0 16px;
+  break-inside: avoid;
+  -webkit-column-break-inside: avoid;
+  page-break-inside: avoid;
+  border: 1px solid var(--color-hairline-2);
+  overflow: hidden;
+  transition: border-color 0.3s ease, transform 0.4s var(--ease);
+}
+.cs-masonry-item:hover {
+  border-color: color-mix(in srgb, var(--color-rocket) 40%, var(--color-hairline-2));
+}
+@media (max-width: 960px) { .cs-masonry { column-count: 2; } }
+@media (max-width: 640px) { .cs-masonry { column-count: 1; } }
 
 /* Case-study related work — fixed 3-col with responsive fallback */
 .cs-related-grid {

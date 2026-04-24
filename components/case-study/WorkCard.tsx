@@ -1,4 +1,3 @@
-/* eslint-disable @next/next/no-img-element */
 import Link from 'next/link';
 import type { CaseStudy } from '@/lib/case-studies';
 
@@ -7,11 +6,13 @@ type Props = { study: CaseStudy };
 export function WorkCard({ study }: Props) {
   return (
     <Link href={`/work/${study.slug}/`} className="work-card" data-cc="view">
-      <div
+      <span
         className="cover"
-        style={{ backgroundImage: `url('${study.heroImage}')` }}
         role="img"
         aria-label={study.heroImageAlt}
+        style={{
+          backgroundImage: study.heroImage ? `url('${study.heroImage}')` : undefined,
+        }}
       />
       <div className="body">
         <div className="meta">
