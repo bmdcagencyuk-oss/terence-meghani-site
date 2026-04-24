@@ -1,4 +1,5 @@
 import type { CaseStudy } from '@/lib/case-studies';
+import { Kicker } from '@/components/ui/Kicker';
 import { WorkCard } from './WorkCard';
 
 type Props = { related: CaseStudy[] };
@@ -6,23 +7,29 @@ type Props = { related: CaseStudy[] };
 export function CaseStudyRelated({ related }: Props) {
   if (!related.length) return null;
   return (
-    <section style={{ background: 'var(--color-char)', padding: 'clamp(60px, 9vw, 120px) 0' }}>
+    <section className="section-pad" style={{ background: 'var(--color-char)' }}>
       <div className="wrap">
+        <Kicker>Related work</Kicker>
         <h2
           style={{
+            marginTop: 14,
             fontFamily: 'var(--font-display)',
-            fontSize: 'clamp(32px, 4vw, 56px)',
+            fontVariationSettings: '"wdth" 100, "opsz" 72',
+            fontWeight: 500,
+            fontSize: 'var(--text-display-md)',
             color: '#fff',
-            marginBottom: 32,
+            letterSpacing: '-0.03em',
+            lineHeight: 1,
           }}
         >
-          Related work
+          More from the studio.
         </h2>
         <div
           style={{
+            marginTop: 40,
             display: 'grid',
             gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))',
-            gap: 20,
+            gap: 24,
           }}
         >
           {related.map((s) => (

@@ -9,13 +9,15 @@ type Props = {
 };
 
 export function CaseStudyAct({ number, label, id, className = '', children }: Props) {
+  const classes = `cs-act ${className.includes('bg-char-2') ? 'alt' : ''} ${className}`.trim();
   return (
-    <section id={id} className={className} style={{ padding: 'clamp(60px, 9vw, 120px) 0' }}>
-      <div className="wrap" style={{ maxWidth: 900 }}>
-        <p className="mono" style={{ color: 'var(--color-rocket)' }}>
-          {number} — {label}
-        </p>
-        <div style={{ marginTop: 16 }}>{children}</div>
+    <section id={id} className={classes}>
+      <div className="wrap">
+        <span className="num">{number} — {label}</span>
+        <h2>
+          The <em>{label.toLowerCase()}.</em>
+        </h2>
+        <div style={{ marginTop: 0 }}>{children}</div>
       </div>
     </section>
   );
@@ -24,17 +26,7 @@ export function CaseStudyAct({ number, label, id, className = '', children }: Pr
 type ProseProps = { children?: ReactNode; text?: string };
 export function ActProse({ children, text }: ProseProps) {
   return (
-    <div
-      style={{
-        display: 'flex',
-        flexDirection: 'column',
-        gap: 18,
-        color: 'var(--color-mist)',
-        fontSize: 17,
-        lineHeight: 1.65,
-        maxWidth: '62ch',
-      }}
-    >
+    <div className="prose">
       {text
         ? text.split(/\n{2,}/).map((para, i) => <p key={i}>{para}</p>)
         : children}

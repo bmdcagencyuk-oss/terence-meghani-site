@@ -1,40 +1,46 @@
+import Link from 'next/link';
 import type { CaseStudy } from '@/lib/case-studies';
+import { Kicker } from '@/components/ui/Kicker';
 
 type Props = { study: CaseStudy };
 
 export function CaseStudyHero({ study }: Props) {
   return (
-    <section
-      className="pt-32 pb-16"
-      style={{ background: 'var(--color-ink)' }}
-    >
+    <section className="cs-hero">
       <div className="wrap">
-        <p className="mono" style={{ color: 'var(--color-rocket)' }}>
-          {study.industry} · {study.year}
-        </p>
-        <h1
-          style={{
-            fontFamily: 'var(--font-display)',
-            fontSize: 'clamp(44px, 7vw, 120px)',
-            lineHeight: 0.95,
-            letterSpacing: '-0.04em',
-            color: '#fff',
-            marginTop: 12,
-          }}
-        >
-          {study.projectTitle}
+        <nav className="crumbs" aria-label="Breadcrumb">
+          <ol>
+            <li><Link href="/">Home</Link></li>
+            <li aria-hidden="true">›</li>
+            <li><Link href="/work/">Work</Link></li>
+            <li aria-hidden="true">›</li>
+            <li style={{ color: 'var(--color-rocket)' }}>{study.client}</li>
+          </ol>
+        </nav>
+
+        <div style={{ marginTop: 28 }}>
+          <Kicker>Case study · {study.year}</Kicker>
+        </div>
+        <h1>
+          {study.projectTitle.includes(' ')
+            ? (
+                <>
+                  {study.projectTitle.split(' ').slice(0, -1).join(' ')}{' '}
+                  <em>{study.projectTitle.split(' ').slice(-1)[0]}</em>
+                </>
+              )
+            : <em>{study.projectTitle}</em>}
         </h1>
-        <p
-          style={{
-            marginTop: 20,
-            maxWidth: '60ch',
-            fontSize: 18,
-            lineHeight: 1.55,
-            color: 'var(--color-mist)',
-          }}
-        >
-          {study.excerpt}
-        </p>
+        <p className="client">{study.client} · {study.industry}</p>
+
+        {study.heroImage && (
+          <div
+            className="image"
+            style={{ backgroundImage: `url('${study.heroImage}')` }}
+            role="img"
+            aria-label={study.heroImageAlt}
+          />
+        )}
       </div>
     </section>
   );

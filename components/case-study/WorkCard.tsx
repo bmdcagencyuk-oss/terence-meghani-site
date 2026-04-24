@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 import Link from 'next/link';
 import type { CaseStudy } from '@/lib/case-studies';
 
@@ -5,30 +6,28 @@ type Props = { study: CaseStudy };
 
 export function WorkCard({ study }: Props) {
   return (
-    <Link href={`/work/${study.slug}/`} className="wc" data-cc="view">
+    <Link href={`/work/${study.slug}/`} className="work-card" data-cc="view">
       <div
-        className="v"
+        className="cover"
         style={{ backgroundImage: `url('${study.heroImage}')` }}
-        aria-hidden="true"
+        role="img"
+        aria-label={study.heroImageAlt}
       />
-      <div className="content">
-        <div className="top">
-          <span className="idx">{study.industry}</span>
-          <span className="year">{study.year}</span>
+      <div className="body">
+        <div className="meta">
+          <span>{study.client}</span>
+          <span>{study.year}</span>
         </div>
-        <div>
-          <span className="tag">{study.tags.join(' · ')}</span>
-          <h3>{study.projectTitle}</h3>
-          {study.metric && (
-            <div className="metrics">
-              <div className="m">
-                <div className="n">{study.metric.value}</div>
-                <div className="k">{study.metric.label}</div>
-              </div>
-            </div>
-          )}
-          <span className="open">Case study ↗</span>
+        <h3>{study.projectTitle}</h3>
+        <div className="client">{study.industry}</div>
+        <div className="tags">
+          {study.tags.map((t) => (
+            <span key={t} className="tag">{t}</span>
+          ))}
         </div>
+        <span className="cta">
+          View case study <span aria-hidden="true">→</span>
+        </span>
       </div>
     </Link>
   );
