@@ -5,6 +5,9 @@ import { About } from '@/components/sections/About';
 import { Manifesto } from '@/components/sections/Manifesto';
 import { Services } from '@/components/sections/Services';
 import { Work } from '@/components/sections/Work';
+import { Why } from '@/components/sections/Why';
+import { Testimonials } from '@/components/sections/Testimonials';
+import { FAQ } from '@/components/sections/FAQ';
 import { homeSchema } from '@/lib/schema';
 
 export default function Home() {
@@ -21,6 +24,9 @@ export default function Home() {
       <Manifesto />
       <Services />
       <Work />
+      <Why />
+      <Testimonials />
+      <FAQ />
     </>
   );
 }
