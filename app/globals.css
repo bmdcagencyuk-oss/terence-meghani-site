@@ -856,6 +856,46 @@
   .stepper::before { display: none; }
 }
 
+/* 2-col FAQ layout: sticky heading left, accordion stack right */
+.faq-split {
+  display: grid;
+  grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+  gap: clamp(32px, 5vw, 80px);
+  align-items: start;
+}
+.faq-split .faq-intro {
+  position: sticky;
+  top: clamp(96px, 10vw, 140px);
+}
+.faq-split .faq-intro h2 {
+  font-family: var(--font-display);
+  font-variation-settings: "wdth" 100, "opsz" 96;
+  font-weight: 500;
+  font-size: var(--text-display-md);
+  letter-spacing: -0.03em;
+  line-height: 0.95;
+  color: #fff;
+  margin-top: 14px;
+  max-width: 14ch;
+}
+.faq-split .faq-intro h2 em {
+  font-family: var(--font-italic);
+  font-style: italic;
+  font-weight: 400;
+  color: var(--color-rocket);
+}
+.faq-split .faq-intro p {
+  margin-top: 20px;
+  max-width: 34ch;
+  color: var(--color-mist);
+  font-size: 15.5px;
+  line-height: 1.55;
+}
+@media (max-width: 900px) {
+  .faq-split { grid-template-columns: 1fr; }
+  .faq-split .faq-intro { position: static; }
+}
+
 /* Accordion — reused from home FAQ for service-page Q&A */
 .accordion {
   display: flex;

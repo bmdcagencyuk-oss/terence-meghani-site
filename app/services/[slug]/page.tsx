@@ -324,24 +324,28 @@ export default async function ServicePage({
       {content.faq && content.faq.length > 0 && (
         <section className="section-pad" style={{ background: 'var(--color-char)' }}>
           <div className="wrap">
-            <div className="sec-head">
-              <div>
-                <span className="sec-eyebrow"><Kicker>Questions</Kicker></span>
+            <div className="faq-split">
+              <div className="faq-intro">
+                <Kicker>Questions</Kicker>
                 <h2>
                   Answered, <em>honestly.</em>
                 </h2>
+                <p>
+                  If yours isn&rsquo;t listed, ask it on a discovery call — {' '}
+                  thirty minutes, no slides, no fluff.
+                </p>
               </div>
-            </div>
-            <div className="accordion" style={{ maxWidth: 980 }}>
-              {content.faq.map((f, i) => (
-                <details key={f.q} open={i === 0}>
-                  <summary>
-                    <span className="q">{f.q}</span>
-                    <span className="plus" aria-hidden="true">+</span>
-                  </summary>
-                  <div className="a">{f.a}</div>
-                </details>
-              ))}
+              <div className="accordion">
+                {content.faq.map((f, i) => (
+                  <details key={f.q} open={i === 0}>
+                    <summary>
+                      <span className="q">{f.q}</span>
+                      <span className="plus" aria-hidden="true">+</span>
+                    </summary>
+                    <div className="a">{f.a}</div>
+                  </details>
+                ))}
+              </div>
             </div>
           </div>
         </section>
