@@ -223,6 +223,7 @@
 
   /* Section padding — used across internal pages (about, services, engage, etc.) */
   .section-pad { padding-block: clamp(72px, 10vw, 140px); }
+
 }
 
 /* ============================================================
@@ -467,6 +468,7 @@
   margin-top: 14px;
 }
 .cs-hero .image {
+  position: relative;
   margin-top: clamp(40px, 6vw, 72px);
   aspect-ratio: 16 / 9;
   background-size: cover;
@@ -474,6 +476,21 @@
   background-color: var(--color-char-3);
   border: 1px solid var(--color-hairline-2);
   box-shadow: 0 40px 80px -30px rgba(0,0,0,0.6);
+  isolation: isolate;
+}
+/* Offset rocket-orange tile behind the hero image — adds depth without
+ * needing a different aspect ratio or art-directed asset per case study. */
+.cs-hero .image::before {
+  content: '';
+  position: absolute;
+  inset: 18px -18px -18px 18px;
+  background: var(--color-rocket);
+  z-index: -1;
+  opacity: 0.18;
+  pointer-events: none;
+}
+@media (max-width: 720px) {
+  .cs-hero .image::before { inset: 10px -10px -10px 10px; opacity: 0.22; }
 }
 
 .cs-meta {
