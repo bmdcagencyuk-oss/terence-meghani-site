@@ -339,7 +339,11 @@ export default async function ServicePage({
             </ol>
           </nav>
 
-          <div className="svc-hero-grid" style={{ marginTop: 32 }}>
+          <div
+            className="svc-hero-grid"
+            data-svc-code={`S/${String((servicesData.services.findIndex((s) => s.slug === slug) ?? 0) + 1).padStart(2, '0')}`}
+            style={{ marginTop: 32 }}
+          >
             <div>
               <div className="kicker-row">
                 <Kicker>
@@ -407,8 +411,12 @@ export default async function ServicePage({
                       S / {String((servicesData.services.findIndex((s) => s.slug === slug) ?? 0) + 1).padStart(2, '0')}
                     </div>
                   </div>
-                  <div className="badge" aria-hidden="true">
-                    <HeroIcon size={46} strokeWidth={1.6} />
+                  <div className="badge-wrap" aria-hidden="true">
+                    <span className="spark" />
+                    <span className="spark" />
+                    <div className="badge">
+                      <HeroIcon size={52} strokeWidth={1.6} />
+                    </div>
                   </div>
                 </div>
 

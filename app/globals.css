@@ -1030,6 +1030,16 @@
   gap: 28px;
   overflow: hidden;
   isolation: isolate;
+  /* Subtle floating idle on the whole panel — gives the section a heartbeat
+   * without drawing the eye. */
+  animation: svcFloat 9s ease-in-out infinite;
+}
+@keyframes svcFloat {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(-4px); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .svc-visual { animation: none; }
 }
 .svc-visual::before {
   content: '';
@@ -1058,9 +1068,69 @@
   transform: rotate(-12deg);
   z-index: -1;
 }
+.svc-visual .badge-wrap {
+  position: relative;
+  width: 138px;
+  height: 138px;
+  flex-shrink: 0;
+  isolation: isolate;
+}
+/* Rotating outer ring + sparks */
+.svc-visual .badge-wrap::before,
+.svc-visual .badge-wrap::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  pointer-events: none;
+}
+.svc-visual .badge-wrap::before {
+  /* dashed orbit */
+  border: 1px dashed color-mix(in srgb, var(--color-rocket) 55%, transparent);
+  animation: svcOrbit 14s linear infinite;
+}
+.svc-visual .badge-wrap::after {
+  /* outer halo */
+  inset: -8px;
+  border: 1px solid color-mix(in srgb, var(--color-rocket) 22%, transparent);
+  animation: svcOrbit 22s linear infinite reverse;
+}
+.svc-visual .badge-wrap .spark {
+  position: absolute;
+  top: 50%; left: 50%;
+  width: 6px; height: 6px;
+  margin: -3px 0 0 -3px;
+  border-radius: 50%;
+  background: var(--color-rocket);
+  box-shadow: 0 0 12px var(--color-spark);
+  /* Each spark sits on the orbit via translate; rotation animates the
+   * wrapper. We use a child <i> trick: positioning at 50/50 then
+   * transform: translate(0, -69px) rotate around centre. */
+  transform-origin: 50% 50%;
+  animation: svcSparkOrbit 14s linear infinite;
+}
+.svc-visual .badge-wrap .spark:nth-child(1) { animation-delay: 0s; }
+.svc-visual .badge-wrap .spark:nth-child(2) {
+  animation-delay: -7s;
+  background: var(--color-cyan);
+  box-shadow: 0 0 12px var(--color-cyan);
+}
+@keyframes svcOrbit {
+  to { transform: rotate(360deg); }
+}
+@keyframes svcSparkOrbit {
+  from { transform: rotate(0deg)   translate(0, -69px); }
+  to   { transform: rotate(360deg) translate(0, -69px); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .svc-visual .badge-wrap::before,
+  .svc-visual .badge-wrap::after,
+  .svc-visual .badge-wrap .spark { animation: none; }
+}
+
 .svc-visual .badge {
-  width: 110px;
-  height: 110px;
+  position: absolute;
+  inset: 14px;
   border-radius: 50%;
   background: var(--color-rocket);
   color: #fff;
@@ -1068,10 +1138,41 @@
   align-items: center;
   justify-content: center;
   box-shadow:
-    0 30px 60px -15px color-mix(in srgb, var(--color-rocket) 60%, transparent),
-    inset 0 0 0 3px color-mix(in srgb, #fff 20%, transparent);
+    0 30px 60px -15px color-mix(in srgb, var(--color-rocket) 70%, transparent),
+    inset 0 0 0 3px color-mix(in srgb, #fff 22%, transparent);
   transform: rotate(-4deg);
-  flex-shrink: 0;
+}
+
+/* Massive faded service code "01" / "02" etc. behind the visual aside —
+ * gives the right column real visual scale without competing with the H1
+ * on the left. */
+.svc-hero-grid { position: relative; }
+.svc-hero-grid::before {
+  content: attr(data-svc-code);
+  position: absolute;
+  top: -30%;
+  right: -2%;
+  font-family: var(--font-display);
+  font-variation-settings: "wdth" 75, "opsz" 96;
+  font-weight: 600;
+  font-size: clamp(220px, 32vw, 480px);
+  line-height: 0.78;
+  letter-spacing: -0.07em;
+  color: transparent;
+  -webkit-text-stroke: 1.5px color-mix(in srgb, var(--color-rocket) 18%, transparent);
+  pointer-events: none;
+  user-select: none;
+  white-space: nowrap;
+  z-index: 0;
+}
+.svc-hero-grid > * { position: relative; z-index: 1; }
+@media (max-width: 900px) {
+  .svc-hero-grid::before {
+    top: auto;
+    bottom: -8%;
+    right: -8%;
+    font-size: clamp(180px, 38vw, 320px);
+  }
 }
 .svc-visual .stats {
   display: grid;
