@@ -2069,7 +2069,8 @@ body.cc-grabbing .cc        { width: 90px; height: 90px; }
   /* Services mega-menu collapses to a clean stacked list on mobile */
   .nav-top.is-mobile-open .mega-menu {
     position: static;
-    transform: none;
+    transform: none !important;   /* override desktop translateX(-50%) */
+    inset: auto !important;       /* override desktop top/left positioning */
     width: 100%;
     grid-template-columns: 1fr;
     padding: 4px 0 16px;
@@ -2084,6 +2085,7 @@ body.cc-grabbing .cc        { width: 90px; height: 90px; }
     display: grid;
     opacity: 1;
     pointer-events: auto;
+    transform: none !important;   /* and override the open-state transform too */
   }
   /* Drop the featured promo card on mobile — redundant with the primary CTA */
   .nav-top.is-mobile-open .mega-menu .mm-featured { display: none; }
@@ -2120,6 +2122,19 @@ body.cc-grabbing .cc        { width: 90px; height: 90px; }
 /* Prevent double-scroll on iOS when drawer is open */
 html:has(.nav-top.is-mobile-open) { overflow: hidden; }
 body:has(.nav-top.is-mobile-open) { overflow: hidden; }
+
+/* Scrim behind the mobile drawer — full-screen dim so the rocket CTA,
+ * stats panel, and other content underneath don't bleed through. */
+.nav-top.is-mobile-open::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: -1;                 /* behind the drawer chrome */
+  background: rgba(10, 10, 11, 0.78);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  pointer-events: none;
+}
 
 /* ============================================================
    HERO — rocket canvas + stickers + headline (from v23)
@@ -3899,12 +3914,45 @@ footer .wrap { position: relative; z-index: 2; }
   .f-brand-block { grid-column: span 2; }
 }
 @media (max-width: 720px) {
-  .f-cta { grid-template-columns: 1fr; padding: 36px 0; }
-  .f-cta-btn { justify-self: start; }
-  .f-top { grid-template-columns: 1fr; gap: 36px; padding: 36px 0; }
+  .f-cta {
+    grid-template-columns: 1fr;
+    padding: 32px 0;
+    gap: 20px;
+  }
+  .f-cta .f-cta-copy h3 { font-size: clamp(22px, 6vw, 28px); }
+  .f-cta-btn {
+    justify-self: stretch;
+    justify-content: center;
+    width: 100%;
+    padding: 18px 24px;
+  }
+  .f-top {
+    grid-template-columns: 1fr;
+    gap: 28px;
+    padding: 32px 0 28px;
+  }
   .f-brand-block { grid-column: auto; }
-  .f-bottom { flex-direction: column; align-items: flex-start; }
-  .f-tagline-bottom { padding: 20px 0 12px; }
+  .f-brand { font-size: 22px; }
+  .f-tagline { font-size: 14px; max-width: none; }
+  .f-col h5 { margin-bottom: 14px; }
+  .f-col ul { gap: 12px; }
+  .f-col a { font-size: 15px; }
+  .f-bottom {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 14px;
+    font-size: 12px;
+    padding-top: 18px;
+  }
+  .f-bottom .legal { gap: 18px; }
+  .f-tagline-bottom {
+    padding: 16px 0 10px;
+    font-size: 13px;
+  }
+}
+@media (max-width: 480px) {
+  .f-cta { padding: 24px 0; }
+  .f-top { padding: 28px 0 24px; gap: 24px; }
 }
 
 @media (prefers-reduced-motion: reduce) {
