@@ -13,13 +13,29 @@ type Item = {
   metrics: Metric[];
 };
 
-const ITEMS: Item[] = [
+type CardItem = Item & { href?: string };
+
+const ITEMS: CardItem[] = [
   {
-    idx: '01 / 06',
+    idx: '01 / 07',
+    year: '2026',
+    tag: 'Fintech · Web · Referral',
+    title: 'Bettafi — landing & referral',
+    image: '/case-studies/bettafi/landing-desktop.jpg',
+    href: '/work/bettafi/',
+    metrics: [
+      { n: 'Live',   k: 'Status' },
+      { n: 'Custom', k: 'Referral' },
+      { n: 'Q1',     k: 'Launch' },
+    ],
+  },
+  {
+    idx: '02 / 07',
     year: '2024',
     tag: 'Hospitality · Identity',
     title: 'Al Jannah Villa Marrakech',
     image: 'https://images.unsplash.com/photo-1600585154526-990dced4db0d?w=800&q=80&auto=format',
+    href: '/work/al-jannah-villa-marrakech/',
     metrics: [
       { n: '+340%', k: 'Bookings' },
       { n: '4.9★',  k: 'Guest rating' },
@@ -27,11 +43,12 @@ const ITEMS: Item[] = [
     ],
   },
   {
-    idx: '02 / 06',
+    idx: '03 / 07',
     year: '2023',
     tag: 'Editorial · Digital',
     title: 'News UK — masthead system',
     image: 'https://images.unsplash.com/photo-1495020689067-958852a7765e?w=800&q=80&auto=format',
+    href: '/work/news-uk/',
     metrics: [
       { n: '6',    k: 'Titles unified' },
       { n: '+22%', k: 'Engagement' },
@@ -39,11 +56,12 @@ const ITEMS: Item[] = [
     ],
   },
   {
-    idx: '03 / 06',
+    idx: '04 / 07',
     year: '2023',
     tag: 'Event · Campaign',
     title: 'TEDx — full campaign',
     image: 'https://images.unsplash.com/photo-1505373877841-8d25f7d46678?w=800&q=80&auto=format',
+    href: '/work/tedx-university-of-salford/',
     metrics: [
       { n: '2K+',   k: 'Attendees' },
       { n: '+180%', k: 'Ticket sales' },
@@ -51,11 +69,12 @@ const ITEMS: Item[] = [
     ],
   },
   {
-    idx: '04 / 06',
+    idx: '05 / 07',
     year: '2024',
     tag: 'F&B · Packaging',
     title: 'Fireaway Pizza — rebrand',
     image: 'https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=800&q=80&auto=format',
+    href: '/work/fireaway-pizza/',
     metrics: [
       { n: '+3.4×', k: 'Store footfall' },
       { n: '120',   k: 'Locations' },
@@ -63,11 +82,12 @@ const ITEMS: Item[] = [
     ],
   },
   {
-    idx: '05 / 06',
+    idx: '06 / 07',
     year: '2024',
     tag: 'Automotive · Rebrand',
     title: 'Japex Automotive',
     image: 'https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=800&q=80&auto=format',
+    href: '/work/japex-automotive/',
     metrics: [
       { n: '+52%', k: 'Lead quality' },
       { n: '2',    k: 'Showrooms' },
@@ -75,13 +95,14 @@ const ITEMS: Item[] = [
     ],
   },
   {
-    idx: '06 / 06',
+    idx: '07 / 07',
     year: '2022',
     tag: 'Public Sector · Comms',
-    title: 'NHS — comms system',
+    title: 'DCD Connect',
     image: 'https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=800&q=80&auto=format',
+    href: '/work/dcd-connect/',
     metrics: [
-      { n: '14',   k: 'Trusts' },
+      { n: '14',   k: 'Touchpoints' },
       { n: '+38%', k: 'Recall' },
       { n: '6mo',  k: 'Scope' },
     ],
@@ -291,7 +312,7 @@ export function Work() {
       <div className="drag-rail-wrap" ref={wrapRef}>
         <div className="drag-rail" ref={trackRef}>
           {ITEMS.map((item) => (
-            <a key={item.title} className="wc" href="#" data-cc="view">
+            <a key={item.title} className="wc" href={item.href ?? '#'} data-cc="view">
               <div
                 className="v"
                 style={{ backgroundImage: `url('${item.image}')` }}

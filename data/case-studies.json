@@ -1,21 +1,21 @@
 {
   "meta": {
-    "totalCount": 24,
-    "flagshipCount": 6,
+    "totalCount": 25,
+    "flagshipCount": 7,
     "tagDistribution": {
       "Brand": 15,
-      "Web": 17,
-      "Marketing": 17,
+      "Web": 18,
+      "Marketing": 18,
       "Photography": 12,
       "PPC": 3
     },
-    "lastUpdated": "2026-04-23"
+    "lastUpdated": "2026-04-25"
   },
   "filterChips": [
     {
       "id": "all",
       "label": "All",
-      "count": 24
+      "count": 25
     },
     {
       "id": "brand",
@@ -25,12 +25,12 @@
     {
       "id": "web",
       "label": "Web",
-      "count": 17
+      "count": 18
     },
     {
       "id": "marketing",
       "label": "Marketing",
-      "count": 17
+      "count": 18
     },
     {
       "id": "ppc",
@@ -44,6 +44,44 @@
     }
   ],
   "studies": [
+    {
+      "slug": "bettafi",
+      "client": "Bettafi",
+      "projectTitle": "Landing Page & Referral System",
+      "year": 2026,
+      "industry": "AI personal finance \u00b7 fintech",
+      "location": "London, United Kingdom",
+      "market": "United Kingdom",
+      "services": [
+        "Web Development",
+        "Bespoke Development",
+        "Conversion Design",
+        "Marketing"
+      ],
+      "tags": [
+        "Web",
+        "Marketing"
+      ],
+      "featured": true,
+      "featuredOrder": 1,
+      "excerpt": "Conversion-focused launch landing page and a custom-built referral system for a UK AI personal-finance app \u2014 turning a waiting list into a self-propelling acquisition channel.",
+      "heroImage": "/case-studies/bettafi/landing-desktop.jpg",
+      "heroImageAlt": "Bettafi landing page \u2014 Your Money. Simplify & take control of your finances.",
+      "gallery": [
+        "/case-studies/bettafi/landing-desktop.jpg",
+        "/case-studies/bettafi/landing-mobile.jpg",
+        "/case-studies/bettafi/phone-mockup.jpg",
+        "/case-studies/bettafi/brand-hero.jpg",
+        "/case-studies/bettafi/auth-illustration.svg",
+        "/case-studies/bettafi/qa-illustration.svg",
+        "/case-studies/bettafi/verified-illustration.svg"
+      ],
+      "related": [
+        "mhv-clinic",
+        "triage-vets",
+        "kbmd"
+      ]
+    },
     {
       "slug": "news-uk",
       "client": "News UK",
@@ -61,7 +99,7 @@
         "Web"
       ],
       "featured": true,
-      "featuredOrder": 1,
+      "featuredOrder": 2,
       "excerpt": "Brand direction and bespoke illustration for News UK's internal security awareness programme.",
       "heroImage": "https://res.cloudinary.com/dmdp4f2wp/image/upload/v1718736249/news-uk-roller-banner-mockup_qmktch.png",
       "heroImageAlt": "News UK branded coaster illustration detail",
@@ -99,7 +137,7 @@
         "Web"
       ],
       "featured": true,
-      "featuredOrder": 2,
+      "featuredOrder": 3,
       "excerpt": "Brand identity and website for a private six-bedroom luxury retreat in the Moroccan countryside.",
       "heroImage": "https://res.cloudinary.com/dmdp4f2wp/image/upload/v1718740785/_MG_4184_navykv.jpg",
       "heroImageAlt": "Al Jannah Villa Marrakech brand identity",
@@ -140,7 +178,7 @@
         "Marketing"
       ],
       "featured": true,
-      "featuredOrder": 3,
+      "featuredOrder": 4,
       "excerpt": "Event identity and promotional system for an independently-licensed TEDx event.",
       "heroImage": "https://res.cloudinary.com/dmdp4f2wp/image/upload/v1718894769/Terence-Meghani-Krazy-Media-TEDX-026980_d94z3s.jpg",
       "heroImageAlt": "TEDx University of Salford event branding",
@@ -206,7 +244,7 @@
         "Photography"
       ],
       "featured": true,
-      "featuredOrder": 4,
+      "featuredOrder": 5,
       "excerpt": "Photography and marketing support for Europe's largest data centre industry event at Westminster Plaza.",
       "heroImage": "https://res.cloudinary.com/dmdp4f2wp/image/upload/v1720303941/dcd_westminister_plaza_hotel-3_g0ofg0.jpg",
       "heroImageAlt": "DCD Connect at Westminster Plaza",
@@ -265,8 +303,8 @@
         "Photography"
       ],
       "featured": true,
-      "featuredOrder": 5,
-      "excerpt": "Digital marketing and commissioned photography for a UK pizza chain — 75% organic growth.",
+      "featuredOrder": 6,
+      "excerpt": "Digital marketing and commissioned photography for a UK pizza chain \u2014 75% organic growth.",
       "metric": {
         "value": "+75%",
         "label": "Organic search traffic",
@@ -316,7 +354,7 @@
         "Photography"
       ],
       "featured": true,
-      "featuredOrder": 6,
+      "featuredOrder": 7,
       "excerpt": "Digital marketing and on-site photography for a specialist servicing centre in Kings Langley.",
       "heroImage": "https://res.cloudinary.com/dmdp4f2wp/images/v1722252653/Japex-Automotive-bmdc-agency-341/Japex-Automotive-bmdc-agency-341.jpg",
       "heroImageAlt": "Japex Automotive service centre photography",
@@ -758,7 +796,7 @@
       ],
       "featured": false,
       "excerpt": "Digital marketing and PPC for a sustainable packaging business.",
-      "heroImage": "https://res.cloudinary.com/dmdp4f2wp/images/v1720122830/Eco-Boxes-ecoboxesuk-•-Instagram-photos-and-videos/Eco-Boxes-ecoboxesuk-•-Instagram-photos-and-videos.jpg",
+      "heroImage": "https://res.cloudinary.com/dmdp4f2wp/images/v1720122830/Eco-Boxes-ecoboxesuk-\u2022-Instagram-photos-and-videos/Eco-Boxes-ecoboxesuk-\u2022-Instagram-photos-and-videos.jpg",
       "heroImageAlt": "Ecoboxes sustainable packaging",
       "related": [
         "chear-beauty",
@@ -766,7 +804,7 @@
         "high-five-family-fitness"
       ],
       "gallery": [
-        "https://res.cloudinary.com/dmdp4f2wp/images/v1720122830/Eco-Boxes-ecoboxesuk-•-Instagram-photos-and-videos/Eco-Boxes-ecoboxesuk-•-Instagram-photos-and-videos.jpg",
+        "https://res.cloudinary.com/dmdp4f2wp/images/v1720122830/Eco-Boxes-ecoboxesuk-\u2022-Instagram-photos-and-videos/Eco-Boxes-ecoboxesuk-\u2022-Instagram-photos-and-videos.jpg",
         "https://res.cloudinary.com/dmdp4f2wp/images/v1720122843/Benefits-Bagasse-Compartment-Meal-Box/Benefits-Bagasse-Compartment-Meal-Box.jpg",
         "https://res.cloudinary.com/dmdp4f2wp/images/v1720122849/Unveiling-the-Perks-of-the-Plain-White-Hot-Cup-Drink-Cup/Unveiling-the-Perks-of-the-Plain-White-Hot-Cup-Drink-Cup.jpg",
         "https://res.cloudinary.com/dmdp4f2wp/images/v1720122878/Mobile-ecoboxes/Mobile-ecoboxes.png",
@@ -959,7 +997,7 @@
         "Marketing"
       ],
       "featured": false,
-      "excerpt": "Brand identity for a local bar-restaurant — logo, business cards, and menu design.",
+      "excerpt": "Brand identity for a local bar-restaurant \u2014 logo, business cards, and menu design.",
       "heroImage": "https://res.cloudinary.com/dmdp4f2wp/images/v1722028617/the-hollybush-bar-restaurant-logo-design-5/the-hollybush-bar-restaurant-logo-design-5.jpg",
       "heroImageAlt": "The Hollybush Bar & Restaurant brand identity",
       "related": [
@@ -1038,7 +1076,7 @@
         "Photography"
       ],
       "featured": false,
-      "excerpt": "Full brand identity system for a security services provider — uniforms, vehicles, digital.",
+      "excerpt": "Full brand identity system for a security services provider \u2014 uniforms, vehicles, digital.",
       "heroImage": "https://terencemeghani.com/wp-content/uploads/2023/01/Krazy-Media-Fireaway-024739.jpg",
       "heroImageAlt": "Taur Security brand identity",
       "related": [
