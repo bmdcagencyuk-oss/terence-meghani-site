@@ -3911,13 +3911,30 @@ body:has(.nav-top.is-mobile-open) { overflow: hidden; }
    ============================================================ */
 footer {
   background: var(--ink);
-  padding: 0 0 28px;
+  padding: clamp(56px, 8vw, 96px) 0 28px;
   position: relative;
   z-index: 1;
   border-top: 1px solid var(--hairline-2);
   overflow: hidden;
+  isolation: isolate;
 }
 footer .wrap { position: relative; z-index: 2; }
+footer .f-emblem-watermark {
+  position: absolute;
+  bottom: -28%;
+  right: -8%;
+  width: 720px;
+  height: 720px;
+  background-image: var(--emblem);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  filter: brightness(0) invert(1);
+  opacity: 0.025;
+  transform: rotate(-8deg);
+  pointer-events: none;
+  z-index: 0;
+}
 
 .f-cta {
   padding: 48px 0;
@@ -4118,18 +4135,6 @@ footer .wrap { position: relative; z-index: 2; }
   .f-brand-block { grid-column: span 2; }
 }
 @media (max-width: 720px) {
-  .f-cta {
-    grid-template-columns: 1fr;
-    padding: 32px 0;
-    gap: 20px;
-  }
-  .f-cta .f-cta-copy h3 { font-size: clamp(22px, 6vw, 28px); }
-  .f-cta-btn {
-    justify-self: stretch;
-    justify-content: center;
-    width: 100%;
-    padding: 18px 24px;
-  }
   .f-top {
     grid-template-columns: 1fr;
     gap: 28px;
@@ -4155,7 +4160,6 @@ footer .wrap { position: relative; z-index: 2; }
   }
 }
 @media (max-width: 480px) {
-  .f-cta { padding: 24px 0; }
   .f-top { padding: 28px 0 24px; gap: 24px; }
 }
 

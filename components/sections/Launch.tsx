@@ -195,10 +195,6 @@ export function Launch() {
             <span /><span /><span /><span /><span />
           </span>
         </div>
-
-        <a href="mailto:hello@terencemeghani.com" className="secondary">
-          ✉ Or email hello@terencemeghani.com
-        </a>
       </div>
 
       <div className="launchpad" aria-hidden="true">

@@ -74,10 +74,6 @@ export function LaunchCTA({ headline, title, body = DEFAULT_BODY }: Props) {
             <span /><span /><span /><span /><span />
           </span>
         </div>
-
-        <a href="mailto:hello@terencemeghani.com" className="secondary">
-          ✉ Or email hello@terencemeghani.com
-        </a>
       </div>
 
       <div className="launchpad" aria-hidden="true">
