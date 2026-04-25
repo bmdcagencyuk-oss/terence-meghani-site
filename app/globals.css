@@ -106,12 +106,8 @@
     font-size: 16px;
     line-height: 1.5;
     position: relative;
-    cursor: none;                    /* custom cursor — disabled on touch below */
     min-height: 100vh;
   }
-
-  /* User has opted out (e.g. settings toggle or touch device) */
-  body.no-cc { cursor: auto; }
 
   /* Film-grain noise overlay — sits above page content, below cursor */
   body::before {
@@ -132,7 +128,7 @@
   }
 
   a      { color: inherit; text-decoration: none; }
-  button { font: inherit; color: inherit; background: none; border: none; cursor: none; }
+  button { font: inherit; color: inherit; background: none; border: none; cursor: pointer; }
 
   /* Headings inherit display family; per-section tweaks in components */
   h1, h2, h3, h4, h5, h6 {
@@ -165,10 +161,6 @@
     }
   }
 
-  /* Touch devices: disable custom cursor unconditionally (v23 behaviour) */
-  @media (hover: none), (pointer: coarse) {
-    body, button { cursor: auto !important; }
-  }
 }
 
 /* ============================================================
@@ -1623,60 +1615,7 @@
   50%      { filter: brightness(1.5) saturate(1.4) drop-shadow(0 0 10px var(--color-rocket)); }
 }
 
-/* ============================================================
-   CUSTOM CURSOR — singleton .cc / .cc-label driven by body classes
-   (ported verbatim from v23; mounted by <CustomCursor /> component)
-   ============================================================ */
-.cc {
-  position: fixed;
-  top: 0; left: 0;
-  width: 20px; height: 20px;
-  border-radius: 50%;
-  pointer-events: none;
-  z-index: 9999;
-  background: var(--color-cyan);
-  mix-blend-mode: difference;
-  transform: translate(-50%, -50%);
-  transition: width 0.3s var(--ease), height 0.3s var(--ease), background 0.2s ease;
-  will-change: transform;
-}
-
-.cc-label {
-  position: fixed;
-  top: 0; left: 0;
-  pointer-events: none;
-  z-index: 9999;
-  background: var(--color-rocket);
-  color: #fff;
-  padding: 6px 12px;
-  font-family: var(--font-mono);
-  font-size: 11px;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  font-weight: 600;
-  transform: translate(20px, 20px) scale(0);
-  transition: transform 0.3s var(--ease-bounce), background 0.2s;
-  white-space: nowrap;
-}
-
-body.cc-link     .cc        { width: 50px; height: 50px; }
-body.cc-drag     .cc        { width: 60px; height: 60px; }
-body.cc-drag     .cc-label  { transform: translate(20px, 20px) scale(1); }
-body.cc-drag     .cc-label::before { content: '⇔ Drag / Throw'; }
-body.cc-view     .cc        { width: 80px; height: 80px; background: var(--color-rocket); }
-body.cc-view     .cc-label  { transform: translate(20px, 20px) scale(1); background: var(--color-rocket); }
-body.cc-view     .cc-label::before { content: '🚀 Launch'; }
-body.cc-go       .cc        { width: 90px; height: 90px; background: var(--color-rocket); }
-body.cc-go       .cc-label  { transform: translate(20px, 20px) scale(1); background: var(--color-rocket); }
-body.cc-go       .cc-label::before { content: '🚀 Book now'; }
-body.cc-flip     .cc        { width: 70px; height: 70px; background: var(--color-violet); }
-body.cc-flip     .cc-label  { transform: translate(20px, 20px) scale(1); background: var(--color-violet); color: #fff; }
-body.cc-flip     .cc-label::before { content: '↻ Flip'; }
-body.cc-grabbing .cc        { width: 90px; height: 90px; }
-
-@media (hover: none), (pointer: coarse) {
-  .cc, .cc-label { display: none; }
-}
+/* (custom-cursor block removed — using native cursor for clarity) */
 
 /* ============================================================
    NAV — scroll-aware with mega-menu
@@ -2561,6 +2500,31 @@ body:has(.nav-top.is-mobile-open) { overflow: hidden; }
   align-items: end;
   padding-bottom: 28px;
   flex-shrink: 0;
+}
+
+/* Simplified hero bottom — single CTA + secondary link + supporting line.
+ * Replaces the old data-panel / cta / right-text triptych. */
+.hero-bottom--simple {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 18px;
+  padding-bottom: 32px;
+  text-align: center;
+}
+.hero-bottom--simple .hero-cta-sec { margin-top: 4px; }
+.hero-bottom--simple .hero-bottom-note {
+  margin-top: 12px;
+  font-size: 14.5px;
+  line-height: 1.5;
+  color: var(--mist);
+  max-width: 56ch;
+}
+.hero-bottom--simple .hero-bottom-note strong { color: var(--white); font-weight: 500; }
+.hero-bottom--simple .hero-bottom-note .hl {
+  background: var(--rocket);
+  color: var(--white);
+  padding: 0 4px;
 }
 .data-panel {
   background: rgba(0,0,0,0.45);

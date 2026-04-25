@@ -10,7 +10,6 @@ import './globals.css';
 import { TopNav } from '@/components/nav/TopNav';
 import { Footer } from '@/components/common/Footer';
 import { SkipLink } from '@/components/common/SkipLink';
-import { CustomCursor } from '@/components/common/CustomCursor';
 import { ScrollProgressBar } from '@/components/common/ScrollProgressBar';
 import { FloatingFab } from '@/components/common/FloatingFab';
 
@@ -118,7 +117,6 @@ export default function RootLayout({
     >
       <body>
         <PlausibleProvider domain={plausibleDomain}>
-          <CustomCursor />
           <SkipLink />
           <ScrollProgressBar />
           <FloatingFab />
