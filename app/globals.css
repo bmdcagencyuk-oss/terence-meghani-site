@@ -1489,22 +1489,18 @@
 }
 
 @keyframes fuelGlow {
-  0%, 100% { opacity: 0.5; transform: scale(0.92) translateY(4px); }
-  50%      { opacity: 1;   transform: scale(1.12) translateY(0);   }
+  0%, 100% { opacity: 0.6; transform: scale(0.95) translateY(2px); }
+  50%      { opacity: 1;   transform: scale(1.18) translateY(-2px); }
 }
 
 @keyframes fuelPulse {
   0%, 100% { font-variation-settings: "wdth" 85, "opsz" 96, "wght" 700; transform: translateY(0)    scale(1)    rotate(0deg);   }
-  25%      {                                                              transform: translateY(-4px) scale(1.02) rotate(-0.8deg);}
-  50%      { font-variation-settings: "wdth" 80, "opsz" 96, "wght" 500; transform: translateY(-8px) scale(1)    rotate(0.8deg); }
-  75%      {                                                              transform: translateY(-4px) scale(1.02) rotate(-0.4deg);}
+  50%      { font-variation-settings: "wdth" 82, "opsz" 96, "wght" 600; transform: translateY(-3px) scale(1.01) rotate(0.3deg); }
 }
 
 @keyframes fuelPulseAlt {
   0%, 100% { font-variation-settings: "wdth" 85, "opsz" 96, "wght" 700; transform: translateY(0)    scale(1)    rotate(0deg);   }
-  25%      {                                                              transform: translateY(-4px) scale(1.02) rotate(0.8deg); }
-  50%      { font-variation-settings: "wdth" 80, "opsz" 96, "wght" 500; transform: translateY(-8px) scale(1)    rotate(-0.8deg);}
-  75%      {                                                              transform: translateY(-4px) scale(1.02) rotate(0.4deg); }
+  50%      { font-variation-settings: "wdth" 82, "opsz" 96, "wght" 600; transform: translateY(-3px) scale(1.01) rotate(-0.3deg);}
 }
 
 @keyframes fuelShift { 0%, 100% { background-position: 0% 0%; } 50% { background-position: 0% 100%; } }
@@ -2167,6 +2163,72 @@ body:has(.nav-top.is-mobile-open) { overflow: hidden; }
   pointer-events: none;
   z-index: 1;
   mix-blend-mode: screen;
+  opacity: 0.55;          /* dialled back so it reads as ambience, not noise */
+}
+
+/* New atmospheric aurora layer — three slow-drifting blurred colour clouds.
+ * Replaces the visual weight the particle canvas used to carry; works
+ * cleanly behind the stickers without competing with them. */
+.hero-aurora {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  overflow: hidden;
+}
+.hero-aurora::before,
+.hero-aurora::after,
+.hero-aurora .aurora-c {
+  content: '';
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  opacity: 0.55;
+  mix-blend-mode: screen;
+  will-change: transform;
+}
+.hero-aurora::before {
+  /* rocket cloud — bottom-left, slow drift */
+  width: 70vmax; height: 70vmax;
+  left: -25%;
+  bottom: -35%;
+  background: radial-gradient(circle, var(--rocket) 0%, transparent 65%);
+  animation: auroraDriftA 28s ease-in-out infinite alternate;
+}
+.hero-aurora::after {
+  /* violet cloud — top-right */
+  width: 60vmax; height: 60vmax;
+  right: -25%;
+  top: -25%;
+  background: radial-gradient(circle, var(--violet) 0%, transparent 60%);
+  animation: auroraDriftB 32s ease-in-out infinite alternate;
+}
+.hero-aurora .aurora-c {
+  /* cyan accent — middle, smaller, faster */
+  width: 50vmax; height: 50vmax;
+  left: 50%;
+  top: 30%;
+  transform: translate(-50%, -50%);
+  background: radial-gradient(circle, var(--cyan) 0%, transparent 65%);
+  opacity: 0.18;
+  animation: auroraDriftC 24s ease-in-out infinite alternate;
+}
+@keyframes auroraDriftA {
+  from { transform: translate(0,    0)    scale(1);    }
+  to   { transform: translate(8vw,  -6vw) scale(1.12); }
+}
+@keyframes auroraDriftB {
+  from { transform: translate(0,    0)    scale(1);    }
+  to   { transform: translate(-6vw, 5vw)  scale(0.92); }
+}
+@keyframes auroraDriftC {
+  from { transform: translate(-50%, -50%) scale(0.9); }
+  to   { transform: translate(-46%, -48%) scale(1.08); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .hero-aurora::before,
+  .hero-aurora::after,
+  .hero-aurora .aurora-c { animation: none; }
 }
 .hero .grid-lines {
   position: absolute; inset: 0; z-index: 2; pointer-events: none;
@@ -2266,17 +2328,42 @@ body:has(.nav-top.is-mobile-open) { overflow: hidden; }
 }
 .mega .ch:hover { color: var(--rocket); }
 .mega .sp { display: inline-block; width: 0.3em; }
-.mega .ln-fuel { display: flex; align-items: baseline; gap: 0.08em; }
+.mega .ln-fuel { display: flex; align-items: baseline; gap: 0.06em; position: relative; }
+
+/* Flame-trail beneath FUEL — vertical taper of rocket → spark gradient */
+.mega .ln-fuel::after {
+  content: '';
+  position: absolute;
+  left: 4%;
+  right: 36%;            /* clear the emblem on the right */
+  top: 96%;
+  height: 0.5em;
+  background: linear-gradient(180deg,
+    color-mix(in srgb, var(--spark) 70%, transparent) 0%,
+    color-mix(in srgb, var(--rocket) 60%, transparent) 35%,
+    color-mix(in srgb, var(--rocket) 25%, transparent) 70%,
+    transparent 100%);
+  filter: blur(14px);
+  border-radius: 50% 50% 30% 30% / 50% 50% 100% 100%;
+  opacity: 0.85;
+  pointer-events: none;
+  z-index: -1;
+  animation: fuelGlow 3s ease-in-out infinite;
+  transform-origin: center top;
+}
+
 .mega .fuel-word { display: inline-block; position: relative; line-height: 0.9; }
 .mega .fuel-word::before {
   content: '';
   position: absolute;
-  inset: -0.22em -0.12em -0.08em -0.12em;
-  background: radial-gradient(ellipse at 50% 65%,
-    color-mix(in srgb, var(--rocket) 55%, transparent) 0%,
-    color-mix(in srgb, var(--rocket) 20%, transparent) 35%,
-    transparent 75%);
-  filter: blur(28px);
+  inset: -0.32em -0.18em -0.12em -0.18em;
+  background:
+    radial-gradient(ellipse at 50% 65%,
+      color-mix(in srgb, var(--rocket) 75%, transparent) 0%,
+      color-mix(in srgb, var(--rocket) 35%, transparent) 30%,
+      color-mix(in srgb, var(--violet) 14%, transparent) 60%,
+      transparent 80%);
+  filter: blur(36px);
   z-index: -1;
   pointer-events: none;
   animation: fuelGlow 2.6s ease-in-out infinite;
@@ -2306,17 +2393,21 @@ body:has(.nav-top.is-mobile-open) { overflow: hidden; }
 .mega .fuel-word .ch:nth-child(even):hover { transform: translateY(-14px) scale(1.1) rotate(3deg); }
 .mega .fuel-emblem {
   display: inline-block;
-  width: 0.55em; height: 0.43em;
+  width: 0.5em; height: 0.39em;
   background-image: var(--emblem);
   background-repeat: no-repeat;
   background-position: center;
   background-size: contain;
-  filter: brightness(0) invert(1) drop-shadow(0 0 10px color-mix(in srgb, var(--rocket) 55%, transparent));
+  filter:
+    brightness(0)
+    saturate(100%)
+    invert(40%) sepia(91%) saturate(3500%) hue-rotate(355deg) brightness(102%) contrast(105%)
+    drop-shadow(0 0 14px color-mix(in srgb, var(--rocket) 75%, transparent));
   animation: emblemPop 2.6s ease-in-out infinite;
   transform-origin: center bottom;
-  margin-left: 0.04em;
+  margin-left: 0.06em;
   position: relative;
-  top: -0.02em;
+  top: -0.06em;
   flex-shrink: 0;
 }
 .mega .fuel-word .punct { color: var(--rocket); font-weight: 800; font-size: 1em; animation: blink 1.2s step-end infinite; }

@@ -143,7 +143,9 @@ export function Hero() {
       }
     }
 
-    const COUNT = Math.min(220, Math.floor((W * H) / 6500));
+    // Reduced particle density — the aurora layer carries most of the visual
+    // weight now; particles read as subtle exhaust rather than fireworks.
+    const COUNT = Math.min(110, Math.floor((W * H) / 12000));
     const particles = Array.from({ length: COUNT }, () => new Particle());
     particles.forEach((p) => { p.life = Math.random() * p.maxLife; });
 
@@ -556,6 +558,9 @@ export function Hero() {
 
   return (
     <header className="hero">
+      <div className="hero-aurora" aria-hidden="true">
+        <span className="aurora-c" />
+      </div>
       <canvas className="rocket-canvas" ref={canvasRef} aria-hidden="true" />
       <div className="grid-lines" aria-hidden="true" />
 
