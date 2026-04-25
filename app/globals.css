@@ -43,10 +43,20 @@
   /* Emblem URL — used as background-image in many components */
   --emblem: url('https://terencemeghani.com/wp-content/uploads/2025/01/wt.svg');
 
-  /* Display/text size tokens used by internal pages */
-  --text-display-lg: clamp(44px, 7vw, 112px);
-  --text-display-md: clamp(32px, 4.5vw, 64px);
-  --text-display-sm: clamp(24px, 3vw, 40px);
+  /* Type scale — four steps, used everywhere.
+   *   --text-hero    : page-level H1 (home, page-hero, cs-hero)
+   *   --text-section : section H2 (sec-head, cs-act, launch)
+   *   --text-card    : card / feature title
+   *   --text-body    : body copy floor (size set on the element)
+   * Internal pages standardise on these instead of bespoke clamps. */
+  --text-hero:    clamp(48px, 9vw, 144px);
+  --text-section: clamp(36px, 5.2vw, 80px);
+  --text-card:    clamp(20px, 1.8vw, 26px);
+
+  /* Aliases preserved so existing callers don't break (point to the new scale) */
+  --text-display-lg: var(--text-hero);
+  --text-display-md: var(--text-section);
+  --text-display-sm: clamp(22px, 2.6vw, 32px);
 
   /* Hairline alias used by bordered cards */
   --color-hairline-subtle: rgb(255 255 255 / 0.09);
@@ -334,7 +344,7 @@
   font-family: var(--font-display);
   font-variation-settings: "wdth" 100, "opsz" 72;
   font-weight: 500;
-  font-size: clamp(22px, 2.2vw, 28px);
+  font-size: var(--text-card);
   line-height: 1.05;
   letter-spacing: -0.02em;
   color: #fff;
@@ -437,7 +447,7 @@
   font-family: var(--font-display);
   font-variation-settings: "wdth" 100, "opsz" 96;
   font-weight: 500;
-  font-size: var(--text-display-lg);
+  font-size: var(--text-hero);
   line-height: 0.95;
   letter-spacing: -0.04em;
   color: #fff;
@@ -555,7 +565,7 @@
   font-family: var(--font-display);
   font-variation-settings: "wdth" 100, "opsz" 96;
   font-weight: 500;
-  font-size: clamp(40px, 5.5vw, 88px);
+  font-size: var(--text-section);
   letter-spacing: -0.035em;
   line-height: 0.95;
   color: #fff;
@@ -736,7 +746,7 @@
   font-family: var(--font-display);
   font-variation-settings: "wdth" 100, "opsz" 96;
   font-weight: 500;
-  font-size: var(--text-display-md);
+  font-size: var(--text-section);
   letter-spacing: -0.03em;
   line-height: 0.95;
   color: #fff;
@@ -819,9 +829,9 @@
   font-family: var(--font-display);
   font-variation-settings: "wdth" 100, "opsz" 96;
   font-weight: 500;
-  /* Lower min so the H1 fits a 320px viewport with letter-spacing applied —
-   * the previous 64px floor was overflowing on small phones. */
-  font-size: clamp(40px, 11vw, 184px);
+  /* Standardised hero step from the design tokens; floor 40 keeps it
+   * fitting 320px viewports with letter-spacing applied. */
+  font-size: clamp(40px, 9vw, 144px);
   line-height: 0.92;
   letter-spacing: -0.04em;
   color: #fff;
@@ -969,7 +979,7 @@
   font-family: var(--font-display);
   font-variation-settings: "wdth" 100, "opsz" 48;
   font-weight: 500;
-  font-size: 20px;
+  font-size: var(--text-card);
   color: #fff;
   line-height: 1.2;
   letter-spacing: -0.01em;
@@ -3668,7 +3678,7 @@ body:has(.nav-top.is-mobile-open) { overflow: hidden; }
   font-family: var(--f-display);
   font-variation-settings: "wdth" 100, "opsz" 96;
   font-weight: 500;
-  font-size: clamp(40px, 6.5vw, 88px);
+  font-size: var(--text-section);
   line-height: 0.95;
   letter-spacing: -0.04em;
   max-width: 18ch;
