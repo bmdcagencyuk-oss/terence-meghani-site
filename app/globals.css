@@ -774,7 +774,7 @@
 /* Page hero for internal pages (services / engage / about / contact) */
 .page-hero {
   position: relative;
-  padding: clamp(112px, 13vw, 168px) 0 clamp(56px, 7vw, 104px);
+  padding: clamp(96px, 12vw, 168px) 0 clamp(48px, 6vw, 104px);
   background: var(--color-char);
   overflow: hidden;
   isolation: isolate;
@@ -827,16 +827,21 @@
   font-family: var(--font-display);
   font-variation-settings: "wdth" 100, "opsz" 96;
   font-weight: 500;
-  font-size: clamp(64px, 11vw, 184px);
-  line-height: 0.88;
-  letter-spacing: -0.05em;
+  /* Lower min so the H1 fits a 320px viewport with letter-spacing applied —
+   * the previous 64px floor was overflowing on small phones. */
+  font-size: clamp(40px, 11vw, 184px);
+  line-height: 0.92;
+  letter-spacing: -0.04em;
   color: #fff;
   max-width: 18ch;
-  /* Tighter visual gap to the kicker above; use a display-tuned top margin
-   * instead of the raw line-height gap (which leaves dead space at huge
-   * display sizes). */
-  margin-top: 32px;
+  margin-top: 28px;
   text-wrap: balance;
+  word-break: break-word;
+  hyphens: auto;
+}
+@media (max-width: 640px) {
+  .page-hero h1 { line-height: 0.96; text-wrap: pretty; }
+  .page-hero h1 em { padding-right: 0; }
 }
 .page-hero h1 em {
   font-family: var(--font-italic);
@@ -995,18 +1000,23 @@
   .svc-hero-grid { grid-template-columns: 1fr; }
 }
 /* Inside a 2-col split hero, tune the H1 so it fits its own column without
- * crashing the aside. Keep the size substantial (72–128px) so it still
- * reads as display type, not a section head. */
+ * crashing the aside. Mobile floor stays low (40px) so it still fits a
+ * 320px viewport. */
 .svc-hero-grid h1,
 .about-hero-grid h1 {
-  font-size: clamp(56px, 7.5vw, 128px) !important;
-  line-height: 0.9 !important;
+  font-size: clamp(40px, 7.5vw, 128px) !important;
+  line-height: 0.92 !important;
   letter-spacing: -0.04em;
   max-width: 14ch;
 }
 @media (max-width: 900px) {
+  .svc-hero-grid,
   .about-hero-grid {
     grid-template-columns: 1fr !important;
+  }
+  .svc-hero-grid h1,
+  .about-hero-grid h1 {
+    line-height: 0.96 !important;
   }
 }
 .svc-visual {
@@ -1979,22 +1989,52 @@ body.cc-grabbing .cc        { width: 90px; height: 90px; }
   .nav-menu,
   .nav-right { display: none; }
 
-  /* Unified mobile menu panel — one scrollable drawer beneath the nav */
+  /* Mobile drawer: when .is-mobile-open, the nav becomes a 3-row grid so
+   * the menu and the right-side CTA stack BELOW the brand+hamburger row
+   * instead of sitting on top of each other (the previous absolute-on-
+   * absolute setup hid the CTA behind the menu).
+   */
+  .nav-top.is-mobile-open {
+    grid-template-columns: 1fr auto;
+    grid-template-rows: auto auto auto;
+    row-gap: 0;
+    padding: 12px 0 0;
+  }
+  .nav-top.is-mobile-open > .nav-brand {
+    grid-row: 1;
+    grid-column: 1;
+    padding-left: clamp(20px, 4vw, 28px);
+  }
+  .nav-top.is-mobile-open > .nav-hamburger {
+    grid-row: 1;
+    grid-column: 2;
+    margin-right: clamp(20px, 4vw, 28px);
+  }
   .nav-top.is-mobile-open .nav-menu,
   .nav-top.is-mobile-open .nav-right {
     display: flex;
-    position: absolute;
-    top: 100%; left: 0; right: 0;
+    position: static;
     flex-direction: column;
     gap: 0;
     background: var(--color-char);
-    padding: 8px clamp(20px, 4vw, 28px);
-    border-bottom: 1px solid var(--color-hairline-2);
+    padding: 4px clamp(20px, 4vw, 28px);
     justify-self: stretch;
     align-items: stretch;
-    max-height: calc(100vh - 100%);
+    grid-column: 1 / -1;
+  }
+  .nav-top.is-mobile-open .nav-menu {
+    grid-row: 2;
+    margin-top: 16px;
+    padding-bottom: 8px;
+    max-height: min(60vh, 540px);
     overflow-y: auto;
     overscroll-behavior: contain;
+  }
+  .nav-top.is-mobile-open .nav-right {
+    grid-row: 3;
+    padding-top: 12px;
+    padding-bottom: 20px;
+    border-top: 1px solid var(--color-hairline-2);
   }
 
   /* Top-level items: row with inline caret, dividers, big tap targets */
