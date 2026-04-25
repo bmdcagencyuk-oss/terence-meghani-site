@@ -1,24 +1,38 @@
 type Props = {
+  /**
+   * Single noun appended to "your X?" — e.g. "brand", "website", "campaign".
+   * Use simple nouns only; for fully custom copy pass `title` instead.
+   */
   headline?: string;
+  /** Full H2 override. Use this when `your X?` doesn't read naturally. */
+  title?: string;
+  /** Replace the body copy under the H2. */
+  body?: string;
 };
+
+const DEFAULT_BODY =
+  'Thirty-minute discovery call. No slides, no fluff — leave with a concrete next step whether we work together or not.';
 
 /**
  * Compact launch CTA used at the foot of every internal page.
- * Uses the v23 launch aesthetic (ink background, rocket glow,
- * ring CTA) but without the home-page countdown/starfield.
+ * Reuses the v23 launch aesthetic (ring CTA, flame trail, exhaust,
+ * launchpad) without the home-page countdown / starfield.
  */
-export function LaunchCTA({ headline = 'brand' }: Props) {
+export function LaunchCTA({ headline, title, body = DEFAULT_BODY }: Props) {
+  // Resolve the H2 — prefer explicit title, then headline noun, then default.
+  const heading: { lead: string; accent: string } = title
+    ? splitTitle(title)
+    : headline
+      ? { lead: 'Ready to launch your', accent: `${headline}?` }
+      : { lead: 'Ready to', accent: 'launch?' };
+
   return (
     <section className="launch" aria-label="Ready to launch">
       <div className="wrap">
         <h2>
-          Ready to launch your{' '}
-          <em>{headline}?</em>
+          {heading.lead}{' '}<em>{heading.accent}</em>
         </h2>
-        <p className="subtext">
-          <strong>Thirty-minute discovery call.</strong> No slides, no fluff — leave with a
-          concrete next step whether we work together or not.
-        </p>
+        <p className="subtext">{body}</p>
 
         <div className="cta-wrap">
           <svg
@@ -78,4 +92,18 @@ export function LaunchCTA({ headline = 'brand' }: Props) {
       </div>
     </section>
   );
+}
+
+/**
+ * Italicise the trailing word of the title for the rocket-orange accent.
+ * Falls back to the whole string in italic if it's only one word.
+ */
+function splitTitle(title: string): { lead: string; accent: string } {
+  const trimmed = title.trim();
+  const lastSpace = trimmed.lastIndexOf(' ');
+  if (lastSpace === -1) return { lead: '', accent: trimmed };
+  return {
+    lead: trimmed.slice(0, lastSpace),
+    accent: trimmed.slice(lastSpace + 1),
+  };
 }

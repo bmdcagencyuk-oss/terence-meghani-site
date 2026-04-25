@@ -147,7 +147,7 @@ export default function ReviewsPage() {
         </div>
       </section>
 
-      <LaunchCTA headline="next review" />
+      <LaunchCTA title="Add yours next?" />
     </>
   );
 }

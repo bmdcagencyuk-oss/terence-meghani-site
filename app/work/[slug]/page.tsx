@@ -94,7 +94,10 @@ export default async function CaseStudyPage({
 
       <CaseStudyRelated related={related} />
 
-      <LaunchCTA headline={`brand like ${cs.client}'s`} />
+      <LaunchCTA
+        title="Want a project like this?"
+        body={`If something here resonates with where you're heading, the next step is a thirty-minute call. No slides, no fluff — leave with a concrete plan whether we work together or not.`}
+      />
     </>
   );
 }

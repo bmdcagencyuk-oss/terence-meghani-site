@@ -116,7 +116,7 @@ export default function ContactPage() {
         </div>
       </section>
 
-      <LaunchCTA headline="brief" />
+      <LaunchCTA title="Prefer a quick call?" />
     </>
   );
 }

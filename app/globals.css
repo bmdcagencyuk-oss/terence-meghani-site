@@ -3600,10 +3600,28 @@ body:has(.nav-top.is-mobile-open) { overflow: hidden; }
   font-family: var(--f-display);
   font-variation-settings: "wdth" 100, "opsz" 96;
   font-weight: 500;
-  font-size: clamp(56px, 12vw, 200px); line-height: 0.86; letter-spacing: -0.06em;
+  font-size: clamp(40px, 6.5vw, 88px);
+  line-height: 0.95;
+  letter-spacing: -0.04em;
+  max-width: 18ch;
+  margin-inline: auto;
+  text-wrap: balance;
 }
-.launch h2 em { font-family: var(--f-italic); font-style: italic; font-weight: 400; color: var(--rocket); }
-.launch .subtext { font-size: 17px; color: var(--mist); max-width: 48ch; margin: 28px auto 0; line-height: 1.55; }
+.launch h2 em {
+  font-family: var(--f-italic);
+  font-style: italic;
+  font-weight: 400;
+  color: var(--rocket);
+  vertical-align: baseline;
+  letter-spacing: -0.02em;
+}
+.launch .subtext {
+  font-size: 16px;
+  color: var(--mist);
+  max-width: 52ch;
+  margin: 22px auto 0;
+  line-height: 1.55;
+}
 .launch .subtext strong { color: var(--white); font-weight: 500; }
 
 .launch .cta-wrap { margin-top: 60px; position: relative; display: inline-block; }

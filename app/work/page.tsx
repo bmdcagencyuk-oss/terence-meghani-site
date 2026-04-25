@@ -45,7 +45,7 @@ export default function WorkPage() {
         </div>
       </section>
 
-      <LaunchCTA headline="project" />
+      <LaunchCTA title="Your project next?" />
     </>
   );
 }
