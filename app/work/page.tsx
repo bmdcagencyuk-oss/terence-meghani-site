@@ -4,10 +4,12 @@ import { WorkGrid } from '@/components/case-study/WorkGrid';
 import { LaunchCTA } from '@/components/launch/LaunchCTA';
 import { getAllCaseStudies, getFilterChips } from '@/lib/case-studies';
 
+const COUNT = getAllCaseStudies().length;
+
 export const metadata: Metadata = {
-  title: 'Work — 24 projects across brand, web, and marketing',
+  title: `Work — ${COUNT} projects across brand, web, and marketing`,
   description:
-    'Selected case studies — News UK cyber awareness campaign, Al Jannah Villa Marrakech, TEDx University of Salford, DCD Connect, Fireaway Pizza, and 19 more across brand, web, and marketing.',
+    'Selected case studies — Kinnovis self-storage booking platform, News UK cyber awareness campaign, Al Jannah Villa Marrakech, TEDx University of Salford, and more across brand, web, and marketing.',
 };
 
 export default function WorkPage() {
@@ -19,7 +21,7 @@ export default function WorkPage() {
       <section className="page-hero with-glow-rocket">
         <div className="wrap">
           <div className="kicker-row">
-            <Kicker>Work · 24 projects</Kicker>
+            <Kicker>Work · {studies.length} projects</Kicker>
           </div>
           <h1>
             A decade of projects that{' '}
@@ -27,8 +29,8 @@ export default function WorkPage() {
           </h1>
           <hr className="hero-rule" aria-hidden="true" />
           <p className="lead">
-            Twenty-four projects across brand, web, marketing, and photography. Filter by
-            discipline or scan the full set below.
+            {studies.length} selected projects across brand, web, marketing, and photography.
+            Filter by discipline or scan the full set below.
           </p>
         </div>
       </section>

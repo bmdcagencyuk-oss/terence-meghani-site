@@ -17,7 +17,7 @@ import { Kicker } from '@/components/ui/Kicker';
 import { Button } from '@/components/ui/Button';
 import { WorkCard } from '@/components/case-study/WorkCard';
 import { LaunchCTA } from '@/components/launch/LaunchCTA';
-import { getCaseStudyBySlug } from '@/lib/case-studies';
+import { getAllCaseStudies, getCaseStudyBySlug } from '@/lib/case-studies';
 import servicesData from '@/data/services.json';
 
 const SERVICE = servicesData.services.find((s) => s.slug === 'wordpress-operations')!;
@@ -287,6 +287,7 @@ export const metadata: Metadata = {
 
 export default function WordPressOperationsPage() {
   const newsUk = getCaseStudyBySlug('news-uk');
+  const projectCount = getAllCaseStudies().length;
 
   return (
     <>
@@ -703,7 +704,7 @@ export default function WordPressOperationsPage() {
               className="sec-aside"
               style={{ display: 'inline-flex', alignItems: 'center', gap: 8, color: 'var(--color-rocket)' }}
             >
-              View all 24 projects <ArrowRight size={14} aria-hidden="true" />
+              View all {projectCount} projects <ArrowRight size={14} aria-hidden="true" />
             </Link>
           </div>
 

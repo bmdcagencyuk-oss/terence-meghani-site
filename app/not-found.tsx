@@ -2,8 +2,10 @@ import Link from 'next/link';
 import { Emblem } from '@/components/ui/Emblem';
 import { Kicker } from '@/components/ui/Kicker';
 import { LaunchCTA } from '@/components/launch/LaunchCTA';
+import { getAllCaseStudies } from '@/lib/case-studies';
 
 export default function NotFound() {
+  const projectCount = getAllCaseStudies().length;
   return (
     <>
       <section className="pt-32 pb-20 bg-char">
@@ -26,7 +28,7 @@ export default function NotFound() {
 
           <ul className="mt-10 flex flex-wrap items-center justify-center gap-x-8 gap-y-3 font-mono text-xs uppercase tracking-wider">
             <li><Link href="/" className="text-white hover:text-rocket transition-colors">Home</Link></li>
-            <li><Link href="/work/" className="text-white hover:text-rocket transition-colors">Work (all 24 projects)</Link></li>
+            <li><Link href="/work/" className="text-white hover:text-rocket transition-colors">Work (all {projectCount} projects)</Link></li>
             <li><Link href="/#services" className="text-white hover:text-rocket transition-colors">Services</Link></li>
             <li><Link href="/about/" className="text-white hover:text-rocket transition-colors">About</Link></li>
             <li><Link href="/reviews/" className="text-white hover:text-rocket transition-colors">Reviews</Link></li>

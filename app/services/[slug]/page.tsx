@@ -525,7 +525,7 @@ export default async function ServicePage({
                 className="sec-aside"
                 style={{ display: 'inline-flex', alignItems: 'center', gap: 8, color: 'var(--color-rocket)' }}
               >
-                View all 24 projects <ArrowRight size={14} aria-hidden="true" />
+                View all {allStudies.length} projects <ArrowRight size={14} aria-hidden="true" />
               </Link>
             </div>
             <div className="cs-related-grid">

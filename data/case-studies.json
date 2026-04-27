@@ -49,7 +49,7 @@
       "client": "Bettafi",
       "projectTitle": "Landing Page & Referral System",
       "year": 2026,
-      "industry": "AI personal finance \u00b7 fintech",
+      "industry": "AI personal finance · fintech",
       "location": "London, United Kingdom",
       "market": "United Kingdom",
       "services": [
@@ -64,9 +64,9 @@
       ],
       "featured": true,
       "featuredOrder": 4,
-      "excerpt": "Conversion-focused launch landing page and a custom-built referral system for a UK AI personal-finance app \u2014 turning a waiting list into a self-propelling acquisition channel.",
+      "excerpt": "Conversion-focused launch landing page and a custom-built referral system for a UK AI personal-finance app — turning a waiting list into a self-propelling acquisition channel.",
       "heroImage": "/case-studies/bettafi/landing-desktop.jpg",
-      "heroImageAlt": "Bettafi landing page \u2014 Your Money. Simplify & take control of your finances.",
+      "heroImageAlt": "Bettafi landing page — Your Money. Simplify & take control of your finances.",
       "gallery": [
         "/case-studies/bettafi/landing-desktop.jpg",
         "/case-studies/bettafi/landing-mobile.jpg",
@@ -304,7 +304,7 @@
       ],
       "featured": true,
       "featuredOrder": 6,
-      "excerpt": "Digital marketing and commissioned photography for a UK pizza chain \u2014 75% organic growth.",
+      "excerpt": "Digital marketing and commissioned photography for a UK pizza chain — 75% organic growth.",
       "metric": {
         "value": "+75%",
         "label": "Organic search traffic",
@@ -491,7 +491,8 @@
       ],
       "videos": [
         "https://res.cloudinary.com/dmdp4f2wp/video/upload/v1721475880/tv2_halbls.mp4"
-      ]
+      ],
+      "published": false
     },
     {
       "slug": "kbmd",
@@ -627,7 +628,8 @@
         "https://terencemeghani.com/wp-content/uploads/2024/12/protech-car-design.jpg",
         "https://terencemeghani.com/wp-content/uploads/2024/12/protech-web-design.jpg",
         "https://terencemeghani.com/wp-content/uploads/2024/12/WHITE-FLEECE-FRONT.jpg"
-      ]
+      ],
+      "published": false
     },
     {
       "slug": "metro-laundrette-dry-cleaners",
@@ -679,7 +681,8 @@
         "https://res.cloudinary.com/dmdp4f2wp/video/upload/v1718633806/Instagram_Stories_12_1_pmgnrv.webm",
         "https://res.cloudinary.com/dmdp4f2wp/video/upload/v1718633826/July-Metro-4_b3eqow.webm",
         "https://res.cloudinary.com/dmdp4f2wp/video/upload/v1718633848/2_1_kijwjn.webm"
-      ]
+      ],
+      "published": false
     },
     {
       "slug": "london-kings-clothing",
@@ -774,7 +777,8 @@
         "https://terencemeghani.com/wp-content/uploads/2024/09/hd-security-03.jpg",
         "https://terencemeghani.com/wp-content/uploads/2024/09/hd-security-04.jpg",
         "https://terencemeghani.com/wp-content/uploads/2024/09/hd-security-05.jpg"
-      ]
+      ],
+      "published": false
     },
     {
       "slug": "ecoboxes",
@@ -796,7 +800,7 @@
       ],
       "featured": false,
       "excerpt": "Digital marketing and PPC for a sustainable packaging business.",
-      "heroImage": "https://res.cloudinary.com/dmdp4f2wp/images/v1720122830/Eco-Boxes-ecoboxesuk-\u2022-Instagram-photos-and-videos/Eco-Boxes-ecoboxesuk-\u2022-Instagram-photos-and-videos.jpg",
+      "heroImage": "https://res.cloudinary.com/dmdp4f2wp/images/v1720122830/Eco-Boxes-ecoboxesuk-•-Instagram-photos-and-videos/Eco-Boxes-ecoboxesuk-•-Instagram-photos-and-videos.jpg",
       "heroImageAlt": "Ecoboxes sustainable packaging",
       "related": [
         "chear-beauty",
@@ -804,7 +808,7 @@
         "high-five-family-fitness"
       ],
       "gallery": [
-        "https://res.cloudinary.com/dmdp4f2wp/images/v1720122830/Eco-Boxes-ecoboxesuk-\u2022-Instagram-photos-and-videos/Eco-Boxes-ecoboxesuk-\u2022-Instagram-photos-and-videos.jpg",
+        "https://res.cloudinary.com/dmdp4f2wp/images/v1720122830/Eco-Boxes-ecoboxesuk-•-Instagram-photos-and-videos/Eco-Boxes-ecoboxesuk-•-Instagram-photos-and-videos.jpg",
         "https://res.cloudinary.com/dmdp4f2wp/images/v1720122843/Benefits-Bagasse-Compartment-Meal-Box/Benefits-Bagasse-Compartment-Meal-Box.jpg",
         "https://res.cloudinary.com/dmdp4f2wp/images/v1720122849/Unveiling-the-Perks-of-the-Plain-White-Hot-Cup-Drink-Cup/Unveiling-the-Perks-of-the-Plain-White-Hot-Cup-Drink-Cup.jpg",
         "https://res.cloudinary.com/dmdp4f2wp/images/v1720122878/Mobile-ecoboxes/Mobile-ecoboxes.png",
@@ -812,7 +816,8 @@
       ],
       "videos": [
         "https://res.cloudinary.com/dmdp4f2wp/video/upload/v1718634721/ecoboxes_animation_lyh7gk.webm"
-      ]
+      ],
+      "published": false
     },
     {
       "slug": "high-five-family-fitness",
@@ -855,7 +860,8 @@
         "https://terencemeghani.com/wp-content/uploads/2025/01/high-five-fitness-watford-82-1536x1024.jpg",
         "https://terencemeghani.com/wp-content/uploads/2025/01/high-five-fitness-watford-84.jpg",
         "https://terencemeghani.com/wp-content/uploads/2025/01/high-five-fitness-watford-87-1536x1024.jpg"
-      ]
+      ],
+      "published": false
     },
     {
       "slug": "mhv-clinic",
@@ -886,7 +892,8 @@
         "https://terencemeghani.com/wp-content/uploads/2025/01/mhv-clinic-web-development-02.jpg",
         "https://terencemeghani.com/wp-content/uploads/2025/01/mhv-clinic-web-development-03.jpg",
         "https://terencemeghani.com/wp-content/uploads/2025/01/mhv-clinic-web-development.jpg"
-      ]
+      ],
+      "published": false
     },
     {
       "slug": "ddg-windows-london",
@@ -913,7 +920,8 @@
       "gallery": [
         "https://res.cloudinary.com/dmdp4f2wp/image/upload/v1721060991/DDG-Colour-Palette_kc50us.jpg",
         "https://res.cloudinary.com/dmdp4f2wp/images/v1721476970/04_sketch_mockup/04_sketch_mockup.jpg"
-      ]
+      ],
+      "published": false
     },
     {
       "slug": "chear-beauty",
@@ -953,7 +961,8 @@
         "https://terencemeghani.com/wp-content/uploads/2023/10/KojicArtboard-1.jpg",
         "https://terencemeghani.com/wp-content/uploads/2023/10/Post_02Lavender.jpg",
         "https://terencemeghani.com/wp-content/uploads/2023/10/XmasAcne.jpg"
-      ]
+      ],
+      "published": false
     },
     {
       "slug": "kemp-services",
@@ -980,7 +989,8 @@
         "https://res.cloudinary.com/dmdp4f2wp/image/upload/v1736847145/kemp-services_freiiq.png",
         "https://res.cloudinary.com/dmdp4f2wp/images/v1721922926/kemp-services-website-development/kemp-services-website-development.jpg",
         "https://res.cloudinary.com/dmdp4f2wp/images/v1721923574/kemp-services-website-development-2/kemp-services-website-development-2.jpg"
-      ]
+      ],
+      "published": false
     },
     {
       "slug": "the-hollybush-bar-restaurant",
@@ -997,7 +1007,7 @@
         "Marketing"
       ],
       "featured": false,
-      "excerpt": "Brand identity for a local bar-restaurant \u2014 logo, business cards, and menu design.",
+      "excerpt": "Brand identity for a local bar-restaurant — logo, business cards, and menu design.",
       "heroImage": "https://res.cloudinary.com/dmdp4f2wp/images/v1722028617/the-hollybush-bar-restaurant-logo-design-5/the-hollybush-bar-restaurant-logo-design-5.jpg",
       "heroImageAlt": "The Hollybush Bar & Restaurant brand identity",
       "related": [
@@ -1014,7 +1024,8 @@
         "https://terencemeghani.com/wp-content/uploads/2023/10/the-hollybush-bar-restaurant-logo-design-2.jpg",
         "https://terencemeghani.com/wp-content/uploads/2023/10/the-hollybush-bar-restaurant-logo-design-3-2.jpg",
         "https://terencemeghani.com/wp-content/uploads/2023/10/the-hollybush-bar-restaurant-logo-design-4.jpg"
-      ]
+      ],
+      "published": false
     },
     {
       "slug": "sefia-london",
@@ -1055,7 +1066,8 @@
         "https://res.cloudinary.com/dmdp4f2wp/image/upload/v1718805934/www.krazymedia.co.uk-39_x4d3ue.jpg",
         "https://res.cloudinary.com/dmdp4f2wp/image/upload/v1718806612/terence-meghani-fashion-photography-1_onyrmi.jpg",
         "https://res.cloudinary.com/dmdp4f2wp/image/upload/v1718806671/terence-meghani-fashion-photography-6_xxjnzf.jpg"
-      ]
+      ],
+      "published": false
     },
     {
       "slug": "taur-security",
@@ -1076,7 +1088,7 @@
         "Photography"
       ],
       "featured": false,
-      "excerpt": "Full brand identity system for a security services provider \u2014 uniforms, vehicles, digital.",
+      "excerpt": "Full brand identity system for a security services provider — uniforms, vehicles, digital.",
       "heroImage": "https://terencemeghani.com/wp-content/uploads/2023/01/Krazy-Media-Fireaway-024739.jpg",
       "heroImageAlt": "Taur Security brand identity",
       "related": [
@@ -1138,7 +1150,8 @@
         "the-hollybush-bar-restaurant",
         "vijays-virasat",
         "al-jannah-villa-marrakech"
-      ]
+      ],
+      "published": false
     }
   ]
 }
