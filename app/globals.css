@@ -3354,6 +3354,7 @@ body:has(.nav-top.is-mobile-open) { overflow: hidden; }
 .why h2 em { font-family: var(--f-italic); font-style: italic; font-weight: 400; color: var(--rocket); }
 
 .compare { display: grid; grid-template-columns: 1fr auto 1fr; gap: 20px; align-items: stretch; }
+.compare--3col { grid-template-columns: 1fr auto 1fr auto 1fr; gap: 14px; }
 .compare .vs {
   align-self: center;
   width: 80px; height: 80px; border-radius: 50%;
@@ -3362,6 +3363,10 @@ body:has(.nav-top.is-mobile-open) { overflow: hidden; }
   font-family: var(--f-italic); font-style: italic; font-weight: 500; font-size: 32px;
   box-shadow: 0 20px 40px -10px color-mix(in srgb, var(--rocket) 60%, transparent);
   animation: vsSpin 10s linear infinite;
+}
+.compare .vs--small {
+  width: 56px; height: 56px; font-size: 22px;
+  box-shadow: 0 14px 28px -10px color-mix(in srgb, var(--rocket) 50%, transparent);
 }
 @keyframes vsSpin { to { transform: rotate(360deg); } }
 
@@ -3408,9 +3413,17 @@ body:has(.nav-top.is-mobile-open) { overflow: hidden; }
 }
 .compare-col.you .foot { color: var(--rocket); }
 .compare-col .foot .val { font-weight: 700; }
+@media (max-width: 1180px) {
+  .compare--3col { grid-template-columns: 1fr; }
+  .compare--3col .vs { margin: 0 auto; }
+}
 @media (max-width: 900px) {
   .compare { grid-template-columns: 1fr; }
   .compare .vs { margin: 0 auto; }
+}
+@media (max-width: 1180px) and (min-width: 901px) {
+  /* Mid-range: stack as 2 + 1 to keep card widths readable */
+  .compare--3col { grid-template-columns: 1fr; max-width: 760px; margin: 0 auto; }
 }
 
 /* ============================================================
