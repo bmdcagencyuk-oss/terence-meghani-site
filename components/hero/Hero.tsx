@@ -265,7 +265,7 @@ export function Hero() {
           <p className="hero-sub">
             Studio of one — brand, code, growth.{' '}
             <span className="hl">Twelve years in.</span>{' '}
-            Still answering the phone.
+            Still answering the&nbsp;phone.
           </p>
         </div>
 
