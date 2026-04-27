@@ -310,8 +310,6 @@ export function Hero() {
           <h1 className="mega" ref={megaRef}>
             <span className="ln ln1">Hertfordshire · London · Est. 2014</span>
 
-            <span className="ln ln-give ln-built">Built to</span>
-
             <span className="ln ln-fuel">
               <span className="fuel-word" id="fuelWord">
                 <span className="ch">C</span>
@@ -322,6 +320,7 @@ export function Hero() {
                 <span className="ch">U</span>
                 <span className="ch">N</span>
                 <span className="ch">D</span>
+                <span className="ch">.</span>
               </span>
               <span className="fuel-emblem" aria-hidden="true" />
             </span>

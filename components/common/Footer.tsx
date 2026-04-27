@@ -66,7 +66,7 @@ export function Footer() {
               </li>
               <li>
                 <span className="k">Phone</span>
-                <a href="tel:+447756267157">+44 (0)7756 267 157</a>
+                <a href="tel:+442045245111">020 4524 5111</a>
               </li>
               <li>
                 <span className="k">Studio</span>

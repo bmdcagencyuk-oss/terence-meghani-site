@@ -2526,6 +2526,7 @@ body:has(.nav-top.is-mobile-open) { overflow: hidden; }
 .mega .fuel-word .ch:nth-child(6) { animation-delay: 0.60s, 1.5s;  animation-name: fuelPulseAlt, fuelShift; }
 .mega .fuel-word .ch:nth-child(7) { animation-delay: 0.72s, 1.8s;  animation-name: fuelPulse, fuelShift; }
 .mega .fuel-word .ch:nth-child(8) { animation-delay: 0.84s, 2.1s;  animation-name: fuelPulseAlt, fuelShift; }
+.mega .fuel-word .ch:nth-child(9) { animation-delay: 0.96s, 2.4s;  animation-name: fuelPulse, fuelShift; }
 .mega .fuel-word .ch:hover { animation-play-state: paused; transform: translateY(-14px) scale(1.1) rotate(-3deg); }
 .mega .fuel-word .ch:nth-child(even):hover { transform: translateY(-14px) scale(1.1) rotate(3deg); }
 .mega .fuel-emblem {

@@ -15,7 +15,7 @@ export function homeSchema() {
         name: 'Terence Meghani',
         jobTitle: 'Brand Consultant & WordPress Engineer',
         email: 'hello@terencemeghani.com',
-        telephone: '+44-7756-267157',
+        telephone: '+44-20-4524-5111',
         url: `${BASE}/`,
         image: `${BASE}/og-share.png`,
         sameAs: ['https://www.linkedin.com/in/terencemeghani/'],
