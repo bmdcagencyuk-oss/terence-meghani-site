@@ -5,11 +5,11 @@ import { useEffect, useRef } from 'react';
 type CyclePhrase = { text: string; italic?: boolean };
 
 const CYCLE_PHRASES: CyclePhrase[] = [
-  { text: 'compounds revenue' },
-  { text: 'ships on time' },
-  { text: 'outlasts the trend cycle' },
-  { text: 'wins the room' },
-  { text: 'builds loyalty' },
+  { text: 'compounds revenue.' },
+  { text: 'ships on time.' },
+  { text: 'outlasts the trend cycle.' },
+  { text: 'wins the room.' },
+  { text: 'stays online when it matters.', italic: true },
 ];
 
 export function Hero() {
@@ -311,27 +311,19 @@ export function Hero() {
             <span className="ln ln1">Studio of one · Hertfordshire · London · Est. 2014</span>
 
             <span className="ln ln-statement">
-              Brand. Code. Growth. <em>Built to</em>
+              <em>Built on</em>
             </span>
 
-            <span className="ln ln-fuel">
-              <span className="fuel-word" id="fuelWord">
-                <span className="ch">C</span>
-                <span className="ch">O</span>
-                <span className="ch">M</span>
-                <span className="ch">P</span>
-                <span className="ch">O</span>
-                <span className="ch">U</span>
-                <span className="ch">N</span>
-                <span className="ch">D</span>
-                <span className="ch">.</span>
-              </span>
+            <span className="ln ln-fuel ln-fuel--triple">
+              <span className="fuel-word" id="fuelWord">Brand.</span>
+              <span className="fuel-word">Code.</span>
+              <span className="fuel-word">Growth.</span>
               <span className="fuel-emblem" aria-hidden="true" />
             </span>
           </h1>
 
           <p className="hero-sub">
-            Brand, code and growth that{' '}
+            One brain, zero handoffs —{' '}
             <span className="hero-cycle" ref={cycleRef}>
               {CYCLE_PHRASES.map((p, i) => (
                 <span
@@ -341,8 +333,7 @@ export function Hero() {
                   {p.text}
                 </span>
               ))}
-            </span>{' '}
-            — under one roof.
+            </span>
           </p>
         </div>
 

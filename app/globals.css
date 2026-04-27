@@ -1687,33 +1687,27 @@
 }
 .nav-brand--mark {
   display: inline-flex;
-  width: 52px; height: 52px;
   align-items: center; justify-content: center;
-  border-radius: 50%;
-  background: var(--color-rocket);
-  box-shadow:
-    0 6px 18px -4px color-mix(in srgb, var(--color-rocket) 70%, transparent),
-    inset 0 0 0 1px rgba(255, 255, 255, 0.12);
-  transition: transform 0.35s var(--ease-bounce), width 0.3s var(--ease), height 0.3s var(--ease), box-shadow 0.3s ease;
+  background: transparent;
+  padding: 0;
+  border-radius: 0;
+  box-shadow: none;
+  transition: transform 0.35s var(--ease-bounce);
 }
-.nav-top.is-scrolled .nav-brand--mark { width: 44px; height: 44px; }
-.nav-brand--mark:hover {
-  transform: rotate(-3deg) scale(1.06);
-  box-shadow:
-    0 10px 26px -4px color-mix(in srgb, var(--color-rocket) 80%, transparent),
-    inset 0 0 0 1px rgba(255, 255, 255, 0.2);
-}
+.nav-brand--mark:hover { transform: rotate(-2deg) scale(1.05); }
 .nav-brand .nav-gorilla {
-  height: 70%;
+  height: 44px;
   width: auto;
   flex-shrink: 0;
   display: block;
-  /* Render the silverback as a flat white silhouette inside the orange tile.
-     brightness(0) flattens to black, then invert(1) flips to white. */
+  /* White silhouette of the silverback so it reads cleanly on the dark nav. */
   filter: brightness(0) invert(1);
-  transition: transform 0.35s var(--ease-bounce);
+  transition: filter 0.3s ease;
 }
-.nav-brand--mark:hover .nav-gorilla { transform: scale(1.08); }
+.nav-top.is-scrolled .nav-brand .nav-gorilla { height: 36px; }
+.nav-brand--mark:hover .nav-gorilla {
+  filter: brightness(0) invert(1) drop-shadow(0 0 12px color-mix(in srgb, var(--color-rocket) 60%, transparent));
+}
 /* Legacy rocket tile retained as orphan rules for older snapshots; superseded
    by .nav-gorilla above and no longer rendered. */
 .nav-brand .logo {
@@ -2480,26 +2474,55 @@ body:has(.nav-top.is-mobile-open) { overflow: hidden; }
 .mega .sp { display: inline-block; width: 0.3em; }
 .mega .ln-fuel { display: flex; align-items: baseline; gap: 0.06em; position: relative; }
 
-/* Statement line — white display copy that frames the rocket-orange word below. */
+/* Standalone "Built on" italic-serif accent that sits above the mega line. */
 .mega .ln-statement {
   display: block;
-  font-size: 0.36em;
-  font-variation-settings: "wdth" 95, "opsz" 60, "wght" 500;
-  letter-spacing: -0.025em;
-  line-height: 1.05;
+  font-size: 0.32em;
+  line-height: 1;
   text-transform: none;
-  color: var(--white);
-  margin: 6px 0 4px;
+  margin: 4px 0 2px;
+  letter-spacing: 0;
 }
 .mega .ln-statement em {
   font-family: var(--f-italic);
   font-style: italic;
   font-weight: 400;
   color: var(--rocket);
-  letter-spacing: -0.01em;
   font-variation-settings: normal;
-  margin-left: 0.15em;
+  letter-spacing: -0.005em;
 }
+
+/* Triple-word fuel line — three rocket-orange words flow on one line on
+   desktop, wrap on narrow viewports. Per-word gradient text; the heavy
+   per-letter pulse animation only fires on legacy single-word fuel lines. */
+.mega .ln-fuel--triple {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.06em 0.22em;
+  position: relative;
+}
+.mega .ln-fuel--triple .fuel-word {
+  display: inline-block;
+  font-variation-settings: "wdth" 75, "opsz" 96, "wght" 700;
+  background: linear-gradient(180deg, var(--spark) 0%, var(--rocket) 100%);
+  background-size: 100% 200%;
+  background-position: 0% 0%;
+  -webkit-background-clip: text; background-clip: text;
+  -webkit-text-fill-color: transparent; color: transparent;
+  position: relative;
+  line-height: 0.9;
+  cursor: default;
+  transition: transform 0.3s var(--ease-bounce);
+  animation: fuelShift 6s linear infinite;
+}
+.mega .ln-fuel--triple .fuel-word:nth-child(1) { animation-delay: 0s; }
+.mega .ln-fuel--triple .fuel-word:nth-child(2) { animation-delay: 1.5s; }
+.mega .ln-fuel--triple .fuel-word:nth-child(3) { animation-delay: 3s; }
+.mega .ln-fuel--triple .fuel-word:hover { transform: translateY(-6px) scale(1.04); }
+/* Suppress the per-word ::before glow inherited from .fuel-word — three
+   stacked glows would muddy the line. */
+.mega .ln-fuel--triple .fuel-word::before { display: none; }
 
 /* Flame-trail beneath FUEL — vertical taper of rocket → spark gradient */
 .mega .ln-fuel::after {
@@ -2594,11 +2617,11 @@ body:has(.nav-top.is-mobile-open) { overflow: hidden; }
 
 .hero-sub {
   font-family: var(--f-italic); font-style: italic; font-weight: 400;
-  font-size: clamp(18px, 2vw, 28px);
-  line-height: 1.25; letter-spacing: -0.01em;
+  font-size: clamp(18px, 2vw, 26px);
+  line-height: 1.3; letter-spacing: -0.01em;
   color: var(--white);
-  margin-top: 16px;
-  max-width: 38ch;
+  margin-top: 18px;
+  max-width: 60ch;
 }
 .hero-sub .hl { background: var(--rocket); color: var(--white); padding: 2px 8px; font-style: normal; font-family: var(--f-display); font-weight: 600; text-transform: uppercase; font-size: 0.78em; letter-spacing: -0.01em; margin: 0 2px; }
 .hero-cycle {
