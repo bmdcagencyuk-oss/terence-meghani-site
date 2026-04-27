@@ -1,0 +1,158 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 1000" role="img" aria-label="Storage Unit Booking — preview">
+  <title>Storage Unit Booking — carousel selector + reservation form preview</title>
+  <defs>
+    <linearGradient id="sb-bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#1f2122"/><stop offset="1" stop-color="#16181a"/>
+    </linearGradient>
+    <filter id="sb-shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur in="SourceAlpha" stdDeviation="14"/>
+      <feOffset dy="12"/>
+      <feComponentTransfer><feFuncA type="linear" slope="0.45"/></feComponentTransfer>
+      <feMerge><feMergeNode/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+
+  <rect width="1600" height="1000" fill="url(#sb-bg)"/>
+
+  <g transform="translate(80,80)" filter="url(#sb-shadow)">
+    <!-- Two-panel split: carousel left, reservation form right -->
+
+    <!-- ===== Left panel: unit carousel ===== -->
+    <g>
+      <rect width="900" height="840" rx="12" fill="#0E1011" stroke="rgba(255,255,255,0.08)"/>
+      <!-- Header -->
+      <rect width="900" height="64" rx="12" fill="#1A1C1E"/>
+      <rect y="42" width="900" height="22" fill="#1A1C1E"/>
+      <text x="40" y="42" font-family="-apple-system,sans-serif" font-size="13" fill="#888" letter-spacing="0.16em" font-weight="600">SELECT YOUR UNIT</text>
+      <text x="860" y="42" text-anchor="end" font-family="-apple-system,sans-serif" font-size="11" fill="#666" letter-spacing="0.12em">3 OF 12 SHOWN</text>
+
+      <!-- Active unit (large) -->
+      <g transform="translate(40,100)">
+        <rect width="820" height="380" rx="6" fill="#1A1C1E"/>
+        <!-- Image area -->
+        <rect width="820" height="240" rx="6" fill="#252729"/>
+        <!-- Isometric storage box -->
+        <g transform="translate(310,40) scale(2)">
+          <polygon points="0,40 60,10 120,40 60,70" fill="#3A3C3E" stroke="#5C5E60" stroke-width="1.5"/>
+          <polygon points="0,40 0,90 60,120 60,70" fill="#2D2F31" stroke="#5C5E60" stroke-width="1.5"/>
+          <polygon points="120,40 120,90 60,120 60,70" fill="#252729" stroke="#5C5E60" stroke-width="1.5"/>
+          <!-- door detail -->
+          <rect x="20" y="55" width="20" height="50" fill="none" stroke="#FF4D17" stroke-width="1.5"/>
+        </g>
+        <!-- Unit info -->
+        <text x="40" y="285" font-family="-apple-system,sans-serif" font-size="11" fill="#888" letter-spacing="0.12em" font-weight="600">UNIT · 100SQ-A14</text>
+        <text x="40" y="320" font-family="-apple-system,sans-serif" font-size="32" fill="#fff" font-weight="600">100 sq ft Drive-up</text>
+        <text x="40" y="346" font-family="-apple-system,sans-serif" font-size="14" fill="#888">10' × 10' × 8' · Ground floor · 24-hour access</text>
+        <!-- Price -->
+        <g transform="translate(620,280)">
+          <text x="0" y="0" font-family="-apple-system,sans-serif" font-size="11" fill="#888" letter-spacing="0.12em" font-weight="600">FROM</text>
+          <text x="0" y="38" font-family="-apple-system,sans-serif" font-size="44" fill="#fff" font-weight="700">£198</text>
+          <text x="0" y="60" font-family="-apple-system,sans-serif" font-size="13" fill="#888">per month</text>
+        </g>
+      </g>
+
+      <!-- Carousel pagination dots -->
+      <g transform="translate(450,520)">
+        <circle cx="0" cy="0" r="4" fill="#FF4D17"/>
+        <circle cx="16" cy="0" r="4" fill="rgba(255,255,255,0.2)"/>
+        <circle cx="32" cy="0" r="4" fill="rgba(255,255,255,0.2)"/>
+        <circle cx="48" cy="0" r="4" fill="rgba(255,255,255,0.2)"/>
+      </g>
+
+      <!-- Thumbnail strip -->
+      <g transform="translate(40,560)">
+        <text font-family="-apple-system,sans-serif" font-size="11" fill="#888" letter-spacing="0.12em" font-weight="600">SIMILAR UNITS</text>
+        <g transform="translate(0,16)">
+          <!-- Thumb 1 -->
+          <rect width="160" height="120" rx="4" fill="#1A1C1E"/>
+          <rect width="160" height="80" rx="4" fill="#252729"/>
+          <text x="12" y="100" font-family="-apple-system,sans-serif" font-size="11" fill="#888">75 sq ft</text>
+          <text x="148" y="100" text-anchor="end" font-family="-apple-system,sans-serif" font-size="11" fill="#fff" font-weight="600">£152/mo</text>
+          <!-- Thumb 2 -->
+          <rect x="180" width="160" height="120" rx="4" fill="#1A1C1E" stroke="#FF4D17" stroke-width="1"/>
+          <rect x="180" width="160" height="80" rx="4" fill="#252729"/>
+          <text x="192" y="100" font-family="-apple-system,sans-serif" font-size="11" fill="#888">100 sq ft</text>
+          <text x="328" y="100" text-anchor="end" font-family="-apple-system,sans-serif" font-size="11" fill="#FF4D17" font-weight="600">£198/mo</text>
+          <!-- Thumb 3 -->
+          <rect x="360" width="160" height="120" rx="4" fill="#1A1C1E"/>
+          <rect x="360" width="160" height="80" rx="4" fill="#252729"/>
+          <text x="372" y="100" font-family="-apple-system,sans-serif" font-size="11" fill="#888">150 sq ft</text>
+          <text x="508" y="100" text-anchor="end" font-family="-apple-system,sans-serif" font-size="11" fill="#fff" font-weight="600">£245/mo</text>
+          <!-- Thumb 4 -->
+          <rect x="540" width="160" height="120" rx="4" fill="#1A1C1E"/>
+          <rect x="540" width="160" height="80" rx="4" fill="#252729"/>
+          <text x="552" y="100" font-family="-apple-system,sans-serif" font-size="11" fill="#888">200 sq ft</text>
+          <text x="688" y="100" text-anchor="end" font-family="-apple-system,sans-serif" font-size="11" fill="#fff" font-weight="600">£312/mo</text>
+        </g>
+      </g>
+    </g>
+
+    <!-- ===== Right panel: reservation form ===== -->
+    <g transform="translate(940,0)">
+      <rect width="500" height="840" rx="12" fill="#0E1011" stroke="rgba(255,255,255,0.08)"/>
+      <rect width="500" height="64" rx="12" fill="#1A1C1E"/>
+      <rect y="42" width="500" height="22" fill="#1A1C1E"/>
+      <text x="32" y="42" font-family="-apple-system,sans-serif" font-size="13" fill="#FF4D17" letter-spacing="0.16em" font-weight="600">RESERVE THIS UNIT</text>
+
+      <g transform="translate(32,96)" font-family="-apple-system,sans-serif">
+        <!-- Selected summary card -->
+        <rect width="436" height="74" rx="6" fill="#1A1C1E"/>
+        <rect width="4" height="74" rx="2" fill="#FF4D17"/>
+        <text x="20" y="22" font-size="10" fill="#888" letter-spacing="0.14em" font-weight="600">SELECTED</text>
+        <text x="20" y="42" font-size="15" fill="#fff" font-weight="600">100 sq ft Drive-up · UNIT 100SQ-A14</text>
+        <text x="20" y="60" font-size="12" fill="#888">£198/month · 6-month minimum</text>
+
+        <!-- Form fields -->
+        <g transform="translate(0,100)">
+          <!-- Full name -->
+          <text font-size="10" fill="#888" letter-spacing="0.14em" font-weight="600">FULL NAME</text>
+          <rect y="10" width="436" height="42" rx="4" fill="#1A1C1E" stroke="rgba(255,255,255,0.08)"/>
+          <text x="14" y="38" font-size="14" fill="#fff">Sarah Khalid</text>
+
+          <!-- Email -->
+          <g transform="translate(0,68)">
+            <text font-size="10" fill="#888" letter-spacing="0.14em" font-weight="600">EMAIL</text>
+            <rect y="10" width="436" height="42" rx="4" fill="#1A1C1E" stroke="rgba(255,255,255,0.08)"/>
+            <text x="14" y="38" font-size="14" fill="#fff">sarah@khalid.co.uk</text>
+          </g>
+
+          <!-- Phone -->
+          <g transform="translate(0,136)">
+            <text font-size="10" fill="#888" letter-spacing="0.14em" font-weight="600">PHONE</text>
+            <rect y="10" width="436" height="42" rx="4" fill="#1A1C1E" stroke="rgba(255,255,255,0.08)"/>
+            <text x="14" y="38" font-size="14" fill="#fff">+44 7700 900123</text>
+          </g>
+
+          <!-- Move-in date -->
+          <g transform="translate(0,204)">
+            <text font-size="10" fill="#888" letter-spacing="0.14em" font-weight="600">MOVE-IN DATE</text>
+            <rect y="10" width="208" height="42" rx="4" fill="#1A1C1E" stroke="rgba(255,255,255,0.08)"/>
+            <text x="14" y="38" font-size="14" fill="#fff">15 May 2026</text>
+            <!-- Duration -->
+            <g transform="translate(228,0)">
+              <text font-size="10" fill="#888" letter-spacing="0.14em" font-weight="600">DURATION</text>
+              <rect y="10" width="208" height="42" rx="4" fill="#1A1C1E" stroke="rgba(255,255,255,0.08)"/>
+              <text x="14" y="38" font-size="14" fill="#fff">6 months</text>
+            </g>
+          </g>
+
+          <!-- Notes -->
+          <g transform="translate(0,272)">
+            <text font-size="10" fill="#888" letter-spacing="0.14em" font-weight="600">NOTES (OPTIONAL)</text>
+            <rect y="10" width="436" height="80" rx="4" fill="#1A1C1E" stroke="rgba(255,255,255,0.08)"/>
+            <text x="14" y="38" font-size="13" fill="#666">Mostly furniture and books. Need…</text>
+          </g>
+
+          <!-- CTA -->
+          <g transform="translate(0,374)">
+            <rect width="436" height="56" rx="4" fill="#FF4D17"/>
+            <text x="218" y="36" text-anchor="middle" font-size="14" fill="#fff" font-weight="700" letter-spacing="0.14em">SEND RESERVATION REQUEST →</text>
+          </g>
+          <text x="218" y="450" text-anchor="middle" font-size="11" fill="#666">No payment now · Confirmation within 4 hours</text>
+        </g>
+      </g>
+    </g>
+  </g>
+
+  <text x="800" y="970" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="11" fill="rgba(255,255,255,0.4)" letter-spacing="0.18em">UNIT SELECTOR + RESERVATION FORM PREVIEW · ELEMENTOR WIDGETS</text>
+</svg>

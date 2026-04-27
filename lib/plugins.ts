@@ -14,6 +14,11 @@ export type Plugin = {
   ctaLabel: string;
   ctaHref: string;
   note?: string;
+  /** Path to a preview SVG/PNG under /public, e.g. /plugins/storax.svg. */
+  heroImage?: string;
+  heroImageAlt?: string;
+  /** Short description, rendered after "Preview · " on the plugin detail page. */
+  previewCaption?: string;
 };
 
 export type PluginLongForm = {

@@ -133,7 +133,66 @@ export default async function PluginDetailPage({
             </ol>
           </nav>
 
-          <div style={{ marginTop: 32 }}>
+          {plugin.heroImage && (
+            <figure
+              style={{
+                margin: '32px 0 0',
+                width: '100%',
+                aspectRatio: '16 / 10',
+                position: 'relative',
+                overflow: 'hidden',
+                background: 'var(--color-char)',
+                border: '1px solid rgba(255,255,255,0.08)',
+                borderRadius: 6,
+              }}
+            >
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src={plugin.heroImage}
+                alt={plugin.heroImageAlt ?? `${plugin.name} preview`}
+                width={1600}
+                height={1000}
+                style={{
+                  position: 'absolute',
+                  inset: 0,
+                  width: '100%',
+                  height: '100%',
+                  objectFit: 'cover',
+                  display: 'block',
+                }}
+              />
+            </figure>
+          )}
+
+          {plugin.heroImage && plugin.previewCaption && (
+            <p
+              style={{
+                marginTop: 12,
+                fontFamily: 'var(--font-mono)',
+                fontSize: 11,
+                letterSpacing: '0.14em',
+                textTransform: 'uppercase',
+                color: 'var(--color-fog)',
+              }}
+            >
+              <em
+                style={{
+                  fontFamily: 'var(--font-italic)',
+                  fontStyle: 'italic',
+                  textTransform: 'none',
+                  letterSpacing: '0.02em',
+                  color: 'var(--color-rocket)',
+                  marginRight: 8,
+                  fontSize: 13,
+                }}
+              >
+                Preview ·
+              </em>
+              {plugin.previewCaption}
+            </p>
+          )}
+
+          <div style={{ marginTop: plugin.heroImage ? 36 : 32 }}>
             <div className="kicker-row">
               <Kicker>{plugin.vertical}</Kicker>
             </div>

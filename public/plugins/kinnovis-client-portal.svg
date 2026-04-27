@@ -1,0 +1,181 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 1000" role="img" aria-label="Kinnovis Client Portal — preview">
+  <title>Kinnovis Client Portal — bespoke template selection &amp; onboarding</title>
+  <defs>
+    <linearGradient id="kc-bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#1f2122"/><stop offset="1" stop-color="#16181a"/>
+    </linearGradient>
+    <filter id="kc-shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur in="SourceAlpha" stdDeviation="14"/>
+      <feOffset dy="12"/>
+      <feComponentTransfer><feFuncA type="linear" slope="0.45"/></feComponentTransfer>
+      <feMerge><feMergeNode/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <!-- Kinnovis-feel palette: muted greens/teals signalling "industrial" -->
+    <linearGradient id="kc-card" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#1A1C1E"/><stop offset="1" stop-color="#0E1011"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="1600" height="1000" fill="url(#kc-bg)"/>
+
+  <g transform="translate(120,90)" filter="url(#kc-shadow)">
+    <rect width="1360" height="820" rx="12" fill="#0E1011" stroke="rgba(255,255,255,0.08)"/>
+
+    <!-- Browser chrome -->
+    <rect width="1360" height="44" rx="12" fill="#1A1C1E"/>
+    <rect y="22" width="1360" height="22" fill="#1A1C1E"/>
+    <circle cx="22" cy="22" r="6" fill="#FF5F57"/>
+    <circle cx="44" cy="22" r="6" fill="#FEBC2E"/>
+    <circle cx="66" cy="22" r="6" fill="#28C840"/>
+    <text x="680" y="27" text-anchor="middle" font-family="-apple-system,sans-serif" font-size="11" fill="#888" letter-spacing="0.04em">portal.kinnovis.example/templates</text>
+
+    <!-- Top bar with brand -->
+    <g transform="translate(0,44)">
+      <rect width="1360" height="68" fill="#0A0C0E"/>
+      <rect width="4" height="68" fill="#0EBC8B"/>
+      <text x="32" y="32" font-family="-apple-system,sans-serif" font-size="14" fill="#fff" font-weight="700" letter-spacing="0.06em">KINNOVIS</text>
+      <text x="32" y="50" font-family="-apple-system,sans-serif" font-size="10" fill="#0EBC8B" letter-spacing="0.18em" font-weight="600">CLIENT PORTAL</text>
+
+      <!-- nav -->
+      <g font-family="-apple-system,sans-serif" font-size="13">
+        <text x="180" y="42" fill="#0EBC8B" font-weight="600">Templates</text>
+        <line x1="180" y1="56" x2="240" y2="56" stroke="#0EBC8B" stroke-width="2"/>
+        <text x="280" y="42" fill="#888">My submissions</text>
+        <text x="420" y="42" fill="#888">Tickets</text>
+        <text x="500" y="42" fill="#888">Account</text>
+      </g>
+
+      <!-- user pill -->
+      <g transform="translate(1240,18)">
+        <rect width="100" height="32" rx="16" fill="#1A1C1E"/>
+        <circle cx="16" cy="16" r="11" fill="#0EBC8B"/>
+        <text x="16" y="20" text-anchor="middle" font-family="-apple-system,sans-serif" font-size="11" fill="#0A0C0E" font-weight="700">SK</text>
+        <text x="36" y="20" font-family="-apple-system,sans-serif" font-size="12" fill="#fff">Sarah K.</text>
+      </g>
+    </g>
+
+    <!-- Page header -->
+    <g transform="translate(48,140)" font-family="-apple-system,sans-serif">
+      <text x="0" y="0" font-size="11" fill="#888" letter-spacing="0.16em" font-weight="600">STEP 2 OF 4 · CHOOSE A TEMPLATE</text>
+      <text x="0" y="38" font-size="28" fill="#fff" font-weight="500" letter-spacing="-0.01em">Pick the storage building template that suits your site.</text>
+      <text x="0" y="64" font-size="13" fill="rgba(255,255,255,0.5)">All templates are pre-engineered. Customisations available on request — track via the Tickets tab.</text>
+    </g>
+
+    <!-- HubSpot sync indicator -->
+    <g transform="translate(48,232)">
+      <rect width="320" height="44" rx="22" fill="rgba(14,188,139,0.1)" stroke="rgba(14,188,139,0.3)"/>
+      <circle cx="22" cy="22" r="5" fill="#0EBC8B">
+        <animate attributeName="opacity" values="1;0.3;1" dur="1.6s" repeatCount="indefinite"/>
+      </circle>
+      <text x="44" y="28" font-family="-apple-system,sans-serif" font-size="12" fill="#0EBC8B" font-weight="500">HubSpot synced · last update 12:08</text>
+    </g>
+
+    <!-- Templates grid -->
+    <g transform="translate(48,300)">
+      <!-- Template 1 (selected/featured) -->
+      <g>
+        <rect width="400" height="430" rx="8" fill="url(#kc-card)" stroke="#0EBC8B" stroke-width="2"/>
+        <rect width="400" height="220" rx="8" fill="#252729"/>
+        <!-- iso building drawing -->
+        <g transform="translate(80,40) scale(1.5)">
+          <!-- Roof -->
+          <polygon points="0,40 100,10 200,40 100,70" fill="#3A3C3E" stroke="#5C5E60" stroke-width="1.5"/>
+          <!-- Front -->
+          <polygon points="0,40 0,110 100,140 100,70" fill="#2D2F31" stroke="#5C5E60" stroke-width="1.5"/>
+          <!-- Side -->
+          <polygon points="200,40 200,110 100,140 100,70" fill="#252729" stroke="#5C5E60" stroke-width="1.5"/>
+          <!-- Door -->
+          <rect x="20" y="80" width="20" height="40" fill="none" stroke="#0EBC8B" stroke-width="1.5"/>
+          <rect x="50" y="80" width="20" height="40" fill="none" stroke="#0EBC8B" stroke-width="1.5"/>
+        </g>
+        <text x="20" y="252" font-family="-apple-system,sans-serif" font-size="11" fill="#0EBC8B" letter-spacing="0.14em" font-weight="600">SELECTED · KIN-A2</text>
+        <text x="20" y="288" font-family="-apple-system,sans-serif" font-size="22" fill="#fff" font-weight="600">Standard 24-Unit Block</text>
+        <text x="20" y="312" font-family="-apple-system,sans-serif" font-size="13" fill="#888">12m × 8m footprint · 24 indoor units (avg 50 sq ft)</text>
+        <!-- specs row -->
+        <g transform="translate(20,340)" font-family="-apple-system,sans-serif" font-size="11">
+          <text fill="#888" letter-spacing="0.12em" font-weight="600">DELIVERY</text>
+          <text y="20" fill="#fff" font-weight="600">6 weeks</text>
+        </g>
+        <g transform="translate(140,340)" font-family="-apple-system,sans-serif" font-size="11">
+          <text fill="#888" letter-spacing="0.12em" font-weight="600">CAPACITY</text>
+          <text y="20" fill="#fff" font-weight="600">1,200 sq ft</text>
+        </g>
+        <g transform="translate(260,340)" font-family="-apple-system,sans-serif" font-size="11">
+          <text fill="#888" letter-spacing="0.12em" font-weight="600">ACCESS</text>
+          <text y="20" fill="#fff" font-weight="600">Drive-up</text>
+        </g>
+        <rect x="20" y="384" width="360" height="34" fill="#0EBC8B" rx="3"/>
+        <text x="200" y="406" text-anchor="middle" font-family="-apple-system,sans-serif" font-size="13" fill="#0A0C0E" font-weight="700" letter-spacing="0.1em">CONFIRM SELECTION →</text>
+      </g>
+
+      <!-- Template 2 -->
+      <g transform="translate(440,0)">
+        <rect width="400" height="430" rx="8" fill="url(#kc-card)" stroke="rgba(255,255,255,0.08)"/>
+        <rect width="400" height="220" rx="8" fill="#1F2123"/>
+        <g transform="translate(60,30) scale(1.7)">
+          <polygon points="0,40 100,10 200,40 100,70" fill="#2A2C2E" stroke="#444" stroke-width="1.5"/>
+          <polygon points="0,40 0,100 100,130 100,70" fill="#1F2123" stroke="#444" stroke-width="1.5"/>
+          <polygon points="200,40 200,100 100,130 100,70" fill="#1A1C1E" stroke="#444" stroke-width="1.5"/>
+        </g>
+        <text x="20" y="252" font-family="-apple-system,sans-serif" font-size="11" fill="#888" letter-spacing="0.14em" font-weight="600">KIN-B1 · COMPACT</text>
+        <text x="20" y="288" font-family="-apple-system,sans-serif" font-size="22" fill="#fff" font-weight="600">12-Unit Compact Block</text>
+        <text x="20" y="312" font-family="-apple-system,sans-serif" font-size="13" fill="#888">8m × 5m footprint · 12 indoor units (avg 40 sq ft)</text>
+        <g transform="translate(20,340)" font-family="-apple-system,sans-serif" font-size="11">
+          <text fill="#888" letter-spacing="0.12em" font-weight="600">DELIVERY</text>
+          <text y="20" fill="#fff" font-weight="600">4 weeks</text>
+        </g>
+        <g transform="translate(140,340)" font-family="-apple-system,sans-serif" font-size="11">
+          <text fill="#888" letter-spacing="0.12em" font-weight="600">CAPACITY</text>
+          <text y="20" fill="#fff" font-weight="600">480 sq ft</text>
+        </g>
+        <g transform="translate(260,340)" font-family="-apple-system,sans-serif" font-size="11">
+          <text fill="#888" letter-spacing="0.12em" font-weight="600">ACCESS</text>
+          <text y="20" fill="#fff" font-weight="600">Indoor</text>
+        </g>
+        <rect x="20" y="384" width="360" height="34" rx="3" fill="none" stroke="rgba(255,255,255,0.2)"/>
+        <text x="200" y="406" text-anchor="middle" font-family="-apple-system,sans-serif" font-size="13" fill="#fff" font-weight="600" letter-spacing="0.1em">SELECT →</text>
+      </g>
+
+      <!-- Template 3 -->
+      <g transform="translate(880,0)">
+        <rect width="400" height="430" rx="8" fill="url(#kc-card)" stroke="rgba(255,255,255,0.08)"/>
+        <rect width="400" height="220" rx="8" fill="#1F2123"/>
+        <g transform="translate(40,20) scale(2)">
+          <polygon points="0,40 100,10 200,40 100,70" fill="#2A2C2E" stroke="#444" stroke-width="1.5"/>
+          <polygon points="0,40 0,90 100,120 100,70" fill="#1F2123" stroke="#444" stroke-width="1.5"/>
+          <polygon points="200,40 200,90 100,120 100,70" fill="#1A1C1E" stroke="#444" stroke-width="1.5"/>
+          <!-- Multiple roll-up doors -->
+          <rect x="20" y="50" width="14" height="40" fill="none" stroke="#666" stroke-width="1"/>
+          <rect x="38" y="50" width="14" height="40" fill="none" stroke="#666" stroke-width="1"/>
+          <rect x="56" y="50" width="14" height="40" fill="none" stroke="#666" stroke-width="1"/>
+          <rect x="74" y="50" width="14" height="40" fill="none" stroke="#666" stroke-width="1"/>
+        </g>
+        <text x="20" y="252" font-family="-apple-system,sans-serif" font-size="11" fill="#FFB800" letter-spacing="0.14em" font-weight="600">KIN-C3 · PREMIUM</text>
+        <text x="20" y="288" font-family="-apple-system,sans-serif" font-size="22" fill="#fff" font-weight="600">48-Unit Drive-Up Block</text>
+        <text x="20" y="312" font-family="-apple-system,sans-serif" font-size="13" fill="#888">22m × 12m footprint · 48 drive-up units</text>
+        <g transform="translate(20,340)" font-family="-apple-system,sans-serif" font-size="11">
+          <text fill="#888" letter-spacing="0.12em" font-weight="600">DELIVERY</text>
+          <text y="20" fill="#fff" font-weight="600">10 weeks</text>
+        </g>
+        <g transform="translate(140,340)" font-family="-apple-system,sans-serif" font-size="11">
+          <text fill="#888" letter-spacing="0.12em" font-weight="600">CAPACITY</text>
+          <text y="20" fill="#fff" font-weight="600">3,840 sq ft</text>
+        </g>
+        <g transform="translate(260,340)" font-family="-apple-system,sans-serif" font-size="11">
+          <text fill="#888" letter-spacing="0.12em" font-weight="600">ACCESS</text>
+          <text y="20" fill="#fff" font-weight="600">Drive-up</text>
+        </g>
+        <rect x="20" y="384" width="360" height="34" rx="3" fill="none" stroke="rgba(255,255,255,0.2)"/>
+        <text x="200" y="406" text-anchor="middle" font-family="-apple-system,sans-serif" font-size="13" fill="#fff" font-weight="600" letter-spacing="0.1em">SELECT →</text>
+      </g>
+    </g>
+
+    <!-- Bespoke note -->
+    <g transform="translate(1180,768)">
+      <rect width="160" height="36" fill="#0EBC8B" rx="2"/>
+      <text x="80" y="22" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="10" fill="#0A0C0E" font-weight="700" letter-spacing="0.16em">BESPOKE BUILD</text>
+    </g>
+  </g>
+
+  <text x="800" y="970" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="11" fill="rgba(255,255,255,0.4)" letter-spacing="0.18em">KINNOVIS CLIENT PORTAL · CUSTOM BUILD · TEMPLATES + HUBSPOT SYNC</text>
+</svg>

@@ -37,100 +37,136 @@ export function PluginCard({ plugin, index }: Props) {
         position: 'relative',
         display: 'flex',
         flexDirection: 'column',
-        gap: 18,
-        padding: '28px 26px',
         border: '1px solid rgba(255,255,255,0.08)',
         borderRadius: 6,
         background: 'var(--color-char-2)',
         color: 'inherit',
         textDecoration: 'none',
-        minHeight: 240,
+        overflow: 'hidden',
         transition: 'border-color 0.2s, transform 0.2s, background 0.2s',
       }}
     >
-      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 12 }}>
-        <span
+      {plugin.heroImage && (
+        <div
           style={{
-            fontFamily: 'var(--font-mono)',
-            fontSize: 10,
-            letterSpacing: '0.22em',
-            textTransform: 'uppercase',
-            color: 'var(--color-rocket)',
+            position: 'relative',
+            width: '100%',
+            aspectRatio: '16 / 10',
+            background: 'var(--color-char)',
+            borderBottom: '1px solid rgba(255,255,255,0.06)',
+            overflow: 'hidden',
           }}
         >
-          {typeof index === 'number' ? `P / ${String(index + 1).padStart(2, '0')} · ` : ''}
-          {plugin.vertical}
-        </span>
-        <span
-          style={{
-            fontFamily: 'var(--font-mono)',
-            fontSize: 10,
-            letterSpacing: '0.18em',
-            textTransform: 'uppercase',
-            color: tone.fg,
-            border: `1px solid ${tone.border}`,
-            background: tone.bg,
-            padding: '2px 8px',
-            borderRadius: 999,
-          }}
-        >
-          {plugin.statusLabel}
-        </span>
-      </div>
-
-      <div>
-        <h3
-          style={{
-            fontFamily: 'var(--font-display)',
-            fontVariationSettings: '"wdth" 85, "opsz" 72',
-            fontWeight: 600,
-            fontSize: 26,
-            color: '#fff',
-            letterSpacing: '-0.01em',
-            lineHeight: 1.15,
-          }}
-        >
-          {plugin.name}
-        </h3>
-        <p
-          style={{
-            marginTop: 10,
-            fontFamily: 'var(--font-italic)',
-            fontStyle: 'italic',
-            fontSize: 17,
-            color: 'var(--color-fog)',
-            lineHeight: 1.45,
-          }}
-        >
-          {plugin.tagline}
-        </p>
-      </div>
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src={plugin.heroImage}
+            alt={plugin.heroImageAlt ?? `${plugin.name} preview`}
+            loading="lazy"
+            style={{
+              position: 'absolute',
+              inset: 0,
+              width: '100%',
+              height: '100%',
+              objectFit: 'cover',
+              display: 'block',
+            }}
+          />
+        </div>
+      )}
 
       <div
         style={{
-          marginTop: 'auto',
-          paddingTop: 14,
-          borderTop: '1px solid rgba(255,255,255,0.06)',
           display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'space-between',
-          gap: 10,
+          flexDirection: 'column',
+          gap: 16,
+          padding: '24px 26px 26px',
+          flex: 1,
         }}
       >
-        <span style={{ fontFamily: 'var(--font-mono)', fontSize: 11, color: 'var(--color-fog)', letterSpacing: '0.06em' }}>
-          v{plugin.version}
-        </span>
-        <span
+        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 12 }}>
+          <span
+            style={{
+              fontFamily: 'var(--font-mono)',
+              fontSize: 10,
+              letterSpacing: '0.22em',
+              textTransform: 'uppercase',
+              color: 'var(--color-rocket)',
+            }}
+          >
+            {typeof index === 'number' ? `P / ${String(index + 1).padStart(2, '0')} · ` : ''}
+            {plugin.vertical}
+          </span>
+          <span
+            style={{
+              fontFamily: 'var(--font-mono)',
+              fontSize: 10,
+              letterSpacing: '0.18em',
+              textTransform: 'uppercase',
+              color: tone.fg,
+              border: `1px solid ${tone.border}`,
+              background: tone.bg,
+              padding: '2px 8px',
+              borderRadius: 999,
+            }}
+          >
+            {plugin.statusLabel}
+          </span>
+        </div>
+
+        <div>
+          <h3
+            style={{
+              fontFamily: 'var(--font-display)',
+              fontVariationSettings: '"wdth" 85, "opsz" 72',
+              fontWeight: 600,
+              fontSize: 24,
+              color: '#fff',
+              letterSpacing: '-0.01em',
+              lineHeight: 1.15,
+            }}
+          >
+            {plugin.name}
+          </h3>
+          <p
+            style={{
+              marginTop: 8,
+              fontFamily: 'var(--font-italic)',
+              fontStyle: 'italic',
+              fontSize: 16,
+              color: 'var(--color-fog)',
+              lineHeight: 1.45,
+            }}
+          >
+            {plugin.tagline}
+          </p>
+        </div>
+
+        <div
           style={{
-            fontFamily: 'var(--font-mono)',
-            fontSize: 11,
-            letterSpacing: '0.18em',
-            textTransform: 'uppercase',
-            color: 'var(--color-rocket)',
+            marginTop: 'auto',
+            paddingTop: 14,
+            borderTop: '1px solid rgba(255,255,255,0.06)',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'space-between',
+            gap: 10,
           }}
         >
-          View →
-        </span>
+          <span style={{ fontFamily: 'var(--font-mono)', fontSize: 11, color: 'var(--color-fog)', letterSpacing: '0.06em' }}>
+            v{plugin.version}
+          </span>
+          <span
+            style={{
+              fontFamily: 'var(--font-mono)',
+              fontSize: 11,
+              letterSpacing: '0.18em',
+              textTransform: 'uppercase',
+              color: 'var(--color-rocket)',
+            }}
+          >
+            View →
+          </span>
+        </div>
       </div>
     </Link>
   );
