@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 1196" preserveAspectRatio="xMidYMin slice" role="img" aria-label="Code fragments hinting at brand, plugin engineering, operations, and AI work">
+  <style>
+    .l { font-family: 'JetBrains Mono', ui-monospace, 'Cascadia Mono', 'Source Code Pro', Menlo, Consolas, 'DejaVu Sans Mono', monospace; font-size: 13px; }
+    .c { fill: #FFFFFF; fill-opacity: 0.45; }
+    .k { fill: #FFFFFF; fill-opacity: 0.7; }
+    .s { fill: #FFB088; fill-opacity: 0.6; }
+  </style>
+
+  <g id="block">
+    <text class="l c" x="40" y="20">// brand</text>
+    <text class="l k" x="40" y="46">brand.voice = <tspan class="s">"compound, not polite"</tspan></text>
+    <text class="l k" x="40" y="72">identity.compounds(years = 10)</text>
+    <text class="l k" x="40" y="98">strategy.beats(decks)</text>
+
+    <text class="l c" x="40" y="150">// plugin engineering</text>
+    <text class="l k" x="40" y="176">plugin.dispatch({ unit: <tspan class="s">"100sqft"</tspan>, price: 198 })</text>
+    <text class="l k" x="40" y="202">stora.api.connect(account, <tspan class="s">"live"</tspan>)</text>
+    <text class="l k" x="40" y="228">audit.findings.push({ severity: <tspan class="s">"critical"</tspan> })</text>
+    <text class="l k" x="40" y="254">git commit -m <tspan class="s">"ship before perfect"</tspan></text>
+
+    <text class="l c" x="40" y="306">// operations</text>
+    <text class="l k" x="40" y="332">operations.tier(<tspan class="s">"Apogee"</tspan>).response = <tspan class="s">"09:00 UK"</tspan></text>
+    <text class="l k" x="40" y="358">monitor.dbHealth({ every: <tspan class="s">"60s"</tspan> })</text>
+    <text class="l k" x="40" y="384">mail.dmarc.align({ policy: <tspan class="s">"reject"</tspan> })</text>
+
+    <text class="l c" x="40" y="436">// ai</text>
+    <text class="l k" x="40" y="462">ai.tone = brand.tone   <tspan class="c">// not ChatGPT</tspan></text>
+    <text class="l k" x="40" y="488">gpt.train({ on: client.voice })</text>
+    <text class="l k" x="40" y="514">automation.removes(toil)</text>
+
+    <text class="l c" x="40" y="566">// closing</text>
+    <text class="l c" x="40" y="592">// one brain. ten years. shipping.</text>
+  </g>
+
+  <use href="#block" transform="translate(0, 598)"/>
+</svg>

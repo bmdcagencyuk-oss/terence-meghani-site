@@ -2233,6 +2233,36 @@ body:has(.nav-top.is-mobile-open) { overflow: hidden; }
   opacity: 0.55;          /* dialled back so it reads as ambience, not noise */
 }
 
+/* Code-fragment backdrop — slow vertical scroll behind the rocket canvas.
+ * The SVG content is duplicated internally so translateY(0 → -50%) loops
+ * seamlessly. Width 100% makes the IMG retain SVG aspect; the radial mask
+ * fades the column at the edges so it doesn't compete with the headline. */
+.hero-code-backdrop {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%;
+  height: auto;
+  z-index: 0;
+  pointer-events: none;
+  user-select: none;
+  opacity: 0.18;
+  filter: blur(0.5px);
+  -webkit-mask-image: radial-gradient(ellipse at center, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.4) 50%, rgba(0,0,0,0.1) 90%);
+          mask-image: radial-gradient(ellipse at center, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.4) 50%, rgba(0,0,0,0.1) 90%);
+  will-change: transform;
+  animation: heroCodeScroll 90s linear infinite;
+}
+@keyframes heroCodeScroll {
+  from { transform: translateY(0); }
+  to   { transform: translateY(-50%); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .hero-code-backdrop { animation: none; transform: translateY(0); }
+}
+@media (max-width: 720px) {
+  .hero-code-backdrop { display: none; }
+}
+
 /* New atmospheric aurora layer — three slow-drifting blurred colour clouds.
  * Replaces the visual weight the particle canvas used to carry; works
  * cleanly behind the stickers without competing with them. */
