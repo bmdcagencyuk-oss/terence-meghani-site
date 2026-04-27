@@ -11,16 +11,10 @@ import Link from 'next/link';
 
 const coreServices = [
   {
-    href: '/services/brand-identity/',
-    icon: '🎨',
-    title: 'Brand & Identity',
-    desc: 'Strategy, naming, visual system & voice.',
-  },
-  {
-    href: '/services/ai-automation/',
-    icon: '✦',
-    title: 'AI & Automation',
-    desc: 'Brand-aware AI workflows & custom GPTs.',
+    href: '/services/wordpress-operations/',
+    icon: '◉',
+    title: 'WordPress Operations',
+    desc: 'Engineer-grade WordPress operations on retainer.',
   },
   {
     href: '/services/wordpress-plugin-development/',
@@ -29,14 +23,21 @@ const coreServices = [
     desc: 'Custom plugins & bespoke integrations.',
   },
   {
-    href: '/services/web-development/',
-    icon: '💻',
-    title: 'Web Development',
-    desc: 'Higher-tier WordPress & headless builds.',
+    href: '/services/ai-automation/',
+    icon: '✦',
+    title: 'AI & Automation',
+    desc: 'Brand-aware AI workflows & custom GPTs.',
+  },
+  {
+    href: '/services/brand-identity/',
+    icon: '🎨',
+    title: 'Brand & Identity',
+    desc: 'Strategy, naming, visual system & voice.',
   },
 ];
 
 const alsoOffering = [
+  { href: '/services/web-development/',     icon: '💻', title: 'Web Development' },
   { href: '/services/ppc-paid-media/',      icon: '📈', title: 'PPC & Paid Media' },
   { href: '/services/seo-organic-growth/',  icon: '🔍', title: 'SEO & Organic Growth' },
   { href: '/engage/growth-partnership/',    icon: '◆',  title: 'Growth Partnership' },
