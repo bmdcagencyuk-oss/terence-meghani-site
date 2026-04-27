@@ -285,9 +285,10 @@ function deliverableToParts(d: Deliverable) {
 }
 
 export function generateStaticParams() {
-  // growth-partnership's canonical URL is /engage/growth-partnership/, not /services/growth-partnership/
+  // growth-partnership lives at /engage/growth-partnership/.
+  // wordpress-operations has its own bespoke page at app/services/wordpress-operations/.
   return servicesData.services
-    .filter((s) => s.slug !== 'growth-partnership')
+    .filter((s) => s.slug !== 'growth-partnership' && s.slug !== 'wordpress-operations')
     .map((s) => ({ slug: s.slug }));
 }
 
