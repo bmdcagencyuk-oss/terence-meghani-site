@@ -32,12 +32,45 @@
       "count": 18
     },
     {
+      "id": "plugins",
+      "label": "Plugins",
+      "count": 0
+    },
+    {
       "id": "photography",
       "label": "Photography",
       "count": 12
     }
   ],
   "studies": [
+    {
+      "slug": "kinnovis",
+      "client": "Kinnovis",
+      "projectTitle": "Self-storage booking platform on Stora",
+      "year": 2025,
+      "industry": "Self-storage / storage container manufacturing",
+      "location": "UK",
+      "services": [
+        "Plugin development",
+        "Web development",
+        "Stora API integration"
+      ],
+      "tags": [
+        "Web",
+        "Plugins"
+      ],
+      "featured": true,
+      "featuredOrder": 2,
+      "published": true,
+      "excerpt": "Replacing a Google Form with a four-plugin booking platform — quoting, unit selection, reservation, and Stora API integration on a single WordPress site.",
+      "heroImage": "/work/kinnovis-hero.svg",
+      "heroImageAlt": "Kinnovis self-storage booking flow on Stora",
+      "related": [
+        "news-uk",
+        "fireaway-pizza",
+        "al-jannah-villa-marrakech"
+      ]
+    },
     {
       "slug": "bettafi",
       "client": "Bettafi",
@@ -57,7 +90,7 @@
         "Marketing"
       ],
       "featured": true,
-      "featuredOrder": 4,
+      "featuredOrder": 5,
       "excerpt": "Conversion-focused launch landing page and a custom-built referral system for a UK AI personal-finance app — turning a waiting list into a self-propelling acquisition channel.",
       "heroImage": "/case-studies/bettafi/landing-desktop.jpg",
       "heroImageAlt": "Bettafi landing page — Your Money. Simplify & take control of your finances.",
@@ -131,7 +164,7 @@
         "Web"
       ],
       "featured": true,
-      "featuredOrder": 2,
+      "featuredOrder": 3,
       "excerpt": "Brand identity and website for a private six-bedroom luxury retreat in the Moroccan countryside.",
       "heroImage": "https://res.cloudinary.com/dmdp4f2wp/image/upload/v1718740785/_MG_4184_navykv.jpg",
       "heroImageAlt": "Al Jannah Villa Marrakech brand identity",
@@ -172,7 +205,7 @@
         "Marketing"
       ],
       "featured": true,
-      "featuredOrder": 3,
+      "featuredOrder": 4,
       "excerpt": "Event identity and promotional system for an independently-licensed TEDx event.",
       "heroImage": "https://res.cloudinary.com/dmdp4f2wp/image/upload/v1718894769/Terence-Meghani-Krazy-Media-TEDX-026980_d94z3s.jpg",
       "heroImageAlt": "TEDx University of Salford event branding",
@@ -238,7 +271,7 @@
         "Photography"
       ],
       "featured": true,
-      "featuredOrder": 5,
+      "featuredOrder": 6,
       "excerpt": "Photography and marketing support for Europe's largest data centre industry event at Westminster Plaza.",
       "heroImage": "https://res.cloudinary.com/dmdp4f2wp/image/upload/v1720303941/dcd_westminister_plaza_hotel-3_g0ofg0.jpg",
       "heroImageAlt": "DCD Connect at Westminster Plaza",
@@ -297,7 +330,7 @@
         "Photography"
       ],
       "featured": true,
-      "featuredOrder": 6,
+      "featuredOrder": 7,
       "excerpt": "Digital marketing and commissioned photography for a UK pizza chain — 75% organic growth.",
       "metric": {
         "value": "+75%",
@@ -348,7 +381,7 @@
         "Photography"
       ],
       "featured": true,
-      "featuredOrder": 7,
+      "featuredOrder": 8,
       "excerpt": "Digital marketing and on-site photography for a specialist servicing centre in Kings Langley.",
       "heroImage": "https://res.cloudinary.com/dmdp4f2wp/images/v1722252653/Japex-Automotive-bmdc-agency-341/Japex-Automotive-bmdc-agency-341.jpg",
       "heroImageAlt": "Japex Automotive service centre photography",
