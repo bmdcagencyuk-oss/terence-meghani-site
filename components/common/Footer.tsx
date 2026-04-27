@@ -21,10 +21,10 @@ export function Footer() {
           <div className="f-col">
             <h5>Services</h5>
             <ul>
-              <li className="primary"><Link href="/services/wordpress-operations/">WordPress Operations</Link></li>
+              <li className="primary"><Link href="/services/brand-identity/">Brand &amp; Identity</Link></li>
               <li className="primary"><Link href="/services/wordpress-plugin-development/">WordPress Plugins</Link></li>
               <li className="primary"><Link href="/services/ai-automation/">AI &amp; Automation</Link></li>
-              <li className="primary"><Link href="/services/brand-identity/">Brand &amp; Identity</Link></li>
+              <li className="primary"><Link href="/services/wordpress-operations/">WordPress Operations</Link></li>
               <li><Link href="/services/web-development/">Web Development</Link></li>
               <li><Link href="/services/ppc-paid-media/">PPC &amp; Paid Media</Link></li>
               <li><Link href="/services/seo-organic-growth/">SEO &amp; Organic Growth</Link></li>

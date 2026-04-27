@@ -11,10 +11,10 @@ import Link from 'next/link';
 
 const coreServices = [
   {
-    href: '/services/wordpress-operations/',
-    icon: '◉',
-    title: 'WordPress Operations',
-    desc: 'Engineer-grade WordPress operations on retainer.',
+    href: '/services/brand-identity/',
+    icon: '🎨',
+    title: 'Brand & Identity',
+    desc: 'Strategy, naming, visual system & voice.',
   },
   {
     href: '/services/wordpress-plugin-development/',
@@ -29,10 +29,10 @@ const coreServices = [
     desc: 'Brand-aware AI workflows & custom GPTs.',
   },
   {
-    href: '/services/brand-identity/',
-    icon: '🎨',
-    title: 'Brand & Identity',
-    desc: 'Strategy, naming, visual system & voice.',
+    href: '/services/wordpress-operations/',
+    icon: '◉',
+    title: 'WordPress Operations',
+    desc: 'Engineer-grade WordPress operations on retainer.',
   },
 ];
 
