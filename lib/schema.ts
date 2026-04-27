@@ -1,4 +1,5 @@
 import type { CaseStudy, Testimonial } from './case-studies';
+import { FAQ_ITEMS } from '@/components/sections/FAQ';
 
 const BASE = 'https://terencemeghani.com';
 const PERSON_ID = `${BASE}/#person`;
@@ -12,7 +13,7 @@ export function homeSchema() {
         '@type': 'Person',
         '@id': PERSON_ID,
         name: 'Terence Meghani',
-        jobTitle: 'Brand Consultant & Developer',
+        jobTitle: 'Brand Consultant & WordPress Engineer',
         email: 'hello@terencemeghani.com',
         telephone: '+44-7756-267157',
         url: `${BASE}/`,
@@ -42,7 +43,16 @@ export function homeSchema() {
         '@type': 'WebSite',
         url: `${BASE}/`,
         name: 'Terence Meghani',
-        description: 'Brand consultant & developer.',
+        description: 'Brand consultant & WordPress engineer.',
+      },
+      {
+        '@type': 'FAQPage',
+        '@id': `${BASE}/#faq`,
+        mainEntity: FAQ_ITEMS.map((item) => ({
+          '@type': 'Question',
+          name: item.q,
+          acceptedAnswer: { '@type': 'Answer', text: item.aPlain },
+        })),
       },
     ],
   };
