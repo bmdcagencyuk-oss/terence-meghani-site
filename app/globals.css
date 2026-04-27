@@ -2855,8 +2855,39 @@ body:has(.nav-top.is-mobile-open) { overflow: hidden; }
   .hero-bottom { grid-template-columns: 1fr; gap: 20px; }
   .hero-bottom .rt { justify-self: start; text-align: left; }
   .hero-bottom .rt p { margin-left: 0; }
-  .hero { height: auto; min-height: 100vh; }
   .data-panel { max-width: 100%; }
+}
+@media (max-width: 720px) {
+  .hero {
+    min-height: clamp(560px, 80vh, 720px);
+    padding: 80px 0 24px;
+  }
+  .hero-top { gap: 12px; padding: 12px 0 0; }
+  .hero-top .spinner { width: 72px; height: 72px; }
+  .hero-top .spinner .core { width: 36px; height: 36px; padding: 8px; }
+  .hero-center { padding: 8px 0; }
+  /* Allow "THAT" / "SHIP." to wrap on very narrow viewports rather than overflow. */
+  .mega .ln-fuel { flex-wrap: wrap; }
+  .mega .ln-greet { font-size: clamp(15px, 4vw, 20px); }
+  .mega .ln-builds { font-size: clamp(20px, 5.4vw, 28px); }
+  .mega .ln1 { font-size: 11px; letter-spacing: 0.18em; }
+}
+@media (max-width: 480px) {
+  .hero { min-height: clamp(540px, 78vh, 680px); }
+  .hero-top .left { padding: 6px 10px; gap: 10px; }
+  .hero-top .left .label { display: none; }   /* keep just the dot + clock value */
+}
+
+/* WP Operations "Not a care plan" distinction block — two-column on desktop,
+   stacks on mobile so the right-hand list doesn't squeeze the prose. */
+.wpops-distinction-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 65ch) 1fr;
+  gap: 40px;
+  align-items: start;
+}
+@media (max-width: 900px) {
+  .wpops-distinction-grid { grid-template-columns: 1fr; gap: 28px; }
 }
 
 .stickers {

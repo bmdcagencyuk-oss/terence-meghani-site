@@ -431,7 +431,7 @@ export default function WordPressOperationsPage() {
             <span className="sec-aside">02 · context</span>
           </div>
 
-          <div style={{ display: 'grid', gridTemplateColumns: 'minmax(0, 65ch) 1fr', gap: 40, alignItems: 'start' }}>
+          <div className="wpops-distinction-grid">
             <div style={{ display: 'flex', flexDirection: 'column', gap: 18, fontSize: '1.0625rem', lineHeight: 1.65, color: 'var(--color-fog)' }}>
               <p>
                 Most WordPress care plans look the same on the inside: an automated backup,
