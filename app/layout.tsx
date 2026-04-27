@@ -6,6 +6,7 @@ import {
   JetBrains_Mono,
 } from 'next/font/google';
 import PlausibleProvider from 'next-plausible';
+import { Analytics } from '@vercel/analytics/next';
 import './globals.css';
 import { TopNav } from '@/components/nav/TopNav';
 import { Footer } from '@/components/common/Footer';
@@ -124,6 +125,7 @@ export default function RootLayout({
           <main id="main">{children}</main>
           <Footer />
         </PlausibleProvider>
+        <Analytics />
       </body>
     </html>
   );
