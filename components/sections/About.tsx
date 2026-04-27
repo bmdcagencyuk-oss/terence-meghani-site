@@ -52,20 +52,21 @@ export function About() {
             <div className="body">
               <p>
                 <strong>
-                  I&rsquo;m Terence — a brand consultant and developer based between Hertfordshire and
-                  London.
+                  I&rsquo;m Terence — a brand consultant and WordPress engineer based between
+                  Hertfordshire and London.
                 </strong>{' '}
                 For over a decade I&rsquo;ve built brands for scrappy startups and global names (BBC, News
                 UK, Royal London, NHS, TEDx) — with the same close, personal approach to each.
               </p>
               <p>
                 My work spans four things most agencies split across four teams:{' '}
-                <strong>strategy-led branding</strong>, <strong>AI &amp; automation</strong>,{' '}
-                <strong>custom WordPress plugin development</strong>, and{' '}
-                <strong>higher-tier web development</strong>. One brain joining those dots means
-                faster decisions, sharper output, and{' '}
-                <span className="hl">brand, code and growth</span> that actually pull in the same
-                direction.
+                <strong>strategy-led brand &amp; identity</strong>,{' '}
+                <strong>custom WordPress plugin development</strong>,{' '}
+                <strong>AI &amp; automation</strong>, and{' '}
+                <strong>engineering-grade WordPress operations</strong>. One brain joining those
+                dots means faster decisions, sharper output, and{' '}
+                <span className="hl">brand, code and operations</span> that actually pull in the
+                same direction.
               </p>
               <p>
                 Big agencies route you through account managers. I don&rsquo;t. You work with the

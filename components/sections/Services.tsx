@@ -146,8 +146,8 @@ export function Services() {
             What I <em>build</em>, with you.
           </Reveal>
           <p className="lead">
-            Four core practices — strategy-led brand and three engineering
-            disciplines that put it on the internet properly.
+            Four core practices — strategy-led brand and three engineering disciplines
+            that put it on the internet properly. Click any card to flip.
           </p>
         </div>
 

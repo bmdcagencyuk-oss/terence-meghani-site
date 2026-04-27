@@ -2522,6 +2522,14 @@ body:has(.nav-top.is-mobile-open) { overflow: hidden; }
 }
 .hero-cycle .rw.active { position: relative; opacity: 1; transform: translateY(0); }
 .hero-cycle .rw.exit   { opacity: 0; transform: translateY(-30%); }
+.hero-cycle .rw-italic {
+  font-family: var(--f-italic);
+  font-style: italic;
+  text-transform: none;
+  font-weight: 400;
+  letter-spacing: 0;
+  font-size: 0.92em;
+}
 
 .hero-bottom {
   display: grid;
@@ -3065,11 +3073,19 @@ body:has(.nav-top.is-mobile-open) { overflow: hidden; }
 .manifesto h2.revealed .line-1 .word:nth-child(2) .wi { transition-delay: 0.08s; }
 .manifesto h2.revealed .line-1 .word:nth-child(3) .wi { transition-delay: 0.16s; }
 .manifesto h2.revealed .line-1 .word:nth-child(4) .wi { transition-delay: 0.24s; }
-.manifesto h2.revealed .line-3 .word:nth-child(1) .wi { transition-delay: 2.10s; }
-.manifesto h2.revealed .line-3 .word:nth-child(2) .wi { transition-delay: 2.18s; }
-.manifesto h2.revealed .line-3 .word:nth-child(3) .wi { transition-delay: 2.26s; }
-.manifesto h2.revealed .line-3 .word:nth-child(4) .wi { transition-delay: 2.34s; }
+.manifesto h2.revealed .line-1b .word:nth-child(1) .wi { transition-delay: 0.36s; }
+.manifesto h2.revealed .line-1b .word:nth-child(2) .wi { transition-delay: 0.44s; }
+.manifesto h2.revealed .line-1b .word:nth-child(3) .wi { transition-delay: 0.52s; }
+.manifesto h2.revealed .line-1b .word:nth-child(4) .wi { transition-delay: 0.60s; }
+.manifesto h2.revealed .line-1b .word:nth-child(5) .wi { transition-delay: 0.68s; }
+.manifesto h2.revealed .line-2 .word:nth-child(1) .wi { transition-delay: 0.80s; }
+.manifesto h2.revealed .line-3 .word:nth-child(1) .wi { transition-delay: 2.30s; }
+.manifesto h2.revealed .line-3 .word:nth-child(2) .wi { transition-delay: 2.38s; }
+.manifesto h2.revealed .line-3 .word:nth-child(3) .wi { transition-delay: 2.46s; }
+.manifesto h2.revealed .line-3 .word:nth-child(4) .wi { transition-delay: 2.54s; }
 .manifesto h2.revealed .wi { transform: translateY(0); }
+/* Stagger the second strikethrough so the two crossings don't fire simultaneously. */
+.manifesto h2 .line-1b .strike path { transition-delay: 1.6s; }
 
 .manifesto h2 .hl-wrap { position: relative; }
 .manifesto h2 .hl {

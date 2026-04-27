@@ -26,13 +26,15 @@ const BRAND_LETTERS: GiveLetter[] = [
   { ch: 'd', q: 'Design is intelligence made visible.|Alina Wheeler' },
 ];
 
-const CYCLE_PHRASES = [
-  'launches businesses',
-  'compounds revenue',
-  'wins the room',
-  'builds loyalty',
-  'stops scrolling',
-  'stays online when it matters',
+type CyclePhrase = { text: string; italic?: boolean };
+
+const CYCLE_PHRASES: CyclePhrase[] = [
+  { text: 'launches businesses' },
+  { text: 'compounds revenue' },
+  { text: 'wins the room' },
+  { text: 'builds loyalty' },
+  { text: 'stops scrolling' },
+  { text: 'stays online when it matters', italic: true },
 ];
 
 export function Hero() {
@@ -401,8 +403,11 @@ export function Hero() {
             Branding that{' '}
             <span className="hero-cycle" ref={cycleRef}>
               {CYCLE_PHRASES.map((p, i) => (
-                <span key={p} className={`rw${i === 0 ? ' active' : ''}`}>
-                  {p}
+                <span
+                  key={p.text}
+                  className={`rw${i === 0 ? ' active' : ''}${p.italic ? ' rw-italic' : ''}`}
+                >
+                  {p.text}
                 </span>
               ))}
             </span>{' '}
@@ -423,7 +428,8 @@ export function Hero() {
           </a>
           <a href="#work" className="hero-cta-sec">See the work ↓</a>
           <p className="hero-bottom-note">
-            <strong>One brain. Ten years.</strong> Strategy, identity, growth —{' '}
+            <strong>One brain. Ten years.</strong> Brand strategy, custom WordPress
+            engineering, and AI workflows —{' '}
             <span className="hl">wired together, not bolted on.</span>
           </p>
         </div>
