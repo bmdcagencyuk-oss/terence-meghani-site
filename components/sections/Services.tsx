@@ -187,8 +187,16 @@ export function Services() {
           ))}
         </div>
 
-        <nav className="also-offering" aria-label="Specialist engagement">
-          <span className="ao-label">Specialist</span>
+        <nav className="also-offering" aria-label="Also offering">
+          <span className="ao-label">Also offering</span>
+          <Link className="ao-item" href="/services/web-development/">
+            Web Development <span className="arrow">→</span>
+          </Link>
+          <span className="ao-divider" aria-hidden="true" />
+          <Link className="ao-item" href="/services/seo-organic-growth/">
+            SEO &amp; Organic Growth <span className="arrow">→</span>
+          </Link>
+          <span className="ao-divider" aria-hidden="true" />
           <Link className="ao-item" href="/engage/growth-partnership/">
             Growth Partnership <span className="arrow">→</span>
           </Link>

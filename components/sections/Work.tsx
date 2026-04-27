@@ -15,35 +15,11 @@ type Item = {
 
 type CardItem = Item & { href?: string };
 
+// Order matches data/case-studies.json featuredOrder ascending. When real
+// metrics are confirmed the placeholder Bettafi/Kinnovis cards can be promoted.
 const ITEMS: CardItem[] = [
   {
-    idx: '01 / 07',
-    year: '2026',
-    tag: 'Fintech · Web · Referral',
-    title: 'Bettafi — landing & referral',
-    image: '/case-studies/bettafi/landing-desktop.jpg',
-    href: '/work/bettafi/',
-    metrics: [
-      { n: 'Live',   k: 'Status' },
-      { n: 'Custom', k: 'Referral' },
-      { n: 'Q1',     k: 'Launch' },
-    ],
-  },
-  {
-    idx: '02 / 07',
-    year: '2024',
-    tag: 'Hospitality · Identity',
-    title: 'Al Jannah Villa Marrakech',
-    image: 'https://images.unsplash.com/photo-1600585154526-990dced4db0d?w=800&q=80&auto=format',
-    href: '/work/al-jannah-villa-marrakech/',
-    metrics: [
-      { n: '+340%', k: 'Bookings' },
-      { n: '4.9★',  k: 'Guest rating' },
-      { n: '18',    k: 'Touchpoints' },
-    ],
-  },
-  {
-    idx: '03 / 07',
+    idx: '01 / 08',
     year: '2023',
     tag: 'Editorial · Digital',
     title: 'News UK — masthead system',
@@ -56,7 +32,33 @@ const ITEMS: CardItem[] = [
     ],
   },
   {
-    idx: '04 / 07',
+    idx: '02 / 08',
+    year: '2025',
+    tag: 'Self-storage · Plugins',
+    title: 'Kinnovis — booking platform',
+    image: '/work/kinnovis-hero.svg',
+    href: '/work/kinnovis/',
+    metrics: [
+      { n: '4',     k: 'Plugins' },
+      { n: 'Stora', k: 'API' },
+      { n: 'Live',  k: 'Q1 2025' },
+    ],
+  },
+  {
+    idx: '03 / 08',
+    year: '2024',
+    tag: 'Hospitality · Identity',
+    title: 'Al Jannah Villa Marrakech',
+    image: 'https://images.unsplash.com/photo-1600585154526-990dced4db0d?w=800&q=80&auto=format',
+    href: '/work/al-jannah-villa-marrakech/',
+    metrics: [
+      { n: '+340%', k: 'Bookings' },
+      { n: '4.9★',  k: 'Guest rating' },
+      { n: '18',    k: 'Touchpoints' },
+    ],
+  },
+  {
+    idx: '04 / 08',
     year: '2023',
     tag: 'Event · Campaign',
     title: 'TEDx — full campaign',
@@ -69,7 +71,33 @@ const ITEMS: CardItem[] = [
     ],
   },
   {
-    idx: '05 / 07',
+    idx: '05 / 08',
+    year: '2026',
+    tag: 'Fintech · Web · Referral',
+    title: 'Bettafi — landing & referral',
+    image: '/case-studies/bettafi/landing-desktop.jpg',
+    href: '/work/bettafi/',
+    metrics: [
+      { n: 'Live',   k: 'Status' },
+      { n: 'Custom', k: 'Referral' },
+      { n: 'Q1',     k: 'Launch' },
+    ],
+  },
+  {
+    idx: '06 / 08',
+    year: '2022',
+    tag: 'Public Sector · Comms',
+    title: 'DCD Connect',
+    image: 'https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=800&q=80&auto=format',
+    href: '/work/dcd-connect/',
+    metrics: [
+      { n: '14',   k: 'Touchpoints' },
+      { n: '+38%', k: 'Recall' },
+      { n: '6mo',  k: 'Scope' },
+    ],
+  },
+  {
+    idx: '07 / 08',
     year: '2024',
     tag: 'F&B · Packaging',
     title: 'Fireaway Pizza — rebrand',
@@ -82,7 +110,7 @@ const ITEMS: CardItem[] = [
     ],
   },
   {
-    idx: '06 / 07',
+    idx: '08 / 08',
     year: '2024',
     tag: 'Automotive · Rebrand',
     title: 'Japex Automotive',
@@ -92,19 +120,6 @@ const ITEMS: CardItem[] = [
       { n: '+52%', k: 'Lead quality' },
       { n: '2',    k: 'Showrooms' },
       { n: '6wk',  k: 'Launch' },
-    ],
-  },
-  {
-    idx: '07 / 07',
-    year: '2022',
-    tag: 'Public Sector · Comms',
-    title: 'DCD Connect',
-    image: 'https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=800&q=80&auto=format',
-    href: '/work/dcd-connect/',
-    metrics: [
-      { n: '14',   k: 'Touchpoints' },
-      { n: '+38%', k: 'Recall' },
-      { n: '6mo',  k: 'Scope' },
     ],
   },
 ];
