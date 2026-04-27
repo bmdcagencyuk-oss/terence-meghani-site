@@ -16,36 +16,21 @@ type Service = {
 const SERVICES: Service[] = [
   {
     num: 'S / 01',
-    icon: '🎨',
-    title: 'Brand & Identity',
-    face: 'Strategy, positioning, naming, visual system & voice.',
+    icon: '◉',
+    title: 'WordPress Operations',
+    face: 'Engineer-grade WordPress operations on retainer.',
     back: {
       rows: [
-        { k: 'Focus',        v: 'Positioning, story, identity system' },
-        { k: 'Approach',     v: 'Personal. Iterative. Strategy-led.' },
-        { k: 'Deliverables', v: 'Naming, logo, type, colour, voice, guidelines' },
-        { k: 'Best for',     v: 'Launches, founders with fire' },
+        { k: 'Focus',    v: 'Server logs, DB health, deliverability, security, performance' },
+        { k: 'Approach', v: 'Diagnose first, fix before it breaks, written reviews' },
+        { k: 'Tiers',    v: 'Boost · Orbit · Apogee — from £1,500/mo' },
+        { k: 'Best for', v: 'Sites where downtime costs money' },
       ],
-      note: 'Built as long as it needs. No rush, no shortcuts.',
+      note: 'Not a care plan. An engineering retainer.',
     },
   },
   {
     num: 'S / 02',
-    icon: '✦',
-    title: 'AI & Automation',
-    face: 'Brand-aware AI workflows, custom GPTs & content ops.',
-    back: {
-      rows: [
-        { k: 'Focus',    v: 'AI that sounds like your brand, not ChatGPT' },
-        { k: 'Approach', v: 'Your voice, trained in. Your team, trained up.' },
-        { k: 'Scope',    v: 'Custom GPTs, prompt systems, content ops, WordPress AI plugins' },
-        { k: 'Best for', v: 'Scaling teams, content-heavy brands' },
-      ],
-      note: 'Want it baked into WordPress? See Plugin Development →',
-    },
-  },
-  {
-    num: 'S / 03',
     icon: '🧩',
     title: 'WordPress Plugin Development',
     face: 'Custom plugins, bespoke integrations & internal tooling.',
@@ -60,18 +45,33 @@ const SERVICES: Service[] = [
     },
   },
   {
-    num: 'S / 04',
-    icon: '💻',
-    title: 'Web Development',
-    face: 'Higher-tier WordPress, headless & performance builds.',
+    num: 'S / 03',
+    icon: '✦',
+    title: 'AI & Automation',
+    face: 'Brand-aware AI workflows, custom GPTs & content ops.',
     back: {
       rows: [
-        { k: 'Focus',    v: 'Conversion-first design, ownable code' },
-        { k: 'Approach', v: 'Build once. Teach your team to run it.' },
-        { k: 'Stack',    v: 'Custom WordPress, Next.js, headless, WooCommerce' },
-        { k: 'Best for', v: 'DTC, services, SaaS, content brands' },
+        { k: 'Focus',    v: 'AI that sounds like your brand, not ChatGPT' },
+        { k: 'Approach', v: 'Your voice, trained in. Your team, trained up.' },
+        { k: 'Scope',    v: 'Custom GPTs, prompt systems, content ops, WordPress AI plugins' },
+        { k: 'Best for', v: 'Scaling teams, content-heavy brands' },
       ],
-      note: 'No platform lock. You own every file.',
+      note: 'Want it baked into WordPress? See Plugin Development →',
+    },
+  },
+  {
+    num: 'S / 04',
+    icon: '🎨',
+    title: 'Brand & Identity',
+    face: 'Strategy, positioning, naming, visual system & voice.',
+    back: {
+      rows: [
+        { k: 'Focus',        v: 'Positioning, story, identity system' },
+        { k: 'Approach',     v: 'Personal. Iterative. Strategy-led.' },
+        { k: 'Deliverables', v: 'Naming, logo, type, colour, voice, guidelines' },
+        { k: 'Best for',     v: 'Launches, founders with fire' },
+      ],
+      note: 'Built as long as it needs. No rush, no shortcuts.',
     },
   },
 ];
@@ -143,8 +143,9 @@ export function Services() {
             What I <em>build</em>, with you.
           </Reveal>
           <p className="lead">
-            Four core services — branding, AI &amp; automation, custom WordPress plugin
-            development, and higher-tier web development. Click any card to flip.
+            Four core services — WordPress operations, custom WordPress plugin
+            development, AI &amp; automation, and brand &amp; identity. Click any
+            card to flip.
           </p>
         </div>
 
@@ -189,6 +190,10 @@ export function Services() {
 
         <nav className="also-offering" aria-label="Additional services">
           <span className="ao-label">Also offering</span>
+          <Link className="ao-item" href="/services/web-development/">
+            Web Development <span className="arrow">→</span>
+          </Link>
+          <span className="ao-divider" aria-hidden="true" />
           <Link className="ao-item" href="/services/ppc-paid-media/">
             PPC &amp; Paid Media <span className="arrow">→</span>
           </Link>
