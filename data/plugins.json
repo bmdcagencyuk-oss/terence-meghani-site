@@ -1,0 +1,80 @@
+{
+  "meta": {
+    "totalCount": 6,
+    "groups": ["Self-storage suite", "Agency tooling", "Marketing tooling"]
+  },
+  "plugins": [
+    {
+      "slug": "storagequoter",
+      "name": "StorageQuoter",
+      "vertical": "Self-storage suite",
+      "tagline": "Effortless instant quoting for self-storage websites.",
+      "status": "in-production",
+      "statusLabel": "In production · Q2 2026 launch",
+      "eta": "Q2 2026",
+      "version": "2.3.0",
+      "ctaLabel": "Join the waitlist",
+      "ctaHref": "mailto:hello@terencemeghani.com?subject=StorageQuoter%20waitlist"
+    },
+    {
+      "slug": "storage-booking",
+      "name": "Storage Unit Booking",
+      "vertical": "Self-storage suite",
+      "tagline": "Carousel-based unit selection and reservation, end-to-end.",
+      "status": "in-production",
+      "statusLabel": "In production · Q2 2026 launch",
+      "eta": "Q2 2026",
+      "version": "1.1.0",
+      "ctaLabel": "Join the waitlist",
+      "ctaHref": "mailto:hello@terencemeghani.com?subject=Storage%20Booking%20waitlist"
+    },
+    {
+      "slug": "storax",
+      "name": "StoraX",
+      "vertical": "Self-storage suite",
+      "tagline": "The native WordPress integration for Stora-platform operators.",
+      "status": "beta",
+      "statusLabel": "Beta · Q2 2026 GA launch",
+      "eta": "Q2 2026 GA",
+      "version": "4.0.0-beta.1",
+      "ctaLabel": "Join the waitlist",
+      "ctaHref": "mailto:hello@terencemeghani.com?subject=StoraX%20waitlist",
+      "note": "StoraX is a third-party integration built and maintained by Amax Marketing. Not officially endorsed by Stora."
+    },
+    {
+      "slug": "kinnovis-client-portal",
+      "name": "Kinnovis Client Portal",
+      "vertical": "Self-storage suite",
+      "tagline": "Custom template selection & onboarding portal for Kinnovis.",
+      "status": "bespoke",
+      "statusLabel": "Bespoke build — not available to other operators",
+      "version": "2.0.0",
+      "ctaLabel": "Similar build for your team?",
+      "ctaHref": "/services/wordpress-plugin-development/",
+      "note": "Built specifically for Kinnovis. Listed as part of the self-storage suite for completeness."
+    },
+    {
+      "slug": "client-approvals-hub",
+      "name": "Client Approvals Hub",
+      "vertical": "Agency tooling",
+      "tagline": "Replace email approval chains with secure, trackable client sign-off.",
+      "status": "in-production",
+      "statusLabel": "In production · Q2 2026 launch",
+      "eta": "Q2 2026",
+      "version": "1.13.0",
+      "ctaLabel": "Join the waitlist",
+      "ctaHref": "mailto:hello@terencemeghani.com?subject=Client%20Approvals%20Hub%20waitlist"
+    },
+    {
+      "slug": "site-audit",
+      "name": "Site Audit",
+      "vertical": "Marketing tooling",
+      "tagline": "Automated SEO & performance audit with lead capture, for agencies.",
+      "status": "available",
+      "statusLabel": "Available now",
+      "version": "2.3.1",
+      "ctaLabel": "Contact for licensing",
+      "ctaHref": "mailto:hello@terencemeghani.com?subject=Site%20Audit%20licensing"
+    }
+  ]
+}

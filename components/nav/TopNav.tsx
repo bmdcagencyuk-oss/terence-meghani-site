@@ -132,6 +132,11 @@ export function TopNav() {
           </Link>
         </li>
         <li role="none">
+          <Link href="/plugins/" role="menuitem" onClick={closeAll} data-cursor="link">
+            Plugins
+          </Link>
+        </li>
+        <li role="none">
           <Link href="/#why" role="menuitem" onClick={closeAll} data-cursor="link">
             Why me
           </Link>
