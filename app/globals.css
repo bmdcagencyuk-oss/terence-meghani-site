@@ -1676,7 +1676,7 @@
 .nav-brand {
   display: inline-flex;
   align-items: center;
-  gap: 10px;
+  gap: 12px;
   font-family: var(--font-mono);
   font-size: 12px;
   letter-spacing: 0.14em;
@@ -1685,6 +1685,20 @@
   color: #fff;
   text-decoration: none;
 }
+.nav-brand .nav-gorilla {
+  height: 36px;
+  width: auto;
+  flex-shrink: 0;
+  transition: transform 0.35s var(--ease-bounce), height 0.3s var(--ease), filter 0.3s ease;
+  filter: grayscale(1);
+}
+.nav-top.is-scrolled .nav-brand .nav-gorilla { height: 30px; }
+.nav-brand:hover .nav-gorilla {
+  transform: rotate(2deg) scale(1.06);
+  filter: grayscale(0);
+}
+/* Legacy rocket tile retained as orphan rules for older snapshots; superseded
+   by .nav-gorilla above and no longer rendered. */
 .nav-brand .logo {
   width: 32px;
   height: 32px;

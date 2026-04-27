@@ -1,5 +1,6 @@
 'use client';
 
+/* eslint-disable @next/next/no-img-element */
 import { useEffect, useRef, useState } from 'react';
 import Link from 'next/link';
 import { MegaMenu } from './MegaMenu';
@@ -86,11 +87,14 @@ export function TopNav() {
 
   return (
     <nav ref={navRef} className={navClass} id="nav" aria-label="Primary">
-      {/* Brand lockup */}
+      {/* Brand lockup — gorilla mark + wordmark, mirrors the footer signoff treatment. */}
       <Link href="/" className="nav-brand" onClick={closeAll} data-cursor="link">
-        <span className="logo" aria-hidden="true">
-          <span className="emblem-mark" />
-        </span>
+        <img
+          className="nav-gorilla"
+          src="/brand/emblem-gorilla.svg"
+          alt=""
+          aria-hidden="true"
+        />
         Meghani / Studio
       </Link>
 
