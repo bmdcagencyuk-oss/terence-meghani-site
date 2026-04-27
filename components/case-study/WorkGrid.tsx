@@ -16,7 +16,6 @@ const DEFAULT_CHIPS: Chip[] = [
   { id: 'brand',       label: 'Brand',       count: 0 },
   { id: 'web',         label: 'Web',         count: 0 },
   { id: 'marketing',   label: 'Marketing',   count: 0 },
-  { id: 'ppc',         label: 'PPC',         count: 0 },
   { id: 'photography', label: 'Photography', count: 0 },
 ];
 

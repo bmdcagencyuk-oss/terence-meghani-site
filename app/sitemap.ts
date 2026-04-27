@@ -1,6 +1,6 @@
 import type { MetadataRoute } from 'next';
-import caseStudies from '@/data/case-studies.json';
-import services from '@/data/services.json';
+import { getAllCaseStudies } from '@/lib/case-studies';
+import { getAllServices } from '@/lib/services';
 
 const BASE = 'https://terencemeghani.com';
 
@@ -17,8 +17,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
     '/terms/',
     '/cookies/',
   ];
-  const caseStudyPaths = caseStudies.studies.map((s) => `/work/${s.slug}/`);
-  const servicePaths = services.services
+  const caseStudyPaths = getAllCaseStudies().map((s) => `/work/${s.slug}/`);
+  const servicePaths = getAllServices()
     .map((s) => s.url)
     // de-dupe in case of collision with growth-partnership
     .filter((url) => !staticPaths.includes(url));

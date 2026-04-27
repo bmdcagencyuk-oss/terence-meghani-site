@@ -87,10 +87,10 @@ export function ContactForm() {
           <select name="service" style={inputStyle}>
             <option value="">— any —</option>
             <option value="brand-identity">Brand &amp; Identity</option>
-            <option value="ai-automation">AI &amp; Automation</option>
             <option value="wordpress-plugin-development">WordPress Plugin Development</option>
+            <option value="ai-automation">AI &amp; Automation</option>
+            <option value="wordpress-operations">WordPress Operations</option>
             <option value="web-development">Web Development</option>
-            <option value="ppc-paid-media">PPC &amp; Paid Media</option>
             <option value="seo-organic-growth">SEO &amp; Organic Growth</option>
             <option value="growth-partnership">Growth Partnership</option>
             <option value="other">Something else</option>

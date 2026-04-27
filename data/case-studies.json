@@ -6,8 +6,7 @@
       "Brand": 15,
       "Web": 18,
       "Marketing": 18,
-      "Photography": 12,
-      "PPC": 3
+      "Photography": 12
     },
     "lastUpdated": "2026-04-25"
   },
@@ -31,11 +30,6 @@
       "id": "marketing",
       "label": "Marketing",
       "count": 18
-    },
-    {
-      "id": "ppc",
-      "label": "PPC",
-      "count": 3
     },
     {
       "id": "photography",

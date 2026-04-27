@@ -38,7 +38,6 @@ const coreServices = [
 
 const alsoOffering = [
   { href: '/services/web-development/',     icon: '💻', title: 'Web Development' },
-  { href: '/services/ppc-paid-media/',      icon: '📈', title: 'PPC & Paid Media' },
   { href: '/services/seo-organic-growth/',  icon: '🔍', title: 'SEO & Organic Growth' },
   { href: '/engage/growth-partnership/',    icon: '◆',  title: 'Growth Partnership' },
 ];

@@ -35,6 +35,7 @@ import {
   Video,
 } from 'lucide-react';
 import servicesData from '@/data/services.json';
+import { getAllServices, getServiceBySlug } from '@/lib/services';
 import { getAllCaseStudies } from '@/lib/case-studies';
 import { Kicker } from '@/components/ui/Kicker';
 import { Button } from '@/components/ui/Button';
@@ -287,7 +288,8 @@ function deliverableToParts(d: Deliverable) {
 export function generateStaticParams() {
   // growth-partnership lives at /engage/growth-partnership/.
   // wordpress-operations has its own bespoke page at app/services/wordpress-operations/.
-  return servicesData.services
+  // Unpublished services are filtered out by getAllServices().
+  return getAllServices()
     .filter((s) => s.slug !== 'growth-partnership' && s.slug !== 'wordpress-operations')
     .map((s) => ({ slug: s.slug }));
 }
@@ -298,7 +300,7 @@ export async function generateMetadata({
   params: Promise<{ slug: string }>;
 }): Promise<Metadata> {
   const { slug } = await params;
-  const s = servicesData.services.find((x) => x.slug === slug);
+  const s = getServiceBySlug(slug);
   if (!s) return { title: 'Not found' };
   return {
     title: `${s.label} — Terence Meghani`,
@@ -313,7 +315,7 @@ export default async function ServicePage({
   params: Promise<{ slug: string }>;
 }) {
   const { slug } = await params;
-  const service = servicesData.services.find((s) => s.slug === slug);
+  const service = getServiceBySlug(slug);
   if (!service) notFound();
   const content = SERVICE_CONTENT[slug] ?? { deliverables: [], launchHeadline: 'brief' };
 

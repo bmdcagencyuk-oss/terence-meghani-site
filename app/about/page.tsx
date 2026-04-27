@@ -382,7 +382,7 @@ export default function AboutPage() {
             ))}
           </dl>
           <p style={{ marginTop: 36, color: 'var(--color-fog)', fontSize: 14, fontStyle: 'italic', fontFamily: 'var(--font-italic)' }}>
-            Plus PPC &amp; Paid Media, SEO &amp; Organic Growth, and an ongoing{' '}
+            Plus SEO &amp; Organic Growth and an ongoing{' '}
             <Link
               href="/engage/growth-partnership/"
               style={{ color: 'var(--color-rocket)', fontStyle: 'normal', fontFamily: 'var(--font-mono)', fontSize: 12, letterSpacing: '0.14em', textTransform: 'uppercase' }}
