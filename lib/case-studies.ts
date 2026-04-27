@@ -52,7 +52,18 @@ const testimonials = testimonialsData.testimonials as Testimonial[];
 const contentDir = path.join(process.cwd(), 'content', 'case-studies');
 
 const isPublished = (s: CaseStudy) => s.published !== false;
-const studies = allStudies.filter(isPublished);
+// Sort: flagship featured studies first by featuredOrder, then everything else
+// in stable JSON order. Keeps Kinnovis/News UK/etc. ahead on the work grid.
+const studies = allStudies
+  .filter(isPublished)
+  .map((s, idx) => ({ s, idx }))
+  .sort((a, b) => {
+    const fa = a.s.featured ? (a.s.featuredOrder ?? 999) : 999;
+    const fb = b.s.featured ? (b.s.featuredOrder ?? 999) : 999;
+    if (fa !== fb) return fa - fb;
+    return a.idx - b.idx;
+  })
+  .map(({ s }) => s);
 
 export function getAllCaseStudies(): CaseStudy[] {
   return studies;
@@ -91,34 +102,19 @@ export function getAllTestimonials(): Testimonial[] {
 }
 
 /**
- * Filter chips for the /work/ page. Counts are derived dynamically from the
- * published case-study set so they don't drift when entries are added,
- * unpublished, or retagged.
+ * Filter chips for the /work/ page. Strict: only declared chips render —
+ * data-only tags don't auto-surface (so retired tags can be retired by
+ * removing them from filterChips even if a few unpublished entries still
+ * carry the tag). Counts derive from the published set.
  */
 export function getFilterChips(): { id: string; label: string; count: number }[] {
   const declared = (caseStudiesData.filterChips ?? []) as Array<{ id: string; label: string }>;
-  const usedTags = new Set<string>();
-  for (const s of studies) for (const t of s.tags) usedTags.add(t.toLowerCase());
-
-  const liveChips = declared
-    .filter((c) => c.id === 'all' || usedTags.has(c.id.toLowerCase()))
-    .map((c) => {
-      if (c.id === 'all') return { ...c, count: studies.length };
-      const norm = c.id.toLowerCase();
-      const count = studies.filter((s) => s.tags.some((t) => t.toLowerCase() === norm)).length;
-      return { ...c, count };
-    });
-
-  // Add a chip for any new tag that surfaces in the data but wasn't declared in JSON.
-  const declaredIds = new Set(liveChips.map((c) => c.id.toLowerCase()));
-  const extras: { id: string; label: string; count: number }[] = [];
-  for (const tag of usedTags) {
-    if (declaredIds.has(tag)) continue;
-    const label = tag.charAt(0).toUpperCase() + tag.slice(1);
-    const count = studies.filter((s) => s.tags.some((t) => t.toLowerCase() === tag)).length;
-    extras.push({ id: tag, label, count });
-  }
-  return [...liveChips, ...extras];
+  return declared.map((c) => {
+    if (c.id === 'all') return { ...c, count: studies.length };
+    const norm = c.id.toLowerCase();
+    const count = studies.filter((s) => s.tags.some((t) => t.toLowerCase() === norm)).length;
+    return { ...c, count };
+  });
 }
 
 export function getMeta() {

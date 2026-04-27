@@ -5,8 +5,7 @@
     "tagDistribution": {
       "Brand": 15,
       "Web": 18,
-      "Marketing": 18,
-      "Photography": 12
+      "Marketing": 18
     },
     "lastUpdated": "2026-04-25"
   },
@@ -35,11 +34,6 @@
       "id": "marketing",
       "label": "Marketing",
       "count": 18
-    },
-    {
-      "id": "photography",
-      "label": "Photography",
-      "count": 12
     }
   ],
   "studies": [

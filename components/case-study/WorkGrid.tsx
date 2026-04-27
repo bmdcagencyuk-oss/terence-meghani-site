@@ -12,11 +12,11 @@ type Props = {
 };
 
 const DEFAULT_CHIPS: Chip[] = [
-  { id: 'all',         label: 'All',         count: 0 },
-  { id: 'brand',       label: 'Brand',       count: 0 },
-  { id: 'web',         label: 'Web',         count: 0 },
-  { id: 'marketing',   label: 'Marketing',   count: 0 },
-  { id: 'photography', label: 'Photography', count: 0 },
+  { id: 'all',       label: 'All',       count: 0 },
+  { id: 'brand',     label: 'Brand',     count: 0 },
+  { id: 'web',       label: 'Web',       count: 0 },
+  { id: 'plugins',   label: 'Plugins',   count: 0 },
+  { id: 'marketing', label: 'Marketing', count: 0 },
 ];
 
 export function WorkGrid({ studies, chips }: Props) {

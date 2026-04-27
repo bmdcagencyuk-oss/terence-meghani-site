@@ -15,8 +15,9 @@ type Item = {
 
 type CardItem = Item & { href?: string };
 
-// Order matches data/case-studies.json featuredOrder ascending. When real
-// metrics are confirmed the placeholder Bettafi/Kinnovis cards can be promoted.
+// Carousel order: News UK · Kinnovis · Al Jannah · TEDx · Fireaway · Japex ·
+// Bettafi · DCD Connect. Bettafi sits at slot 7 because its metrics are
+// placeholders; Kinnovis at slot 2 as the new flagship.
 const ITEMS: CardItem[] = [
   {
     idx: '01 / 08',
@@ -72,32 +73,6 @@ const ITEMS: CardItem[] = [
   },
   {
     idx: '05 / 08',
-    year: '2026',
-    tag: 'Fintech · Web · Referral',
-    title: 'Bettafi — landing & referral',
-    image: '/case-studies/bettafi/landing-desktop.jpg',
-    href: '/work/bettafi/',
-    metrics: [
-      { n: 'Live',   k: 'Status' },
-      { n: 'Custom', k: 'Referral' },
-      { n: 'Q1',     k: 'Launch' },
-    ],
-  },
-  {
-    idx: '06 / 08',
-    year: '2022',
-    tag: 'Public Sector · Comms',
-    title: 'DCD Connect',
-    image: 'https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=800&q=80&auto=format',
-    href: '/work/dcd-connect/',
-    metrics: [
-      { n: '14',   k: 'Touchpoints' },
-      { n: '+38%', k: 'Recall' },
-      { n: '6mo',  k: 'Scope' },
-    ],
-  },
-  {
-    idx: '07 / 08',
     year: '2024',
     tag: 'F&B · Packaging',
     title: 'Fireaway Pizza — rebrand',
@@ -110,7 +85,7 @@ const ITEMS: CardItem[] = [
     ],
   },
   {
-    idx: '08 / 08',
+    idx: '06 / 08',
     year: '2024',
     tag: 'Automotive · Rebrand',
     title: 'Japex Automotive',
@@ -120,6 +95,32 @@ const ITEMS: CardItem[] = [
       { n: '+52%', k: 'Lead quality' },
       { n: '2',    k: 'Showrooms' },
       { n: '6wk',  k: 'Launch' },
+    ],
+  },
+  {
+    idx: '07 / 08',
+    year: '2026',
+    tag: 'Fintech · Web · Referral',
+    title: 'Bettafi — landing & referral',
+    image: '/case-studies/bettafi/landing-desktop.jpg',
+    href: '/work/bettafi/',
+    metrics: [
+      { n: 'Live',   k: 'Status' },
+      { n: 'Custom', k: 'Referral' },
+      { n: 'Q1',     k: 'Launch' },
+    ],
+  },
+  {
+    idx: '08 / 08',
+    year: '2022',
+    tag: 'Public Sector · Comms',
+    title: 'DCD Connect',
+    image: 'https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=800&q=80&auto=format',
+    href: '/work/dcd-connect/',
+    metrics: [
+      { n: '14',   k: 'Touchpoints' },
+      { n: '+38%', k: 'Recall' },
+      { n: '6mo',  k: 'Scope' },
     ],
   },
 ];

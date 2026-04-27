@@ -4,10 +4,8 @@ import { WorkGrid } from '@/components/case-study/WorkGrid';
 import { LaunchCTA } from '@/components/launch/LaunchCTA';
 import { getAllCaseStudies, getFilterChips } from '@/lib/case-studies';
 
-const COUNT = getAllCaseStudies().length;
-
 export const metadata: Metadata = {
-  title: `Work — ${COUNT} case studies across brand, plugin development, web, and marketing`,
+  title: 'Work — 12 case studies across brand, plugin development, web, and marketing',
   description:
     'Selected case studies — Kinnovis self-storage booking platform, News UK cyber awareness campaign, Al Jannah Villa Marrakech, TEDx University of Salford, and more across brand, plugin development, web, and marketing.',
 };
@@ -21,7 +19,7 @@ export default function WorkPage() {
       <section className="page-hero with-glow-rocket">
         <div className="wrap">
           <div className="kicker-row">
-            <Kicker>Work · {studies.length} projects</Kicker>
+            <Kicker>Work · 12 projects</Kicker>
           </div>
           <h1>
             A decade of projects that{' '}
@@ -29,7 +27,7 @@ export default function WorkPage() {
           </h1>
           <hr className="hero-rule" aria-hidden="true" />
           <p className="lead">
-            {studies.length} case studies across brand, plugin development, web, and marketing.
+            Twelve case studies across brand, plugin development, web, and marketing.
             Filter by discipline or scan the full set below.
           </p>
         </div>

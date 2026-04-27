@@ -3,21 +3,20 @@
 import Link from 'next/link';
 import { useEffect, useRef } from 'react';
 import { Reveal } from './Reveal';
+import servicesData from '@/data/services.json';
 
 type Row = { k: string; v: string };
-type Service = {
-  num: string;
+type CardDetail = {
   icon: string;
-  title: string;
   face: string;
   back: { rows: Row[]; note: string };
 };
 
-const SERVICES: Service[] = [
-  {
-    num: 'S / 01',
+// Per-service flip-card detail. Keyed by slug; ordering and label come from
+// data/services.json so the home grid can't drift from the canonical source.
+const CARD_DETAIL: Record<string, CardDetail> = {
+  'brand-identity': {
     icon: '🎨',
-    title: 'Brand & Identity',
     face: 'Strategy, positioning, naming, visual system & voice.',
     back: {
       rows: [
@@ -29,10 +28,8 @@ const SERVICES: Service[] = [
       note: 'Built as long as it needs. No rush, no shortcuts.',
     },
   },
-  {
-    num: 'S / 02',
+  'wordpress-plugin-development': {
     icon: '🧩',
-    title: 'WordPress Plugin Development',
     face: 'Custom plugins, bespoke integrations & internal tooling.',
     back: {
       rows: [
@@ -44,10 +41,8 @@ const SERVICES: Service[] = [
       note: 'Replace three bloated plugins with one clean one.',
     },
   },
-  {
-    num: 'S / 03',
+  'ai-automation': {
     icon: '✦',
-    title: 'AI & Automation',
     face: 'Brand-aware AI workflows, custom GPTs & content ops.',
     back: {
       rows: [
@@ -59,10 +54,8 @@ const SERVICES: Service[] = [
       note: 'Want it baked into WordPress? See Plugin Development →',
     },
   },
-  {
-    num: 'S / 04',
+  'wordpress-operations': {
     icon: '◉',
-    title: 'WordPress Operations',
     face: 'Engineer-grade WordPress operations on retainer.',
     back: {
       rows: [
@@ -74,7 +67,17 @@ const SERVICES: Service[] = [
       note: 'Not a care plan. An engineering retainer.',
     },
   },
-];
+};
+
+const SERVICES = servicesData.services
+  .filter((s) => s.tier === 'core' && s.published !== false && CARD_DETAIL[s.slug])
+  .sort((a, b) => a.order - b.order)
+  .map((s, i) => ({
+    slug: s.slug,
+    num: `S / ${String(i + 1).padStart(2, '0')}`,
+    title: s.label,
+    ...CARD_DETAIL[s.slug],
+  }));
 
 export function Services() {
   const rootRef = useRef<HTMLDivElement | null>(null);
@@ -151,7 +154,7 @@ export function Services() {
         <div className="flip-grid" ref={rootRef}>
           {SERVICES.map((s) => (
             <article
-              key={s.num}
+              key={s.slug}
               className="flip"
               data-cc="flip"
               itemScope
