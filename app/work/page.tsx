@@ -7,9 +7,9 @@ import { getAllCaseStudies, getFilterChips } from '@/lib/case-studies';
 const COUNT = getAllCaseStudies().length;
 
 export const metadata: Metadata = {
-  title: `Work — ${COUNT} projects across brand, web, and marketing`,
+  title: `Work — ${COUNT} case studies across brand, plugin development, web, and marketing`,
   description:
-    'Selected case studies — Kinnovis self-storage booking platform, News UK cyber awareness campaign, Al Jannah Villa Marrakech, TEDx University of Salford, and more across brand, web, and marketing.',
+    'Selected case studies — Kinnovis self-storage booking platform, News UK cyber awareness campaign, Al Jannah Villa Marrakech, TEDx University of Salford, and more across brand, plugin development, web, and marketing.',
 };
 
 export default function WorkPage() {
@@ -29,7 +29,7 @@ export default function WorkPage() {
           </h1>
           <hr className="hero-rule" aria-hidden="true" />
           <p className="lead">
-            {studies.length} selected projects across brand, web, marketing, and photography.
+            {studies.length} case studies across brand, plugin development, web, and marketing.
             Filter by discipline or scan the full set below.
           </p>
         </div>

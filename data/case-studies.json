@@ -27,14 +27,14 @@
       "count": 18
     },
     {
-      "id": "marketing",
-      "label": "Marketing",
-      "count": 18
-    },
-    {
       "id": "plugins",
       "label": "Plugins",
       "count": 0
+    },
+    {
+      "id": "marketing",
+      "label": "Marketing",
+      "count": 18
     },
     {
       "id": "photography",
