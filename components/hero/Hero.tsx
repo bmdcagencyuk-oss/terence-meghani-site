@@ -308,7 +308,11 @@ export function Hero() {
 
         <div className="hero-center">
           <h1 className="mega" ref={megaRef}>
-            <span className="ln ln1">Hertfordshire · London · Est. 2014</span>
+            <span className="ln ln1">Studio of one · Hertfordshire · London · Est. 2014</span>
+
+            <span className="ln ln-statement">
+              Brand. Code. Growth. <em>Built to</em>
+            </span>
 
             <span className="ln ln-fuel">
               <span className="fuel-word" id="fuelWord">
@@ -353,7 +357,14 @@ export function Hero() {
             <span className="icon" aria-hidden="true">🚀</span>
             <span>Book a<br />discovery call</span>
           </a>
-          <a href="#work" className="hero-cta-sec">See the work ↓</a>
+          <div className="hero-meta">
+            <span className="hero-urgency">
+              <span className="dot" aria-hidden="true" />
+              Two slots left · Q3 2026
+            </span>
+            <span className="hero-meta-line">30 min · free · no decks · no fluff</span>
+            <a href="#work" className="hero-cta-sec">See the work ↓</a>
+          </div>
           <p className="hero-bottom-note">
             <strong>Studio of one — brand, code, growth.</strong> Strategy and engineering,{' '}
             <span className="hl">wired together, not bolted on.</span>

@@ -87,15 +87,19 @@ export function TopNav() {
 
   return (
     <nav ref={navRef} className={navClass} id="nav" aria-label="Primary">
-      {/* Brand lockup — gorilla mark + wordmark, mirrors the footer signoff treatment. */}
-      <Link href="/" className="nav-brand" onClick={closeAll} data-cursor="link">
+      {/* Brand mark — gorilla emblem only, no wordmark. */}
+      <Link
+        href="/"
+        className="nav-brand nav-brand--mark"
+        onClick={closeAll}
+        data-cursor="link"
+        aria-label="Meghani Studio — home"
+      >
         <img
           className="nav-gorilla"
           src="/brand/emblem-gorilla.svg"
-          alt=""
-          aria-hidden="true"
+          alt="Meghani Studio"
         />
-        Meghani / Studio
       </Link>
 
       {/* Center menu */}
