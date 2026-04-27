@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 1000" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Terence Meghani — portrait placeholder">
+  <defs>
+    <radialGradient id="rocketGlow" cx="50%" cy="40%" r="65%">
+      <stop offset="0%" stop-color="#FF4D17" stop-opacity="0.55"/>
+      <stop offset="55%" stop-color="#FF4D17" stop-opacity="0.18"/>
+      <stop offset="100%" stop-color="#FF4D17" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="bgGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#1A0038"/>
+      <stop offset="55%" stop-color="#0A0014"/>
+      <stop offset="100%" stop-color="#0A0A0B"/>
+    </linearGradient>
+    <pattern id="grid" width="60" height="60" patternUnits="userSpaceOnUse">
+      <path d="M 60 0 L 0 0 0 60" fill="none" stroke="#FFFFFF" stroke-opacity="0.05" stroke-width="1"/>
+    </pattern>
+  </defs>
+
+  <rect width="800" height="1000" fill="url(#bgGrad)"/>
+  <rect width="800" height="1000" fill="url(#grid)"/>
+  <ellipse cx="400" cy="430" rx="420" ry="440" fill="url(#rocketGlow)"/>
+
+  <text x="400" y="380" text-anchor="middle"
+        font-family="'JetBrains Mono', ui-monospace, monospace"
+        font-size="20" letter-spacing="6"
+        fill="#FF4D17" opacity="0.92">
+    PORTRAIT · PLACEHOLDER
+  </text>
+
+  <text x="400" y="500" text-anchor="middle"
+        font-family="'Bricolage Grotesque', system-ui, sans-serif"
+        font-size="180" font-weight="600" letter-spacing="-6"
+        fill="#FFFFFF" opacity="0.92">
+    T
+  </text>
+
+  <line x1="320" y1="560" x2="480" y2="560" stroke="#FF4D17" stroke-width="2"/>
+
+  <text x="400" y="610" text-anchor="middle"
+        font-family="'Instrument Serif', Georgia, serif"
+        font-size="32" font-style="italic"
+        fill="#E6E6E6" opacity="0.85">
+    Terence Meghani
+  </text>
+
+  <text x="400" y="650" text-anchor="middle"
+        font-family="'JetBrains Mono', ui-monospace, monospace"
+        font-size="12" letter-spacing="4"
+        fill="#FFFFFF" opacity="0.5">
+    HERTFORDSHIRE · LONDON
+  </text>
+</svg>

@@ -16,7 +16,7 @@ export function About() {
             <span className="sunburst" aria-hidden="true" />
             <span className="hero-cape" aria-hidden="true" />
             <img
-              src="https://terencemeghani.com/wp-content/uploads/2026/01/grok-image-1d260190-3cb6-4438-9038-a92ceca011e8.png"
+              src="/about/terence-portrait.svg"
               alt="Terence Meghani — brand consultant, Hertfordshire & London"
             />
             <span className="streaks" aria-hidden="true">
