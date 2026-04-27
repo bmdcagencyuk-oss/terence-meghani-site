@@ -2492,37 +2492,43 @@ body:has(.nav-top.is-mobile-open) { overflow: hidden; }
   letter-spacing: -0.005em;
 }
 
-/* Triple-word fuel line — three rocket-orange words flow on one line on
-   desktop, wrap on narrow viewports. Per-word gradient text; the heavy
-   per-letter pulse animation only fires on legacy single-word fuel lines. */
+/* Triple-word fuel line — three white words with rocket-orange period
+   accents. Open width axis + generous word gap so the line breathes. */
 .mega .ln-fuel--triple {
   display: flex;
   flex-wrap: wrap;
   align-items: baseline;
-  gap: 0.06em 0.22em;
+  gap: 0.12em 0.5em;
   position: relative;
 }
 .mega .ln-fuel--triple .fuel-word {
   display: inline-block;
-  font-variation-settings: "wdth" 75, "opsz" 96, "wght" 700;
-  background: linear-gradient(180deg, var(--spark) 0%, var(--rocket) 100%);
-  background-size: 100% 200%;
-  background-position: 0% 0%;
-  -webkit-background-clip: text; background-clip: text;
-  -webkit-text-fill-color: transparent; color: transparent;
+  font-variation-settings: "wdth" 95, "opsz" 96, "wght" 700;
+  color: var(--white);
+  /* Override the gradient-clip path used by the legacy single-word fuel
+     treatment so the words render as solid white. */
+  background: none;
+  -webkit-background-clip: border-box; background-clip: border-box;
+  -webkit-text-fill-color: var(--white);
   position: relative;
-  line-height: 0.9;
+  line-height: 0.92;
+  letter-spacing: -0.025em;
   cursor: default;
-  transition: transform 0.3s var(--ease-bounce);
-  animation: fuelShift 6s linear infinite;
+  transition: transform 0.3s var(--ease-bounce), color 0.3s ease;
+  animation: none;
 }
-.mega .ln-fuel--triple .fuel-word:nth-child(1) { animation-delay: 0s; }
-.mega .ln-fuel--triple .fuel-word:nth-child(2) { animation-delay: 1.5s; }
-.mega .ln-fuel--triple .fuel-word:nth-child(3) { animation-delay: 3s; }
-.mega .ln-fuel--triple .fuel-word:hover { transform: translateY(-6px) scale(1.04); }
-/* Suppress the per-word ::before glow inherited from .fuel-word — three
-   stacked glows would muddy the line. */
+.mega .ln-fuel--triple .fuel-word .dot {
+  display: inline-block;
+  color: var(--rocket);
+  -webkit-text-fill-color: var(--rocket);
+  text-shadow: 0 0 28px color-mix(in srgb, var(--rocket) 70%, transparent);
+  margin-left: 0.02em;
+}
+.mega .ln-fuel--triple .fuel-word:hover { transform: translateY(-4px); }
 .mega .ln-fuel--triple .fuel-word::before { display: none; }
+/* Override .ln-fuel::after flame trail for the triple line — the per-word
+   gradient sweep was tied to a single-word layout. */
+.mega .ln-fuel--triple::after { display: none; }
 
 /* Flame-trail beneath FUEL — vertical taper of rocket → spark gradient */
 .mega .ln-fuel::after {

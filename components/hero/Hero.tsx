@@ -315,9 +315,9 @@ export function Hero() {
             </span>
 
             <span className="ln ln-fuel ln-fuel--triple">
-              <span className="fuel-word" id="fuelWord">Brand.</span>
-              <span className="fuel-word">Code.</span>
-              <span className="fuel-word">Growth.</span>
+              <span className="fuel-word" id="fuelWord">Brand<span className="dot">.</span></span>
+              <span className="fuel-word">Code<span className="dot">.</span></span>
+              <span className="fuel-word">Growth<span className="dot">.</span></span>
               <span className="fuel-emblem" aria-hidden="true" />
             </span>
           </h1>
