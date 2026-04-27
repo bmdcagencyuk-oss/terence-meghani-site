@@ -32,6 +32,7 @@ const CYCLE_PHRASES = [
   'wins the room',
   'builds loyalty',
   'stops scrolling',
+  'stays online when it matters',
 ];
 
 export function Hero() {
