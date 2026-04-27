@@ -207,7 +207,7 @@ const SERVICE_CONTENT: Record<
       { k: 'Platform lock',      v: 'None' },
       { k: 'Reply time',         v: 'Under 4h' },
     ],
-    heroClients: ['Tulsi Vagjiani', 'Vijay\'s Virasat', 'MHV Clinic'],
+    heroClients: ['Tulsi Vagjiani', 'Vijay\'s Virasat', 'Fireaway Pizza'],
     deliverables: [
       { title: 'Next.js / React websites',          desc: 'Modern stack, first-class SEO, server components where they help — not dogma.' },
       { title: 'Headless WordPress',                desc: 'WP as a content source, React on the frontend — editor-friendly, performance-first.' },
@@ -223,7 +223,7 @@ const SERVICE_CONTENT: Record<
       { step: '03', title: 'Build', body: 'Component-driven development with staging reviews' },
       { step: '04', title: 'Launch', body: 'Migration, DNS, final QA, handover' },
     ],
-    featured: ['tulsi-vagjiani', 'vijays-virasat', 'mhv-clinic'],
+    featured: ['tulsi-vagjiani', 'vijays-virasat', 'kbmd'],
     faq: [
       { q: 'WordPress or Next.js — which should I choose?', a: 'Depends on who updates the site. Content-heavy sites edited by non-developers: WordPress. Performance-critical or app-like sites: Next.js. Both work, the trade-offs are real.' },
       { q: 'How do you handle ongoing maintenance?', a: 'Either as a Growth Partnership retainer, an ad-hoc support agreement, or clean handover to your team. Clean handover is the default.' },
@@ -258,7 +258,7 @@ const SERVICE_CONTENT: Record<
       { k: 'Reporting',        v: 'Monthly' },
       { k: 'Minimum term',     v: '6 months' },
     ],
-    heroClients: ['Fireaway', 'Metro Laundrette', 'DCD Connect'],
+    heroClients: ['Fireaway', 'Japex', 'DCD Connect'],
     deliverables: [
       { title: 'Technical SEO audits',          desc: 'Crawl, index, schema, hreflang, core-vitals — the full site health picture, prioritised by impact.' },
       { title: 'Content strategy',              desc: 'Keyword mapping to revenue, editorial calendar, brief templates your writers can actually follow.' },
@@ -267,7 +267,7 @@ const SERVICE_CONTENT: Record<
       { title: 'Core Web Vitals optimisation',  desc: 'LCP, INP, CLS — measured on real devices, fixed where it moves the needle.' },
       { title: 'Monthly reporting',             desc: 'What ranks, what moved, what we\'re doing next — quarterly strategy review built in.' },
     ],
-    featured: ['fireaway-pizza', 'metro-laundrette-dry-cleaners'],
+    featured: ['fireaway-pizza', 'japex-automotive'],
     launchHeadline: 'organic growth',
   },
   'growth-partnership': {

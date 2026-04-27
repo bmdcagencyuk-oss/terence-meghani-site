@@ -8,12 +8,12 @@ import { LaunchCTA } from '@/components/launch/LaunchCTA';
 export const metadata: Metadata = {
   title: 'Growth Partnership — Terence Meghani',
   description:
-    'A retained monthly engagement for businesses that want brand, AI, plugin dev, and web on ongoing support. Three tiers, no minimum term, cancel anytime.',
+    'A retained monthly engagement for businesses that want the full stack — strategy, engineering, and ongoing operations — under one roof. Three tiers, no minimum term, cancel anytime.',
 };
 
 const INCLUDED = [
   { n: '01', t: 'Monthly strategy call',         d: '90-minute working session covering priorities, progress, and the next month’s plan.' },
-  { n: '02', t: 'Agreed hours per month',        d: 'Banked across every practice — brand, AI, plugins, web. Use them where they land hardest.' },
+  { n: '02', t: 'Agreed hours per month',        d: 'Banked across every practice — brand, plugins, AI, operations. Use them where they land hardest.' },
   { n: '03', t: 'Priority turnaround',           d: 'Urgent work jumps the queue. Typical reply under four hours during UK business hours.' },
   { n: '04', t: 'Quarterly review',              d: 'Brand and performance review every three months — what’s working, what to change.' },
   { n: '05', t: 'Specialist network access',     d: 'Trusted collaborators (photo, motion, copy) brought in at cost when scope demands.' },
@@ -79,13 +79,14 @@ export default function GrowthPartnershipPage() {
               maxWidth: '30ch',
             }}
           >
-            Brand, AI, plugin dev, web — one monthly retainer.
+            Brand, plugin development, AI, and operations — one monthly retainer.
           </p>
           <hr className="hero-rule" aria-hidden="true" />
           <p className="lead">
-            A retained monthly engagement for businesses that want the full stack on
-            ongoing support. Flexible scope, no minimum term, cancel anytime. Best for
-            scale-ups where priorities shift faster than a fixed-scope project allows.
+            A retained monthly engagement for businesses that want the full stack —
+            strategy, engineering, and ongoing operations — under one roof. Flexible scope,
+            no minimum term, cancel anytime. Best for scale-ups where priorities shift faster
+            than a fixed-scope project allows.
           </p>
           <div style={{ marginTop: 36, display: 'flex', flexWrap: 'wrap', gap: 12 }}>
             <Button href="https://calendly.com/terencemeghani" external variant="primary">

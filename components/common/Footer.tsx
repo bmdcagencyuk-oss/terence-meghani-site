@@ -14,8 +14,9 @@ export function Footer() {
               Terence Meghani
             </div>
             <p className="f-tagline">
-              Brand consultant &amp; developer — branding, AI&nbsp;&amp;&nbsp;automation,
-              WordPress plugins and higher-tier web development.
+              Brand consultant &amp; WordPress engineer — brand &amp; identity, custom
+              plugin development, AI&nbsp;&amp;&nbsp;automation, and engineering-grade
+              WordPress operations.
             </p>
             <span className="f-location">Hertfordshire &amp; London · UK</span>
           </div>

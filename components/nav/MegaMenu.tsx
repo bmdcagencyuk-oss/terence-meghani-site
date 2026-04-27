@@ -101,8 +101,8 @@ export function MegaMenu({ id, labelledBy, onItemClick }: MegaMenuProps) {
           Need <em>all four?</em>
         </h4>
         <p>
-          Growth Partnership bundles brand, AI, plugin dev and web into one
-          monthly engagement.
+          Growth Partnership bundles brand, plugin development, AI, and engineering
+          operations into one monthly engagement.
         </p>
         <Link
           href="/engage/growth-partnership/"
