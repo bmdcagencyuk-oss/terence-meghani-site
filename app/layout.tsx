@@ -48,11 +48,11 @@ const jetbrainsMono = JetBrains_Mono({
 export const metadata: Metadata = {
   metadataBase: new URL('https://terencemeghani.com'),
   title: {
-    default: 'Terence Meghani — Give your brand fuel.',
+    default: 'Terence Meghani — Built to compound.',
     template: '%s · Terence Meghani',
   },
   description:
-    'Brand consultant & developer, Hertfordshire & London. Brand strategy, AI & automation, WordPress plugin development, and web for businesses that want to be remembered. 4.9★ on Trustpilot.',
+    'Studio of one — brand, code, growth. WordPress operations, plugin development, AI & automation, and strategy-led brand work. Hertfordshire & London. 4.9★ on Trustpilot. Built to compound.',
   keywords: [
     'brand consultant',
     'brand designer',
@@ -83,9 +83,9 @@ export const metadata: Metadata = {
     type: 'website',
     locale: 'en_GB',
     siteName: 'Terence Meghani',
-    title: 'Terence Meghani — Give your brand fuel.',
+    title: 'Terence Meghani — Built to compound.',
     description:
-      'Brand consultant & developer — over a decade of work with News UK, Royal London, NHS, TEDx, BBC, and Fireaway.',
+      'Studio of one — brand, code, growth. Over a decade of work with News UK, Royal London, NHS, TEDx, BBC, and Fireaway. Built to compound.',
     // og image auto-wired by app/opengraph-image.tsx
   },
   twitter: {

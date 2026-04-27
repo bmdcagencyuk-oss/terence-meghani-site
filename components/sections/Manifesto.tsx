@@ -2,20 +2,12 @@
 
 import { useEffect, useRef } from 'react';
 
-const HALF_SECOND = 'the half-second';
-
 export function Manifesto() {
   const h2Ref = useRef<HTMLHeadingElement | null>(null);
 
   useEffect(() => {
     const h2 = h2Ref.current;
     if (!h2) return;
-
-    // Stagger the letter cascade on "It's the half-second"
-    const letters = h2.querySelectorAll<HTMLElement>('.letter:not(.ls)');
-    letters.forEach((el, i) => {
-      el.style.transitionDelay = `${0.65 + i * 0.035}s`;
-    });
 
     const observer = new IntersectionObserver(
       (entries) => {
@@ -80,12 +72,6 @@ export function Manifesto() {
     };
   }, []);
 
-  const halfSecondLetters = Array.from(HALF_SECOND).map((ch, i) => (
-    <span key={i} className={`letter${ch === ' ' ? ' ls' : ''}`}>
-      {ch === ' ' ? ' ' : ch}
-    </span>
-  ));
-
   return (
     <section className="manifesto">
       <div className="wrap">
@@ -96,68 +82,39 @@ export function Manifesto() {
 
         <h2 ref={h2Ref} id="manifestoH2">
           <span className="line line-1">
-            <span className="word"><span className="wi">Your</span></span>{' '}
+            <span className="word"><span className="wi">A</span></span>{' '}
+            <span className="word"><span className="wi">weak</span></span>{' '}
             <span className="word"><span className="wi">brand</span></span>{' '}
-            <em className="word"><span className="wi">isn&rsquo;t</span></em>{' '}
-            <span className="word out-wrap">
-              <span className="wi"><span className="out">a logo.</span></span>
-              <svg
-                className="strike"
-                viewBox="0 0 200 40"
-                preserveAspectRatio="none"
-                aria-hidden="true"
-              >
-                <path d="M 4 32 Q 60 10 110 22 T 196 10" />
-              </svg>
-            </span>
+            <em className="word"><span className="wi">fades.</span></em>
           </span>
 
           <span className="line line-1b">
-            <span className="word"><span className="wi">And</span></span>{' '}
-            <span className="word"><span className="wi">your</span></span>{' '}
-            <span className="word"><span className="wi">site</span></span>{' '}
-            <em className="word"><span className="wi">isn&rsquo;t</span></em>{' '}
-            <span className="word out-wrap">
-              <span className="wi"><span className="out">a CMS install.</span></span>
-              <svg
-                className="strike"
-                viewBox="0 0 200 40"
-                preserveAspectRatio="none"
-                aria-hidden="true"
-              >
-                <path d="M 4 30 Q 60 14 110 24 T 196 12" />
-              </svg>
-            </span>
-          </span>
-
-          <span className="line line-2">
-            <span className="word"><span className="wi">They&rsquo;re</span></span>{' '}
-            <span className="cond" aria-label="the half-second">
-              {halfSecondLetters}
-            </span>
+            <span className="word"><span className="wi">A</span></span>{' '}
+            <span className="word"><span className="wi">loose</span></span>{' '}
+            <span className="word"><span className="wi">codebase</span></span>{' '}
+            <em className="word"><span className="wi">fails.</span></em>
           </span>
 
           <span className="line line-3">
-            <span className="word"><span className="wi">feeling</span></span>{' '}
-            <span className="word"><span className="wi">that</span></span>{' '}
-            <span className="word"><span className="wi">sells</span></span>{' '}
+            <span className="word"><span className="wi">Both</span></span>{' '}
+            <span className="word"><span className="wi">compound</span></span>{' '}
             <span className="word hl-wrap">
-              <span className="wi"><span className="hl">everything else.</span></span>
+              <span className="wi"><span className="hl">— for or against you.</span></span>
             </span>
           </span>
         </h2>
 
         <div className="bottom">
           <p>
-            <strong>A weak brand fades. A sharp one compounds.</strong> The same is true of the
-            engineering behind it — sloppy plugins and creaky operations leak revenue every day
-            they&rsquo;re left running.
+            <strong>I run an independent studio of one</strong> — brand, code, growth,
+            all from the same brain. No account managers, no handoff chain, no committee.
+            A decade of strategy, design and engineering aimed straight at the problem in
+            front of us.
           </p>
           <p>
-            I work close — no account managers, no handoff chain. A decade of strategy and design
-            wired to the engineering that puts it on the internet properly. Most engagements start
-            with a thirty-minute call and end with something loud, defensible, on-brief —{' '}
-            <span className="under">and built to stay up.</span>
+            Most engagements start with a thirty-minute call and end with something{' '}
+            <span className="under">measurable — revenue, performance, time saved</span>{' '}
+            — not impressions.
           </p>
         </div>
       </div>

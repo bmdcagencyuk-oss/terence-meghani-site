@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 import Link from 'next/link';
 import { getAllPlugins } from '@/lib/plugins';
 
@@ -14,9 +15,8 @@ export function Footer() {
               Terence Meghani
             </div>
             <p className="f-tagline">
-              Brand consultant &amp; WordPress engineer — brand &amp; identity, custom
-              plugin development, AI&nbsp;&amp;&nbsp;automation, and engineering-grade
-              WordPress operations.
+              Studio of one — brand, code, growth. WordPress operations, plugin
+              development, AI and automation, strategy-led brand work.
             </p>
             <span className="f-location">Hertfordshire &amp; London · UK</span>
           </div>
@@ -24,10 +24,10 @@ export function Footer() {
           <div className="f-col">
             <h5>Services</h5>
             <ul>
-              <li className="primary"><Link href="/services/brand-identity/">Brand &amp; Identity</Link></li>
+              <li className="primary"><Link href="/services/wordpress-operations/">WordPress Operations</Link></li>
               <li className="primary"><Link href="/services/wordpress-plugin-development/">WordPress Plugins</Link></li>
               <li className="primary"><Link href="/services/ai-automation/">AI &amp; Automation</Link></li>
-              <li className="primary"><Link href="/services/wordpress-operations/">WordPress Operations</Link></li>
+              <li className="primary"><Link href="/services/brand-identity/">Brand &amp; Identity</Link></li>
               <li><Link href="/services/web-development/">Web Development</Link></li>
               <li><Link href="/services/seo-organic-growth/">SEO &amp; Organic Growth</Link></li>
               <li><Link href="/engage/growth-partnership/">Growth Partnership</Link></li>
@@ -95,7 +95,13 @@ export function Footer() {
         </div>
 
         <div className="f-tagline-bottom">
-          Give your brand <em>fuel.</em>
+          <img
+            src="/brand/emblem-gorilla.svg"
+            alt=""
+            aria-hidden="true"
+            className="f-gorilla"
+          />
+          <em>Built to compound.</em>
         </div>
       </div>
     </footer>

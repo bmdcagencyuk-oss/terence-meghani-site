@@ -21,11 +21,11 @@ const CARE: Row[] = [
 ];
 
 const YOU: Row[] = [
+  { text: <>Strategy AND execution AND engineering. One brain. One brief. <strong>Zero handoffs</strong>.</> },
   { text: <>You work with <strong>the person doing the work</strong>. Direct line. Always.</> },
   { text: <>Fixed-fee projects from <strong>£6,500</strong> · operations retainers from <strong>£1,500/mo</strong>.</> },
   { text: <>Your vision <strong>sharpened — not sanded down</strong> — by someone who&rsquo;s done it 60+ times.</> },
   { text: <>Shared files, weekly reviews, <strong>replies under 4 hours</strong>.</> },
-  { text: <>Strategy AND execution AND engineering. One brain. One brief. <strong>Zero handoffs</strong>.</> },
   { text: <>Measured in <strong>revenue lift AND engineering quality</strong>. 3× average across 14 tracked launches.</> },
 ];
 
@@ -99,8 +99,8 @@ export function Why() {
               ))}
             </ul>
             <div className="foot">
-              <span>From</span>
-              <span className="val">£6.5k brand · £1,500/mo operations</span>
+              <span>Average investment</span>
+              <span className="val">From £6.5k</span>
             </div>
           </div>
         </div>

@@ -2263,6 +2263,25 @@ body:has(.nav-top.is-mobile-open) { overflow: hidden; }
   .hero-code-backdrop { display: none; }
 }
 
+/* Silverback gorilla — secondary brand mark, watermarked behind hero copy. */
+.hero-gorilla-watermark {
+  position: absolute;
+  right: clamp(-40px, -2vw, 0px);
+  bottom: -40px;
+  width: clamp(360px, 42vw, 640px);
+  height: auto;
+  z-index: 0;
+  opacity: 0.13;
+  pointer-events: none;
+  user-select: none;
+  filter: grayscale(1) contrast(0.9);
+  /* Below the rocket canvas (z 1) and the headline copy (.wrap > * has its
+     own stacking via positioning); above the .hero base gradient. */
+}
+@media (max-width: 768px) {
+  .hero-gorilla-watermark { display: none; }
+}
+
 /* New atmospheric aurora layer — three slow-drifting blurred colour clouds.
  * Replaces the visual weight the particle canvas used to carry; works
  * cleanly behind the stickers without competing with them. */
@@ -2489,6 +2508,10 @@ body:has(.nav-top.is-mobile-open) { overflow: hidden; }
 .mega .fuel-word .ch:nth-child(2) { animation-delay: 0.12s, 0.3s;  animation-name: fuelPulseAlt, fuelShift; }
 .mega .fuel-word .ch:nth-child(3) { animation-delay: 0.24s, 0.6s;  animation-name: fuelPulse, fuelShift; }
 .mega .fuel-word .ch:nth-child(4) { animation-delay: 0.36s, 0.9s;  animation-name: fuelPulseAlt, fuelShift; }
+.mega .fuel-word .ch:nth-child(5) { animation-delay: 0.48s, 1.2s;  animation-name: fuelPulse, fuelShift; }
+.mega .fuel-word .ch:nth-child(6) { animation-delay: 0.60s, 1.5s;  animation-name: fuelPulseAlt, fuelShift; }
+.mega .fuel-word .ch:nth-child(7) { animation-delay: 0.72s, 1.8s;  animation-name: fuelPulse, fuelShift; }
+.mega .fuel-word .ch:nth-child(8) { animation-delay: 0.84s, 2.1s;  animation-name: fuelPulseAlt, fuelShift; }
 .mega .fuel-word .ch:hover { animation-play-state: paused; transform: translateY(-14px) scale(1.1) rotate(-3deg); }
 .mega .fuel-word .ch:nth-child(even):hover { transform: translateY(-14px) scale(1.1) rotate(3deg); }
 .mega .fuel-emblem {
@@ -3629,6 +3652,12 @@ body:has(.nav-top.is-mobile-open) { overflow: hidden; }
   justify-content: center;
   transition: border-color 0.6s ease, background 0.6s ease, color 0.6s ease;
 }
+.launch .countdown .launch-gorilla {
+  height: 40px; width: auto;
+  margin-right: 4px;
+  opacity: 0.92;
+  filter: grayscale(1);
+}
 .launch .countdown .beacon {
   width: 8px; height: 8px; border-radius: 50%;
   background: var(--rocket);
@@ -4139,6 +4168,15 @@ footer .f-emblem-watermark {
   letter-spacing: 0.02em;
   color: var(--fog);
   text-transform: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+}
+.f-tagline-bottom .f-gorilla {
+  height: 32px; width: auto;
+  opacity: 0.85;
+  filter: grayscale(1);
 }
 .f-tagline-bottom em {
   font-family: var(--f-italic);
@@ -4147,6 +4185,7 @@ footer .f-emblem-watermark {
   color: var(--rocket);
   letter-spacing: -0.01em;
   font-variation-settings: normal;
+  font-size: 18px;
 }
 
 .f-bottom {

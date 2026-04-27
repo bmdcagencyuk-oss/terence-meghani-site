@@ -5,21 +5,22 @@
   },
   "services": [
     {
-      "slug": "brand-identity",
-      "label": "Brand & Identity",
-      "icon": "Palette",
+      "slug": "wordpress-operations",
+      "label": "WordPress Operations",
+      "icon": "Activity",
       "tier": "core",
       "order": 1,
-      "tagline": "Strategy, naming, visual system & voice.",
-      "shortDescription": "Strategy, naming, visual system and voice for businesses that want to be remembered.",
-      "longDescription": "Brand and identity work for founders, scale-ups, and established businesses ready to refresh or rebuild. Positioning, naming, visual system, tone of voice, and guidelines — produced to standard, applied across every touchpoint.",
-      "url": "/services/brand-identity/",
+      "tagline": "Engineer-grade WordPress operations on retainer.",
+      "shortDescription": "Productised retainer for businesses where the site genuinely matters. Server log diagnostics, database health, deliverability, security and performance — three tiers, defined response.",
+      "longDescription": "Productised WordPress operations for businesses where the site genuinely matters — revenue depends on it, customers depend on it, or the team can't afford it falling over. Server-level log diagnostics, database health, scheduler integrity, email deliverability done properly, security hardening, performance tuning, and plugin-load auditing that most agencies don't know to look for. Three tiers — Boost, Orbit, Apogee — with monthly written reviews and defined response windows.",
+      "url": "/services/wordpress-operations/",
       "keywords": [
-        "branding agency",
-        "brand identity designer",
-        "brand consultant",
-        "visual identity",
-        "brand strategy"
+        "WordPress operations retainer",
+        "WordPress engineering retainer",
+        "managed WordPress operations",
+        "WordPress site reliability",
+        "WordPress technical management UK",
+        "WordPress care plan alternative"
       ]
     },
     {
@@ -59,22 +60,21 @@
       ]
     },
     {
-      "slug": "wordpress-operations",
-      "label": "WordPress Operations",
-      "icon": "Activity",
+      "slug": "brand-identity",
+      "label": "Brand & Identity",
+      "icon": "Palette",
       "tier": "core",
       "order": 4,
-      "tagline": "Engineer-grade WordPress operations on retainer.",
-      "shortDescription": "Productised retainer for businesses where the site genuinely matters. Server log diagnostics, database health, deliverability, security and performance — three tiers, defined response.",
-      "longDescription": "Productised WordPress operations for businesses where the site genuinely matters — revenue depends on it, customers depend on it, or the team can't afford it falling over. Server-level log diagnostics, database health, scheduler integrity, email deliverability done properly, security hardening, performance tuning, and plugin-load auditing that most agencies don't know to look for. Three tiers — Boost, Orbit, Apogee — with monthly written reviews and defined response windows.",
-      "url": "/services/wordpress-operations/",
+      "tagline": "Strategy, naming, visual system & voice.",
+      "shortDescription": "Strategy, naming, visual system and voice for businesses that want to be remembered.",
+      "longDescription": "Brand and identity work for founders, scale-ups, and established businesses ready to refresh or rebuild. Positioning, naming, visual system, tone of voice, and guidelines — produced to standard, applied across every touchpoint.",
+      "url": "/services/brand-identity/",
       "keywords": [
-        "WordPress operations retainer",
-        "WordPress engineering retainer",
-        "managed WordPress operations",
-        "WordPress site reliability",
-        "WordPress technical management UK",
-        "WordPress care plan alternative"
+        "branding agency",
+        "brand identity designer",
+        "brand consultant",
+        "visual identity",
+        "brand strategy"
       ]
     },
     {

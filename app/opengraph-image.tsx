@@ -1,9 +1,11 @@
 import { ImageResponse } from 'next/og';
 
 export const runtime = 'edge';
-export const alt = 'Terence Meghani — Give your brand fuel.';
+export const alt = 'Terence Meghani — Built to compound.';
 export const size = { width: 1200, height: 630 };
 export const contentType = 'image/png';
+
+const SITE = 'https://terencemeghani.com';
 
 export default function OGImage() {
   return new ImageResponse(
@@ -21,11 +23,11 @@ export default function OGImage() {
           padding: '80px',
           fontFamily: 'system-ui, sans-serif',
           color: 'white',
+          position: 'relative',
         }}
       >
         {/* Top: emblem + name */}
         <div style={{ display: 'flex', flexDirection: 'column', gap: 18 }}>
-          {/* Simple emblem representation */}
           <div
             style={{
               display: 'flex',
@@ -65,24 +67,24 @@ export default function OGImage() {
               display: 'flex',
             }}
           >
-            Give your brand
+            Built to
           </div>
           <div
             style={{
-              fontSize: 92,
-              fontStyle: 'italic',
+              fontSize: 124,
+              fontWeight: 700,
               color: '#FF4D17',
               lineHeight: 1,
-              letterSpacing: -4,
-              marginTop: 8,
+              letterSpacing: -5,
+              marginTop: 12,
               display: 'flex',
             }}
           >
-            fuel.
+            COMPOUND.
           </div>
         </div>
 
-        {/* Bottom */}
+        {/* Bottom-left: tagline */}
         <div style={{ display: 'flex', flexDirection: 'column', gap: 6 }}>
           <div
             style={{
@@ -99,7 +101,7 @@ export default function OGImage() {
               fontStyle: 'italic',
             }}
           >
-            Brand consultant &amp; developer
+            Studio of one — brand, code, growth.
           </div>
           <div
             style={{
@@ -112,6 +114,22 @@ export default function OGImage() {
             HERTFORDSHIRE · LONDON
           </div>
         </div>
+
+        {/* Bottom-right: silverback emblem */}
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src={`${SITE}/brand/emblem-gorilla.svg`}
+          alt=""
+          width={102}
+          height={80}
+          style={{
+            position: 'absolute',
+            right: 80,
+            bottom: 80,
+            opacity: 0.92,
+            filter: 'grayscale(1)',
+          }}
+        />
       </div>
     ),
     { ...size },

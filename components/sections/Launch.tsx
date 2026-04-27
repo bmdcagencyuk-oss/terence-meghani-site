@@ -1,5 +1,6 @@
 'use client';
 
+/* eslint-disable @next/next/no-img-element */
 import { useEffect, useRef } from 'react';
 import { Reveal } from './Reveal';
 
@@ -140,6 +141,12 @@ export function Launch() {
       <div className="starfield" ref={starfieldRef} aria-hidden="true" />
       <div className="wrap">
         <div className="countdown" ref={countdownRef} aria-live="polite">
+          <img
+            className="launch-gorilla"
+            src="/brand/emblem-gorilla.svg"
+            alt=""
+            aria-hidden="true"
+          />
           <span className="beacon" aria-hidden="true" />
           <span className="lbl" ref={lblRef}>T-MINUS</span>
           <span className="num" ref={numRef}>10</span>

@@ -2,39 +2,14 @@
 
 import { useEffect, useRef } from 'react';
 
-type GiveLetter = { ch: string; q: string };
-
-const GIVE_LETTERS: GiveLetter[] = [
-  { ch: 'G', q: 'Creativity takes courage.|Henri Matisse' },
-  { ch: 'i', q: 'Imagination is the beginning of creation.|George Bernard Shaw' },
-  { ch: 'v', q: 'The void is where creativity begins.|Rick Rubin' },
-  { ch: 'e', q: 'Every artist was first an amateur.|Ralph Waldo Emerson' },
-];
-
-const YOUR_LETTERS: GiveLetter[] = [
-  { ch: 'y', q: "You can't use up creativity. The more you use, the more you have.|Maya Angelou" },
-  { ch: 'o', q: 'Originality is nothing but judicious imitation.|Voltaire' },
-  { ch: 'u', q: 'Curiosity is the wick in the candle of learning.|William Arthur Ward' },
-  { ch: 'r', q: 'Rules are what the artist breaks.|Man Ray' },
-];
-
-const BRAND_LETTERS: GiveLetter[] = [
-  { ch: 'b', q: 'A brand is what people say when you leave the room.|Jeff Bezos' },
-  { ch: 'r', q: 'Restraint breeds creativity.|Ron Howard' },
-  { ch: 'a', q: 'Art is the lie that enables us to realize the truth.|Pablo Picasso' },
-  { ch: 'n', q: 'Nothing is original. Steal from anywhere that resonates.|Jim Jarmusch' },
-  { ch: 'd', q: 'Design is intelligence made visible.|Alina Wheeler' },
-];
-
 type CyclePhrase = { text: string; italic?: boolean };
 
 const CYCLE_PHRASES: CyclePhrase[] = [
-  { text: 'launches businesses' },
   { text: 'compounds revenue' },
+  { text: 'ships on time' },
+  { text: 'outlasts the trend cycle' },
   { text: 'wins the room' },
   { text: 'builds loyalty' },
-  { text: 'stops scrolling' },
-  { text: 'stays online when it matters', italic: true },
 ];
 
 export function Hero() {
@@ -202,56 +177,6 @@ export function Hero() {
     };
   }, []);
 
-  /* Letter-quote popup — hover any letter in "Give your brand" */
-  useEffect(() => {
-    if (!window.matchMedia('(hover: hover) and (pointer: fine)').matches) return;
-    const mega = megaRef.current;
-    if (!mega) return;
-    const parent = mega.querySelector<HTMLElement>('.ln-give');
-    const letters = mega.querySelectorAll<HTMLElement>('.ln-give .ch[data-q]');
-    if (!parent || !letters.length) return;
-
-    const pop = document.createElement('div');
-    pop.className = 'q-pop';
-    pop.innerHTML = '<span class="q-text"></span><span class="q-auth"></span>';
-    document.body.appendChild(pop);
-    const textEl = pop.querySelector<HTMLElement>('.q-text')!;
-    const authEl = pop.querySelector<HTMLElement>('.q-auth')!;
-
-    let hideTimer: number | null = null;
-    const POP_WIDTH = 260;
-    const EDGE_PAD = 20;
-
-    const show = (letter: HTMLElement) => {
-      if (hideTimer) {
-        clearTimeout(hideTimer);
-        hideTimer = null;
-      }
-      const parts = (letter.dataset.q || '').split('|');
-      textEl.textContent = `“${parts[0] ?? ''}”`;
-      authEl.textContent = `— ${parts[1] ?? ''}`;
-      const r = letter.getBoundingClientRect();
-      let x = r.left + r.width / 2;
-      x = Math.max(POP_WIDTH / 2 + EDGE_PAD, Math.min(window.innerWidth - POP_WIDTH / 2 - EDGE_PAD, x));
-      pop.style.left = `${x}px`;
-      pop.style.top = `${r.top}px`;
-      const arrowOffset = r.left + r.width / 2 - x;
-      pop.style.setProperty('--arrow-x', `${arrowOffset}px`);
-      pop.classList.add('visible');
-    };
-    const hide = () => {
-      hideTimer = window.setTimeout(() => pop.classList.remove('visible'), 60);
-    };
-    letters.forEach((l) => l.addEventListener('mouseenter', () => show(l)));
-    parent.addEventListener('mouseleave', hide);
-    return () => {
-      letters.forEach((l) => l.removeEventListener('mouseenter', () => show(l)));
-      parent.removeEventListener('mouseleave', hide);
-      if (hideTimer) clearTimeout(hideTimer);
-      pop.remove();
-    };
-  }, []);
-
   /* Hero subhead cycling phrase */
   useEffect(() => {
     const rotator = cycleRef.current;
@@ -347,6 +272,15 @@ export function Hero() {
       <canvas className="rocket-canvas" ref={canvasRef} aria-hidden="true" />
       <div className="grid-lines" aria-hidden="true" />
 
+      {/* Silverback gorilla — secondary mark watermark, bottom-right behind copy. */}
+      {/* eslint-disable-next-line @next/next/no-img-element */}
+      <img
+        className="hero-gorilla-watermark"
+        src="/brand/emblem-gorilla.svg"
+        alt=""
+        aria-hidden="true"
+      />
+
       <div className="wrap">
         <div className="hero-top">
           <div className="left">
@@ -376,39 +310,25 @@ export function Hero() {
           <h1 className="mega" ref={megaRef}>
             <span className="ln ln1">Hertfordshire · London · Est. 2014</span>
 
-            <span className="ln ln-give">
-              {GIVE_LETTERS.map((l, i) => (
-                <span key={`g-${i}`} className="ch" data-q={l.q}>
-                  {l.ch}
-                </span>
-              ))}
-              <span className="sp">&nbsp;</span>
-              {YOUR_LETTERS.map((l, i) => (
-                <span key={`y-${i}`} className="ch" data-q={l.q}>
-                  {l.ch}
-                </span>
-              ))}
-              <span className="sp">&nbsp;</span>
-              {BRAND_LETTERS.map((l, i) => (
-                <span key={`b-${i}`} className="ch" data-q={l.q}>
-                  {l.ch}
-                </span>
-              ))}
-            </span>
+            <span className="ln ln-give ln-built">Built to</span>
 
             <span className="ln ln-fuel">
               <span className="fuel-word" id="fuelWord">
-                <span className="ch">F</span>
+                <span className="ch">C</span>
+                <span className="ch">O</span>
+                <span className="ch">M</span>
+                <span className="ch">P</span>
+                <span className="ch">O</span>
                 <span className="ch">U</span>
-                <span className="ch">E</span>
-                <span className="ch">L</span>
+                <span className="ch">N</span>
+                <span className="ch">D</span>
               </span>
               <span className="fuel-emblem" aria-hidden="true" />
             </span>
           </h1>
 
           <p className="hero-sub">
-            Branding that{' '}
+            Brand, code and growth that{' '}
             <span className="hero-cycle" ref={cycleRef}>
               {CYCLE_PHRASES.map((p, i) => (
                 <span
@@ -419,7 +339,7 @@ export function Hero() {
                 </span>
               ))}
             </span>{' '}
-            — not another polite logo.
+            — under one roof.
           </p>
         </div>
 
@@ -436,8 +356,7 @@ export function Hero() {
           </a>
           <a href="#work" className="hero-cta-sec">See the work ↓</a>
           <p className="hero-bottom-note">
-            <strong>One brain. Ten years.</strong> Brand strategy, custom WordPress
-            engineering, and AI workflows —{' '}
+            <strong>Studio of one — brand, code, growth.</strong> Strategy and engineering,{' '}
             <span className="hl">wired together, not bolted on.</span>
           </p>
         </div>
