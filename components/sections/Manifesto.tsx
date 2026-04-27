@@ -108,8 +108,8 @@ export function Manifesto() {
           <p>
             <strong>I run an independent studio of one</strong> — brand, code, growth,
             all from the same brain. No account managers, no handoff chain, no committee.
-            A decade of strategy, design and engineering aimed straight at the problem in
-            front of us.
+            Twelve years of strategy, design and engineering aimed straight at the problem
+            in front of us.
           </p>
           <p>
             Most engagements start with a thirty-minute call and end with something{' '}

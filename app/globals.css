@@ -2474,7 +2474,7 @@ body:has(.nav-top.is-mobile-open) { overflow: hidden; }
 .mega .sp { display: inline-block; width: 0.3em; }
 .mega .ln-fuel { display: flex; align-items: baseline; gap: 0.06em; position: relative; }
 
-/* Standalone "Built on" italic-serif accent that sits above the mega line. */
+/* Standalone "Built on" italic-serif accent (legacy — retained as orphan). */
 .mega .ln-statement {
   display: block;
   font-size: 0.32em;
@@ -2490,6 +2490,32 @@ body:has(.nav-top.is-mobile-open) { overflow: hidden; }
   color: var(--rocket);
   font-variation-settings: normal;
   letter-spacing: -0.005em;
+}
+
+/* "Hi, I'm Terence." — friendly italic-serif greeting above the build line. */
+.mega .ln-greet {
+  display: block;
+  font-family: var(--f-italic);
+  font-style: italic;
+  font-weight: 400;
+  font-size: 0.30em;
+  line-height: 1.05;
+  letter-spacing: -0.005em;
+  text-transform: none;
+  color: var(--white);
+  margin: 6px 0 6px;
+}
+
+/* "I build brands" — medium display line that hands off to the mega "THAT SHIP." */
+.mega .ln-builds {
+  display: block;
+  font-variation-settings: "wdth" 95, "opsz" 72, "wght" 500;
+  font-size: 0.42em;
+  line-height: 1;
+  letter-spacing: -0.025em;
+  text-transform: none;
+  color: var(--white);
+  margin: 0 0 6px;
 }
 
 /* Triple-word fuel line — three white words with rocket-orange period

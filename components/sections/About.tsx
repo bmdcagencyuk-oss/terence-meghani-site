@@ -47,16 +47,20 @@ export function About() {
 
           <div>
             <Reveal as="h2" variant="slide-up">
-              One brain. <em>Ten years.</em> Your brand, unmistakable.
+              One brain. <em>Twelve years.</em> Your brand, unmistakable.
             </Reveal>
             <div className="body">
               <p>
                 <strong>
-                  I&rsquo;m Terence — studio of one, based between Hertfordshire and London.
+                  Twelve years of building brands and shipping code, based between
+                  Hertfordshire and London.
                 </strong>{' '}
-                Brand, code, growth — all from the same brain. For over a decade I&rsquo;ve
-                built brands for scrappy startups and global names (BBC, News UK, Royal London,
-                NHS, TEDx) — with the same close, personal approach to each.
+                Studio of one — brand, code, growth, all from the same brain.
+              </p>
+              <p>
+                For more than a decade I&rsquo;ve built brands for scrappy startups and
+                global names (BBC, News UK, Royal London, NHS, TEDx) — with the same
+                close, personal approach to each.
               </p>
               <p>
                 My work spans four practices most studios split across four teams:{' '}
@@ -76,8 +80,8 @@ export function About() {
             </div>
             <div className="mini-stats">
               <div className="ms">
-                <Reveal as="div" variant="pop" className="n">10+</Reveal>
-                <div className="l">Years branding</div>
+                <Reveal as="div" variant="pop" className="n">12+</Reveal>
+                <div className="l">Years building</div>
               </div>
               <div className="ms">
                 <Reveal as="div" variant="pop" className="n">100+</Reveal>

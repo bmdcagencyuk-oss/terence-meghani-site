@@ -2,20 +2,9 @@
 
 import { useEffect, useRef } from 'react';
 
-type CyclePhrase = { text: string; italic?: boolean };
-
-const CYCLE_PHRASES: CyclePhrase[] = [
-  { text: 'compounds revenue.' },
-  { text: 'ships on time.' },
-  { text: 'outlasts the trend cycle.' },
-  { text: 'wins the room.' },
-  { text: 'stays online when it matters.', italic: true },
-];
-
 export function Hero() {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
   const megaRef = useRef<HTMLHeadingElement | null>(null);
-  const cycleRef = useRef<HTMLSpanElement | null>(null);
   const heroTimeRef = useRef<HTMLSpanElement | null>(null);
 
   /* Rocket particle canvas */
@@ -177,65 +166,6 @@ export function Hero() {
     };
   }, []);
 
-  /* Hero subhead cycling phrase */
-  useEffect(() => {
-    const rotator = cycleRef.current;
-    if (!rotator) return;
-    const words = Array.from(rotator.querySelectorAll<HTMLElement>('.rw'));
-    if (words.length < 2) return;
-
-    const measure = () => {
-      let maxW = 0;
-      words.forEach((w) => {
-        const savedPos = w.style.position;
-        const savedOpacity = w.style.opacity;
-        const savedVis = w.style.visibility;
-        w.style.position = 'relative';
-        w.style.opacity = '0';
-        w.style.visibility = 'hidden';
-        const width = w.getBoundingClientRect().width;
-        w.style.position = savedPos;
-        w.style.opacity = savedOpacity;
-        w.style.visibility = savedVis;
-        if (width > maxW) maxW = width;
-      });
-      rotator.style.minWidth = `${Math.ceil(maxW)}px`;
-    };
-    if (document.fonts?.ready) document.fonts.ready.then(measure);
-    else setTimeout(measure, 400);
-    window.addEventListener('resize', measure);
-
-    let idx = 0;
-    const TICK = 2800;
-    let interval: number | null = null;
-    const advance = () => {
-      const current = words[idx];
-      idx = (idx + 1) % words.length;
-      const next = words[idx];
-      current.classList.remove('active');
-      current.classList.add('exit');
-      next.classList.add('active');
-      setTimeout(() => current.classList.remove('exit'), 600);
-    };
-    const start = () => {
-      if (interval === null) interval = window.setInterval(advance, TICK);
-    };
-    const stop = () => {
-      if (interval !== null) {
-        clearInterval(interval);
-        interval = null;
-      }
-    };
-    start();
-    const onVis = () => (document.hidden ? stop() : start());
-    document.addEventListener('visibilitychange', onVis);
-    return () => {
-      stop();
-      document.removeEventListener('visibilitychange', onVis);
-      window.removeEventListener('resize', measure);
-    };
-  }, []);
-
   /* Live clock */
   useEffect(() => {
     const el = heroTimeRef.current;
@@ -308,32 +238,34 @@ export function Hero() {
 
         <div className="hero-center">
           <h1 className="mega" ref={megaRef}>
-            <span className="ln ln1">Studio of one · Hertfordshire · London · Est. 2014</span>
+            <span className="ln ln1">Hertfordshire · London · Est. 2014</span>
 
-            <span className="ln ln-statement">
-              <em>Built on</em>
-            </span>
+            <span className="ln ln-greet">Hi, I&rsquo;m Terence.</span>
 
-            <span className="ln ln-fuel ln-fuel--triple">
-              <span className="fuel-word" id="fuelWord">Brand<span className="dot">.</span></span>
-              <span className="fuel-word">Code<span className="dot">.</span></span>
-              <span className="fuel-word">Growth<span className="dot">.</span></span>
+            <span className="ln ln-builds">I build brands</span>
+
+            <span className="ln ln-fuel">
+              <span className="fuel-word" id="fuelWord">
+                <span className="ch">T</span>
+                <span className="ch">H</span>
+                <span className="ch">A</span>
+                <span className="ch">T</span>
+              </span>
+              <span className="fuel-word">
+                <span className="ch">S</span>
+                <span className="ch">H</span>
+                <span className="ch">I</span>
+                <span className="ch">P</span>
+                <span className="ch">.</span>
+              </span>
               <span className="fuel-emblem" aria-hidden="true" />
             </span>
           </h1>
 
           <p className="hero-sub">
-            One brain, zero handoffs —{' '}
-            <span className="hero-cycle" ref={cycleRef}>
-              {CYCLE_PHRASES.map((p, i) => (
-                <span
-                  key={p.text}
-                  className={`rw${i === 0 ? ' active' : ''}${p.italic ? ' rw-italic' : ''}`}
-                >
-                  {p.text}
-                </span>
-              ))}
-            </span>
+            Studio of one — brand, code, growth.{' '}
+            <span className="hl">Twelve years in.</span>{' '}
+            Still answering the phone.
           </p>
         </div>
 
@@ -357,7 +289,7 @@ export function Hero() {
             <a href="#work" className="hero-cta-sec">See the work ↓</a>
           </div>
           <p className="hero-bottom-note">
-            <strong>Studio of one — brand, code, growth.</strong> Strategy and engineering,{' '}
+            <strong>One brain. Twelve years.</strong> Brand, code, growth —{' '}
             <span className="hl">wired together, not bolted on.</span>
           </p>
         </div>
