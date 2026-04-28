@@ -67,6 +67,8 @@ export default async function CaseStudyPage({
   const related = getRelatedCaseStudies(slug);
 
   const isPedagogyClub = slug === 'pedagogy-club';
+  const isBettafi = slug === 'bettafi';
+  const customLayout = isPedagogyClub || isBettafi;
 
   return (
     <>
@@ -80,10 +82,10 @@ export default async function CaseStudyPage({
           ]),
         )}
       />
-      <CaseStudyHero study={cs} />
+      <CaseStudyHero study={cs} hideHeroImage={isBettafi} />
       <CaseStudyMeta study={cs} />
 
-      {narrative && !isPedagogyClub && (
+      {narrative && !customLayout && (
         <>
           <CaseStudyAct number="01" label="Challenge">
             <ActProse text={narrative.challenge} />
@@ -102,8 +104,9 @@ export default async function CaseStudyPage({
       )}
 
       {narrative && isPedagogyClub && <PedagogyClubBody narrative={narrative} cs={cs} />}
+      {narrative && isBettafi && <BettafiBody narrative={narrative} cs={cs} />}
 
-      {cs.gallery && cs.gallery.length > 1 && !isPedagogyClub && (
+      {cs.gallery && cs.gallery.length > 1 && !customLayout && (
         <CaseStudyGallery images={cs.gallery} alt={cs.heroImageAlt} />
       )}
 
@@ -119,6 +122,71 @@ export default async function CaseStudyPage({
         title="Want a project like this?"
         body={`If something here resonates with where you're heading, the next step is a thirty-minute call. No slides, no fluff — leave with a concrete plan whether we work together or not.`}
       />
+    </>
+  );
+}
+
+function BettafiBody({
+  narrative,
+  cs,
+}: {
+  narrative: CaseStudyNarrative;
+  cs: CaseStudy;
+}) {
+  const approachParas = narrative.approach.split(/\n{2,}/);
+  return (
+    <>
+      <section className="cs-establishing" aria-label="Bettafi launch landing page">
+        <div className="wrap">
+          <CaseStudyFigure
+            src="/work/bettafi/00-frontend-landing-full.png"
+            alt="bettafi.com — the public landing surface. Three product mockups establish the fintech offer; the waitlist form sits below the hero"
+            width={3201}
+            height={8000}
+            priority
+            sizes="(max-width: 1024px) 90vw, 760px"
+            caption='bettafi.com — the public landing surface. Three product mockups establish the fintech offer; the waitlist form sits below the hero; the "App that goes with you" trio (Expense Tracking, AI Planning, Debt Management) names the actual product, not just the queue.'
+          />
+        </div>
+      </section>
+
+      <CaseStudyAct number="01" label="Challenge">
+        <ActProse text={narrative.challenge} />
+      </CaseStudyAct>
+
+      <CaseStudyAct number="02" label="Approach" className="bg-char-2">
+        <div className="cs-prose-with-figures">
+          {approachParas[0] && <p>{approachParas[0]}</p>}
+
+          {approachParas[1] && <p>{approachParas[1]}</p>}
+
+          <CaseStudyFigure
+            src="/work/bettafi/01-frontend-registration-success.png"
+            alt="Post-signup state. Each referral moves the user up five places. Five referrals unlocks a month free; ten unlocks six months; the top 250 receive a two-year free subscription on launch day"
+            width={4112}
+            height={2406}
+            caption="Post-signup state. Each referral moves the user up five places. Five referrals unlocks a month free; ten unlocks six months; the top 250 receive a two-year free subscription on launch day. The rewards are real product credits, not virtual positions."
+          />
+
+          {approachParas.slice(2).map((p, i) => (
+            <p key={`tail-${i}`}>{p}</p>
+          ))}
+
+          <CaseStudyFigure
+            src="/work/bettafi/02-frontend-login-track-position.png"
+            alt="The login screen — entry point to the authenticated dashboard. The three-bullet value prop on the right is what the dashboard surfaces: position in queue, unique referral code, milestone progress"
+            width={4112}
+            height={2406}
+            caption="The login screen — entry point to the authenticated dashboard. The three-bullet value prop on the right is what the dashboard surfaces: position in queue, unique referral code, milestone progress."
+          />
+        </div>
+      </CaseStudyAct>
+
+      <CaseStudyAct number="03" label="Outcome" id="outcome">
+        <ActProse text={narrative.outcome} />
+        {cs.metric && <CaseStudyMetric metric={cs.metric} />}
+        <CaseStudyScope study={cs} />
+      </CaseStudyAct>
     </>
   );
 }

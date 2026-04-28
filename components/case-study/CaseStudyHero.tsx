@@ -2,7 +2,7 @@ import Link from 'next/link';
 import type { CaseStudy } from '@/lib/case-studies';
 import { Kicker } from '@/components/ui/Kicker';
 
-type Props = { study: CaseStudy };
+type Props = { study: CaseStudy; hideHeroImage?: boolean };
 
 function italicLastWord(title: string) {
   const words = title.split(' ');
@@ -17,7 +17,7 @@ function italicLastWord(title: string) {
   );
 }
 
-export function CaseStudyHero({ study }: Props) {
+export function CaseStudyHero({ study, hideHeroImage = false }: Props) {
   return (
     <section className="cs-hero">
       <div className="wrap">
@@ -56,7 +56,7 @@ export function CaseStudyHero({ study }: Props) {
           </p>
         )}
 
-        {study.heroImage && (
+        {study.heroImage && !hideHeroImage && (
           <div
             className="image"
             style={{ backgroundImage: `url('${study.heroImage}')` }}

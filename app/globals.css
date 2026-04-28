@@ -663,6 +663,19 @@
   }
 }
 .cs-figure--pair-half { min-width: 0; }
+
+/* Establishing-shot section: tall landing-page screenshot rendered between
+   the meta strip and the first Act. Constrained max-width so an 8000px-tall
+   asset doesn't dominate the page. */
+.cs-establishing {
+  padding: clamp(40px, 6vw, 72px) 0;
+  background: var(--color-char-2);
+  border-bottom: 1px solid var(--color-hairline-2);
+}
+.cs-establishing .cs-figure {
+  max-width: 760px;
+  margin-inline: auto;
+}
 /* Prose variant that supports interleaved figures: paragraphs keep the
    68ch reading column, but figure/figure-pair children break out to the
    full content column. */

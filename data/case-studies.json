@@ -127,16 +127,12 @@
       "featured": true,
       "featuredOrder": 6,
       "excerpt": "Conversion-focused launch landing page and a custom-built referral system for a UK AI personal-finance app — turning a waiting list into a self-propelling acquisition channel.",
-      "heroImage": "/case-studies/bettafi/landing-desktop.jpg",
-      "heroImageAlt": "Bettafi landing page — Your Money. Simplify & take control of your finances.",
+      "heroImage": "/work/bettafi/00-frontend-landing-full.png",
+      "heroImageAlt": "bettafi.com — the public landing surface. Three product mockups establish the fintech offer; the waitlist form sits below the hero",
       "gallery": [
-        "/case-studies/bettafi/landing-desktop.jpg",
-        "/case-studies/bettafi/landing-mobile.jpg",
-        "/case-studies/bettafi/phone-mockup.jpg",
-        "/case-studies/bettafi/brand-hero.jpg",
-        "/case-studies/bettafi/auth-illustration.svg",
-        "/case-studies/bettafi/qa-illustration.svg",
-        "/case-studies/bettafi/verified-illustration.svg"
+        "/work/bettafi/00-frontend-landing-full.png",
+        "/work/bettafi/01-frontend-registration-success.png",
+        "/work/bettafi/02-frontend-login-track-position.png"
       ],
       "related": [
         "mhv-clinic",
