@@ -233,11 +233,9 @@ export default function AboutPage() {
                 turns. From the humble beginnings of my bedroom, <em style={{ color: 'var(--color-rocket)' }}>Krazy Media</em> was born.
               </p>
               <p>
-                <strong style={{ color: '#fff', fontWeight: 500 }}>I launched my first venture at sixteen.</strong>{' '}
-                Founded Krazy Media from my bedroom in Watford, rebranded it to We Krazy,
-                then BMDC — and after more than a decade, brought it all under my own name.
-                Every trading name was the same person doing the same work, just with more
-                clients and more scar tissue.
+                <strong style={{ color: '#fff', fontWeight: 500 }}>I launched my first venture at sixteen</strong>
+                {' '}— traded under a few names along the way, and after more than a decade
+                brought it all under my own.
               </p>
               <p>
                 Along the way I&rsquo;ve been lucky enough to work with Royal London, News

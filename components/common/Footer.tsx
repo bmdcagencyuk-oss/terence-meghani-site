@@ -65,8 +65,12 @@ export function Footer() {
                 <a href="mailto:hello@terencemeghani.com">hello@terencemeghani.com</a>
               </li>
               <li>
-                <span className="k">Phone</span>
+                <span className="k">Office</span>
                 <a href="tel:+442045245111">020 4524 5111</a>
+              </li>
+              <li>
+                <span className="k">Mobile</span>
+                <a href="tel:+447756267157">07756 267 157</a>
               </li>
               <li>
                 <span className="k">Studio</span>

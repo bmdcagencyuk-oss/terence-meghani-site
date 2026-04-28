@@ -59,6 +59,23 @@ export function siteGraph() {
         areaServed: ['GB', 'United Kingdom', 'Worldwide'],
         telephone: SITE.contact.telephone,
         email: SITE.contact.email,
+        contactPoint: [
+          {
+            '@type': 'ContactPoint',
+            contactType: 'Office',
+            telephone: SITE.contact.telephone,
+            email: SITE.contact.email,
+            areaServed: 'GB',
+            availableLanguage: ['en'],
+          },
+          {
+            '@type': 'ContactPoint',
+            contactType: 'Mobile',
+            telephone: SITE.contact.mobile,
+            areaServed: 'GB',
+            availableLanguage: ['en'],
+          },
+        ],
         priceRange: '£1,500–£80,000+',
         serviceType: [
           'WordPress Operations',

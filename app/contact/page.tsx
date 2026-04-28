@@ -30,7 +30,8 @@ const CONTACT_BREADCRUMBS = breadcrumbSchema([
 
 const CONTACT_ROWS: Array<{ k: string; v: string; href?: string }> = [
   { k: 'Email',    v: 'hello@terencemeghani.com', href: 'mailto:hello@terencemeghani.com' },
-  { k: 'Phone',    v: '020 4524 5111',           href: 'tel:+442045245111' },
+  { k: 'Office',   v: '020 4524 5111',            href: 'tel:+442045245111' },
+  { k: 'Mobile',   v: '07756 267 157',            href: 'tel:+447756267157' },
   { k: 'Studio',   v: 'Hertfordshire & London · UK' },
   { k: 'Schedule', v: 'Book 30 min on Calendly ↗', href: 'https://calendly.com/terencemeghani' },
   { k: 'Reply',    v: 'Under 4 hours, typically' },
