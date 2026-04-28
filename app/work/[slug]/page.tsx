@@ -9,6 +9,7 @@ import { CaseStudyQuote } from '@/components/case-study/CaseStudyQuote';
 import { CaseStudyGallery } from '@/components/case-study/CaseStudyGallery';
 import { CaseStudyVideos } from '@/components/case-study/CaseStudyVideos';
 import { CaseStudyRelated } from '@/components/case-study/CaseStudyRelated';
+import { CaseStudyFigure, CaseStudyFigurePair } from '@/components/case-study/CaseStudyFigure';
 import { LaunchCTA } from '@/components/launch/LaunchCTA';
 import {
   getAllCaseStudies,
@@ -17,6 +18,7 @@ import {
   getTestimonialById,
   loadCaseStudyNarrative,
 } from '@/lib/case-studies';
+import type { CaseStudy, CaseStudyNarrative } from '@/lib/case-studies';
 import { breadcrumbSchema, caseStudySchema, ldJsonProps } from '@/lib/schema';
 
 export function generateStaticParams() {
@@ -64,6 +66,8 @@ export default async function CaseStudyPage({
   const testimonial = cs.testimonialId ? getTestimonialById(cs.testimonialId) : undefined;
   const related = getRelatedCaseStudies(slug);
 
+  const isPedagogyClub = slug === 'pedagogy-club';
+
   return (
     <>
       <script {...ldJsonProps(caseStudySchema(cs))} />
@@ -79,7 +83,7 @@ export default async function CaseStudyPage({
       <CaseStudyHero study={cs} />
       <CaseStudyMeta study={cs} />
 
-      {narrative && (
+      {narrative && !isPedagogyClub && (
         <>
           <CaseStudyAct number="01" label="Challenge">
             <ActProse text={narrative.challenge} />
@@ -97,7 +101,9 @@ export default async function CaseStudyPage({
         </>
       )}
 
-      {cs.gallery && cs.gallery.length > 1 && (
+      {narrative && isPedagogyClub && <PedagogyClubBody narrative={narrative} cs={cs} />}
+
+      {cs.gallery && cs.gallery.length > 1 && !isPedagogyClub && (
         <CaseStudyGallery images={cs.gallery} alt={cs.heroImageAlt} />
       )}
 
@@ -113,6 +119,132 @@ export default async function CaseStudyPage({
         title="Want a project like this?"
         body={`If something here resonates with where you're heading, the next step is a thirty-minute call. No slides, no fluff — leave with a concrete plan whether we work together or not.`}
       />
+    </>
+  );
+}
+
+function PedagogyClubBody({
+  narrative,
+  cs,
+}: {
+  narrative: CaseStudyNarrative;
+  cs: CaseStudy;
+}) {
+  const approachParas = narrative.approach.split(/\n{2,}/);
+  return (
+    <>
+      <CaseStudyAct number="01" label="Challenge">
+        <ActProse text={narrative.challenge} />
+      </CaseStudyAct>
+
+      <CaseStudyAct number="02" label="Approach" className="bg-char-2">
+        <div className="cs-prose-with-figures">
+          {approachParas[0] && <p>{approachParas[0]}</p>}
+
+          <CaseStudyFigurePair
+            left={{
+              src: '/work/pedagogy-club/09-backend-classes-admin.png',
+              alt: 'Classes admin — the data model parents never see. Capacity counters, status pills, native WordPress patterns',
+              width: 3792,
+              height: 974,
+              caption:
+                'Classes admin — the data model parents never see. Capacity counters, status pills, native WordPress patterns.',
+            }}
+            right={{
+              src: '/work/pedagogy-club/03-frontend-schedule-classes.png',
+              alt: 'The same data, parent-side. Year groups, live capacity, no login required to enrol',
+              width: 4112,
+              height: 2406,
+              caption:
+                'The same data, parent-side. Year groups, live capacity, no login required to enrol.',
+            }}
+          />
+
+          {approachParas[1] && <p>{approachParas[1]}</p>}
+
+          <CaseStudyFigurePair
+            left={{
+              src: '/work/pedagogy-club/04-frontend-six-things.png',
+              alt: 'Differentiator mosaic. Brand work doing real conversion work — and explaining the £80.14/month Direct Debit before the parent reaches the form',
+              width: 4112,
+              height: 2406,
+              caption:
+                'Differentiator mosaic. Brand work doing real conversion work — and explaining the £80.14/month Direct Debit before the parent reaches the form.',
+            }}
+            right={{
+              src: '/work/pedagogy-club/08-backend-bookings-table.png',
+              alt: 'Bookings admin. Reference, child, parent, payment status, due dates — and the GDPR controls (SAR, Erase) sitting as inline row actions, not buried in a settings page',
+              width: 3791,
+              height: 775,
+              caption:
+                'Bookings admin. Reference, child, parent, payment status, due dates — and the GDPR controls (SAR, Erase) sitting as inline row actions, not buried in a settings page.',
+            }}
+          />
+
+          {approachParas[2] && <p>{approachParas[2]}</p>}
+
+          <CaseStudyFigure
+            src="/work/pedagogy-club/02-frontend-the-teacher.png"
+            alt="The Teacher chapter — Mr Patel's narrative. Long-form copy that reads like an editorial profile, structured around his career arc rather than a CV"
+            width={4112}
+            height={2406}
+            caption="The Teacher chapter — Mr Patel's narrative. Long-form copy that reads like an editorial profile, structured around his career arc rather than a CV."
+          />
+
+          {approachParas[3] && <p>{approachParas[3]}</p>}
+
+          <CaseStudyFigure
+            src="/work/pedagogy-club/07-backend-payments-dashboard.png"
+            alt="Payments dashboard. Three-card KPI summary, status pills, CSV exports, sort by priority. Built on top of the existing booking model — GoCardless integration sits inside this view"
+            width={3793}
+            height={1180}
+            caption="Payments dashboard. Three-card KPI summary, status pills, CSV exports, sort by priority. Built on top of the existing booking model — GoCardless integration sits inside this view."
+          />
+
+          {approachParas.slice(4).map((p, i) => (
+            <p key={`tail-${i}`}>{p}</p>
+          ))}
+        </div>
+      </CaseStudyAct>
+
+      <CaseStudyAct number="03" label="Outcome" id="outcome">
+        <div className="cs-prose-with-figures">
+          {narrative.outcome.split(/\n{2,}/).map((p, i) => (
+            <p key={i}>{p}</p>
+          ))}
+
+          <CaseStudyFigurePair
+            variant="mobile-pair"
+            left={{
+              src: '/work/pedagogy-club/06-frontend-mobile-hero.png',
+              alt: 'Mobile hero. Same brand voice, same dictionary device, same fee transparency — different viewport',
+              width: 860,
+              height: 1864,
+              caption:
+                'Mobile hero. Same brand voice, same dictionary device, same fee transparency — different viewport.',
+            }}
+            right={{
+              src: '/work/pedagogy-club/05-frontend-mobile-stats.png',
+              alt: 'Mobile stats slice. 80%+ offer rate, 2,400+ families, the curriculum framing all surfaced before the parent has scrolled to the schedule',
+              width: 860,
+              height: 1864,
+              caption:
+                'Mobile stats slice. 80%+ offer rate, 2,400+ families, the curriculum framing all surfaced before the parent has scrolled to the schedule.',
+            }}
+          />
+
+          <CaseStudyFigure
+            src="/work/pedagogy-club/01-frontend-footer-contact.png"
+            alt="Contact section. WhatsApp first, email second, register-interest third — ordered by what the parent actually wants, not what the studio wants"
+            width={4112}
+            height={2406}
+            caption="Contact section. WhatsApp first, email second, register-interest third — ordered by what the parent actually wants, not what the studio wants."
+          />
+        </div>
+
+        {cs.metric && <CaseStudyMetric metric={cs.metric} />}
+        <CaseStudyScope study={cs} />
+      </CaseStudyAct>
     </>
   );
 }

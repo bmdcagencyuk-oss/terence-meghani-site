@@ -190,6 +190,13 @@ export function pluginSchema(plugin: Plugin, longForm: PluginLongForm | undefine
 
 /** Case study CreativeWork entity. */
 export function caseStudySchema(cs: CaseStudy) {
+  const toAbs = (src: string) => (src.startsWith('http') ? src : absoluteUrl(src));
+  const image =
+    cs.gallery && cs.gallery.length > 0
+      ? cs.gallery.map(toAbs)
+      : cs.heroImage
+        ? toAbs(cs.heroImage)
+        : undefined;
   return {
     '@context': 'https://schema.org',
     '@type': 'CreativeWork',
@@ -197,7 +204,7 @@ export function caseStudySchema(cs: CaseStudy) {
     about: cs.industry || cs.client,
     creator: { '@id': SITE.ids.studio },
     datePublished: String(cs.year),
-    image: cs.heroImage?.startsWith('http') ? cs.heroImage : absoluteUrl(cs.heroImage ?? ''),
+    image,
     description: cs.excerpt,
     url: absoluteUrl(`/work/${cs.slug}/`),
   };
