@@ -82,7 +82,7 @@ export default async function CaseStudyPage({
           ]),
         )}
       />
-      <CaseStudyHero study={cs} hideHeroImage={isBettafi} />
+      <CaseStudyHero study={cs} hideHeroImage={customLayout} />
       <CaseStudyMeta study={cs} />
 
       {narrative && !customLayout && (
@@ -136,7 +136,7 @@ function BettafiBody({
   const approachParas = narrative.approach.split(/\n{2,}/);
   return (
     <>
-      <section className="cs-establishing" aria-label="Bettafi launch landing page">
+      <section className="cs-establishing cs-establishing--tall" aria-label="Bettafi launch landing page">
         <div className="wrap">
           <CaseStudyFigure
             src="/work/bettafi/00-frontend-landing-full.png"
@@ -144,6 +144,7 @@ function BettafiBody({
             width={3201}
             height={8000}
             priority
+            device="desktop"
             sizes="(max-width: 1024px) 90vw, 760px"
             caption='bettafi.com — the public landing surface. Three product mockups establish the fintech offer; the waitlist form sits below the hero; the "App that goes with you" trio (Expense Tracking, AI Planning, Debt Management) names the actual product, not just the queue.'
           />
@@ -201,6 +202,21 @@ function PedagogyClubBody({
   const approachParas = narrative.approach.split(/\n{2,}/);
   return (
     <>
+      <section className="cs-establishing" aria-label="Pedagogy Club homepage">
+        <div className="wrap">
+          <CaseStudyFigure
+            src="/work/pedagogy-club/00-frontend-hero-classroom.png"
+            alt={cs.heroImageAlt}
+            width={4112}
+            height={2406}
+            priority
+            device="desktop"
+            sizes="(max-width: 1024px) 90vw, 1000px"
+            caption="pedagogy.club homepage — the editorial register sets the tone before any technical mechanism appears."
+          />
+        </div>
+      </section>
+
       <CaseStudyAct number="01" label="Challenge">
         <ActProse text={narrative.challenge} />
       </CaseStudyAct>
@@ -288,6 +304,7 @@ function PedagogyClubBody({
               alt: 'Mobile hero. Same brand voice, same dictionary device, same fee transparency — different viewport',
               width: 860,
               height: 1864,
+              device: 'mobile',
               caption:
                 'Mobile hero. Same brand voice, same dictionary device, same fee transparency — different viewport.',
             }}
@@ -296,6 +313,7 @@ function PedagogyClubBody({
               alt: 'Mobile stats slice. 80%+ offer rate, 2,400+ families, the curriculum framing all surfaced before the parent has scrolled to the schedule',
               width: 860,
               height: 1864,
+              device: 'mobile',
               caption:
                 'Mobile stats slice. 80%+ offer rate, 2,400+ families, the curriculum framing all surfaced before the parent has scrolled to the schedule.',
             }}

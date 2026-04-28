@@ -1,5 +1,6 @@
 import Image from 'next/image';
 import type { ReactNode } from 'react';
+import { DeviceFrame } from './DeviceFrame';
 
 type FigureProps = {
   src: string;
@@ -12,6 +13,8 @@ type FigureProps = {
   /** Optional — when paired side-by-side, the wrapper supplies the aspect. */
   className?: string;
   sizes?: string;
+  /** Wrap the image in subtle realistic device chrome — establishing shots only. */
+  device?: 'desktop' | 'mobile';
 };
 
 /**
@@ -27,21 +30,28 @@ export function CaseStudyFigure({
   priority = false,
   className = '',
   sizes = '(max-width: 1024px) 100vw, 1100px',
+  device,
 }: FigureProps) {
+  const img = (
+    <Image
+      src={src}
+      alt={alt}
+      width={width}
+      height={height}
+      priority={priority}
+      loading={priority ? 'eager' : 'lazy'}
+      sizes={sizes}
+      style={{ width: '100%', height: 'auto', display: 'block' }}
+    />
+  );
+
   return (
     <figure className={`cs-figure ${className}`}>
-      <div className="cs-figure-frame">
-        <Image
-          src={src}
-          alt={alt}
-          width={width}
-          height={height}
-          priority={priority}
-          loading={priority ? 'eager' : 'lazy'}
-          sizes={sizes}
-          style={{ width: '100%', height: 'auto', display: 'block' }}
-        />
-      </div>
+      {device ? (
+        <DeviceFrame variant={device}>{img}</DeviceFrame>
+      ) : (
+        <div className="cs-figure-frame">{img}</div>
+      )}
       <figcaption className="cs-figure-caption">{caption}</figcaption>
     </figure>
   );
