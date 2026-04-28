@@ -1,0 +1,733 @@
+{
+  "$comment": "Reviews data for terencemeghani.com /reviews page. Generated from real Trustpilot and Facebook reviews. Trading-name references (Krazy Media, We Krazy, Wekrazy, BMDC, BMDC Agency) have been silently normalised to 'the studio' or 'Terence' as appropriate. Substance and reviewer voice preserved; OCR artifacts cleaned. All reviews are 5-star/recommended on their source platforms.",
+  "$schema_version": "1.0",
+  "aggregate": {
+    "rating": 4.7,
+    "platform_breakdown": {
+      "trustpilot": { "rating": 4.7, "total_reviews": 37, "rendered_on_page": 19 },
+      "facebook_bmdc": { "rating": "100% recommend", "total_reviews": 52, "rendered_on_page": 36 },
+      "facebook_personal": { "rating": "100% recommend", "total_reviews": 12, "rendered_on_page": 12 }
+    },
+    "total_reviews": 101,
+    "total_rendered": 67,
+    "platform_links": {
+      "trustpilot": "https://www.trustpilot.com/review/www.bmdc.agency",
+      "facebook_bmdc": "https://www.facebook.com/bmdcuk/reviews",
+      "facebook_personal": "https://www.facebook.com/terencemeghaniofficial/reviews"
+    }
+  },
+  "trustpilot": [
+    {
+      "id": "tp-001",
+      "name": "KP",
+      "initials": "KP",
+      "date": "2024-08-28",
+      "year": 2024,
+      "rating": 5,
+      "title": "Exceptional Branding & Marketing Design Experience",
+      "body": "I recently had the pleasure of working with the studio and I can confidently say they exceeded all my expectations. From the moment we started discussing my website and branding needs, Terence demonstrated a deep understanding of my vision and brought it to life in ways I couldn't have imagined. Expertise and creativity — Terence has an incredible eye for design and a thorough understanding of branding. Technical mastery — he handles all technical issues quickly and efficiently. Outstanding communication throughout. Timely delivery despite project complexity. Customer-centric approach — I always feel like a valued client. Highly recommend the studio for top-notch branding, marketing design, and web development.",
+      "tags": ["brand", "web", "communication", "long-form"]
+    },
+    {
+      "id": "tp-002",
+      "name": "Pradeep R.",
+      "initials": "PR",
+      "date": "2024-08-12",
+      "year": 2024,
+      "rating": 5,
+      "title": "Terence and his team have been exceptional",
+      "body": "Terence and his team have been exceptional. Have used them for years — they built me a custom-made website and run monthly SEO which has been fantastic in gaining many enquiries every month. It's meant my business has grown from strength to strength. My company Xclusive can now expand as a result. Highly recommend — the real deal.",
+      "tags": ["web", "seo", "long-term-client"],
+      "company": "Xclusive"
+    },
+    {
+      "id": "tp-003",
+      "name": "Anjli",
+      "initials": "AN",
+      "date": "2024-07-31",
+      "year": 2024,
+      "rating": 5,
+      "title": "Working together for the past ten years",
+      "body": "Having worked with the studio for the past ten years, Terence has consistently listened to my ideas and fulfilled my requests. To keep my website up to date and in line with current trends, he will always contact me first. It's never too much trouble for him to fix whatever problems I have. Terence, thank you.",
+      "tags": ["10-year-client", "web", "long-term-client"]
+    },
+    {
+      "id": "tp-004",
+      "name": "Priya Pindoria",
+      "initials": "PP",
+      "date": "2024-07-30",
+      "year": 2024,
+      "rating": 5,
+      "title": "Outstanding service",
+      "body": "I have had the pleasure of working with the studio for the past 10 years, and I couldn't be happier with the results. Terence has been instrumental in creating and maintaining our website. From the beginning, the studio has been fabulous and easy to work with — seamless communication and exceptional attention to detail. He truly understands our requirements, often anticipating our needs before we articulate them. His ability to translate our ideas into a visually appealing and functional website is a testament to his talent and expertise. Reliability and professionalism have built a strong working relationship based on trust and mutual respect. Highly recommend — and we look forward to many more years of collaboration.",
+      "tags": ["10-year-client", "web", "long-term-client", "long-form"]
+    },
+    {
+      "id": "tp-005",
+      "name": "Stax DaKid",
+      "initials": "SD",
+      "date": "2024-07-18",
+      "year": 2024,
+      "rating": 5,
+      "title": "Have known these guys for years",
+      "body": "Have known these guys for years — top top professionals at what they do. If you need branding or just general graphics, they will look after you.",
+      "tags": ["brand", "long-term-client"]
+    },
+    {
+      "id": "tp-006",
+      "name": "Dena",
+      "initials": "DN",
+      "date": "2024-07-16",
+      "year": 2024,
+      "rating": 5,
+      "title": "Highly recommended",
+      "body": "Highly recommended. We have been working with the studio for our branding and advertising for a number of years. They've provided a bespoke professional service tailored to our company needs.",
+      "tags": ["brand", "long-term-client"]
+    },
+    {
+      "id": "tp-007",
+      "name": "Michael",
+      "initials": "M",
+      "date": "2024-07-10",
+      "year": 2024,
+      "rating": 5,
+      "title": "Very good service & experience",
+      "body": "We had very good service and experience from Terence and the team. They developed the new website for us and assisted with the photos, text, layout, keywords etc. The team were easy to get hold of and have a vast amount of experience.",
+      "tags": ["web"]
+    },
+    {
+      "id": "tp-008",
+      "name": "Mu",
+      "initials": "MU",
+      "date": "2024-07-09",
+      "year": 2024,
+      "rating": 5,
+      "title": "On point brand and digital messaging",
+      "body": "Have worked with Terence and the team for over a decade. Brought them in to help reset cyber messaging and awareness for the biggest global news media provider in the world. Amazing job. Then went on to do the same for Sainsbury's. Brilliant effort all round. Thank you.",
+      "tags": ["brand", "enterprise", "long-term-client", "news-corp", "sainsburys"],
+      "_note": "References News Corp / News UK and Sainsbury's — both confirmed client engagements per the live work portfolio."
+    },
+    {
+      "id": "tp-009",
+      "name": "K Thakrar",
+      "initials": "KT",
+      "date": "2024-07-09",
+      "year": 2024,
+      "rating": 5,
+      "title": "Excellent service",
+      "body": "I have been dealing with the directors of the studio for a long time now for our marketing, social media, and web design. Our experience has been excellent and they have really improved our sales and presence in the hospitality market. Definitely recommend them.",
+      "tags": ["marketing", "social", "web", "hospitality", "long-term-client"]
+    },
+    {
+      "id": "tp-010",
+      "name": "Dhiren Sanghani",
+      "initials": "DS",
+      "date": "2024-07-05",
+      "year": 2024,
+      "rating": 5,
+      "title": "Perfect team for branding a new company",
+      "body": "Whatever your need is — be it logo design, packaging, social media, or websites — the studio will work tirelessly to get your brand where it needs to be.",
+      "tags": ["brand", "logo", "web"],
+      "_note": "Vijay's Virasat Restaurant — referenced in Terence's reply on Trustpilot."
+    },
+    {
+      "id": "tp-011",
+      "name": "Vinny",
+      "initials": "V",
+      "date": "2024-07-02",
+      "year": 2024,
+      "rating": 5,
+      "title": "Terence has been instrumental",
+      "body": "Terence has been instrumental in managing our company website, hosting, and social media. His expertise and attention to detail have significantly improved our online presence. Terence's proactive approach and creative solutions have not only enhanced our branding but also boosted our engagement with customers. His dedication and responsiveness make him a reliable partner in our marketing efforts. We highly recommend the team for their exceptional services.",
+      "tags": ["web", "hosting", "social", "operations-adjacent"],
+      "company": "Smart Hosting Systems"
+    },
+    {
+      "id": "tp-012",
+      "name": "Vishal Narbheram",
+      "initials": "VN",
+      "date": "2024-05-06",
+      "year": 2024,
+      "rating": 5,
+      "title": "New website",
+      "body": "I was looking to have a website built from scratch and had over 30 companies reach out to take on the project, but Terence stood out from the crowd. He's polite, respectful, response times are speedy, and the way he speaks about his work is so passionate I couldn't not work with him on this project. I personally have ADHD and OCD so I'm no easy customer to work with, but Terence was so accommodating, professional, reliable and most importantly patient that it made the whole process fun. Seeing how he works and seeing how page by page the website was coming to life was so exciting. I have already used his services again for two brochure designs.",
+      "tags": ["web", "repeat-business", "long-form"],
+      "company": "Onward Shift"
+    },
+    {
+      "id": "tp-013",
+      "name": "Jasvanti Halai",
+      "initials": "JH",
+      "date": "2024-03-23",
+      "year": 2024,
+      "rating": 5,
+      "title": "Exceeded my expectations",
+      "body": "I have worked with Terence for over seven years now and I couldn't be happier with my website. Terence has exceeded my expectations and I am very impressed with the quality of work, customer care and attention to detail.",
+      "tags": ["web", "long-term-client"],
+      "company": "Svara Hair Salon"
+    },
+    {
+      "id": "tp-014",
+      "name": "Michael Pritchett",
+      "initials": "MP",
+      "date": "2024-01-08",
+      "year": 2024,
+      "rating": 5,
+      "title": "Excellent and attentive service",
+      "body": "Excellent and attentive service from Terence and the team. Terence is available to help, has extensive knowledge and experience, and guides you through the process and best options. Recommended.",
+      "tags": ["service"],
+      "company": "Kemp Services"
+    },
+    {
+      "id": "tp-015",
+      "name": "P. Motion Group",
+      "initials": "PM",
+      "date": "2024-01-06",
+      "year": 2024,
+      "rating": 5,
+      "title": "Terence",
+      "body": "Terence and the team always go above and beyond to cater. Highly professional service. Would definitely recommend.",
+      "tags": ["service"]
+    },
+    {
+      "id": "tp-016",
+      "name": "Kinari Dodhia",
+      "initials": "KD",
+      "date": "2024-01-06",
+      "year": 2024,
+      "rating": 5,
+      "title": "Terence has been working with us for nearly 10 years",
+      "body": "Terence has been working with us for nearly 10 years now. We asked him to help us with our website, from taking pictures of everything to the design — it just turned out so amazing. Whenever we have had any issues, he's always been there to help. Highly recommend the team — their work is not only efficient but they are the friendliest people to work with.",
+      "tags": ["10-year-client", "web", "photography", "long-term-client"],
+      "company": "Swagat Catering"
+    },
+    {
+      "id": "tp-017",
+      "name": "Neck P.",
+      "initials": "NP",
+      "date": "2024-01-06",
+      "year": 2024,
+      "rating": 5,
+      "title": "The team's expertise in web development",
+      "body": "The team's expertise in web development is truly commendable. They seamlessly integrated the Directus CMS, ensuring that our website not only looks stunning but also functions flawlessly. The user experience is smooth, and the website's performance has exceeded our expectations. What sets them apart is not just their technical prowess but also their dedication to understanding our business needs. They collaborated closely with us throughout the entire process. As we celebrate our one-year anniversary of working together, I can confidently say that choosing the studio was a game-changer for our web hosting company.",
+      "tags": ["web", "engineering", "cms", "directus", "enterprise", "long-form"]
+    },
+    {
+      "id": "tp-018",
+      "name": "Tulsi Vagjiani",
+      "initials": "TV",
+      "date": "2023-11-16",
+      "year": 2023,
+      "rating": 5,
+      "title": "A brand with a difference",
+      "body": "I received total professionalism from this studio. From the website to the branding, it exceeded my expectations. The guidance I received was met and explained thoroughly. I needed a modern, unique twist to my website to match my authentic flamboyant self. They did not disappoint. I highly recommend the team. If you're looking for innovative, creative work with a different edge, this is the studio for you.",
+      "tags": ["brand", "web"]
+    },
+    {
+      "id": "tp-019",
+      "name": "Mitesh",
+      "initials": "MT",
+      "date": "2023-08-24",
+      "year": 2023,
+      "rating": 5,
+      "title": "Great customer service, always prompt",
+      "body": "I have been using the studio for many years. I wouldn't look anywhere else. Great customer service, always prompt. Anything I need doing gets done. Very reasonable charges. You get the personal service.",
+      "tags": ["service", "long-term-client"]
+    }
+  ],
+  "facebook_bmdc": [
+    {
+      "id": "fb-bmdc-001",
+      "name": "Nav Hayer",
+      "initials": "NH",
+      "date": "2018-11-20",
+      "year": 2018,
+      "rating": 5,
+      "body": "Done a few projects for me now. All to a very high standard and in a timely manner. Highly recommend the studio.",
+      "tags": ["repeat-business"]
+    },
+    {
+      "id": "fb-bmdc-002",
+      "name": "Chaiya Varsani-Raghvani",
+      "initials": "CV",
+      "date": "2018-09-18",
+      "year": 2018,
+      "rating": 5,
+      "body": "Terence understood my brief from the start and knew the best ways to put together my ideas. I was rest assured he would visually produce a professional and clean end product. I would recommend the studio to anyone looking for a unique and stylish logo. Thanks again.",
+      "tags": ["brand", "logo"]
+    },
+    {
+      "id": "fb-bmdc-003",
+      "name": "Mina Mina",
+      "initials": "MM",
+      "date": "2018-07-17",
+      "year": 2018,
+      "rating": 5,
+      "body": "Terence is such a lovely person and very professional at the same time. He initially was a life saver in helping my group design and print out flyers when on Britain's Got Talent. Since then I have set up my own business and he has been so helpful in advising me on the best design and specifics on my logo and printing. Thanks Terence.",
+      "tags": ["brand", "print", "logo"]
+    },
+    {
+      "id": "fb-bmdc-004",
+      "name": "Priya Ranchod",
+      "initials": "PR",
+      "date": "2018-06-24",
+      "year": 2018,
+      "rating": 5,
+      "body": "Great work.",
+      "tags": ["short"]
+    },
+    {
+      "id": "fb-bmdc-005",
+      "name": "Pritesh Pindoria",
+      "initials": "PP",
+      "date": "2017-11-02",
+      "year": 2017,
+      "rating": 5,
+      "body": null,
+      "_note": "5-star recommendation, no body text",
+      "tags": ["star-only"]
+    },
+    {
+      "id": "fb-bmdc-006",
+      "name": "Dhiren Sanghani",
+      "initials": "DS",
+      "date": "2017-11-02",
+      "year": 2017,
+      "rating": 5,
+      "body": "Thank you Terence for your assistance in creating a brand for Vijay's Virasat Restaurant. From social media, posters, menu designs and logos — the studio went above and beyond.",
+      "tags": ["brand", "social", "logo", "hospitality"]
+    },
+    {
+      "id": "fb-bmdc-007",
+      "name": "Nayan Hirani",
+      "initials": "NH",
+      "date": "2017-09-28",
+      "year": 2017,
+      "rating": 5,
+      "body": "The studio has allowed me to start my business and focus on having a business of my own. They have always been open to suggestions and will work to get the design intended to put myself out there. Will recommend the team to everyone, especially those starting businesses.",
+      "tags": ["brand", "startup-friendly"]
+    },
+    {
+      "id": "fb-bmdc-008",
+      "name": "Jasdeep Bhamra",
+      "initials": "JB",
+      "date": "2017-08-12",
+      "year": 2017,
+      "rating": 5,
+      "body": "I needed an ad for a magazine within 24 hours and the studio did this for me. They are efficient, professional and spent time and effort to perfect every detail. Would highly recommend the team for any media work. Thank you so much to Terence who designed it.",
+      "tags": ["print", "fast-turnaround"]
+    },
+    {
+      "id": "fb-bmdc-009",
+      "name": "Tony Wheeler",
+      "initials": "TW",
+      "date": "2017-07-17",
+      "year": 2017,
+      "rating": 5,
+      "body": null,
+      "_note": "5-star recommendation, no body text",
+      "tags": ["star-only"]
+    },
+    {
+      "id": "fb-bmdc-010",
+      "name": "Ashley Stanton",
+      "initials": "AS",
+      "date": "2017-05-17",
+      "year": 2017,
+      "rating": 5,
+      "body": null,
+      "_note": "5-star recommendation, no body text",
+      "tags": ["star-only"]
+    },
+    {
+      "id": "fb-bmdc-011",
+      "name": "Hema Vaghela",
+      "initials": "HV",
+      "date": "2017-05-12",
+      "year": 2017,
+      "rating": 5,
+      "body": "Needed our website refreshed and updated — Terence did a great job at very quick turnaround too. Also designed some awesome flyers for our booths and services.",
+      "tags": ["web", "print"]
+    },
+    {
+      "id": "fb-bmdc-012",
+      "name": "Bhavna Mepani",
+      "initials": "BM",
+      "date": "2017-05-12",
+      "year": 2017,
+      "rating": 5,
+      "body": "Absolutely amazing. Helped me with my first shoot for my new brand and will be doing many more. Reliable, helpful and very professional. End result exceeded my expectations so would highly recommend the team.",
+      "tags": ["photography", "brand"]
+    },
+    {
+      "id": "fb-bmdc-013",
+      "name": "Reshmi Khetani",
+      "initials": "RK",
+      "date": "2017-05-12",
+      "year": 2017,
+      "rating": 5,
+      "body": "I was looking for a local photographer for my twin's first birthday party and Terence was recommended. He was polite and patient with my family and friends, and took his time to capture beautiful memories of the day. The end quality of the photos was awesome — would definitely be using his service again. Thanks Terence.",
+      "tags": ["photography"]
+    },
+    {
+      "id": "fb-bmdc-014",
+      "name": "Jigar Carsandas",
+      "initials": "JC",
+      "date": "2017-05-12",
+      "year": 2017,
+      "rating": 5,
+      "body": "Very helpful and informative — clear communication from the start. Great service. Would recommend the studio to my friends.",
+      "tags": ["service"]
+    },
+    {
+      "id": "fb-bmdc-015",
+      "name": "Vinny Rabadia",
+      "initials": "VR",
+      "date": "2017-05-12",
+      "year": 2017,
+      "rating": 5,
+      "body": "As we were rebranding the company, we were in need of a graphic designer to help create our logo, which is when I met Terence. He came to see us at the office, talked about our company and what we do. He was very patient and full of ideas from the start. Since then, Terence has been our main point of contact for all our graphic designs, marketing and advertising needed. He completed our website and is in charge of maintaining it.",
+      "tags": ["brand", "web", "long-term-client", "operations-adjacent"]
+    },
+    {
+      "id": "fb-bmdc-016",
+      "name": "Nimisha Vekaria",
+      "initials": "NV",
+      "date": "2017-05-04",
+      "year": 2017,
+      "rating": 5,
+      "body": "Thank you to Dhiru Patel for recommending the studio. Terence designed both my engagement and wedding invitations — really pleased with the outcome of both. He was extremely reliable, super patient and delivered before the deadline. I would highly recommend the team to friends and family. Thanks a million Terence.",
+      "tags": ["print", "personal"]
+    },
+    {
+      "id": "fb-bmdc-017",
+      "name": "Nirav Patel",
+      "initials": "NP",
+      "date": "2017-04-17",
+      "year": 2017,
+      "rating": 5,
+      "body": "I met Terence at my brother-in-law's wedding in Malaysia, before we even discussed what I needed. I got to know Terence and the team, and our conversations led down to a route of how the team could help out with my businesses from a branding and hosting perspective. The team produced a fantastic design for my first company. We were very pleased with the professional manner in which the project was managed.",
+      "tags": ["brand", "hosting", "multi-company"]
+    },
+    {
+      "id": "fb-bmdc-018",
+      "name": "Kishen Khetia Bharat Gangaram",
+      "initials": "KK",
+      "date": "2017-04-05",
+      "year": 2017,
+      "rating": 5,
+      "body": "I don't know what I can say. Thank you Terence for keeping my original colours but refreshing the business cards. Absolutely great work on design and print — couldn't ask for anything more.",
+      "tags": ["print", "brand"]
+    },
+    {
+      "id": "fb-bmdc-019",
+      "name": "Vinay Bhudia",
+      "initials": "VB",
+      "date": "2017-03-21",
+      "year": 2017,
+      "rating": 5,
+      "body": "Contacted the studio to make our logo and website for our film company. Terence was really quick and efficient — he knew exactly what we wanted from the brief I provided. He delivered really slick and creative designs in a short time frame. I would 100% recommend the team.",
+      "tags": ["brand", "logo", "web", "film"]
+    },
+    {
+      "id": "fb-bmdc-020",
+      "name": "Priya Patel",
+      "initials": "PP",
+      "date": "2017-03-20",
+      "year": 2017,
+      "rating": 5,
+      "body": null,
+      "_note": "5-star recommendation, no body text",
+      "tags": ["star-only"]
+    },
+    {
+      "id": "fb-bmdc-021",
+      "name": "Rikesh Patel",
+      "initials": "RP",
+      "date": "2017-03-30",
+      "year": 2017,
+      "rating": 5,
+      "body": "Great service. Fast and speedy service for all of your needs.",
+      "tags": ["service"]
+    },
+    {
+      "id": "fb-bmdc-022",
+      "name": "Ana Mortimer",
+      "initials": "AM",
+      "date": "2017-03-29",
+      "year": 2017,
+      "rating": 5,
+      "body": null,
+      "_note": "5-star recommendation, no body text",
+      "tags": ["star-only"]
+    },
+    {
+      "id": "fb-bmdc-023",
+      "name": "Nayan Malai",
+      "initials": "NM",
+      "date": "2017-03-27",
+      "year": 2017,
+      "rating": 5,
+      "body": "Great personal service. Great view to adapt to all solutions. Fantastic service.",
+      "tags": ["service"]
+    },
+    {
+      "id": "fb-bmdc-024",
+      "name": "Naresh Hirani",
+      "initials": "NH",
+      "date": "2017-03-16",
+      "year": 2017,
+      "rating": 5,
+      "body": "Thank you to the team for the launch of our new website at laxvideography. The team was very accommodating and flexible — multiple design options, and we now have the perfect web layout for our business.",
+      "tags": ["web"]
+    },
+    {
+      "id": "fb-bmdc-025",
+      "name": "Nills Meghani",
+      "initials": "NM",
+      "date": "2017-03-16",
+      "year": 2017,
+      "rating": 5,
+      "body": null,
+      "_note": "5-star recommendation, no body text",
+      "tags": ["star-only"]
+    },
+    {
+      "id": "fb-bmdc-026",
+      "name": "Tia Pindoria",
+      "initials": "TP",
+      "date": "2017-03-10",
+      "year": 2017,
+      "rating": 5,
+      "body": "I was looking for someone to do a rebrand of my business and I was recommended Terence. I'd never heard of the studio before but I'm glad I did. Terence was very professional and reliable in every interaction — he listened to what we needed and was very meticulous in the detail. He rebranded my business, helped develop and print 3-page leaflets, and also provided waterproof posters to an immaculate quality. We were very impressed and have since returned to him for simple tasks.",
+      "tags": ["brand", "print", "repeat-business"]
+    },
+    {
+      "id": "fb-bmdc-027",
+      "name": "Nazish Akhtar",
+      "initials": "NA",
+      "date": "2017-03-02",
+      "year": 2017,
+      "rating": 5,
+      "body": "When the company decided to rebuild the website, the studio was one of the companies recommended. As a key decision maker, I was reluctant to go for a young company — I would have preferred someone with far more experience. I am so pleased to say that in the end, going with the studio gave the company a lot more. Prices were extremely reasonable, the website was built with extreme professionalism, and communication was clear throughout.",
+      "tags": ["web", "enterprise", "decision-maker"]
+    },
+    {
+      "id": "fb-bmdc-028",
+      "name": "Jeya Lachani",
+      "initials": "JL",
+      "date": "2017-02-24",
+      "year": 2017,
+      "rating": 5,
+      "body": "Terence redesigned our business logo for us, and fully understood what we required. He was quick, efficient and to the point. Thereafter, he has also designed several business websites and helped us with full branding. Terence is a young professional who understands his customers and provides a high-end product. Well done Terence.",
+      "tags": ["brand", "logo", "web", "multi-project"]
+    },
+    {
+      "id": "fb-bmdc-029",
+      "name": "Deepak Sonara",
+      "initials": "DS",
+      "date": "2017-02-21",
+      "year": 2017,
+      "rating": 5,
+      "body": null,
+      "_note": "5-star recommendation, no body text",
+      "tags": ["star-only"]
+    },
+    {
+      "id": "fb-bmdc-030",
+      "name": "Vivek Patel",
+      "initials": "VP",
+      "date": "2017-02-17",
+      "year": 2017,
+      "rating": 5,
+      "body": "These guys have A* customer service and end products. From start to finish, their service has been amazing. Their creative ideas sum up the studio.",
+      "tags": ["service"]
+    },
+    {
+      "id": "fb-bmdc-031",
+      "name": "Sachin Patel",
+      "initials": "SP",
+      "date": "2017-02-07",
+      "year": 2017,
+      "rating": 5,
+      "body": "Contacted the studio for a logo for my photography business nearly 3 years ago. Received fast replies to emails with a range of ideas representing my brief. After a few small changes on a chosen design, I received a timeless logo which represents my brand with style and class. Terence is very professional yet approachable and easy to communicate with. He was very flexible and suggested some of his own ideas. Pricing was transparent from the start.",
+      "tags": ["brand", "logo", "long-term-client"]
+    },
+    {
+      "id": "fb-bmdc-032",
+      "name": "Hina Senaratne",
+      "initials": "HS",
+      "date": "2016-11-28",
+      "year": 2016,
+      "rating": 5,
+      "body": "The studio has helped completely re-brand Triage Vets — what did we not get done. We were able to collaborate strongly with the team to convey our vision and bring it alive. We believe our re-brand is bespoke, unique, and at the same time very professional — exactly what we wanted. Thank you for all the hard work and continued support.",
+      "tags": ["brand", "veterinary"]
+    },
+    {
+      "id": "fb-bmdc-033",
+      "name": "Jaya Bhudiya",
+      "initials": "JB",
+      "date": "2016-10-18",
+      "year": 2016,
+      "rating": 5,
+      "body": "Now where do I start. Got Terence's details from a friend for designing my logo, business cards, leaflets, banners and all the advice regarding advertising and marketing. I cannot even explain how patiently Terence listens to you and doesn't get angry when you want to make changes. I would definitely recommend the studio to all my friends and family.",
+      "tags": ["brand", "print", "marketing"]
+    },
+    {
+      "id": "fb-bmdc-034",
+      "name": "Harjeet Singh Lotay",
+      "initials": "HL",
+      "date": "2016-09-16",
+      "year": 2016,
+      "rating": 5,
+      "body": "An unexpected beginning to a project that started together a year ago as an amusement. The studio had been part of this venture before it had even become one — as the logo had come to a first prototype it was genuinely breathtaking, even though this was only one of the concepts. We did not go forward with the first logo but with great guidance — although nothing forced upon us to make a decision straight away.",
+      "tags": ["brand", "logo"]
+    },
+    {
+      "id": "fb-bmdc-035",
+      "name": "Sim Singh",
+      "initials": "SS",
+      "date": "2016-07-13",
+      "year": 2016,
+      "rating": 5,
+      "body": null,
+      "_note": "5-star recommendation, no body text",
+      "tags": ["star-only"]
+    },
+    {
+      "id": "fb-bmdc-036",
+      "name": "Priti Hirani",
+      "initials": "PH",
+      "date": "2016-04-19",
+      "year": 2016,
+      "rating": 5,
+      "body": "Thank you to the studio for developing and maintaining my website. You have been great from day one — from the development to the final version. I still get complimented two years on. Your response time is superfast. I can't thank you enough for my logo — I gave you the concept and you executed it to perfection.",
+      "tags": ["web", "logo", "long-term-client", "operations-adjacent"]
+    }
+  ],
+  "facebook_personal": [
+    {
+      "id": "fb-tm-001",
+      "name": "Bina Teja Patel",
+      "initials": "BP",
+      "date": "2023-03-26",
+      "year": 2023,
+      "rating": 5,
+      "body": "Terence has created the most fantastic website for me. Very skilled and creative for sure — there is nothing he can't do when it comes to web designing. 8 months since launching the website and I still receive so many compliments on the design and functionality. Terence's can-do attitude shows his passion and pride in the work he creates.",
+      "tags": ["web"],
+      "company": "santiroom.co.uk"
+    },
+    {
+      "id": "fb-tm-002",
+      "name": "Nisha Asodia",
+      "initials": "NA",
+      "date": "2020-12-01",
+      "year": 2020,
+      "rating": 5,
+      "body": "We recently asked Terence to design our TEDx University of Salford website, and having seen the finished website, we can safely say that he has done an amazing job. Terence has always delivered — he is a consummate professional and his work speaks for itself. We were so impressed with the work that he has delivered, that we have asked him to design a second business website for us. The quality of his work is outstanding.",
+      "tags": ["web", "tedx", "repeat-business"],
+      "company": "TEDx University of Salford"
+    },
+    {
+      "id": "fb-tm-003",
+      "name": "Daniel Merrix",
+      "initials": "DM",
+      "date": "2020-11-18",
+      "year": 2020,
+      "rating": 5,
+      "body": "Phenomenal guy who really takes into consideration your own goals for every aspect of the photo shoots — both short term and long term ambitions of the projects, and will endeavour to help as much as possible. I have recommended Terence to many people and will continue to do so.",
+      "tags": ["photography"]
+    },
+    {
+      "id": "fb-tm-004",
+      "name": "Kirit Patel",
+      "initials": "KP",
+      "date": "2020-11-18",
+      "year": 2020,
+      "rating": 5,
+      "body": "Terence is a pleasure to work with. He is quite exacting in the work he does, and very calm and collected. He is always beaming with ideas. I would recommend Terence highly to anyone wanting websites or marketing help. Thank you.",
+      "tags": ["web", "marketing"]
+    },
+    {
+      "id": "fb-tm-005",
+      "name": "Khlarissa Patel",
+      "initials": "KP",
+      "date": "2020-11-18",
+      "year": 2020,
+      "rating": 5,
+      "body": "Cannot thank Terence enough. He made the process of building this website so easy — we discussed what I wanted, and from the start he was always on top of things, asking to check the website as we progressed and put it together. It looks incredible and I could not have worked with anyone better. Very talented, professional and most importantly patient. Thank you so much.",
+      "tags": ["web"]
+    },
+    {
+      "id": "fb-tm-006",
+      "name": "Tulsi Vagjiani",
+      "initials": "TV",
+      "date": "2020-02-29",
+      "year": 2020,
+      "rating": 5,
+      "body": "Yes — efficient service for my business needs. All my logo specs were met and designed with precision and finesse. Thank you Terence.",
+      "tags": ["brand", "logo"]
+    },
+    {
+      "id": "fb-tm-007",
+      "name": "Raj Holsten",
+      "initials": "RH",
+      "date": "2020-02-26",
+      "year": 2020,
+      "rating": 5,
+      "body": "Top boy done what I asked for and he sorted it. Thanks Terence — highly recommended.",
+      "tags": ["short"]
+    },
+    {
+      "id": "fb-tm-008",
+      "name": "Sohan Bhudia",
+      "initials": "SB",
+      "date": "2019-09-21",
+      "year": 2019,
+      "rating": 5,
+      "body": "Couldn't have asked for a better person to do the baby shoot. He was fun to be around but also very good with the child. I would definitely recommend him to anyone who wants a photoshoot. His photography is brilliant and his eye for good background settings come natural to him. He returned the images to us in good time which was an added bonus.",
+      "tags": ["photography"]
+    },
+    {
+      "id": "fb-tm-009",
+      "name": "Jaiesh Pancha",
+      "initials": "JP",
+      "date": "2019-09-17",
+      "year": 2019,
+      "rating": 5,
+      "body": "Very professional, highly recommend, and good communication. The quality of Terence's work is of very high standard. And a good laugh to be around.",
+      "tags": ["service"]
+    },
+    {
+      "id": "fb-tm-010",
+      "name": "Aneta Gnyszka",
+      "initials": "AG",
+      "date": "2018-07-19",
+      "year": 2018,
+      "rating": 5,
+      "body": "It was a pleasure to work with Terence. Very professional and helpful. Looking forward to doing some more projects together.",
+      "tags": ["service"]
+    },
+    {
+      "id": "fb-tm-011",
+      "name": "Bhavna Mepani",
+      "initials": "BM",
+      "date": "2018-07-17",
+      "year": 2018,
+      "rating": 5,
+      "body": "Would highly recommend Terence — helped me when I was launching my brand and always use him whenever I do my seasonal photo shoots. Very professional and takes on board what I want and is open to new ideas. He has done all of Sefia London's shoots.",
+      "tags": ["brand", "photography", "long-term-client"],
+      "company": "Sefia London"
+    },
+    {
+      "id": "fb-tm-012",
+      "name": "Rachel Claire Corcoran",
+      "initials": "RC",
+      "date": "2018-07-17",
+      "year": 2018,
+      "rating": 5,
+      "body": "Terence is very professional with his work, has amazing patience level. He's easy to work with and makes models feel comfortable when doing shoots. The creativity he has is something — definitely look forward to working with him in the foreseeable future.",
+      "tags": ["photography"]
+    }
+  ]
+}

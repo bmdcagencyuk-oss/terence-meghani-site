@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import { Reveal } from './Reveal';
 
 export type TestimonialItem = {
@@ -106,6 +107,12 @@ export function Testimonials() {
               </div>
             </div>
           ))}
+        </div>
+
+        <div className="testi-viewall">
+          <Link href="/reviews">
+            View all 101+ reviews <span aria-hidden="true">→</span>
+          </Link>
         </div>
       </div>
     </section>
