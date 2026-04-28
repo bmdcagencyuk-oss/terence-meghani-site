@@ -2472,7 +2472,7 @@ body:has(.nav-top.is-mobile-open) { overflow: hidden; }
 }
 .mega .ch:hover { color: var(--rocket); }
 .mega .sp { display: inline-block; width: 0.3em; }
-.mega .ln-fuel { display: flex; align-items: baseline; gap: 0.06em; position: relative; }
+.mega .ln-fuel { display: flex; align-items: baseline; gap: 0.06em; position: relative; isolation: isolate; }
 
 /* Standalone "Built on" italic-serif accent (legacy — retained as orphan). */
 .mega .ln-statement {
@@ -2578,7 +2578,7 @@ body:has(.nav-top.is-mobile-open) { overflow: hidden; }
   transform-origin: center top;
 }
 
-.mega .fuel-word { display: inline-block; position: relative; line-height: 0.9; }
+.mega .fuel-word { display: inline-block; position: relative; line-height: 0.9; isolation: isolate; }
 .mega .fuel-word::before {
   content: '';
   position: absolute;

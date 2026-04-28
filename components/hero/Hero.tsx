@@ -258,13 +258,11 @@ export function Hero() {
                 <span className="ch">P</span>
                 <span className="ch">.</span>
               </span>
-              <span className="fuel-emblem" aria-hidden="true" />
             </span>
           </h1>
 
           <p className="hero-sub">
-            Studio of one — brand, code, growth.{' '}
-            <span className="hl">Twelve years in.</span>{' '}
+            Studio of one — brand, code, growth. Twelve years in.
             Still answering the&nbsp;phone.
           </p>
         </div>
