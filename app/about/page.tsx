@@ -130,11 +130,20 @@ export default function AboutPage() {
               </p>
               <hr className="hero-rule" aria-hidden="true" />
               <p className="lead">
-                Based between <strong>Hertfordshire and London</strong> — building brands
-                and shipping code for businesses worldwide since launching my first
-                venture at sixteen. More than a decade of close, first-person work for
-                News UK, Royal London, the NHS, TEDx, BBC and Fireaway alongside dozens of
-                independent businesses.
+                Based between{' '}
+                <strong>
+                  <Link
+                    href="/hertfordshire"
+                    style={{ color: 'inherit', textDecoration: 'none', borderBottom: '1px solid var(--color-rocket)' }}
+                  >
+                    Hertfordshire
+                  </Link>{' '}
+                  and London
+                </strong>{' '}
+                — building brands and shipping code for businesses worldwide since
+                launching my first venture at sixteen. More than a decade of close,
+                first-person work for News UK, Royal London, the NHS, TEDx, BBC and
+                Fireaway alongside dozens of independent businesses.
               </p>
               <div style={{ marginTop: 32, display: 'flex', flexWrap: 'wrap', gap: 12 }}>
                 <Button href="https://calendly.com/terencemeghani" external variant="primary">

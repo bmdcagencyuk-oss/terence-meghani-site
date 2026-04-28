@@ -8,6 +8,7 @@ import { SITE } from '@/lib/site';
 const STATIC_PATHS = [
   '/',
   '/about/',
+  '/hertfordshire',
   '/work/',
   '/plugins/',
   '/reviews/',
@@ -47,6 +48,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       path.startsWith('/work/') ? 0.8 :
       path.startsWith('/services/') || path === '/services/wordpress-operations/' ? 0.8 :
       path.startsWith('/plugins/') ? 0.8 :
+      path === '/hertfordshire' ? 0.7 :
       0.6,
   }));
 }

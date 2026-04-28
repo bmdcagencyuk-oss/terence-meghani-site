@@ -227,6 +227,43 @@ export function caseStudySchema(cs: CaseStudy) {
   };
 }
 
+/**
+ * LocalBusiness schema for the /hertfordshire page. Exists in addition to
+ * the site-wide ProfessionalService entity (re-keyed via parentOrganization)
+ * and uses the canonical office telephone resolved in the pre-launch audit.
+ */
+export function localBusinessSchema() {
+  const url = absoluteUrl('/hertfordshire');
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'LocalBusiness',
+    '@id': `${url}#localbusiness`,
+    name: SITE.studioName,
+    description:
+      'Engineer-grade WordPress operations, plugin development, AI workflows, and brand work — operated from Hertfordshire, delivered across the UK.',
+    url,
+    telephone: SITE.contact.telephone,
+    email: SITE.contact.email,
+    address: {
+      '@type': 'PostalAddress',
+      addressLocality: SITE.area.locality,
+      addressRegion: SITE.area.region,
+      addressCountry: SITE.area.country,
+    },
+    areaServed: [
+      { '@type': 'City', name: 'Watford' },
+      { '@type': 'City', name: 'St Albans' },
+      { '@type': 'City', name: 'Hemel Hempstead' },
+      { '@type': 'City', name: 'Hatfield' },
+      { '@type': 'AdministrativeArea', name: 'Hertfordshire' },
+      { '@type': 'AdministrativeArea', name: 'Greater London' },
+      { '@type': 'Country', name: 'United Kingdom' },
+    ],
+    founder: { '@id': SITE.ids.person },
+    parentOrganization: { '@id': SITE.ids.studio },
+  };
+}
+
 /** FAQPage entity from a list of {q, a} pairs. */
 export function faqPageSchema(items: Array<{ q: string; aPlain: string }>) {
   return {

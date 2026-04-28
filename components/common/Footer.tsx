@@ -50,6 +50,7 @@ export function Footer() {
             <h5>Studio</h5>
             <ul>
               <li><Link href="/about/">About</Link></li>
+              <li><Link href="/hertfordshire">Hertfordshire</Link></li>
               <li><Link href="/work/">Selected work</Link></li>
               <li><Link href="/reviews/">Reviews</Link></li>
               <li><Link href="/#faq">FAQ</Link></li>
