@@ -33,7 +33,7 @@ const ABOUT_BREADCRUMBS = breadcrumbSchema([
 const STATS = [
   { n: '13+',  label: 'Year career' },
   { n: '100+', label: 'Projects shipped' },
-  { n: '4.9★', label: 'Trustpilot average' },
+  { n: '4.7★', label: 'Trustpilot average' },
   { n: '6',    label: '10+ year clients' },
 ];
 

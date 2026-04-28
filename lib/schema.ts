@@ -2,6 +2,7 @@ import type { CaseStudy } from './case-studies';
 import type { Plugin, PluginLongForm } from './plugins';
 import type { Service } from './services';
 import { FAQ_ITEMS } from '@/components/sections/FAQ';
+import { TESTIMONIAL_ITEMS } from '@/components/sections/Testimonials';
 import { SITE, absoluteUrl } from './site';
 
 /**
@@ -67,6 +68,24 @@ export function siteGraph() {
           'Web Development',
           'SEO & Organic Growth',
         ],
+        // Aggregate sourced from Trustpilot only (4.7 / 37). Facebook
+        // recommendations are binary and don't combine cleanly with a
+        // five-point scale — keeping this source-pure.
+        aggregateRating: {
+          '@type': 'AggregateRating',
+          ratingValue: '4.7',
+          bestRating: '5',
+          ratingCount: '37',
+          reviewCount: '37',
+        },
+        review: TESTIMONIAL_ITEMS.map((t) => ({
+          '@type': 'Review',
+          author: { '@type': 'Person', name: t.name },
+          datePublished: t.datePublished,
+          reviewBody: t.quote,
+          reviewRating: { '@type': 'Rating', ratingValue: '5', bestRating: '5' },
+          publisher: { '@type': 'Organization', name: t.source },
+        })),
       },
       {
         '@type': 'WebSite',

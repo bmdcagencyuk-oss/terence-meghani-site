@@ -1,61 +1,77 @@
 import { Reveal } from './Reveal';
 
-type Item = {
+export type TestimonialItem = {
   avatar: string;
   name: string;
   role: string;
   project: string;
   quote: string;
+  /** Source platform — used to attribute publisher in JSON-LD Review schema. */
+  source: 'Trustpilot' | 'Facebook';
+  /** ISO 8601 date for JSON-LD datePublished. */
+  datePublished: string;
 };
 
-const ITEMS: Item[] = [
+export const TESTIMONIAL_ITEMS: TestimonialItem[] = [
   {
-    avatar: 'S',
-    name: 'Sarah K.',
-    role: 'Founder · Independent F&B brand',
-    project: 'Rebrand · 2024',
+    avatar: 'NP',
+    name: 'Neck P.',
+    role: 'Web hosting company',
+    project: 'Directus CMS integration · 2024 · Trustpilot',
     quote:
-      'Terence treated our rebrand like it was his own company. Not a deck handoff — a partner. Our bookings tripled in six months.',
+      "Terence's team integrated Directus CMS into our site cleanly — performance, UX and reliability all dialled in. A year on, choosing this studio was a game-changer for our web hosting company.",
+    source: 'Trustpilot',
+    datePublished: '2024-01-06',
   },
   {
-    avatar: 'M',
-    name: 'Marcus T.',
-    role: 'CMO · SaaS startup (Series A)',
-    project: 'Brand identity · 2024',
+    avatar: 'KD',
+    name: 'Kinari Dodhia',
+    role: 'Swagat Catering',
+    project: '10-year client · 2024 · Trustpilot',
     quote:
-      "Sharper in a thirty-minute call than the three agencies we'd paid before him. We hired him that afternoon.",
+      'Terry has been working with us for nearly ten years. Website, photography, every issue along the way — he has always been there. Efficient work and the friendliest people to deal with.',
+    source: 'Trustpilot',
+    datePublished: '2024-01-01',
   },
   {
-    avatar: 'A',
-    name: 'Ayo B.',
-    role: 'Director · Hospitality group',
-    project: 'Identity + Digital · 2023',
+    avatar: 'TV',
+    name: 'Tulsi Vagjiani',
+    role: '',
+    project: 'Brand & web · 2023 · Trustpilot',
     quote:
-      'What he ships is 30% of it — what you learn working with him is the other 70%. Every session felt like a masterclass.',
+      'Total professionalism from website to branding — exceeded everything I expected. I needed a modern, unique twist to match my authentic flamboyant self. The studio did not disappoint.',
+    source: 'Trustpilot',
+    datePublished: '2023-01-01',
   },
   {
-    avatar: 'D',
-    name: 'Dr. Jane P.',
-    role: 'Head of Marketing · Royal London',
-    project: 'Campaign · 2022',
+    avatar: 'NA',
+    name: 'Nisha Asodia',
+    role: 'TEDx University of Salford',
+    project: 'Web · 2020 · Facebook',
     quote:
-      'He called out a positioning gap on day one that three internal workshops had missed. The rest was momentum.',
+      'We asked Terence to design our TEDx University of Salford website — he delivered an amazing job. A consummate professional. We were impressed enough to bring him back for a second website.',
+    source: 'Facebook',
+    datePublished: '2020-01-01',
   },
   {
-    avatar: 'R',
-    name: 'Raj M.',
-    role: 'COO · DTC beauty brand',
-    project: 'Brand sprint · 2025',
+    avatar: 'VR',
+    name: 'Vinny Rabadia',
+    role: 'Long-term client',
+    project: 'Brand + Web · 2017 · Facebook',
     quote:
-      'Budget, deadline, and brand moved together in the same direction for the first time in years. That alone was worth it.',
+      "We met Terry during a rebrand — he came to the office, took the time to understand the business. He's been our main point of contact for design, marketing and website maintenance ever since.",
+    source: 'Facebook',
+    datePublished: '2017-01-01',
   },
   {
-    avatar: 'L',
-    name: 'Laura H.',
-    role: 'Founder · Brand Week London',
-    project: 'Identity + Event · 2024',
+    avatar: 'NA',
+    name: 'Nazish Akhtar',
+    role: 'Senior decision-maker',
+    project: 'Web rebuild · 2017 · Facebook',
     quote:
-      "We've worked with agencies from London, NYC, Berlin. Terence delivered the sharpest work at a fraction of the time and cost.",
+      "As a key decision maker on a website rebuild, I was reluctant about a young company. I'm so pleased we went ahead — extremely reasonable pricing, professional execution, and clear communication throughout.",
+    source: 'Facebook',
+    datePublished: '2017-01-01',
   },
 ];
 
@@ -69,14 +85,14 @@ export function Testimonials() {
           </Reveal>
           <div className="rating">
             <span className="stars" aria-hidden="true">★★★★★</span>
-            <Reveal as="span" variant="pop" className="n">4.9 / 5</Reveal>
-            <span className="lbl">100+ happy clients · Google &amp; Clutch</span>
+            <Reveal as="span" variant="pop" className="n">4.7 / 5</Reveal>
+            <span className="lbl">101+ recommendations · Trustpilot &amp; Facebook</span>
           </div>
         </div>
 
         <div className="testi-grid">
-          {ITEMS.map((t) => (
-            <div key={t.name} className="testi-card">
+          {TESTIMONIAL_ITEMS.map((t) => (
+            <div key={`${t.name}-${t.datePublished}`} className="testi-card">
               <span className="qmark" aria-hidden="true">&ldquo;</span>
               <blockquote>{t.quote}</blockquote>
               <span className="stars" aria-label="Five star rating">★★★★★</span>
@@ -90,11 +106,6 @@ export function Testimonials() {
               </div>
             </div>
           ))}
-        </div>
-
-        <div className="testi-note">
-          <strong>NOTE</strong> — Testimonial content is <strong>placeholder</strong> for the
-          preview. Swap in real quotes from your Google / Clutch / LinkedIn reviews before launch.
         </div>
       </div>
     </section>
