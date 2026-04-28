@@ -3,12 +3,31 @@ import { Kicker } from '@/components/ui/Kicker';
 import { WorkGrid } from '@/components/case-study/WorkGrid';
 import { LaunchCTA } from '@/components/launch/LaunchCTA';
 import { getAllCaseStudies, getFilterChips } from '@/lib/case-studies';
+import { breadcrumbSchema, ldJsonProps } from '@/lib/schema';
+
+const WORK_DESCRIPTION =
+  'Selected work from twelve years of brand and engineering — News UK, Royal London, NHS, TEDx, BBC, and dozens of independent businesses. Brand, code, growth.';
+const WORK_TITLE = 'Selected work';
 
 export const metadata: Metadata = {
-  title: 'Work — 12 case studies across brand, plugin development, web, and marketing',
-  description:
-    'Selected case studies — Kinnovis self-storage booking platform, News UK cyber awareness campaign, Al Jannah Villa Marrakech, TEDx University of Salford, and more across brand, plugin development, web, and marketing.',
+  title: WORK_TITLE,
+  description: WORK_DESCRIPTION,
+  alternates: { canonical: '/work/' },
+  openGraph: {
+    title: `${WORK_TITLE} — Terence Meghani`,
+    description: WORK_DESCRIPTION,
+    url: '/work/',
+  },
+  twitter: {
+    title: `${WORK_TITLE} — Terence Meghani`,
+    description: WORK_DESCRIPTION,
+  },
 };
+
+const WORK_BREADCRUMBS = breadcrumbSchema([
+  { name: 'Home', href: '/' },
+  { name: 'Work', href: '/work/' },
+]);
 
 export default function WorkPage() {
   const studies = getAllCaseStudies();
@@ -16,6 +35,7 @@ export default function WorkPage() {
 
   return (
     <>
+      <script {...ldJsonProps(WORK_BREADCRUMBS)} />
       <section className="page-hero with-glow-rocket">
         <div className="wrap">
           <div className="kicker-row">

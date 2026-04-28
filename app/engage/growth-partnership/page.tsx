@@ -4,12 +4,32 @@ import { Gem, Check } from 'lucide-react';
 import { Kicker } from '@/components/ui/Kicker';
 import { Button } from '@/components/ui/Button';
 import { LaunchCTA } from '@/components/launch/LaunchCTA';
+import { breadcrumbSchema, ldJsonProps } from '@/lib/schema';
+
+const GP_TITLE = 'Growth Partnership';
+const GP_DESCRIPTION =
+  'One monthly engagement bundling brand, plugin development, AI and engineering operations. For businesses that want a senior studio without the agency overhead.';
 
 export const metadata: Metadata = {
-  title: 'Growth Partnership — Terence Meghani',
-  description:
-    'A retained monthly engagement for businesses that want the full stack — strategy, engineering, and ongoing operations — under one roof. Three tiers, no minimum term, cancel anytime.',
+  title: GP_TITLE,
+  description: GP_DESCRIPTION,
+  alternates: { canonical: '/engage/growth-partnership/' },
+  openGraph: {
+    title: `${GP_TITLE} — Terence Meghani`,
+    description: GP_DESCRIPTION,
+    url: '/engage/growth-partnership/',
+  },
+  twitter: {
+    title: `${GP_TITLE} — Terence Meghani`,
+    description: GP_DESCRIPTION,
+  },
 };
+
+const GP_BREADCRUMBS = breadcrumbSchema([
+  { name: 'Home', href: '/' },
+  { name: 'Services', href: '/#services' },
+  { name: 'Growth Partnership', href: '/engage/growth-partnership/' },
+]);
 
 const INCLUDED = [
   { n: '01', t: 'Monthly strategy call',         d: '90-minute working session covering priorities, progress, and the next month’s plan.' },
@@ -50,6 +70,7 @@ const TIERS = [
 export default function GrowthPartnershipPage() {
   return (
     <>
+      <script {...ldJsonProps(GP_BREADCRUMBS)} />
       <section className="page-hero with-glow">
         <div className="wrap">
           <nav className="crumbs" aria-label="Breadcrumb">

@@ -12,8 +12,8 @@ import {
   PLUGIN_LONG_FORM,
 } from '@/lib/plugins';
 import type { PluginStatus } from '@/lib/plugins';
-
-const BASE = 'https://terencemeghani.com';
+import { breadcrumbSchema, ldJsonProps, pluginSchema } from '@/lib/schema';
+import { absoluteUrl } from '@/lib/site';
 
 const STATUS_TONE: Record<PluginStatus, { fg: string; bg: string; border: string }> = {
   available: {
@@ -50,50 +50,23 @@ export async function generateMetadata({
   const { slug } = await params;
   const plugin = getPluginBySlug(slug);
   if (!plugin) return { title: 'Not found' };
+  const title = `${plugin.name} — ${plugin.vertical} plugin`;
+  const description = plugin.tagline;
+  const url = `/plugins/${plugin.slug}/`;
   return {
-    title: `${plugin.name} — ${plugin.vertical} plugin`,
-    description: plugin.tagline,
-    alternates: { canonical: `/plugins/${plugin.slug}/` },
+    title,
+    description,
+    alternates: { canonical: url },
     openGraph: {
-      title: `${plugin.name} — ${plugin.vertical} plugin`,
-      description: plugin.tagline,
-      url: `${BASE}/plugins/${plugin.slug}/`,
+      title: `${title} — Terence Meghani`,
+      description,
+      url,
       type: 'website',
     },
-  };
-}
-
-function buildSchema(plugin: ReturnType<typeof getPluginBySlug>, longForm: typeof PLUGIN_LONG_FORM[string] | undefined) {
-  if (!plugin) return null;
-  const url = `${BASE}/plugins/${plugin.slug}/`;
-  return {
-    '@context': 'https://schema.org',
-    '@graph': [
-      {
-        '@type': 'SoftwareApplication',
-        '@id': `${url}#software`,
-        name: plugin.name,
-        applicationCategory: 'WordPress Plugin',
-        operatingSystem: 'WordPress',
-        url,
-        softwareVersion: plugin.version,
-        description: longForm?.whatItDoes?.[0] ?? plugin.tagline,
-        creator: { '@id': `${BASE}/#person` },
-        offers:
-          plugin.status === 'available'
-            ? { '@type': 'Offer', availability: 'https://schema.org/InStock', priceCurrency: 'GBP' }
-            : { '@type': 'Offer', availability: 'https://schema.org/PreOrder', priceCurrency: 'GBP' },
-      },
-      {
-        '@type': 'BreadcrumbList',
-        itemListElement: [
-          { '@type': 'ListItem', position: 1, name: 'Home', item: `${BASE}/` },
-          { '@type': 'ListItem', position: 2, name: 'Plugins', item: `${BASE}/plugins/` },
-          { '@type': 'ListItem', position: 3, name: plugin.vertical, item: `${BASE}/plugins/#${plugin.vertical.toLowerCase().replace(/\s+/g, '-')}` },
-          { '@type': 'ListItem', position: 4, name: plugin.name, item: url },
-        ],
-      },
-    ],
+    twitter: {
+      title: `${title} — Terence Meghani`,
+      description,
+    },
   };
 }
 
@@ -113,9 +86,15 @@ export default async function PluginDetailPage({
 
   return (
     <>
+      <script {...ldJsonProps(pluginSchema(plugin, longForm))} />
       <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(buildSchema(plugin, longForm)) }}
+        {...ldJsonProps(
+          breadcrumbSchema([
+            { name: 'Home', href: '/' },
+            { name: 'Plugins', href: '/plugins/' },
+            { name: plugin.name, href: `/plugins/${plugin.slug}/` },
+          ]),
+        )}
       />
 
       {/* Hero */}

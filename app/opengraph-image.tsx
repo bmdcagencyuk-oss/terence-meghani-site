@@ -1,12 +1,16 @@
 import { ImageResponse } from 'next/og';
+import { SITE } from '@/lib/site';
 
 export const runtime = 'edge';
-export const alt = 'Terence Meghani — Built to compound.';
+export const alt = SITE.defaultTitle;
 export const size = { width: 1200, height: 630 };
 export const contentType = 'image/png';
 
-const SITE = 'https://terencemeghani.com';
-
+/**
+ * Default OG card. Renders the studio's tagline + wordmark + gorilla emblem
+ * on a dark plinth, used by every page that doesn't override at the route
+ * level.
+ */
 export default function OGImage() {
   return new ImageResponse(
     (
@@ -17,117 +21,82 @@ export default function OGImage() {
           display: 'flex',
           flexDirection: 'column',
           justifyContent: 'space-between',
-          backgroundColor: '#242627',
+          backgroundColor: SITE.themeColor,
           backgroundImage:
-            'radial-gradient(circle at 20% 20%, rgba(122,15,255,0.18) 0%, rgba(255,77,23,0.08) 40%, transparent 70%)',
-          padding: '80px',
+            'radial-gradient(circle at 22% 18%, rgba(122,15,255,0.18) 0%, rgba(255,77,23,0.10) 38%, transparent 70%)',
+          padding: '72px 80px',
           fontFamily: 'system-ui, sans-serif',
           color: 'white',
           position: 'relative',
         }}
       >
-        {/* Top: emblem + name */}
-        <div style={{ display: 'flex', flexDirection: 'column', gap: 18 }}>
+        {/* Top-left: small wordmark */}
+        <div
+          style={{
+            display: 'flex',
+            fontSize: 24,
+            fontWeight: 600,
+            letterSpacing: 6,
+            color: 'rgba(255,255,255,0.92)',
+          }}
+        >
+          TERENCE MEGHANI
+        </div>
+
+        {/* Centre: page title (large) */}
+        <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
           <div
             style={{
               display: 'flex',
-              width: 80,
-              height: 62,
-              alignItems: 'center',
-              justifyContent: 'center',
-              color: '#FF4D17',
-              fontSize: 52,
-              fontWeight: 700,
-              letterSpacing: -3,
-            }}
-          >
-            ★
-          </div>
-          <div
-            style={{
-              fontSize: 32,
+              fontSize: 96,
               fontWeight: 600,
-              letterSpacing: 3,
-              color: 'white',
-            }}
-          >
-            TERENCE MEGHANI
-          </div>
-        </div>
-
-        {/* Middle: headline */}
-        <div style={{ display: 'flex', flexDirection: 'column' }}>
-          <div
-            style={{
-              fontSize: 92,
-              fontWeight: 500,
-              color: 'white',
-              lineHeight: 1,
+              color: '#FFFFFF',
+              lineHeight: 0.95,
               letterSpacing: -4,
-              display: 'flex',
-            }}
-          >
-            Built to
-          </div>
-          <div
-            style={{
-              fontSize: 124,
-              fontWeight: 700,
-              color: '#FF4D17',
-              lineHeight: 1,
-              letterSpacing: -5,
-              marginTop: 12,
-              display: 'flex',
-            }}
-          >
-            COMPOUND.
-          </div>
-        </div>
-
-        {/* Bottom-left: tagline */}
-        <div style={{ display: 'flex', flexDirection: 'column', gap: 6 }}>
-          <div
-            style={{
-              width: 80,
-              height: 2,
-              backgroundColor: 'rgba(255,255,255,0.16)',
-              marginBottom: 8,
-            }}
-          />
-          <div
-            style={{
-              fontSize: 22,
-              color: 'rgba(255,255,255,0.75)',
-              fontStyle: 'italic',
+              maxWidth: 940,
             }}
           >
             Studio of one — brand, code, growth.
           </div>
+        </div>
+
+        {/* Bottom-left: italic strap (small caps) */}
+        <div style={{ display: 'flex', flexDirection: 'column', gap: 6 }}>
           <div
             style={{
-              fontSize: 16,
-              letterSpacing: 3,
-              color: 'rgba(255,255,255,0.52)',
-              marginTop: 4,
+              width: 72,
+              height: 2,
+              backgroundColor: 'rgba(255,255,255,0.18)',
+              marginBottom: 6,
+            }}
+          />
+          <div
+            style={{
+              display: 'flex',
+              fontSize: 22,
+              fontStyle: 'italic',
+              color: 'rgba(255,255,255,0.78)',
+              textTransform: 'lowercase',
+              letterSpacing: 1,
             }}
           >
-            HERTFORDSHIRE · LONDON
+            Built to compound.
           </div>
         </div>
 
-        {/* Bottom-right: silverback emblem */}
+        {/* Bottom-right: gorilla emblem (white silhouette) */}
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
-          src={`${SITE}/brand/emblem-gorilla.svg`}
+          src={`${SITE.url}/brand/emblem-gorilla.svg`}
           alt=""
           width={102}
           height={80}
           style={{
             position: 'absolute',
             right: 80,
-            bottom: 80,
-            opacity: 0.92,
-            filter: 'grayscale(1)',
+            bottom: 70,
+            opacity: 0.95,
+            filter: 'brightness(0) invert(1)',
           }}
         />
       </div>

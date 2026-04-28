@@ -4,24 +4,31 @@ import Link from 'next/link';
 import { Kicker } from '@/components/ui/Kicker';
 import { Button } from '@/components/ui/Button';
 import { LaunchCTA } from '@/components/launch/LaunchCTA';
+import { breadcrumbSchema, ldJsonProps } from '@/lib/schema';
+
+const ABOUT_DESCRIPTION =
+  'Twelve years of building brands and shipping code, based between Hertfordshire and London. Studio of one — brand, code, growth, all from the same brain.';
+const ABOUT_TITLE = 'About';
 
 export const metadata: Metadata = {
-  title: 'About — Terence Meghani',
-  description:
-    "Creative designer and brand consultant based between Hertfordshire and London. Founded Krazy Media at sixteen, now trading under his own name — over a decade of work with News UK, Royal London, the NHS, TEDx, BBC and Fireaway.",
+  title: ABOUT_TITLE,
+  description: ABOUT_DESCRIPTION,
   alternates: { canonical: '/about/' },
   openGraph: {
-    title: 'About — Terence Meghani',
-    description:
-      "Creative designer and brand consultant, Hertfordshire & London. 13+ years building brands for independent businesses and global names.",
-    images: [
-      {
-        url: '/legacy/2025/01/IMG_4739.jpg',
-        alt: 'Portrait of Terence Meghani',
-      },
-    ],
+    title: `${ABOUT_TITLE} — Terence Meghani`,
+    description: ABOUT_DESCRIPTION,
+    url: '/about/',
+  },
+  twitter: {
+    title: `${ABOUT_TITLE} — Terence Meghani`,
+    description: ABOUT_DESCRIPTION,
   },
 };
+
+const ABOUT_BREADCRUMBS = breadcrumbSchema([
+  { name: 'Home', href: '/' },
+  { name: 'About', href: '/about/' },
+]);
 
 const STATS = [
   { n: '13+',  label: 'Years in business' },
@@ -79,6 +86,7 @@ const PRACTICES = [
 export default function AboutPage() {
   return (
     <>
+      <script {...ldJsonProps(ABOUT_BREADCRUMBS)} />
       {/* ======== HERO ======== */}
       <section className="page-hero with-glow grid-texture">
         <div className="wrap">

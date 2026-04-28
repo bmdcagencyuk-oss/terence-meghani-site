@@ -19,6 +19,7 @@ import { WorkCard } from '@/components/case-study/WorkCard';
 import { LaunchCTA } from '@/components/launch/LaunchCTA';
 import { getAllCaseStudies, getCaseStudyBySlug } from '@/lib/case-studies';
 import servicesData from '@/data/services.json';
+import { breadcrumbSchema, faqPageSchema, ldJsonProps, wpOperationsSchema } from '@/lib/schema';
 
 const SERVICE = servicesData.services.find((s) => s.slug === 'wordpress-operations')!;
 const SERVICE_INDEX = servicesData.services.findIndex((s) => s.slug === 'wordpress-operations') + 1;
@@ -214,76 +215,47 @@ const RELATED = [
   },
 ];
 
-const BASE = 'https://terencemeghani.com';
-const PAGE_URL = `${BASE}/services/wordpress-operations/`;
-
-function buildSchema() {
-  return {
-    '@context': 'https://schema.org',
-    '@graph': [
-      {
-        '@type': 'Service',
-        '@id': `${PAGE_URL}#service`,
-        name: 'WordPress Operations',
-        url: PAGE_URL,
-        serviceType: 'Managed WordPress operations retainer',
-        provider: { '@id': `${BASE}/#person` },
-        areaServed: 'GB',
-        description: SERVICE.longDescription,
-        hasOfferCatalog: {
-          '@type': 'OfferCatalog',
-          name: 'WordPress Operations tiers',
-          itemListElement: TIERS.map((tier) => ({
-            '@type': 'Offer',
-            name: tier.name,
-            price: tier.price.replace(/[£,]/g, ''),
-            priceCurrency: 'GBP',
-            priceSpecification: {
-              '@type': 'UnitPriceSpecification',
-              price: tier.price.replace(/[£,]/g, ''),
-              priceCurrency: 'GBP',
-              referenceQuantity: { '@type': 'QuantitativeValue', value: 1, unitCode: 'MON' },
-            },
-            description: tier.pitch,
-            url: PAGE_URL,
-          })),
-        },
-      },
-      {
-        '@type': 'FAQPage',
-        '@id': `${PAGE_URL}#faq`,
-        mainEntity: FAQ.map((f) => ({
-          '@type': 'Question',
-          name: f.q,
-          acceptedAnswer: { '@type': 'Answer', text: f.a },
-        })),
-      },
-      {
-        '@type': 'BreadcrumbList',
-        '@id': `${PAGE_URL}#breadcrumbs`,
-        itemListElement: [
-          { '@type': 'ListItem', position: 1, name: 'Home', item: `${BASE}/` },
-          { '@type': 'ListItem', position: 2, name: 'Services', item: `${BASE}/#services` },
-          { '@type': 'ListItem', position: 3, name: 'WordPress Operations', item: PAGE_URL },
-        ],
-      },
-    ],
-  };
-}
+const PAGE_PATH = '/services/wordpress-operations/';
+const WP_OPS_TITLE = 'WordPress Operations';
+const WP_OPS_DESCRIPTION =
+  'Engineer-grade WordPress operations on retainer. Server log diagnostics, database health, deliverability, security, performance. Three tiers from £1,500/month.';
 
 export const metadata: Metadata = {
-  title: { absolute: 'WordPress Operations Retainer UK | Terence Meghani' },
-  description:
-    'Engineer-grade WordPress operations on monthly retainer. Server log diagnostics, database health, security hardening, deliverability, performance. Three tiers, written reviews, defined SLA.',
+  title: WP_OPS_TITLE,
+  description: WP_OPS_DESCRIPTION,
   keywords: SERVICE.keywords,
-  alternates: { canonical: '/services/wordpress-operations/' },
+  alternates: { canonical: PAGE_PATH },
   openGraph: {
-    title: 'WordPress Operations — engineer-grade retainer',
-    description: SERVICE.longDescription,
-    url: PAGE_URL,
+    title: `${WP_OPS_TITLE} — Terence Meghani`,
+    description: WP_OPS_DESCRIPTION,
+    url: PAGE_PATH,
     type: 'website',
   },
+  twitter: {
+    title: `${WP_OPS_TITLE} — Terence Meghani`,
+    description: WP_OPS_DESCRIPTION,
+  },
 };
+
+const WP_OPS_SCHEMA = wpOperationsSchema({
+  url: PAGE_PATH,
+  description: WP_OPS_DESCRIPTION,
+  tiers: TIERS.map((tier) => ({
+    name: tier.name,
+    price: Number(tier.price.replace(/[£,]/g, '')),
+    pitch: tier.pitch,
+  })),
+});
+
+const WP_OPS_FAQ_SCHEMA = faqPageSchema(
+  FAQ.map((f) => ({ q: f.q, aPlain: f.a })),
+);
+
+const WP_OPS_BREADCRUMBS = breadcrumbSchema([
+  { name: 'Home', href: '/' },
+  { name: 'Services', href: '/#services' },
+  { name: 'WordPress Operations', href: PAGE_PATH },
+]);
 
 export default function WordPressOperationsPage() {
   const newsUk = getCaseStudyBySlug('news-uk');
@@ -291,10 +263,9 @@ export default function WordPressOperationsPage() {
 
   return (
     <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(buildSchema()) }}
-      />
+      <script {...ldJsonProps(WP_OPS_SCHEMA)} />
+      <script {...ldJsonProps(WP_OPS_FAQ_SCHEMA)} />
+      <script {...ldJsonProps(WP_OPS_BREADCRUMBS)} />
 
       {/* Hero */}
       <section className="page-hero with-glow grid-texture">

@@ -17,7 +17,7 @@ import {
   getTestimonialById,
   loadCaseStudyNarrative,
 } from '@/lib/case-studies';
-import { caseStudySchema } from '@/lib/schema';
+import { breadcrumbSchema, caseStudySchema, ldJsonProps } from '@/lib/schema';
 
 export function generateStaticParams() {
   return getAllCaseStudies().map((s) => ({ slug: s.slug }));
@@ -31,13 +31,22 @@ export async function generateMetadata({
   const { slug } = await params;
   const cs = getCaseStudyBySlug(slug);
   if (!cs) return { title: 'Not found' };
+  const title = `${cs.client} — ${cs.projectTitle}`;
+  const description = cs.excerpt;
+  const url = `/work/${cs.slug}/`;
   return {
-    title: `${cs.client} — ${cs.projectTitle}`,
-    description: cs.excerpt,
+    title,
+    description,
+    alternates: { canonical: url },
     openGraph: {
-      title: `${cs.client} — ${cs.projectTitle}`,
-      description: cs.excerpt,
+      title: `${title} — Terence Meghani`,
+      description,
+      url,
       images: cs.heroImage ? [{ url: cs.heroImage, alt: cs.heroImageAlt }] : undefined,
+    },
+    twitter: {
+      title: `${title} — Terence Meghani`,
+      description,
     },
   };
 }
@@ -57,9 +66,15 @@ export default async function CaseStudyPage({
 
   return (
     <>
+      <script {...ldJsonProps(caseStudySchema(cs))} />
       <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(caseStudySchema(cs)) }}
+        {...ldJsonProps(
+          breadcrumbSchema([
+            { name: 'Home', href: '/' },
+            { name: 'Work', href: '/work/' },
+            { name: cs.projectTitle, href: `/work/${cs.slug}/` },
+          ]),
+        )}
       />
       <CaseStudyHero study={cs} />
       <CaseStudyMeta study={cs} />

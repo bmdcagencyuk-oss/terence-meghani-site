@@ -3,8 +3,10 @@ import { Kicker } from '@/components/ui/Kicker';
 import { LaunchCTA } from '@/components/launch/LaunchCTA';
 
 export const metadata: Metadata = {
-  title: 'Terms of Service — Terence Meghani',
+  title: 'Terms of Service',
   description: 'Terms for using terencemeghani.com.',
+  alternates: { canonical: '/terms/' },
+  robots: { index: false, follow: true },
 };
 
 export default function TermsPage() {

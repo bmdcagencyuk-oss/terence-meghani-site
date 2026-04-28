@@ -12,10 +12,10 @@ import { Footer } from '@/components/common/Footer';
 import { SkipLink } from '@/components/common/SkipLink';
 import { ScrollProgressBar } from '@/components/common/ScrollProgressBar';
 import { FloatingFab } from '@/components/common/FloatingFab';
+import { SITE } from '@/lib/site';
+import { siteGraph, ldJsonProps } from '@/lib/schema';
 
 // Bricolage Grotesque — variable font with width + optical-size axes.
-// v23 uses font-variation-settings on .mega .ch to animate wdth 85↔80 during
-// FUEL letter pulse, so we must expose the wdth axis here.
 const bricolage = Bricolage_Grotesque({
   subsets: ['latin'],
   variable: '--font-bricolage',
@@ -46,27 +46,29 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://terencemeghani.com'),
+  metadataBase: new URL(SITE.url),
   title: {
-    default: 'Terence Meghani — Built to compound.',
-    template: '%s · Terence Meghani',
+    default: SITE.defaultTitle,
+    template: SITE.titleTemplate,
   },
   description:
-    'Studio of one — brand, code, growth. WordPress operations, plugin development, AI & automation, and strategy-led brand work. Hertfordshire & London. 4.9★ on Trustpilot. Built to compound.',
+    'Studio of one — brand, code, growth. WordPress operations, plugin development, AI and automation, strategy-led brand work. Hertfordshire & London. Built to compound.',
   keywords: [
     'brand consultant',
-    'brand designer',
+    'WordPress engineer',
+    'WordPress operations',
     'WordPress plugin developer',
-    'AI consultant UK',
-    'web developer Hertfordshire',
+    'AI automation',
+    'studio of one',
+    'Hertfordshire',
+    'London',
   ],
-  authors: [{ name: 'Terence Meghani' }],
+  authors: [{ name: SITE.name, url: SITE.url }],
+  creator: SITE.name,
+  publisher: SITE.studioName,
   alternates: {
     canonical: '/',
-    languages: {
-      'en-GB': '/',
-      'x-default': '/',
-    },
+    languages: { 'en-GB': '/', 'x-default': '/' },
   },
   robots: {
     index: true,
@@ -82,15 +84,29 @@ export const metadata: Metadata = {
   openGraph: {
     type: 'website',
     locale: 'en_GB',
-    siteName: 'Terence Meghani',
-    title: 'Terence Meghani — Built to compound.',
+    siteName: SITE.name,
+    title: SITE.defaultTitle,
     description:
-      'Studio of one — brand, code, growth. Over a decade of work with News UK, Royal London, NHS, TEDx, BBC, and Fireaway. Built to compound.',
-    // og image auto-wired by app/opengraph-image.tsx
+      'Studio of one — brand, code, growth. WordPress operations, plugin development, AI and automation, strategy-led brand work. Built to compound.',
+    url: '/',
+    images: [{ url: '/opengraph-image', width: 1200, height: 630, alt: SITE.defaultTitle }],
   },
   twitter: {
     card: 'summary_large_image',
-    // twitter image auto-wired by app/opengraph-image.tsx
+    title: SITE.defaultTitle,
+    description: 'Studio of one — brand, code, growth. Built to compound.',
+    images: ['/opengraph-image'],
+  },
+  manifest: '/site.webmanifest',
+  icons: {
+    icon: [
+      { url: '/icon-16.png', sizes: '16x16', type: 'image/png' },
+      { url: '/icon-32.png', sizes: '32x32', type: 'image/png' },
+      { url: '/icon-192.png', sizes: '192x192', type: 'image/png' },
+      { url: '/icon-512.png', sizes: '512x512', type: 'image/png' },
+    ],
+    shortcut: '/favicon.ico',
+    apple: [{ url: '/apple-touch-icon.png', sizes: '180x180', type: 'image/png' }],
   },
 };
 
@@ -98,7 +114,7 @@ export const viewport: Viewport = {
   width: 'device-width',
   initialScale: 1,
   viewportFit: 'cover',
-  themeColor: '#242627',
+  themeColor: SITE.themeColor,
   colorScheme: 'dark',
 };
 
@@ -112,9 +128,13 @@ export default function RootLayout({
 
   return (
     <html
-      lang="en-GB"
+      lang={SITE.locale}
       className={`${bricolage.variable} ${instrumentSans.variable} ${instrumentSerif.variable} ${jetbrainsMono.variable}`}
     >
+      <head>
+        {/* Site-wide Person + ProfessionalService + WebSite @graph */}
+        <script {...ldJsonProps(siteGraph())} />
+      </head>
       <body>
         <PlausibleProvider domain={plausibleDomain}>
           <SkipLink />

@@ -3,8 +3,10 @@ import { Kicker } from '@/components/ui/Kicker';
 import { LaunchCTA } from '@/components/launch/LaunchCTA';
 
 export const metadata: Metadata = {
-  title: 'Privacy Policy — Terence Meghani',
+  title: 'Privacy Policy',
   description: 'How I collect, use, and protect your personal information.',
+  alternates: { canonical: '/privacy/' },
+  robots: { index: false, follow: true },
 };
 
 export default function PrivacyPage() {

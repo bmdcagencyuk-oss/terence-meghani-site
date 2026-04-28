@@ -3,8 +3,10 @@ import { Kicker } from '@/components/ui/Kicker';
 import { LaunchCTA } from '@/components/launch/LaunchCTA';
 
 export const metadata: Metadata = {
-  title: 'Cookie Policy — Terence Meghani',
+  title: 'Cookie Policy',
   description: 'This site does not use tracking cookies.',
+  alternates: { canonical: '/cookies/' },
+  robots: { index: false, follow: true },
 };
 
 export default function CookiesPage() {

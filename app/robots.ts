@@ -1,4 +1,5 @@
 import type { MetadataRoute } from 'next';
+import { SITE } from '@/lib/site';
 
 export default function robots(): MetadataRoute.Robots {
   return {
@@ -7,7 +8,7 @@ export default function robots(): MetadataRoute.Robots {
       allow: '/',
       disallow: ['/api/', '/_next/'],
     },
-    sitemap: 'https://terencemeghani.com/sitemap.xml',
-    host: 'https://terencemeghani.com',
+    sitemap: `${SITE.url}/sitemap.xml`,
+    host: SITE.url,
   };
 }

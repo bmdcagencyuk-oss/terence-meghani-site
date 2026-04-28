@@ -4,21 +4,27 @@ import { Kicker } from '@/components/ui/Kicker';
 import { PluginCard } from '@/components/plugins/PluginCard';
 import { LaunchCTA } from '@/components/launch/LaunchCTA';
 import { getAllPlugins, getVerticals, getPluginsByVertical } from '@/lib/plugins';
+import { breadcrumbSchema, ldJsonProps } from '@/lib/schema';
+import { SITE, absoluteUrl } from '@/lib/site';
 
-const BASE = 'https://terencemeghani.com';
-const PAGE_URL = `${BASE}/plugins/`;
+const PAGE_URL = absoluteUrl('/plugins/');
+const PLUGINS_TITLE = 'Plugins';
+const PLUGINS_DESCRIPTION =
+  'Six productised WordPress plugins built and maintained by Terence Meghani. Self-storage booking, client portals, site audits — performance-first, properly documented.';
 
 export const metadata: Metadata = {
-  title: 'Productised WordPress plugins · Terence Meghani',
-  description:
-    'Six productised WordPress plugins across three verticals — self-storage, agency tooling, and marketing tooling. Built and shipping.',
+  title: PLUGINS_TITLE,
+  description: PLUGINS_DESCRIPTION,
   alternates: { canonical: '/plugins/' },
   openGraph: {
-    title: 'Productised WordPress plugins',
-    description:
-      'Six WordPress plugins across self-storage, agency tooling, and marketing tooling. Built and shipping.',
-    url: PAGE_URL,
+    title: `${PLUGINS_TITLE} — Terence Meghani`,
+    description: PLUGINS_DESCRIPTION,
+    url: '/plugins/',
     type: 'website',
+  },
+  twitter: {
+    title: `${PLUGINS_TITLE} — Terence Meghani`,
+    description: PLUGINS_DESCRIPTION,
   },
 };
 
@@ -39,17 +45,24 @@ function buildSchema() {
     '@id': `${PAGE_URL}#collection`,
     url: PAGE_URL,
     name: 'Productised WordPress plugins',
-    description: 'Six productised WordPress plugins across three verticals.',
+    description: PLUGINS_DESCRIPTION,
+    isPartOf: { '@id': SITE.ids.website },
     hasPart: plugins.map((p) => ({
       '@type': 'SoftwareApplication',
       name: p.name,
-      applicationCategory: 'WordPress Plugin',
-      url: `${BASE}/plugins/${p.slug}/`,
+      applicationCategory: 'BusinessApplication',
+      operatingSystem: 'WordPress',
+      url: absoluteUrl(`/plugins/${p.slug}/`),
       softwareVersion: p.version,
       description: p.tagline,
     })),
   };
 }
+
+const PLUGINS_BREADCRUMBS = breadcrumbSchema([
+  { name: 'Home', href: '/' },
+  { name: 'Plugins', href: '/plugins/' },
+]);
 
 export default function PluginsIndexPage() {
   const verticals = getVerticals();
@@ -57,10 +70,8 @@ export default function PluginsIndexPage() {
 
   return (
     <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(buildSchema()) }}
-      />
+      <script {...ldJsonProps(buildSchema())} />
+      <script {...ldJsonProps(PLUGINS_BREADCRUMBS)} />
 
       <section className="page-hero with-glow grid-texture">
         <div className="wrap">

@@ -2,12 +2,31 @@ import type { Metadata } from 'next';
 import { Kicker } from '@/components/ui/Kicker';
 import { ContactForm } from '@/components/sections/ContactForm';
 import { LaunchCTA } from '@/components/launch/LaunchCTA';
+import { breadcrumbSchema, ldJsonProps } from '@/lib/schema';
+
+const CONTACT_TITLE = 'Contact';
+const CONTACT_DESCRIPTION =
+  'Drop a brief, book a thirty-minute call, or send a question. Direct, first-person reply within 48 hours — no account managers, no handoff chain.';
 
 export const metadata: Metadata = {
-  title: 'Contact — Terence Meghani',
-  description:
-    "Got a brief? Drop the details below — or book a 30-minute call. I read every enquiry personally and reply within 48 hours.",
+  title: CONTACT_TITLE,
+  description: CONTACT_DESCRIPTION,
+  alternates: { canonical: '/contact/' },
+  openGraph: {
+    title: `${CONTACT_TITLE} — Terence Meghani`,
+    description: CONTACT_DESCRIPTION,
+    url: '/contact/',
+  },
+  twitter: {
+    title: `${CONTACT_TITLE} — Terence Meghani`,
+    description: CONTACT_DESCRIPTION,
+  },
 };
+
+const CONTACT_BREADCRUMBS = breadcrumbSchema([
+  { name: 'Home', href: '/' },
+  { name: 'Contact', href: '/contact/' },
+]);
 
 const CONTACT_ROWS: Array<{ k: string; v: string; href?: string }> = [
   { k: 'Email',    v: 'hello@terencemeghani.com', href: 'mailto:hello@terencemeghani.com' },
@@ -20,6 +39,7 @@ const CONTACT_ROWS: Array<{ k: string; v: string; href?: string }> = [
 export default function ContactPage() {
   return (
     <>
+      <script {...ldJsonProps(CONTACT_BREADCRUMBS)} />
       <section className="page-hero with-glow-rocket">
         <div className="wrap">
           <div

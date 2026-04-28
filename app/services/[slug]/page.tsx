@@ -39,6 +39,7 @@ import { getAllServices, getServiceBySlug } from '@/lib/services';
 import { getAllCaseStudies } from '@/lib/case-studies';
 import { getAllPlugins } from '@/lib/plugins';
 import { PluginCard } from '@/components/plugins/PluginCard';
+import { breadcrumbSchema, ldJsonProps, serviceSchema } from '@/lib/schema';
 import { Kicker } from '@/components/ui/Kicker';
 import { Button } from '@/components/ui/Button';
 import { WorkCard } from '@/components/case-study/WorkCard';
@@ -296,6 +297,20 @@ export function generateStaticParams() {
     .map((s) => ({ slug: s.slug }));
 }
 
+/** Per-service SEO descriptions (140–160 chars, differentiator-first). */
+const SERVICE_SEO_DESCRIPTIONS: Record<string, string> = {
+  'wordpress-plugin-development':
+    'Custom WordPress plugin development — bespoke plugins, API integrations, AI-extended admin tooling. Performance-first, secure, properly documented. UK studio.',
+  'ai-automation':
+    'Brand-aware AI workflows, custom GPTs trained on your voice, content operations, AI-powered WordPress plugins. AI that sounds like you, not like ChatGPT.',
+  'brand-identity':
+    'Strategy, positioning, naming, visual systems and voice for businesses that want to be remembered. Twelve years of brand work, from BBC and News UK to independents.',
+  'web-development':
+    "Higher-tier WordPress and Next.js builds for teams who've outgrown template-builder sites. Modern stack, performance-first engineering, properly documented.",
+  'seo-organic-growth':
+    'SEO and organic growth as an editorial and technical discipline — technical audits, content strategy, local SEO, Core Web Vitals tuning. UK studio, monthly cadence.',
+};
+
 export async function generateMetadata({
   params,
 }: {
@@ -304,10 +319,22 @@ export async function generateMetadata({
   const { slug } = await params;
   const s = getServiceBySlug(slug);
   if (!s) return { title: 'Not found' };
+  const description = SERVICE_SEO_DESCRIPTIONS[slug] ?? s.shortDescription;
   return {
-    title: `${s.label} — Terence Meghani`,
-    description: s.longDescription,
+    title: s.label,
+    description,
     keywords: s.keywords,
+    alternates: { canonical: s.url },
+    openGraph: {
+      title: `${s.label} — Terence Meghani`,
+      description,
+      url: s.url,
+      type: 'website',
+    },
+    twitter: {
+      title: `${s.label} — Terence Meghani`,
+      description,
+    },
   };
 }
 
@@ -329,9 +356,20 @@ export default async function ServicePage({
   const HeroIcon = SERVICE_ICON[slug] ?? Sparkles;
   const heroStats = content.heroStats;
   const heroClients = content.heroClients;
+  const description = SERVICE_SEO_DESCRIPTIONS[slug] ?? service.shortDescription;
 
   return (
     <>
+      <script {...ldJsonProps(serviceSchema(service, description))} />
+      <script
+        {...ldJsonProps(
+          breadcrumbSchema([
+            { name: 'Home', href: '/' },
+            { name: 'Services', href: '/#services' },
+            { name: service.label, href: service.url },
+          ]),
+        )}
+      />
       <section className="page-hero with-glow grid-texture">
         <div className="wrap">
           <nav className="crumbs" aria-label="Breadcrumb">

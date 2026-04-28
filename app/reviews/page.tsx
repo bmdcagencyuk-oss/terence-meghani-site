@@ -3,13 +3,31 @@ import { Kicker } from '@/components/ui/Kicker';
 import { Button } from '@/components/ui/Button';
 import { LaunchCTA } from '@/components/launch/LaunchCTA';
 import { getAllTestimonials } from '@/lib/case-studies';
-import { reviewsSchema } from '@/lib/schema';
+import { breadcrumbSchema, ldJsonProps } from '@/lib/schema';
+
+const REVIEWS_TITLE = 'Reviews';
+const REVIEWS_DESCRIPTION =
+  'Client reviews from twelve years of brand and engineering work — Google, Clutch, LinkedIn. Direct, first-person work for studios, scaleups and senior teams.';
 
 export const metadata: Metadata = {
-  title: 'Reviews — 4.9★ on Trustpilot',
-  description:
-    "20 verified reviews from clients including News UK, Vijay's Virasat, Tulsi Vagjiani, and La Royale Banqueting Suites. Verified Trustpilot reviews, no edits.",
+  title: REVIEWS_TITLE,
+  description: REVIEWS_DESCRIPTION,
+  alternates: { canonical: '/reviews/' },
+  openGraph: {
+    title: `${REVIEWS_TITLE} — Terence Meghani`,
+    description: REVIEWS_DESCRIPTION,
+    url: '/reviews/',
+  },
+  twitter: {
+    title: `${REVIEWS_TITLE} — Terence Meghani`,
+    description: REVIEWS_DESCRIPTION,
+  },
 };
+
+const REVIEWS_BREADCRUMBS = breadcrumbSchema([
+  { name: 'Home', href: '/' },
+  { name: 'Reviews', href: '/reviews/' },
+]);
 
 export default function ReviewsPage() {
   const testimonials = getAllTestimonials();
@@ -17,10 +35,7 @@ export default function ReviewsPage() {
 
   return (
     <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(reviewsSchema(testimonials)) }}
-      />
+      <script {...ldJsonProps(REVIEWS_BREADCRUMBS)} />
       <section className="page-hero with-glow-rocket">
         <div className="wrap">
           <div
