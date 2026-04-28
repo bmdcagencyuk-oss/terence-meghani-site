@@ -1,0 +1,48 @@
+---
+slug: pedagogy-club
+title: Pedagogy Club — booking platform
+client: Pedagogy Club Education
+projectTitle: Booking platform & GoCardless integration
+year: 2026
+industry: Education
+location: UK
+services:
+  - Web development
+  - Plugin development
+  - GoCardless integration
+  - GDPR architecture
+tags:
+  - Web
+  - Plugins
+featured: true
+featuredOrder: 1
+published: true
+excerpt: A single-page WordPress site paired with a bespoke enrolment plugin. GoCardless Direct Debit added mid-engagement. Built around how parents actually use the site — under two minutes from landing to confirmed enrolment, no account required.
+heroImage: /work/pedagogy-club-hero.svg
+heroImageAlt: Pedagogy Club booking platform — custom WordPress theme + bespoke enrolment plugin
+url: https://pedagogy.club
+---
+
+## (01) The Challenge
+
+Pedagogy Club built a website reactively during the pandemic and then lost access to it following a dispute with their previous developers — a hostage scenario familiar to anyone who's ever had a project handed off without proper discipline. The site was still up but couldn't be updated, couldn't be migrated, and was drifting further from the actual enrolment workflow with every term.
+
+The pressure points were concentrated rather than constant. Three to six hundred parents submit one-off enrolment forms each year, almost all of them clustered into four short windows: May, June, September, and January. During those windows the site has to handle surge traffic without manual intervention. Outside them, it has to stay quietly out of the way.
+
+Two further constraints shaped the brief. Every parent had to be able to enrol a child in under two minutes — no account, no password reset, no email verification round-trip. And because the data being collected was children's personal information, GDPR couldn't be a bolted-on afterthought. It had to sit at the centre of the architecture.
+
+## (02) The Approach
+
+A single-page WordPress site paired with a bespoke enrolment plugin, built on standard WordPress patterns — Custom Post Types, REST API, native admin UI — with no third-party plugin dependencies for the core booking logic. Less to maintain, less to break, and full ownership of the source code, database, and credentials in the client's name from day one.
+
+The booking flow itself was deliberately minimal. No login. Honeypot anti-spam. Duplicate-booking prevention via child name, date of birth, and email. An instant confirmation screen with a reference number. When a class fills, a waiting list auto-engages, captures identical data, and auto-promotes the next person in line — emailing them — when a confirmed seat is freed up. The admin can override any of it manually but rarely needs to.
+
+GDPR was built in rather than retrofitted. Versioned consent stored in the database so the client can prove what was agreed and when. Plain-English consent language, not legal boilerplate. Personal data automatically anonymised twelve months after term end. Subject access and erasure requests handled in minutes rather than days. Two-factor authentication on admin accounts, encrypted backups, role-based access.
+
+Mid-engagement, the scope expanded. The original brief explicitly excluded fee collection — the booking was the conversion, and recurring fees lived in a separate workflow. But as the build progressed it became clear that the recurring-fee workflow was the bigger pain point, not a separate concern. I added a GoCardless integration for Direct Debit collection: parents enrol once, set up the mandate at the same time, and term fees collect themselves. The integration sat on top of the existing custom plugin rather than replacing it, which kept the architecture clean and kept the cost-stable promise intact — no SaaS subscriptions tied to enrolment volume, ongoing cost limited to managed hosting and GoCardless's per-transaction fee paid by the client directly.
+
+## (03) The Outcome
+
+Live in production. Parents are enrolling. Direct Debits are collecting. Real numbers will come from the May–June and September cycles ahead — too early to measure now, but the architecture is set up to surface them clearly when they arrive.
+
+What's measurable already: full intellectual property transferred to the client at handover, source code in their GitHub, written admin manual and three short training videos. No hostage scenario possible this time. The client has the keys; the studio has the relationship.

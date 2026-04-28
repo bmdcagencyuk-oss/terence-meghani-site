@@ -38,6 +38,35 @@
   ],
   "studies": [
     {
+      "slug": "pedagogy-club",
+      "client": "Pedagogy Club Education",
+      "projectTitle": "Booking platform & GoCardless integration",
+      "year": 2026,
+      "industry": "Education",
+      "location": "UK",
+      "services": [
+        "Web development",
+        "Plugin development",
+        "GoCardless integration",
+        "GDPR architecture"
+      ],
+      "tags": [
+        "Web",
+        "Plugins"
+      ],
+      "featured": true,
+      "featuredOrder": 1,
+      "published": true,
+      "excerpt": "A single-page WordPress site paired with a bespoke enrolment plugin. GoCardless Direct Debit added mid-engagement. Built around how parents actually use the site — under two minutes from landing to confirmed enrolment, no account required.",
+      "heroImage": "/work/pedagogy-club-hero.svg",
+      "heroImageAlt": "Pedagogy Club booking platform — custom WordPress theme + bespoke enrolment plugin",
+      "related": [
+        "kinnovis",
+        "news-uk",
+        "fireaway-pizza"
+      ]
+    },
+    {
       "slug": "kinnovis",
       "client": "Kinnovis",
       "projectTitle": "Self-storage booking platform on Stora",
@@ -54,7 +83,7 @@
         "Plugins"
       ],
       "featured": true,
-      "featuredOrder": 2,
+      "featuredOrder": 3,
       "published": true,
       "excerpt": "Replacing a Google Form with a four-plugin booking platform — quoting, unit selection, reservation, and Stora API integration on a single WordPress site.",
       "heroImage": "/work/kinnovis-hero.svg",
@@ -84,7 +113,7 @@
         "Marketing"
       ],
       "featured": true,
-      "featuredOrder": 5,
+      "featuredOrder": 6,
       "excerpt": "Conversion-focused launch landing page and a custom-built referral system for a UK AI personal-finance app — turning a waiting list into a self-propelling acquisition channel.",
       "heroImage": "/case-studies/bettafi/landing-desktop.jpg",
       "heroImageAlt": "Bettafi landing page — Your Money. Simplify & take control of your finances.",
@@ -120,7 +149,7 @@
         "Web"
       ],
       "featured": true,
-      "featuredOrder": 1,
+      "featuredOrder": 2,
       "excerpt": "Brand direction and bespoke illustration for News UK's internal security awareness programme.",
       "heroImage": "https://res.cloudinary.com/dmdp4f2wp/image/upload/v1718736249/news-uk-roller-banner-mockup_qmktch.png",
       "heroImageAlt": "News UK branded coaster illustration detail",
@@ -158,7 +187,7 @@
         "Web"
       ],
       "featured": true,
-      "featuredOrder": 3,
+      "featuredOrder": 4,
       "excerpt": "Brand identity and website for a private six-bedroom luxury retreat in the Moroccan countryside.",
       "heroImage": "https://res.cloudinary.com/dmdp4f2wp/image/upload/v1718740785/_MG_4184_navykv.jpg",
       "heroImageAlt": "Al Jannah Villa Marrakech brand identity",
@@ -199,7 +228,7 @@
         "Marketing"
       ],
       "featured": true,
-      "featuredOrder": 4,
+      "featuredOrder": 5,
       "excerpt": "Event identity and promotional system for an independently-licensed TEDx event.",
       "heroImage": "https://res.cloudinary.com/dmdp4f2wp/image/upload/v1718894769/Terence-Meghani-Krazy-Media-TEDX-026980_d94z3s.jpg",
       "heroImageAlt": "TEDx University of Salford event branding",
@@ -265,7 +294,7 @@
         "Photography"
       ],
       "featured": true,
-      "featuredOrder": 6,
+      "featuredOrder": 7,
       "excerpt": "Photography and marketing support for Europe's largest data centre industry event at Westminster Plaza.",
       "heroImage": "https://res.cloudinary.com/dmdp4f2wp/image/upload/v1720303941/dcd_westminister_plaza_hotel-3_g0ofg0.jpg",
       "heroImageAlt": "DCD Connect at Westminster Plaza",
@@ -324,7 +353,7 @@
         "Photography"
       ],
       "featured": true,
-      "featuredOrder": 7,
+      "featuredOrder": 8,
       "excerpt": "Digital marketing and commissioned photography for a UK pizza chain — 75% organic growth.",
       "metric": {
         "value": "+75%",
@@ -375,7 +404,7 @@
         "Photography"
       ],
       "featured": true,
-      "featuredOrder": 8,
+      "featuredOrder": 9,
       "excerpt": "Digital marketing and on-site photography for a specialist servicing centre in Kings Langley.",
       "heroImage": "https://res.cloudinary.com/dmdp4f2wp/images/v1722252653/Japex-Automotive-bmdc-agency-341/Japex-Automotive-bmdc-agency-341.jpg",
       "heroImageAlt": "Japex Automotive service centre photography",

@@ -192,6 +192,7 @@ const SERVICE_CONTENT: Record<
       { step: '03', title: 'QA', body: 'On your actual WordPress install, not a sandbox' },
       { step: '04', title: 'Handover', body: 'Full source, documentation, update policy' },
     ],
+    featured: ['pedagogy-club', 'kinnovis'],
     faq: [
       { q: 'Who owns the plugin — me or you?', a: 'You do. Source, licence terms, and repository access transfer on final invoice.' },
       { q: 'Do you support plugins after handover?', a: 'Optionally — either ad-hoc or as part of a Growth Partnership retainer. Clean handover is also fine if you\'ve got an internal team.' },

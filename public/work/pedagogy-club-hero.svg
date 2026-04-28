@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1800 1200" width="1800" height="1200" role="img" aria-label="Pedagogy Club · Booking platform · 2026">
+  <defs>
+    <radialGradient id="amberGlow" cx="50%" cy="50%" r="68%">
+      <stop offset="0%" stop-color="#C46A1F" stop-opacity="0.85"/>
+      <stop offset="55%" stop-color="#C46A1F" stop-opacity="0.18"/>
+      <stop offset="100%" stop-color="#C46A1F" stop-opacity="0"/>
+    </radialGradient>
+    <pattern id="grid" width="60" height="60" patternUnits="userSpaceOnUse">
+      <path d="M 60 0 L 0 0 0 60" fill="none" stroke="#FFFFFF" stroke-opacity="0.04" stroke-width="1"/>
+    </pattern>
+  </defs>
+
+  <rect width="1800" height="1200" fill="#0A0A0B"/>
+  <rect width="1800" height="1200" fill="url(#grid)"/>
+  <ellipse cx="900" cy="600" rx="900" ry="520" fill="url(#amberGlow)"/>
+
+  <text x="900" y="500" text-anchor="middle"
+        font-family="'JetBrains Mono', ui-monospace, monospace"
+        font-size="22" letter-spacing="6"
+        fill="#C46A1F" opacity="0.92">
+    EDUCATION · WEB · PLUGIN · 2026
+  </text>
+
+  <text x="900" y="612" text-anchor="middle"
+        font-family="'Bricolage Grotesque', 'Inter', system-ui, sans-serif"
+        font-size="92" font-weight="600" letter-spacing="-2"
+        fill="#FFFFFF">
+    Pedagogy Club
+  </text>
+
+  <text x="900" y="700" text-anchor="middle"
+        font-family="'Instrument Serif', Georgia, serif"
+        font-size="40" font-style="italic"
+        fill="#E6E6E6" opacity="0.85">
+    Booking platform &amp; GoCardless
+  </text>
+
+  <line x1="780" y1="760" x2="1020" y2="760" stroke="#C46A1F" stroke-width="2"/>
+
+  <text x="900" y="810" text-anchor="middle"
+        font-family="'JetBrains Mono', ui-monospace, monospace"
+        font-size="18" letter-spacing="4"
+        fill="#FFFFFF" opacity="0.6">
+    LIVE · PEDAGOGY.CLUB
+  </text>
+</svg>

@@ -16,7 +16,8 @@ import {
 import { Kicker } from '@/components/ui/Kicker';
 import { Button } from '@/components/ui/Button';
 import { LaunchCTA } from '@/components/launch/LaunchCTA';
-import { getAllCaseStudies } from '@/lib/case-studies';
+import { getAllCaseStudies, getCaseStudyBySlug } from '@/lib/case-studies';
+import { WorkCard } from '@/components/case-study/WorkCard';
 import servicesData from '@/data/services.json';
 import { breadcrumbSchema, faqPageSchema, ldJsonProps, wpOperationsSchema } from '@/lib/schema';
 
@@ -258,6 +259,7 @@ const WP_OPS_BREADCRUMBS = breadcrumbSchema([
 
 export default function WordPressOperationsPage() {
   const projectCount = getAllCaseStudies().length;
+  const pedagogy = getCaseStudyBySlug('pedagogy-club');
 
   return (
     <>
@@ -678,7 +680,8 @@ export default function WordPressOperationsPage() {
           </div>
 
           <div className="cs-related-grid">
-            {[1, 2, 3].map((i) => (
+            {pedagogy && <WorkCard study={pedagogy} />}
+            {[1, 2].map((i) => (
               <article
                 key={`tbc-${i}`}
                 style={{
