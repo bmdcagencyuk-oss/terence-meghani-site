@@ -16,7 +16,7 @@ export function About() {
             <span className="sunburst" aria-hidden="true" />
             <span className="hero-cape" aria-hidden="true" />
             <img
-              src="/about/terence-portrait.svg"
+              src="/about/terence-portrait.webp"
               alt="Terence Meghani — brand consultant, Hertfordshire & London"
             />
             <span className="streaks" aria-hidden="true">
