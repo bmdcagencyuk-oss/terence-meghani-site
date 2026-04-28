@@ -154,12 +154,11 @@ export function Launch() {
         </div>
 
         <Reveal as="h2" variant="letters">
-          Ready to <em>launch?</em>
+          I won&rsquo;t <em>pitch you.</em>
         </Reveal>
 
         <p className="subtext">
-          <strong>Two new project slots · Q3 2026.</strong> Thirty minutes, no slides, no fluff —
-          leave with a concrete next step whether we work together or not.
+          I&rsquo;ll tell you what&rsquo;s actually wrong — and whether I&rsquo;m the right fix.
         </p>
 
         <div className="cta-wrap">
@@ -178,7 +177,7 @@ export function Launch() {
             </defs>
             <text>
               <textPath href="#launchRingPath">
-                BOOK A DISCOVERY CALL · 30 MIN · FREE · NO DECK ·{' '}
+                BOOK A 30-MINUTE AUDIT · FREE · NO DECK ·{' '}
               </textPath>
             </text>
           </svg>
@@ -188,20 +187,24 @@ export function Launch() {
             rel="noopener noreferrer"
             className="go"
             data-cc="go"
-            aria-label="Book a discovery call via Calendly"
+            aria-label="Book a 30-minute audit · free · no deck"
           >
             <span className="trail" aria-hidden="true" />
             <span className="big" aria-hidden="true">🚀</span>
             <span>
-              Book via
+              Book the
               <br />
-              Calendly
+              audit
             </span>
           </a>
           <span className="exhaust" aria-hidden="true">
             <span /><span /><span /><span /><span />
           </span>
         </div>
+
+        <p className="cta-subline">
+          If we&rsquo;re not the right fit, I&rsquo;ll tell you who is.
+        </p>
       </div>
 
       <div className="launchpad" aria-hidden="true">

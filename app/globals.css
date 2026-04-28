@@ -303,11 +303,14 @@
 }
 .work-card .cover {
   position: absolute; inset: 0;
-  background-size: cover;
-  background-position: center;
+  overflow: hidden;
   filter: saturate(0.9) contrast(1.03);
   transition: transform 0.8s var(--ease), filter 0.4s ease;
   z-index: 0;
+}
+.work-card .cover img {
+  object-fit: cover;
+  object-position: center;
 }
 .work-card:hover .cover {
   transform: scale(1.06);
@@ -2401,6 +2404,29 @@ body:has(.nav-top.is-mobile-open) { overflow: hidden; }
   pointer-events: none;
   animation: twinkle 4s ease-in-out infinite alternate;
 }
+/* Ambient amber glow that drifts slowly across the hero. Single channel,
+   GPU-only transform, gated behind prefers-reduced-motion. The bright spot
+   is held to the lower-left/right quadrants so the headline (centred upper
+   third) always reads cleanly above it. */
+.hero::after {
+  content: ''; position: absolute; inset: 0; z-index: 1;
+  background:
+    radial-gradient(circle 520px at 30% 70%,
+      color-mix(in srgb, var(--color-rocket) 14%, transparent) 0%,
+      transparent 62%);
+  pointer-events: none;
+  will-change: transform;
+  animation: heroDrift 28s ease-in-out infinite;
+}
+@keyframes heroDrift {
+  0%   { transform: translate3d(-6%, -2%, 0); }
+  50%  { transform: translate3d(8%, 3%, 0); }
+  100% { transform: translate3d(-6%, -2%, 0); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .hero::after { animation: none; transform: none; }
+  .hero::before { animation: none; }
+}
 .rocket-canvas {
   /* Removed from the hero — the rocket trail now earns its place only on
      the T-MINUS closing CTA. Keep the rule so any cached CSS class doesn't
@@ -3172,35 +3198,6 @@ body:has(.nav-top.is-mobile-open) { overflow: hidden; }
 .ticker-wrap {
   position: relative; z-index: 2;
   padding-top: 28px;
-}
-.ticker-label {
-  display: block;
-  font-family: var(--f-mono);
-  font-size: 11px;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  font-weight: 600;
-  color: var(--rocket);
-  text-align: center;
-  padding: 0 0 12px;
-}
-.ticker-label::before {
-  content: '';
-  display: inline-block;
-  width: 28px; height: 1px;
-  background: currentColor;
-  vertical-align: middle;
-  margin-right: 12px;
-  opacity: 0.6;
-}
-.ticker-label::after {
-  content: '';
-  display: inline-block;
-  width: 28px; height: 1px;
-  background: currentColor;
-  vertical-align: middle;
-  margin-left: 12px;
-  opacity: 0.6;
 }
 .ticker {
   position: relative; z-index: 2;
@@ -4366,6 +4363,15 @@ body:has(.nav-top.is-mobile-open) { overflow: hidden; }
   line-height: 1.55;
 }
 .launch .subtext strong { color: var(--white); font-weight: 500; }
+
+.launch .cta-subline {
+  margin: 36px auto 0;
+  max-width: 44ch;
+  font-size: 13px;
+  line-height: 1.55;
+  color: color-mix(in srgb, var(--mist) 70%, transparent);
+  font-style: italic;
+}
 
 .launch .cta-wrap { margin-top: 60px; position: relative; display: inline-block; }
 .launch .cta-ring { position: absolute; inset: -48px; pointer-events: none; animation: spin 18s linear infinite; z-index: 2; }

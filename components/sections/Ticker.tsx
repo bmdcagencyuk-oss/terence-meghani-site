@@ -35,7 +35,6 @@ function Row({ ariaHidden = false }: { ariaHidden?: boolean }) {
 export function Ticker() {
   return (
     <div className="ticker-wrap" aria-label="Selected clients">
-      <span className="ticker-label">Selected clients · 2014–present</span>
       <div className="ticker">
         <div className="ttrack">
           {/* Four copies — first two compose the loop unit, second two

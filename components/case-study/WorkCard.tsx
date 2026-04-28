@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import Image from 'next/image';
 import type { CaseStudy } from '@/lib/case-studies';
 
 type Props = { study: CaseStudy };
@@ -6,14 +7,17 @@ type Props = { study: CaseStudy };
 export function WorkCard({ study }: Props) {
   return (
     <Link href={`/work/${study.slug}/`} className="work-card" data-cc="view">
-      <span
-        className="cover"
-        role="img"
-        aria-label={study.heroImageAlt}
-        style={{
-          backgroundImage: study.heroImage ? `url('${study.heroImage}')` : undefined,
-        }}
-      />
+      {study.heroImage && (
+        <span className="cover">
+          <Image
+            src={study.heroImage}
+            alt={study.heroImageAlt}
+            fill
+            sizes="(max-width: 720px) 100vw, (max-width: 1200px) 50vw, 360px"
+            style={{ objectFit: 'cover', objectPosition: 'center' }}
+          />
+        </span>
+      )}
       <div className="body">
         <div className="meta">
           <span>{study.client}</span>
