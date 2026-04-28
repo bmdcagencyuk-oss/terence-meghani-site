@@ -32,7 +32,11 @@ export function Ticker() {
   return (
     <div className="ticker" aria-label="Selected clients">
       <div className="ttrack">
+        {/* Four copies — first two compose the loop unit, second two
+            satisfy the translateX(-50%) cycle on wide viewports. */}
         <Row />
+        <Row ariaHidden />
+        <Row ariaHidden />
         <Row ariaHidden />
       </div>
     </div>

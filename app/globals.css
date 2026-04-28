@@ -3050,6 +3050,28 @@ body:has(.nav-top.is-mobile-open) { overflow: hidden; }
   background: radial-gradient(circle, var(--violet) 0%, transparent 55%);
   filter: blur(100px); opacity: 0.3;
 }
+/* Silverback gorilla watermark — large, anchored bottom-left, sits behind
+   all content. White silhouette via brightness/invert filter at low opacity
+   so it reads as brand texture rather than a foreground mark. */
+.about::after {
+  content: '';
+  position: absolute;
+  left: -6%;
+  bottom: -10%;
+  width: clamp(380px, 38vw, 640px);
+  aspect-ratio: 435 / 340;
+  background-image: url('/brand/emblem-gorilla.svg');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  filter: brightness(0) invert(1);
+  opacity: 0.05;
+  pointer-events: none;
+  z-index: 0;
+}
+@media (max-width: 768px) {
+  .about::after { display: none; }
+}
 .about .wrap { position: relative; }
 .about .lbl { display: flex; align-items: center; gap: 14px; color: var(--mist); margin-bottom: 48px; }
 .about .lbl .bar { width: 64px; height: 2px; background: var(--rocket); }
