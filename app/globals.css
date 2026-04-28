@@ -2617,7 +2617,7 @@ body:has(.nav-top.is-mobile-open) { overflow: hidden; }
 }
 .mega .ln { display: block; position: relative; pointer-events: auto; line-height: 0.9; }
 .mega .ln1 {
-  font-size: 0.2em; color: var(--rocket); margin-bottom: 22px; font-weight: 500;
+  font-size: 0.2em; color: var(--rocket); margin-bottom: 40px; font-weight: 500;
   letter-spacing: 0.16em; font-family: var(--f-mono); text-transform: uppercase;
   display: flex; align-items: center; gap: 12px;
   line-height: 1.2;

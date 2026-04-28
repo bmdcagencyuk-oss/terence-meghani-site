@@ -100,14 +100,14 @@ const ITEMS: CardItem[] = [
   {
     idx: '07 / 08',
     year: '2026',
-    tag: 'Fintech · Web · Referral',
-    title: 'Bettafi — landing & referral',
-    image: '/case-studies/bettafi/landing-desktop.jpg',
+    tag: 'Fintech · Web · Platform',
+    title: 'Bettafi — pre-launch referral platform',
+    image: '/work/bettafi/00-frontend-landing-full.png',
     href: '/work/bettafi/',
     metrics: [
-      { n: 'Live',   k: 'Status' },
-      { n: 'Custom', k: 'Referral' },
-      { n: 'Q1',     k: 'Launch' },
+      { n: 'Live',      k: 'Status' },
+      { n: 'Bespoke',   k: 'Referral platform' },
+      { n: 'DB-driven', k: 'Social proof' },
     ],
   },
   {
