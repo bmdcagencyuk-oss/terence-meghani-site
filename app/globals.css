@@ -2996,6 +2996,39 @@ body:has(.nav-top.is-mobile-open) { overflow: hidden; }
 }
 .hazard .h-text .alt { background: var(--rocket); color: var(--ink); }
 
+.ticker-wrap {
+  position: relative; z-index: 2;
+  padding-top: 28px;
+}
+.ticker-label {
+  display: block;
+  font-family: var(--f-mono);
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  font-weight: 600;
+  color: var(--rocket);
+  text-align: center;
+  padding: 0 0 12px;
+}
+.ticker-label::before {
+  content: '';
+  display: inline-block;
+  width: 28px; height: 1px;
+  background: currentColor;
+  vertical-align: middle;
+  margin-right: 12px;
+  opacity: 0.6;
+}
+.ticker-label::after {
+  content: '';
+  display: inline-block;
+  width: 28px; height: 1px;
+  background: currentColor;
+  vertical-align: middle;
+  margin-left: 12px;
+  opacity: 0.6;
+}
 .ticker {
   position: relative; z-index: 2;
   padding: 20px 0;

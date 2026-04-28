@@ -3,7 +3,7 @@
 import Link from 'next/link';
 import { useEffect, useRef } from 'react';
 import { Reveal } from './Reveal';
-import servicesData from '@/data/services.json';
+import { getCoreServices } from '@/lib/services';
 
 type Row = { k: string; v: string };
 type CardDetail = {
@@ -69,9 +69,8 @@ const CARD_DETAIL: Record<string, CardDetail> = {
   },
 };
 
-const SERVICES = servicesData.services
-  .filter((s) => s.tier === 'core' && s.published !== false && CARD_DETAIL[s.slug])
-  .sort((a, b) => a.order - b.order)
+const SERVICES = getCoreServices()
+  .filter((s) => CARD_DETAIL[s.slug])
   .map((s, i) => ({
     slug: s.slug,
     num: `S / ${String(i + 1).padStart(2, '0')}`,

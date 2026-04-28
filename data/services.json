@@ -96,24 +96,6 @@
       ]
     },
     {
-      "slug": "ppc-paid-media",
-      "label": "PPC & Paid Media",
-      "icon": "TrendingUp",
-      "tier": "secondary",
-      "order": 6,
-      "tagline": "Paid search and social, built to convert.",
-      "shortDescription": "Paid search and social campaigns, structured around real buyer intent.",
-      "longDescription": "Paid media work for businesses ready to put budget to work meaningfully. Google Ads, Meta, LinkedIn, and TikTok — campaigns structured around actual buyer intent and measurable outcomes, with creative aligned to the brand rather than platform defaults.",
-      "url": "/services/ppc-paid-media/",
-      "keywords": [
-        "PPC agency London",
-        "Google Ads specialist",
-        "Meta ads consultant",
-        "paid media strategist"
-      ],
-      "published": false
-    },
-    {
       "slug": "seo-organic-growth",
       "label": "SEO & Organic Growth",
       "icon": "Search",

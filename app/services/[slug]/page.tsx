@@ -51,7 +51,6 @@ const SERVICE_ICON: Record<string, React.ComponentType<{ size?: number; strokeWi
   'ai-automation':                 Sparkles,
   'wordpress-plugin-development':  Puzzle,
   'web-development':               Code,
-  'ppc-paid-media':                Target,
   'seo-organic-growth':            Search,
   'growth-partnership':            Gem,
 };
@@ -231,26 +230,6 @@ const SERVICE_CONTENT: Record<
       { q: 'Can you migrate my existing site without downtime?', a: 'Yes. DNS cutover, prerender testing, and a rollback plan are standard parts of the launch process.' },
     ],
     launchHeadline: 'website',
-  },
-  'ppc-paid-media': {
-    heroStats: [
-      { k: 'Cadence',       v: 'Monthly' },
-      { k: 'Platforms',     v: '4+ channels' },
-      { k: 'Reporting',     v: 'Monthly' },
-      { k: 'Minimum term',  v: '3 months' },
-    ],
-    heroClients: ['Fireaway', 'Japex', 'MHV Clinic'],
-    deliverables: [
-      { title: 'Google Ads',              desc: 'Search, Display, Performance Max, Shopping — structured campaigns, not one mega-campaign.' },
-      { title: 'Meta Ads',                desc: 'Facebook + Instagram with creative variants tested weekly, not one ad burning through budget.' },
-      { title: 'LinkedIn Ads',            desc: 'For B2B only — tight targeting, high-fidelity creative, real lead cost tracking.' },
-      { title: 'TikTok Ads',              desc: 'When your audience is actually there — short-form creative produced or directed in-house.' },
-      { title: 'Creative production',     desc: 'Static + short-form video shot to platform spec. Not stock footage with a logo.' },
-      { title: 'Landing page optimisation', desc: 'Match-message landing pages with proper conversion tracking and iterative testing.' },
-      { title: 'Monthly reporting & review', desc: 'What worked, what didn\'t, what we\'re doing next — in plain English, not dashboards.' },
-    ],
-    featured: ['fireaway-pizza', 'japex-automotive', 'mhv-clinic'],
-    launchHeadline: 'campaign',
   },
   'seo-organic-growth': {
     heroStats: [

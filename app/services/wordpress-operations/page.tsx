@@ -15,9 +15,8 @@ import {
 } from 'lucide-react';
 import { Kicker } from '@/components/ui/Kicker';
 import { Button } from '@/components/ui/Button';
-import { WorkCard } from '@/components/case-study/WorkCard';
 import { LaunchCTA } from '@/components/launch/LaunchCTA';
-import { getAllCaseStudies, getCaseStudyBySlug } from '@/lib/case-studies';
+import { getAllCaseStudies } from '@/lib/case-studies';
 import servicesData from '@/data/services.json';
 import { breadcrumbSchema, faqPageSchema, ldJsonProps, wpOperationsSchema } from '@/lib/schema';
 
@@ -258,7 +257,6 @@ const WP_OPS_BREADCRUMBS = breadcrumbSchema([
 ]);
 
 export default function WordPressOperationsPage() {
-  const newsUk = getCaseStudyBySlug('news-uk');
   const projectCount = getAllCaseStudies().length;
 
   return (
@@ -680,8 +678,7 @@ export default function WordPressOperationsPage() {
           </div>
 
           <div className="cs-related-grid">
-            {newsUk && <WorkCard study={newsUk} />}
-            {[1, 2].map((i) => (
+            {[1, 2, 3].map((i) => (
               <article
                 key={`tbc-${i}`}
                 style={{
@@ -721,8 +718,8 @@ export default function WordPressOperationsPage() {
                     Coming soon.
                   </h3>
                   <p style={{ marginTop: 10, color: 'var(--color-fog)', fontSize: 14, lineHeight: 1.55 }}>
-                    Two further operations write-ups are in the queue — anonymised
-                    where the client requires it, named where they don&rsquo;t.
+                    Operations write-ups in the queue — anonymised where the client
+                    requires it, named where they don&rsquo;t.
                   </p>
                 </div>
                 <Link

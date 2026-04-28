@@ -31,8 +31,8 @@ const ABOUT_BREADCRUMBS = breadcrumbSchema([
 ]);
 
 const STATS = [
-  { n: '13+',  label: 'Years in business' },
-  { n: '100+', label: 'Brands shipped' },
+  { n: '13+',  label: 'Year career' },
+  { n: '100+', label: 'Projects shipped' },
   { n: '4.9★', label: 'Trustpilot average' },
   { n: '6',    label: '10+ year clients' },
 ];
@@ -46,7 +46,7 @@ const PILLARS = [
   {
     n: '02',
     k: 'Impact',
-    v: 'The work started in a bedroom with a copy of Photoshop and no business plan. Every trading name since — Krazy Media, We Krazy, BMDC, and now Terence Meghani — has been the same person doing the same work, just with more clients and more scar tissue. That origin is still the bit I reach for when a brief feels impossible.',
+    v: 'The work started in a bedroom with a copy of Photoshop and no business plan. Every trading name since — Krazy Media, We Krazy, BMDC, and now Terence Meghani — has been the same person, growing the same craft. The brand work was first; the code, infrastructure and engineering discipline came with the years. That origin is still the bit I reach for when a brief feels impossible.',
   },
   {
     n: '03',
@@ -62,14 +62,9 @@ const PILLARS = [
 
 const PRACTICES = [
   {
-    k: 'Brand & Identity',
-    v: 'Strategy, naming, visual systems, and voice for businesses that want to be remembered.',
-    href: '/services/brand-identity/',
-  },
-  {
-    k: 'AI & Automation',
-    v: 'Custom GPTs trained on your brand voice, content operations automation, AI-powered WordPress plugins. AI that sounds like you, not like every other AI.',
-    href: '/services/ai-automation/',
+    k: 'WordPress Operations',
+    v: 'Engineer-grade WordPress operations on retainer. Server logs, database health, deliverability, security and performance — three tiers from £1,500/month.',
+    href: '/services/wordpress-operations/',
   },
   {
     k: 'WordPress Plugin Development',
@@ -77,9 +72,14 @@ const PRACTICES = [
     href: '/services/wordpress-plugin-development/',
   },
   {
-    k: 'Web Development',
-    v: 'Modern stacks, performance-first. Next.js and headless WordPress when needed. Built to last.',
-    href: '/services/web-development/',
+    k: 'AI & Automation',
+    v: 'Custom GPTs trained on your brand voice, content operations automation, AI-powered WordPress plugins. AI that sounds like you, not like every other AI.',
+    href: '/services/ai-automation/',
+  },
+  {
+    k: 'Brand & Identity',
+    v: 'Strategy, naming, visual systems and voice for businesses that want to be remembered.',
+    href: '/services/brand-identity/',
   },
 ];
 
@@ -126,14 +126,15 @@ export default function AboutPage() {
                   maxWidth: '28ch',
                 }}
               >
-                Creative designer, brand consultant, proud dad of two.
+                Studio of one — brand, code, growth. Proud dad of two.
               </p>
               <hr className="hero-rule" aria-hidden="true" />
               <p className="lead">
-                Based between <strong>Hertfordshire and London</strong> — helping businesses
-                build impactful brands worldwide since launching my first venture at sixteen.
-                Over a decade of close, first-person work for News UK, Royal London, the NHS,
-                TEDx, BBC and Fireaway alongside dozens of independent businesses.
+                Based between <strong>Hertfordshire and London</strong> — building brands
+                and shipping code for businesses worldwide since launching my first
+                venture at sixteen. More than a decade of close, first-person work for
+                News UK, Royal London, the NHS, TEDx, BBC and Fireaway alongside dozens of
+                independent businesses.
               </p>
               <div style={{ marginTop: 32, display: 'flex', flexWrap: 'wrap', gap: 12 }}>
                 <Button href="https://calendly.com/terencemeghani" external variant="primary">
@@ -390,7 +391,7 @@ export default function AboutPage() {
             ))}
           </dl>
           <p style={{ marginTop: 36, color: 'var(--color-fog)', fontSize: 14, fontStyle: 'italic', fontFamily: 'var(--font-italic)' }}>
-            Plus SEO &amp; Organic Growth and an ongoing{' '}
+            Plus Web Development, SEO &amp; Organic Growth, and an ongoing{' '}
             <Link
               href="/engage/growth-partnership/"
               style={{ color: 'var(--color-rocket)', fontStyle: 'normal', fontFamily: 'var(--font-mono)', fontSize: 12, letterSpacing: '0.14em', textTransform: 'uppercase' }}

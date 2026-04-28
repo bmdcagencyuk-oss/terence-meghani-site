@@ -1,12 +1,16 @@
 /* eslint-disable @next/next/no-img-element */
-// Five logos sourced from Wayback during the WP-asset migration. The original
-// set also held TEDx, Royal London, and DCD logos which weren't archived;
-// re-add those entries when the SVGs are available locally.
+// Eight client logos in deliberate visual-weight order:
+// heavy · heavy · type-only · heavy · heavy · heavy · type-only · heavy.
+// TEDx, Royal London and DCD wordmarks live under /clients/ as type-only
+// stand-ins (the original brand SVGs weren't recoverable from Wayback).
 const LOGOS = [
   { src: '/legacy/2024/12/bbc.svg',                 alt: 'BBC' },
   { src: '/legacy/2024/12/news-uk-logo-vector.svg', alt: 'News UK' },
+  { src: '/clients/tedx.svg',                       alt: 'TEDx' },
   { src: '/legacy/2024/12/nhs.svg',                 alt: 'NHS' },
+  { src: '/clients/royal-london.svg',               alt: 'Royal London' },
   { src: '/legacy/2024/12/fireaway-1.svg',          alt: 'Fireaway' },
+  { src: '/clients/dcd.svg',                        alt: 'DCD' },
   { src: '/legacy/2024/12/nec_iz789f.svg',          alt: 'NEC' },
 ];
 
@@ -30,14 +34,17 @@ function Row({ ariaHidden = false }: { ariaHidden?: boolean }) {
 
 export function Ticker() {
   return (
-    <div className="ticker" aria-label="Selected clients">
-      <div className="ttrack">
-        {/* Four copies — first two compose the loop unit, second two
-            satisfy the translateX(-50%) cycle on wide viewports. */}
-        <Row />
-        <Row ariaHidden />
-        <Row ariaHidden />
-        <Row ariaHidden />
+    <div className="ticker-wrap" aria-label="Selected clients">
+      <span className="ticker-label">Selected clients · 2014–present</span>
+      <div className="ticker">
+        <div className="ttrack">
+          {/* Four copies — first two compose the loop unit, second two
+              satisfy the translateX(-50%) cycle on wide viewports. */}
+          <Row />
+          <Row ariaHidden />
+          <Row ariaHidden />
+          <Row ariaHidden />
+        </div>
       </div>
     </div>
   );
