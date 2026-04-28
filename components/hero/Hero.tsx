@@ -188,18 +188,12 @@ export function Hero() {
 
   return (
     <header className="hero">
-      {/* Code-fragment backdrop sits behind the aurora and rocket canvas. */}
-      {/* eslint-disable-next-line @next/next/no-img-element */}
-      <img
-        className="hero-code-backdrop"
-        src="/hero-code-backdrop.svg"
-        alt=""
-        aria-hidden="true"
-      />
+      {/* Hero in restraint mode — code-fragment backdrop and rocket canvas
+          retired here; the rocket trail still earns its place on the
+          T-MINUS closing CTA. Aurora retained dimmed for atmosphere. */}
       <div className="hero-aurora" aria-hidden="true">
         <span className="aurora-c" />
       </div>
-      <canvas className="rocket-canvas" ref={canvasRef} aria-hidden="true" />
       <div className="grid-lines" aria-hidden="true" />
 
       {/* Silverback gorilla — secondary mark watermark, bottom-right behind copy. */}
