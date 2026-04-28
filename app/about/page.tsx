@@ -16,7 +16,7 @@ export const metadata: Metadata = {
       "Creative designer and brand consultant, Hertfordshire & London. 13+ years building brands for independent businesses and global names.",
     images: [
       {
-        url: 'https://terencemeghani.com/wp-content/uploads/2025/01/IMG_4739.jpg',
+        url: '/legacy/2025/01/IMG_4739.jpg',
         alt: 'Portrait of Terence Meghani',
       },
     ],
@@ -149,7 +149,7 @@ export default function AboutPage() {
               }}
             >
               <img
-                src="https://terencemeghani.com/wp-content/uploads/2025/01/IMG_4739.jpg"
+                src="/legacy/2025/01/IMG_4739.jpg"
                 alt="Portrait of Terence Meghani"
                 style={{
                   width: '100%',

@@ -1,13 +1,13 @@
 /* eslint-disable @next/next/no-img-element */
+// Five logos sourced from Wayback during the WP-asset migration. The original
+// set also held TEDx, Royal London, and DCD logos which weren't archived;
+// re-add those entries when the SVGs are available locally.
 const LOGOS = [
-  { src: 'https://terencemeghani.com/wp-content/uploads/2024/12/bbc.svg',                     alt: 'BBC' },
-  { src: 'https://terencemeghani.com/wp-content/uploads/2024/12/news-uk-logo-vector.svg',     alt: 'News UK' },
-  { src: 'https://terencemeghani.com/wp-content/uploads/2024/12/tedx.svg',                    alt: 'TEDx' },
-  { src: 'https://terencemeghani.com/wp-content/uploads/2024/12/nhs.svg',                     alt: 'NHS' },
-  { src: 'https://terencemeghani.com/wp-content/uploads/2024/12/royal-london.svg',            alt: 'Royal London' },
-  { src: 'https://terencemeghani.com/wp-content/uploads/2024/12/fireaway-1.svg',              alt: 'Fireaway' },
-  { src: 'https://terencemeghani.com/wp-content/uploads/2024/12/dcd-data-center-dynamics.svg', alt: 'DCD' },
-  { src: 'https://terencemeghani.com/wp-content/uploads/2024/12/nec_iz789f.svg',              alt: 'NEC' },
+  { src: '/legacy/2024/12/bbc.svg',                 alt: 'BBC' },
+  { src: '/legacy/2024/12/news-uk-logo-vector.svg', alt: 'News UK' },
+  { src: '/legacy/2024/12/nhs.svg',                 alt: 'NHS' },
+  { src: '/legacy/2024/12/fireaway-1.svg',          alt: 'Fireaway' },
+  { src: '/legacy/2024/12/nec_iz789f.svg',          alt: 'NEC' },
 ];
 
 function Row({ ariaHidden = false }: { ariaHidden?: boolean }) {

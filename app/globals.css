@@ -41,7 +41,7 @@
   --ease-bounce: cubic-bezier(0.34, 1.56, 0.64, 1);
 
   /* Emblem URL — used as background-image in many components */
-  --emblem: url('https://terencemeghani.com/wp-content/uploads/2025/01/wt.svg');
+  --emblem: url('/legacy/2025/01/wt.svg');
 
   /* Type scale — four steps, used everywhere.
    *   --text-hero    : page-level H1 (home, page-hero, cs-hero)
