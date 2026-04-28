@@ -3212,6 +3212,9 @@ body:has(.nav-top.is-mobile-open) { overflow: hidden; }
 }
 .ticker .ttrack { display: flex; gap: 0; width: max-content; animation: tkr 36s linear infinite; }
 .ticker:hover .ttrack { animation-play-state: paused; }
+@media (prefers-reduced-motion: reduce) {
+  .ticker .ttrack { animation: none; }
+}
 .ticker .item {
   display: inline-flex; align-items: center; gap: 36px;
   padding-right: 36px;
