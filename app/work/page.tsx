@@ -1,9 +1,12 @@
 import type { Metadata } from 'next';
-import { Suspense } from 'react';
 import { Kicker } from '@/components/ui/Kicker';
 import { WorkGrid } from '@/components/case-study/WorkGrid';
 import { LaunchCTA } from '@/components/launch/LaunchCTA';
 import { getAllCaseStudies, getFilterChips } from '@/lib/case-studies';
+import {
+  PRACTICE_FILTERS,
+  filterByPractice,
+} from '@/lib/practice-filters';
 import { breadcrumbSchema, ldJsonProps } from '@/lib/schema';
 
 const WORK_DESCRIPTION =
@@ -30,9 +33,23 @@ const WORK_BREADCRUMBS = breadcrumbSchema([
   { name: 'Work', href: '/work/' },
 ]);
 
-export default function WorkPage() {
-  const studies = getAllCaseStudies();
-  const chips = getFilterChips();
+const VALID_IDS = new Set(PRACTICE_FILTERS.map((p) => p.id));
+
+type SearchParams = Promise<{ practice?: string | string[] }>;
+
+export default async function WorkPage({
+  searchParams,
+}: {
+  searchParams: SearchParams;
+}) {
+  const params = await searchParams;
+  const raw = Array.isArray(params.practice) ? params.practice[0] : params.practice;
+  const active = raw && VALID_IDS.has(raw) ? raw : 'all';
+
+  const all = getAllCaseStudies();
+  const filtered = filterByPractice(all, active);
+  const chipList = getFilterChips();
+  const counts = Object.fromEntries(chipList.map((c) => [c.id, c.count]));
 
   return (
     <>
@@ -62,9 +79,7 @@ export default function WorkPage() {
         }}
       >
         <div className="wrap">
-          <Suspense fallback={null}>
-            <WorkGrid studies={studies} chips={chips} />
-          </Suspense>
+          <WorkGrid studies={filtered} active={active} counts={counts} />
         </div>
       </section>
 

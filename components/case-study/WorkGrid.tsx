@@ -1,46 +1,27 @@
 'use client';
 
-import { useMemo } from 'react';
-import { usePathname, useRouter, useSearchParams } from 'next/navigation';
-import { PRACTICE_FILTERS, filterByPractice } from '@/lib/practice-filters';
+import { usePathname, useRouter } from 'next/navigation';
+import { PRACTICE_FILTERS } from '@/lib/practice-filters';
 import type { CaseStudy } from '@/lib/case-studies';
 import { WorkCard } from './WorkCard';
 
-type Chip = { id: string; label: string; count: number };
-
 type Props = {
+  /** Studies already filtered server-side. */
   studies: CaseStudy[];
-  chips?: Chip[];
+  /** Active practice id; one of PRACTICE_FILTERS ids. */
+  active: string;
+  /** Per-bucket counts over the full unfiltered set. */
+  counts: Record<string, number>;
 };
 
-const VALID_IDS = new Set(PRACTICE_FILTERS.map((p) => p.id));
-
-export function WorkGrid({ studies, chips }: Props) {
+export function WorkGrid({ studies, active, counts }: Props) {
   const router = useRouter();
   const pathname = usePathname();
-  const searchParams = useSearchParams();
-
-  const rawPractice = searchParams.get('practice') ?? 'all';
-  const active = VALID_IDS.has(rawPractice) ? rawPractice : 'all';
-
-  const counts = useMemo<Record<string, number>>(() => {
-    if (chips && chips.length) {
-      return Object.fromEntries(chips.map((c) => [c.id, c.count]));
-    }
-    return Object.fromEntries(
-      PRACTICE_FILTERS.map((p) => [p.id, filterByPractice(studies, p.id).length]),
-    );
-  }, [chips, studies]);
-
-  const filtered = useMemo(() => filterByPractice(studies, active), [studies, active]);
 
   const onSelect = (id: string) => {
     if (id === active) return;
-    const params = new URLSearchParams(searchParams.toString());
-    if (id === 'all') params.delete('practice');
-    else params.set('practice', id);
-    const qs = params.toString();
-    router.push(qs ? `${pathname}?${qs}` : pathname, { scroll: false });
+    const url = id === 'all' ? pathname : `${pathname}?practice=${id}`;
+    router.push(url, { scroll: false });
   };
 
   return (
@@ -71,12 +52,12 @@ export function WorkGrid({ studies, chips }: Props) {
           gap: 24,
         }}
       >
-        {filtered.map((s) => (
+        {studies.map((s) => (
           <WorkCard key={s.slug} study={s} />
         ))}
       </div>
 
-      {filtered.length === 0 && (
+      {studies.length === 0 && (
         <p style={{ marginTop: 48, color: 'var(--color-mist)' }}>
           No projects match that filter.
         </p>
