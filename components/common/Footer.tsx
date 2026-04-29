@@ -55,6 +55,15 @@ export function Footer() {
               <li><Link href="/reviews/">Reviews</Link></li>
               <li><Link href="/#faq">FAQ</Link></li>
               <li><Link href="/#services">All services</Link></li>
+              <li>
+                <a
+                  href="https://mycloudtm.cloud/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Client Portal
+                </a>
+              </li>
             </ul>
           </div>
 
