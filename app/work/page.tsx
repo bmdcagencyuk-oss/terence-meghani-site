@@ -50,6 +50,7 @@ export default async function WorkPage({
   const filtered = filterByPractice(all, active);
   const chipList = getFilterChips();
   const counts = Object.fromEntries(chipList.map((c) => [c.id, c.count]));
+  const totalCount = all.length;
 
   return (
     <>
@@ -57,7 +58,7 @@ export default async function WorkPage({
       <section className="page-hero with-glow-rocket">
         <div className="wrap">
           <div className="kicker-row">
-            <Kicker>Work · 12 projects</Kicker>
+            <Kicker>Work · {totalCount} projects</Kicker>
           </div>
           <h1>
             A decade of projects that{' '}
@@ -65,7 +66,7 @@ export default async function WorkPage({
           </h1>
           <hr className="hero-rule" aria-hidden="true" />
           <p className="lead">
-            Twelve case studies across brand, plugin development, web, and marketing.
+            {totalCount} case studies across brand, plugin development, web, and marketing.
             Filter by discipline or scan the full set below.
           </p>
         </div>

@@ -63,6 +63,19 @@ const nextConfig: NextConfig = {
       },
     ];
   },
+  images: {
+    // Whitelist remote hosts that next/image is allowed to optimise. Most case
+    // study heroImage values point at Cloudinary (legacy WordPress media that
+    // hasn't been migrated into /public yet). Without this entry the image
+    // proxy returns 400 and the card shows alt text only.
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'res.cloudinary.com',
+        pathname: '/dmdp4f2wp/**',
+      },
+    ],
+  },
 };
 
 export default nextConfig;
