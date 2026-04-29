@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import { Suspense } from 'react';
 import { Kicker } from '@/components/ui/Kicker';
 import { WorkGrid } from '@/components/case-study/WorkGrid';
 import { LaunchCTA } from '@/components/launch/LaunchCTA';
@@ -61,7 +62,9 @@ export default function WorkPage() {
         }}
       >
         <div className="wrap">
-          <WorkGrid studies={studies} chips={chips} />
+          <Suspense fallback={null}>
+            <WorkGrid studies={studies} chips={chips} />
+          </Suspense>
         </div>
       </section>
 

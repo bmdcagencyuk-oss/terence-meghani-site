@@ -3,6 +3,9 @@ import path from 'node:path';
 import matter from 'gray-matter';
 import caseStudiesData from '@/data/case-studies.json';
 import testimonialsData from '@/data/testimonials.json';
+import { PRACTICE_FILTERS, filterByPractice } from '@/lib/practice-filters';
+
+export { PRACTICE_FILTERS, filterByPractice };
 
 export type CaseStudy = {
   slug: string;
@@ -102,19 +105,15 @@ export function getAllTestimonials(): Testimonial[] {
 }
 
 /**
- * Filter chips for the /work/ page. Strict: only declared chips render —
- * data-only tags don't auto-surface (so retired tags can be retired by
- * removing them from filterChips even if a few unpublished entries still
- * carry the tag). Counts derive from the published set.
+ * Filter chips for the /work/ page. Driven by PRACTICE_FILTERS so server and
+ * client agree on the canonical bucket list; counts come from filterByPractice
+ * so the chip count matches what the user will see when they click.
  */
 export function getFilterChips(): { id: string; label: string; count: number }[] {
-  const declared = (caseStudiesData.filterChips ?? []) as Array<{ id: string; label: string }>;
-  return declared.map((c) => {
-    if (c.id === 'all') return { ...c, count: studies.length };
-    const norm = c.id.toLowerCase();
-    const count = studies.filter((s) => s.tags.some((t) => t.toLowerCase() === norm)).length;
-    return { ...c, count };
-  });
+  return PRACTICE_FILTERS.map((c) => ({
+    ...c,
+    count: filterByPractice(studies, c.id).length,
+  }));
 }
 
 export function getMeta() {
