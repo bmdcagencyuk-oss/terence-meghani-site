@@ -109,6 +109,11 @@ export function TopNav() {
             About
           </Link>
         </li>
+        <li role="none">
+          <Link href="/process/" role="menuitem" onClick={closeAll} data-cursor="link">
+            Process
+          </Link>
+        </li>
 
         <li
           ref={servicesLiRef}

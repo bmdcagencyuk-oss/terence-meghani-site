@@ -8,6 +8,7 @@ import { SITE } from '@/lib/site';
 const STATIC_PATHS = [
   '/',
   '/about/',
+  '/process/',
   '/hertfordshire',
   '/work/',
   '/plugins/',
