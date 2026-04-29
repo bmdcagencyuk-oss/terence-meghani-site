@@ -1,6 +1,6 @@
 const ITEMS = [
   { text: '★ Discovery call · 30 min · free', alt: false },
-  { text: '🚀 2 slots · Q3 2026', alt: true },
+  { text: '🚀 2 slots open', alt: true },
   { text: '★ No decks · no fluff', alt: false },
   { text: '⚡ Book via hello@terencemeghani.com', alt: true },
 ];

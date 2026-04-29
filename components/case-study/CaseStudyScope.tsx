@@ -40,17 +40,6 @@ export function CaseStudyScope({ study }: Props) {
         >
           Scope
         </span>
-        <span
-          style={{
-            fontFamily: 'var(--font-mono)',
-            fontSize: 10,
-            letterSpacing: '0.2em',
-            textTransform: 'uppercase',
-            color: 'var(--color-rocket)',
-          }}
-        >
-          {study.year}
-        </span>
       </div>
 
       <ul

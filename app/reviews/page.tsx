@@ -86,7 +86,7 @@ export default function ReviewsPage() {
       <section className="page-hero with-glow-rocket">
         <div className="wrap">
           <div className="kicker-row">
-            <Kicker>Reviews · 2014–present</Kicker>
+            <Kicker>Reviews</Kicker>
           </div>
           <h1>
             Words from <em>the room.</em>

@@ -42,7 +42,7 @@ const ITEMS: CardItem[] = [
     metrics: [
       { n: '4',     k: 'Plugins' },
       { n: 'Stora', k: 'API' },
-      { n: 'Live',  k: 'Q1 2025' },
+      { n: 'Live',  k: 'Production' },
     ],
   },
   {
@@ -337,7 +337,6 @@ export function Work() {
               <div className="content">
                 <div className="top">
                   <span className="idx">{item.idx}</span>
-                  <span className="year">{item.year}</span>
                 </div>
                 <div>
                   <span className="tag">{item.tag}</span>

@@ -32,7 +32,7 @@ export function CaseStudyHero({ study, hideHeroImage = false }: Props) {
         </nav>
 
         <div style={{ marginTop: 28 }}>
-          <Kicker>Case study · {study.year}</Kicker>
+          <Kicker>Case study</Kicker>
         </div>
 
         <h1>{italicLastWord(study.projectTitle)}</h1>

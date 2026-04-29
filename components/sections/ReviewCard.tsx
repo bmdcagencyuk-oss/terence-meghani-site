@@ -1,18 +1,6 @@
 import type { Review } from '@/lib/reviews';
 import { displayTags } from '@/lib/reviews';
 
-const MONTHS = [
-  'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
-  'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec',
-];
-
-/** "2024-08-28" → "28 Aug 2024". Date-only string, no timezone shifts. */
-function formatDate(iso: string): string {
-  const [y, m, d] = iso.split('-').map((n) => parseInt(n, 10));
-  if (!y || !m || !d) return iso;
-  return `${d} ${MONTHS[m - 1]} ${y}`;
-}
-
 type Props = { review: Review };
 
 export function ReviewCard({ review }: Props) {
@@ -26,7 +14,6 @@ export function ReviewCard({ review }: Props) {
         <span className="rc-avatar" aria-hidden="true">{review.initials}</span>
         <div className="rc-who">
           <strong className="rc-name">{review.name}</strong>
-          <span className="rc-year">{review.year}</span>
         </div>
       </header>
 
@@ -54,9 +41,7 @@ export function ReviewCard({ review }: Props) {
         </ul>
       )}
 
-      <footer className="rc-meta">
-        {review.publisher} · {formatDate(review.date)}
-      </footer>
+      <footer className="rc-meta">{review.publisher}</footer>
     </article>
   );
 }

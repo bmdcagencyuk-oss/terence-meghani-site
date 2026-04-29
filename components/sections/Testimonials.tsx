@@ -18,7 +18,7 @@ export const TESTIMONIAL_ITEMS: TestimonialItem[] = [
     avatar: 'NP',
     name: 'Neck P.',
     role: 'Web hosting company',
-    project: 'Directus CMS integration · 2024 · Trustpilot',
+    project: 'Directus CMS integration · Trustpilot',
     quote:
       "Terence's team integrated Directus CMS into our site cleanly — performance, UX and reliability all dialled in. A year on, choosing this studio was a game-changer for our web hosting company.",
     source: 'Trustpilot',
@@ -28,7 +28,7 @@ export const TESTIMONIAL_ITEMS: TestimonialItem[] = [
     avatar: 'KD',
     name: 'Kinari Dodhia',
     role: 'Swagat Catering',
-    project: '10-year client · 2024 · Trustpilot',
+    project: '10-year client · Trustpilot',
     quote:
       'Terry has been working with us for nearly ten years. Website, photography, every issue along the way — he has always been there. Efficient work and the friendliest people to deal with.',
     source: 'Trustpilot',
@@ -38,7 +38,7 @@ export const TESTIMONIAL_ITEMS: TestimonialItem[] = [
     avatar: 'TV',
     name: 'Tulsi Vagjiani',
     role: '',
-    project: 'Brand & web · 2023 · Trustpilot',
+    project: 'Brand & web · Trustpilot',
     quote:
       'Total professionalism from website to branding — exceeded everything I expected. I needed a modern, unique twist to match my authentic flamboyant self. The studio did not disappoint.',
     source: 'Trustpilot',
@@ -48,7 +48,7 @@ export const TESTIMONIAL_ITEMS: TestimonialItem[] = [
     avatar: 'NA',
     name: 'Nisha Asodia',
     role: 'TEDx University of Salford',
-    project: 'Web · 2020 · Facebook',
+    project: 'Web · Facebook',
     quote:
       'We asked Terence to design our TEDx University of Salford website — he delivered an amazing job. A consummate professional. We were impressed enough to bring him back for a second website.',
     source: 'Facebook',
@@ -58,7 +58,7 @@ export const TESTIMONIAL_ITEMS: TestimonialItem[] = [
     avatar: 'VR',
     name: 'Vinny Rabadia',
     role: 'Long-term client',
-    project: 'Brand + Web · 2017 · Facebook',
+    project: 'Brand + Web · Facebook',
     quote:
       "We met Terry during a rebrand — he came to the office, took the time to understand the business. He's been our main point of contact for design, marketing and website maintenance ever since.",
     source: 'Facebook',
@@ -68,7 +68,7 @@ export const TESTIMONIAL_ITEMS: TestimonialItem[] = [
     avatar: 'NA',
     name: 'Nazish Akhtar',
     role: 'Senior decision-maker',
-    project: 'Web rebuild · 2017 · Facebook',
+    project: 'Web rebuild · Facebook',
     quote:
       "As a key decision maker on a website rebuild, I was reluctant about a young company. I'm so pleased we went ahead — extremely reasonable pricing, professional execution, and clear communication throughout.",
     source: 'Facebook',

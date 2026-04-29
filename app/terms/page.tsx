@@ -23,10 +23,6 @@ export default function TermsPage() {
           >
             Terms
           </h1>
-          <p className="mt-4 font-mono text-[11px] uppercase tracking-wider text-fog">
-            Last updated: 28 April 2026
-          </p>
-
           <div className="mt-10 space-y-5 text-mist leading-relaxed text-lg">
             <p>
               These terms govern your use of terencemeghani.com and any engagement with

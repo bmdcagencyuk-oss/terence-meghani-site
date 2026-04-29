@@ -221,7 +221,7 @@ export function Hero() {
                 />
               </defs>
               <text>
-                <textPath href="#heroRingMini">LAUNCH · Q3 2026 · READY · </textPath>
+                <textPath href="#heroRingMini">LAUNCH · READY · BUILT · </textPath>
               </text>
             </svg>
             <span className="core">
@@ -232,7 +232,7 @@ export function Hero() {
 
         <div className="hero-center">
           <h1 className="mega" ref={megaRef}>
-            <span className="ln ln1">Hertfordshire · London · Est. 2014</span>
+            <span className="ln ln1">Hertfordshire · London</span>
 
             <span className="ln ln-greet">Hi, I&rsquo;m Terence.</span>
 
@@ -275,7 +275,7 @@ export function Hero() {
           <div className="hero-meta">
             <span className="hero-urgency">
               <span className="dot" aria-hidden="true" />
-              Two slots left · Q3 2026
+              Two slots left
             </span>
             <span className="hero-meta-line">30 min · free · no decks · no fluff</span>
             <a href="#work" className="hero-cta-sec">See the work ↓</a>

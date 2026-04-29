@@ -21,7 +21,6 @@ export function WorkCard({ study }: Props) {
       <div className="body">
         <div className="meta">
           <span>{study.client}</span>
-          <span>{study.year}</span>
         </div>
         <h3>{study.projectTitle}</h3>
         <div className="client">{study.industry}</div>

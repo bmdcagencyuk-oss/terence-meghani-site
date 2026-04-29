@@ -110,7 +110,7 @@ export default function AboutPage() {
           >
             <div>
               <div className="kicker-row">
-                <Kicker>About Terence · Est. 2014</Kicker>
+                <Kicker>About Terence</Kicker>
               </div>
               <h1>
                 Hi, I&rsquo;m <em>Terence.</em>

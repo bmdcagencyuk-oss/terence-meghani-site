@@ -22,10 +22,6 @@ export default function CookiesPage() {
           >
             Cookie Policy
           </h1>
-          <p className="mt-4 font-mono text-[11px] uppercase tracking-wider text-fog">
-            Last updated: 28 April 2026
-          </p>
-
           <div className="mt-10 space-y-5 text-mist leading-relaxed text-lg">
             <p>
               This site does not set tracking cookies, advertising cookies, or any

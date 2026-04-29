@@ -6,7 +6,6 @@ export function CaseStudyMeta({ study }: Props) {
   const rows: Array<[string, string]> = [
     ['Client', study.client],
     ['Industry', study.industry],
-    ['Year', String(study.year)],
     ['Services', study.services.join(' · ')],
   ];
   if (study.location) rows.push(['Location', study.location]);
