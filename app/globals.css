@@ -246,7 +246,7 @@
   transition: background 0.25s ease, color 0.25s ease,
               border-color 0.25s ease, transform 0.25s var(--ease-bounce),
               box-shadow 0.25s ease;
-  cursor: none;
+  cursor: pointer;
   white-space: nowrap;
 }
 .btn-primary {
@@ -416,7 +416,7 @@
   font-size: 11px;
   letter-spacing: 0.14em;
   text-transform: uppercase;
-  cursor: none;
+  cursor: pointer;
   transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease;
 }
 .chip:hover { color: #fff; border-color: var(--color-mist); }
@@ -1551,7 +1551,7 @@
   align-items: center;
   justify-content: space-between;
   gap: 20px;
-  cursor: none;
+  cursor: pointer;
 }
 .accordion summary::-webkit-details-marker { display: none; }
 .accordion summary .q {
@@ -4173,7 +4173,7 @@ body:has(.nav-top.is-mobile-open) { overflow: hidden; }
   list-style: none;
   padding: 28px 0;
   display: flex; align-items: center; justify-content: space-between;
-  gap: 20px; cursor: none;
+  gap: 20px; cursor: pointer;
   transition: color 0.2s ease;
 }
 .faq-item summary::-webkit-details-marker { display: none; }
