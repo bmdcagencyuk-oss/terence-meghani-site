@@ -140,6 +140,11 @@ export function TopNav() {
         </li>
 
         <li role="none">
+          <Link href="/engage/" role="menuitem" onClick={closeAll} data-cursor="link">
+            Engage
+          </Link>
+        </li>
+        <li role="none">
           <Link href="/work/" role="menuitem" onClick={closeAll} data-cursor="link">
             Work
           </Link>

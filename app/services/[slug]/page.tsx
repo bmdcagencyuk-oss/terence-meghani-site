@@ -278,6 +278,14 @@ export function generateStaticParams() {
 }
 
 /** Per-service SEO descriptions (140–160 chars, differentiator-first). */
+/** Map service slugs to /engage page anchors so the FAQ intro can deep-link
+ * a buyer to the matching engagement-format section. */
+const ENGAGE_ANCHOR: Record<string, string> = {
+  'wordpress-plugin-development': 'plugin-development',
+  'ai-automation':                'ai-automation',
+  'brand-identity':               'brand-identity',
+};
+
 const SERVICE_SEO_DESCRIPTIONS: Record<string, string> = {
   'wordpress-plugin-development':
     'Custom WordPress plugin development — bespoke plugins, API integrations, AI-extended admin tooling. Performance-first, secure, properly documented. UK studio.',
@@ -611,6 +619,23 @@ export default async function ServicePage({
                   If yours isn&rsquo;t listed, ask it on a discovery call — {' '}
                   thirty minutes, no slides, no fluff.
                 </p>
+                {ENGAGE_ANCHOR[slug] && (
+                  <p style={{ marginTop: 12 }}>
+                    <Link
+                      href={`/engage/#${ENGAGE_ANCHOR[slug]}`}
+                      style={{
+                        fontFamily: 'var(--font-mono)',
+                        fontSize: 12,
+                        letterSpacing: '0.14em',
+                        textTransform: 'uppercase',
+                        color: 'var(--color-rocket)',
+                        borderBottom: '1px solid currentColor',
+                      }}
+                    >
+                      See engagement formats &amp; investment →
+                    </Link>
+                  </p>
+                )}
               </div>
               <div className="accordion">
                 {content.faq.map((f, i) => (

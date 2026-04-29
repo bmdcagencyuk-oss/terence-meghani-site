@@ -588,6 +588,18 @@ export default function WordPressOperationsPage() {
             months of retainer. Boost clients pay the audit separately — keeping the entry retainer
             honest about what fits inside two hours a month.
           </p>
+          <p
+            style={{
+              marginTop: 14,
+              fontSize: 13,
+              fontFamily: 'var(--font-mono)',
+              letterSpacing: '0.14em',
+              textTransform: 'uppercase',
+              color: 'var(--color-rocket)',
+            }}
+          >
+            <Link href="/engage/#operations">See all engagement formats →</Link>
+          </p>
         </div>
       </section>
 
