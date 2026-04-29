@@ -614,7 +614,7 @@ export default async function ServicePage({
               </div>
               <div className="accordion">
                 {content.faq.map((f, i) => (
-                  <details key={f.q} open={i === 0}>
+                  <details key={f.q} name="svc-faq" open={i === 0}>
                     <summary>
                       <span className="q">{f.q}</span>
                       <span className="plus" aria-hidden="true">+</span>

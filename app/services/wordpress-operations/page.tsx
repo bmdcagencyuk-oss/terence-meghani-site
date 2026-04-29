@@ -825,7 +825,7 @@ export default function WordPressOperationsPage() {
             </div>
             <div className="accordion">
               {FAQ.map((f, i) => (
-                <details key={f.q} open={i === 0}>
+                <details key={f.q} name="wpops-faq" open={i === 0}>
                   <summary>
                     <span className="q">{f.q}</span>
                     <span className="plus" aria-hidden="true">+</span>

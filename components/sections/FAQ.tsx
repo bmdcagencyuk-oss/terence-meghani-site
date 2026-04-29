@@ -168,7 +168,7 @@ export function FAQ() {
 
         <div className="faq-list">
           {FAQ_ITEMS.map((item, i) => (
-            <details className="faq-item" key={item.n} open={i === 0}>
+            <details className="faq-item" key={item.n} name="faq" open={i === 0}>
               <summary>
                 <span className="n">{item.n}</span>
                 <span className="q">{item.q}</span>
