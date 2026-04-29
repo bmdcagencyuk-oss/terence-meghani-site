@@ -606,17 +606,6 @@
   line-height: 1.65;
   max-width: 68ch;
 }
-.cs-act .prose p:first-child::first-letter {
-  font-family: var(--font-display);
-  font-variation-settings: "wdth" 85, "opsz" 96;
-  font-weight: 600;
-  font-size: 3.4em;
-  line-height: 0.85;
-  color: #fff;
-  float: left;
-  padding: 6px 14px 0 0;
-  margin-top: 4px;
-}
 .cs-act .prose strong { color: #fff; font-weight: 500; }
 .cs-act .prose em { color: var(--color-rocket); font-family: var(--font-italic); font-style: italic; }
 @media (max-width: 960px) {
@@ -624,7 +613,6 @@
   .cs-act .head { position: static; padding-right: 0; }
   .cs-act .stage { font-size: clamp(96px, 22vw, 200px); }
   .cs-act .prose { font-size: 17px; }
-  .cs-act .prose p:first-child::first-letter { font-size: 2.8em; }
 }
 
 .cs-figure {
@@ -757,17 +745,6 @@
   line-height: 1.65;
 }
 .cs-prose-with-figures > p { max-width: 68ch; margin: 0; }
-.cs-prose-with-figures > p:first-child::first-letter {
-  font-family: var(--font-display);
-  font-variation-settings: "wdth" 85, "opsz" 96;
-  font-weight: 600;
-  font-size: 3.4em;
-  line-height: 0.85;
-  color: #fff;
-  float: left;
-  padding: 6px 14px 0 0;
-  margin-top: 4px;
-}
 .cs-prose-with-figures > .cs-figure,
 .cs-prose-with-figures > .cs-figure-pair {
   margin-top: 16px;
@@ -775,7 +752,6 @@
 }
 @media (max-width: 960px) {
   .cs-prose-with-figures { font-size: 17px; }
-  .cs-prose-with-figures > p:first-child::first-letter { font-size: 2.8em; }
 }
 
 .cs-metric {
