@@ -259,6 +259,10 @@ export function Hero() {
             Studio of one — brand, code, growth. Twelve years in.
             Still answering the&nbsp;phone.
           </p>
+          <p className="hero-qualifier">
+            For founders with a real brand to build, and operators with a
+            WordPress site that genuinely matters.
+          </p>
         </div>
 
         <div className="hero-bottom hero-bottom--simple">

@@ -2832,6 +2832,18 @@ body:has(.nav-top.is-mobile-open) { overflow: hidden; }
   text-wrap: pretty;
 }
 .hero-sub .hl { background: var(--rocket); color: var(--white); padding: 2px 8px; font-style: normal; font-family: var(--f-display); font-weight: 600; text-transform: uppercase; font-size: 0.78em; letter-spacing: -0.01em; margin: 0 2px; }
+.hero-qualifier {
+  font-family: var(--f-italic);
+  font-style: italic;
+  font-weight: 400;
+  font-size: clamp(11px, 1.1vw, 14px);
+  line-height: 1.4;
+  letter-spacing: -0.005em;
+  color: var(--mist);
+  margin-top: 10px;
+  max-width: 56ch;
+  text-wrap: pretty;
+}
 .hero-cycle {
   display: inline-block;
   position: relative;
