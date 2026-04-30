@@ -382,6 +382,28 @@ export default function HertfordshirePage() {
               <dd style={{ margin: 0, color: '#fff' }}>
                 Hertfordshire, Greater London, UK-wide remote
               </dd>
+
+              <dt
+                style={{
+                  fontFamily: 'var(--font-mono)',
+                  fontSize: 12,
+                  letterSpacing: '0.14em',
+                  textTransform: 'uppercase',
+                  color: 'var(--color-fog)',
+                }}
+              >
+                Google profile
+              </dt>
+              <dd style={{ margin: 0, color: '#fff' }}>
+                <a
+                  href="https://g.page/r/CS13tYjkbwqMEBM"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  style={{ color: '#fff', textDecoration: 'none', borderBottom: '1px solid var(--color-hairline)' }}
+                >
+                  View on Google ↗
+                </a>
+              </dd>
             </dl>
           </div>
         </div>
