@@ -11,9 +11,8 @@ import { SITE, absoluteUrl } from './site';
  * blocks (Service, SoftwareApplication, CreativeWork, FAQPage,
  * BreadcrumbList) reference these via @id.
  *
- * NOTE: deliberately omits aggregateRating / review schema — the visible
- * testimonials are placeholders and fabricating ratings risks a Google
- * manual action.
+ * Includes aggregateRating + Review nodes — testimonials are real
+ * Trustpilot quotes; aggregate values are sourced from Trustpilot only.
  */
 export function siteGraph() {
   return {

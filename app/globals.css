@@ -4091,7 +4091,7 @@ body:has(.nav-top.is-mobile-open) { overflow: hidden; }
   color: var(--mist);
 }
 
-.testi-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+.testi-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; align-items: start; }
 .testi-card {
   padding: 28px;
   background: var(--char-2);
