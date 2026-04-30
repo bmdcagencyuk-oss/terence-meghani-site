@@ -61,6 +61,13 @@ export function siteGraph() {
         contactPoint: [
           {
             '@type': 'ContactPoint',
+            telephone: '+442045245111',
+            contactType: 'Customer Service',
+            areaServed: 'GB',
+            availableLanguage: 'English',
+          },
+          {
+            '@type': 'ContactPoint',
             contactType: 'Office',
             telephone: SITE.contact.telephone,
             email: SITE.contact.email,
@@ -223,6 +230,60 @@ export function caseStudySchema(cs: CaseStudy) {
     image,
     description: cs.excerpt,
     url: absoluteUrl(`/work/${cs.slug}/`),
+  };
+}
+
+/**
+ * Site-wide LocalBusiness (ProfessionalService) emitted from the root layout.
+ * Uses E.164-format telephone, geo coordinates, and a public-facing
+ * priceRange band so Google can populate the knowledge panel directly.
+ * Distinct @id from the @graph studio entity so the two coexist cleanly.
+ */
+export function siteLocalBusinessSchema() {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'ProfessionalService',
+    '@id': 'https://terencemeghani.com/#localbusiness',
+    name: 'Terence Meghani Studio',
+    image: 'https://terencemeghani.com/brand/emblem-gorilla.svg',
+    url: 'https://terencemeghani.com',
+    telephone: '+442045245111',
+    email: 'hello@terencemeghani.com',
+    priceRange: '££££',
+    address: {
+      '@type': 'PostalAddress',
+      addressLocality: 'Watford',
+      addressRegion: 'Hertfordshire',
+      addressCountry: 'GB',
+    },
+    geo: {
+      '@type': 'GeoCoordinates',
+      latitude: 51.6565,
+      longitude: -0.3903,
+    },
+    areaServed: [
+      { '@type': 'AdministrativeArea', name: 'Hertfordshire' },
+      { '@type': 'AdministrativeArea', name: 'Greater London' },
+      { '@type': 'Country', name: 'United Kingdom' },
+    ],
+    openingHoursSpecification: {
+      '@type': 'OpeningHoursSpecification',
+      dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'],
+      opens: '09:00',
+      closes: '18:00',
+    },
+    sameAs: [
+      'https://www.linkedin.com/in/terencemeghani/',
+      'https://www.trustpilot.com/review/bmdc.agency',
+    ],
+    knowsAbout: [
+      'WordPress development',
+      'WordPress plugin development',
+      'Brand identity',
+      'AI automation',
+      'Website operations',
+      'WordPress engineering',
+    ],
   };
 }
 

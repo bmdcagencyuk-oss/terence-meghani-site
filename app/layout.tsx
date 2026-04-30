@@ -13,7 +13,7 @@ import { SkipLink } from '@/components/common/SkipLink';
 import { ScrollProgressBar } from '@/components/common/ScrollProgressBar';
 import { FloatingFab } from '@/components/common/FloatingFab';
 import { SITE } from '@/lib/site';
-import { siteGraph, ldJsonProps } from '@/lib/schema';
+import { siteGraph, siteLocalBusinessSchema, ldJsonProps } from '@/lib/schema';
 
 // Bricolage Grotesque — variable font with width + optical-size axes.
 const bricolage = Bricolage_Grotesque({
@@ -134,6 +134,8 @@ export default function RootLayout({
       <head>
         {/* Site-wide Person + ProfessionalService + WebSite @graph */}
         <script {...ldJsonProps(siteGraph())} />
+        {/* Site-wide LocalBusiness for knowledge-panel signals */}
+        <script {...ldJsonProps(siteLocalBusinessSchema())} />
       </head>
       <body>
         <PlausibleProvider domain={plausibleDomain}>

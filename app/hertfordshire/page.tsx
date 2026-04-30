@@ -264,6 +264,119 @@ export default function HertfordshirePage() {
         </div>
       </section>
 
+      {/* ======== CONTACT INFO (machine-readable local signals) ======== */}
+      <section className="section-pad" style={{ background: 'var(--color-char-3, var(--color-char-2))' }}>
+        <div className="wrap">
+          <div className="faq-split">
+            <div className="faq-intro">
+              <Kicker>Contact</Kicker>
+              <h2>
+                Studio <em>contact details.</em>
+              </h2>
+            </div>
+            <dl
+              style={{
+                display: 'grid',
+                gridTemplateColumns: 'minmax(140px, 180px) 1fr',
+                rowGap: 18,
+                columnGap: 24,
+                fontSize: 17,
+                lineHeight: 1.55,
+                color: 'var(--color-mist)',
+                maxWidth: '68ch',
+                borderTop: '1px solid var(--color-hairline)',
+                paddingTop: 28,
+              }}
+            >
+              <dt
+                style={{
+                  fontFamily: 'var(--font-mono)',
+                  fontSize: 12,
+                  letterSpacing: '0.14em',
+                  textTransform: 'uppercase',
+                  color: 'var(--color-fog)',
+                }}
+              >
+                Studio location
+              </dt>
+              <dd style={{ margin: 0, color: '#fff' }}>
+                Watford, Hertfordshire (service area, by appointment)
+              </dd>
+
+              <dt
+                style={{
+                  fontFamily: 'var(--font-mono)',
+                  fontSize: 12,
+                  letterSpacing: '0.14em',
+                  textTransform: 'uppercase',
+                  color: 'var(--color-fog)',
+                }}
+              >
+                Phone
+              </dt>
+              <dd style={{ margin: 0, color: '#fff' }}>
+                <a
+                  href="tel:+442045245111"
+                  style={{ color: '#fff', textDecoration: 'none', borderBottom: '1px solid var(--color-hairline)' }}
+                >
+                  020 4524 5111
+                </a>
+              </dd>
+
+              <dt
+                style={{
+                  fontFamily: 'var(--font-mono)',
+                  fontSize: 12,
+                  letterSpacing: '0.14em',
+                  textTransform: 'uppercase',
+                  color: 'var(--color-fog)',
+                }}
+              >
+                Email
+              </dt>
+              <dd style={{ margin: 0, color: '#fff' }}>
+                <a
+                  href="mailto:hello@terencemeghani.com"
+                  style={{ color: '#fff', textDecoration: 'none', borderBottom: '1px solid var(--color-hairline)' }}
+                >
+                  hello@terencemeghani.com
+                </a>
+              </dd>
+
+              <dt
+                style={{
+                  fontFamily: 'var(--font-mono)',
+                  fontSize: 12,
+                  letterSpacing: '0.14em',
+                  textTransform: 'uppercase',
+                  color: 'var(--color-fog)',
+                }}
+              >
+                Hours
+              </dt>
+              <dd style={{ margin: 0, color: '#fff' }}>
+                Monday–Friday, 09:00–18:00 UK
+              </dd>
+
+              <dt
+                style={{
+                  fontFamily: 'var(--font-mono)',
+                  fontSize: 12,
+                  letterSpacing: '0.14em',
+                  textTransform: 'uppercase',
+                  color: 'var(--color-fog)',
+                }}
+              >
+                Service area
+              </dt>
+              <dd style={{ margin: 0, color: '#fff' }}>
+                Hertfordshire, Greater London, UK-wide remote
+              </dd>
+            </dl>
+          </div>
+        </div>
+      </section>
+
       {/* ======== FOUR PRACTICES ======== */}
       <section className="section-pad" style={{ background: 'var(--color-char)' }}>
         <div className="wrap">
