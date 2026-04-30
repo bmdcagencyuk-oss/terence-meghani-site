@@ -3928,6 +3928,45 @@ body:has(.nav-top.is-mobile-open) { overflow: hidden; }
 .drag-progress { margin: 32px auto 0; width: calc(100% - 80px); max-width: 600px; height: 2px; background: var(--hairline); position: relative; }
 .drag-progress .bar { position: absolute; top: -2px; left: 0; height: 6px; background: var(--rocket); width: 20%; transition: width 0.1s linear; }
 
+.work-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+}
+.work-grid .wc {
+  width: 100%;
+  aspect-ratio: 4/5;
+  text-decoration: none;
+}
+@media (min-width: 1280px) {
+  .work-grid { grid-template-columns: repeat(4, 1fr); }
+  .work-grid .wc { aspect-ratio: 3/4; }
+}
+@media (max-width: 700px) {
+  .work-grid { grid-template-columns: 1fr; }
+}
+.work-viewall {
+  margin-top: 40px;
+  display: flex;
+  justify-content: center;
+}
+.work-viewall a {
+  font-family: var(--f-display);
+  font-weight: 600;
+  font-size: 16px;
+  color: var(--white);
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding-bottom: 4px;
+  border-bottom: 1px solid var(--hairline);
+  transition: color 0.25s var(--ease), border-color 0.25s var(--ease);
+}
+.work-viewall a:hover { color: var(--rocket); border-bottom-color: var(--rocket); }
+.work-viewall a span { display: inline-block; transition: transform 0.25s var(--ease); }
+.work-viewall a:hover span { transform: translateX(3px); }
+
 /* ============================================================
    WHY
    ============================================================ */
