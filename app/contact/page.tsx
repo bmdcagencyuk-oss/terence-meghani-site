@@ -137,6 +137,52 @@ export default function ContactPage() {
         </div>
       </section>
 
+      {/* Existing-client review prompt — sits between the form and the booking CTA */}
+      <section className="section-pad" style={{ background: 'var(--color-char-2)', paddingTop: 48, paddingBottom: 48 }}>
+        <div className="wrap" style={{ maxWidth: 760 }}>
+          <aside
+            style={{
+              padding: '22px 24px',
+              border: '1px solid var(--color-hairline-2)',
+              borderLeft: '3px solid var(--color-rocket)',
+              background: 'var(--color-char)',
+              display: 'flex',
+              flexDirection: 'column',
+              gap: 12,
+            }}
+          >
+            <h3
+              style={{
+                fontFamily: 'var(--font-display)',
+                fontVariationSettings: '"wdth" 100, "opsz" 72',
+                fontWeight: 500,
+                fontSize: 20,
+                letterSpacing: '-0.01em',
+                color: '#fff',
+                margin: 0,
+              }}
+            >
+              Worked with me before?
+            </h3>
+            <p style={{ color: 'var(--color-mist)', fontSize: 14.5, lineHeight: 1.55, margin: 0, maxWidth: '60ch' }}>
+              If you&rsquo;ve worked with the studio at any point in the last twelve
+              years &mdash; under any of the names &mdash; a quick Google review on
+              the new profile means a lot. Two minutes.
+            </p>
+            <div>
+              <a
+                href="https://g.page/r/CS13tYjkbwqMEBM/review"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn btn-secondary"
+              >
+                Leave a Google review →
+              </a>
+            </div>
+          </aside>
+        </div>
+      </section>
+
       <LaunchCTA title="Prefer a quick call?" />
     </>
   );
