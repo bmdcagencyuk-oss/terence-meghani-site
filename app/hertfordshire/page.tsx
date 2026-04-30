@@ -9,24 +9,23 @@ import {
   ldJsonProps,
 } from '@/lib/schema';
 
-const HERTS_TITLE = 'Hertfordshire — based here, working everywhere';
+const HERTS_TITLE =
+  'Hertfordshire WordPress agency & brand consultant — Terence Meghani';
 const HERTS_DESCRIPTION =
-  'Engineer-grade WordPress operations, plugin development, AI workflows, and brand work — operated from Hertfordshire, delivered across the UK. Working with senior buyers in Watford, St Albans, Hemel Hempstead, and beyond.';
+  'Hertfordshire-based studio offering brand identity, WordPress plugin development, AI automation, and engineering-grade WordPress operations. Watford, St Albans, Hemel Hempstead, London. From £6,500.';
 
 export const metadata: Metadata = {
-  title: HERTS_TITLE,
+  title: { absolute: HERTS_TITLE },
   description: HERTS_DESCRIPTION,
   alternates: { canonical: '/hertfordshire' },
   openGraph: {
-    title: 'Hertfordshire — Terence Meghani Studio',
-    description:
-      'Engineer-grade WordPress operations, plugin development, AI workflows, and brand work — operated from Hertfordshire, delivered across the UK.',
+    title: HERTS_TITLE,
+    description: HERTS_DESCRIPTION,
     url: '/hertfordshire',
   },
   twitter: {
-    title: 'Hertfordshire — Terence Meghani Studio',
-    description:
-      'Engineer-grade WordPress operations, plugin development, AI workflows, and brand work — operated from Hertfordshire, delivered across the UK.',
+    title: HERTS_TITLE,
+    description: HERTS_DESCRIPTION,
   },
 };
 

@@ -11,22 +11,23 @@ import { Testimonials } from '@/components/sections/Testimonials';
 import { FAQ, FAQ_ITEMS } from '@/components/sections/FAQ';
 import { Launch } from '@/components/sections/Launch';
 import { faqPageSchema, ldJsonProps } from '@/lib/schema';
-import { SITE } from '@/lib/site';
 
+const HOME_TITLE =
+  'Terence Meghani — Brand consultant & WordPress engineer · Hertfordshire & London';
 const HOME_DESCRIPTION =
-  'Studio of one — brand, code, growth. WordPress operations, plugin development, AI and automation, strategy-led brand work. Hertfordshire & London. Built to compound.';
+  'Brand consultant and WordPress engineer in Hertfordshire & London. Strategy-led brand identity, custom plugin development, AI workflows, and engineering-grade WordPress operations. From £6,500.';
 
 export const metadata: Metadata = {
-  title: { absolute: SITE.defaultTitle },
+  title: { absolute: HOME_TITLE },
   description: HOME_DESCRIPTION,
   alternates: { canonical: '/' },
   openGraph: {
-    title: SITE.defaultTitle,
+    title: HOME_TITLE,
     description: HOME_DESCRIPTION,
     url: '/',
   },
   twitter: {
-    title: SITE.defaultTitle,
+    title: HOME_TITLE,
     description: HOME_DESCRIPTION,
   },
 };

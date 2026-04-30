@@ -7,20 +7,21 @@ import { LaunchCTA } from '@/components/launch/LaunchCTA';
 import { breadcrumbSchema, ldJsonProps } from '@/lib/schema';
 
 const ABOUT_DESCRIPTION =
-  'Twelve years of building brands and shipping code, based between Hertfordshire and London. Studio of one — brand, code, growth, all from the same brain.';
-const ABOUT_TITLE = 'About';
+  'Twelve years building brands and shipping code from a Hertfordshire studio. News UK, Royal London, NHS, TEDx, BBC, Fireaway. Studio of one — brand, code, growth.';
+const ABOUT_TITLE =
+  'About Terence — Brand consultant & WordPress engineer in Hertfordshire · Terence Meghani';
 
 export const metadata: Metadata = {
-  title: ABOUT_TITLE,
+  title: { absolute: ABOUT_TITLE },
   description: ABOUT_DESCRIPTION,
   alternates: { canonical: '/about/' },
   openGraph: {
-    title: `${ABOUT_TITLE} — Terence Meghani`,
+    title: ABOUT_TITLE,
     description: ABOUT_DESCRIPTION,
     url: '/about/',
   },
   twitter: {
-    title: `${ABOUT_TITLE} — Terence Meghani`,
+    title: ABOUT_TITLE,
     description: ABOUT_DESCRIPTION,
   },
 };
