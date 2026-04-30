@@ -275,6 +275,7 @@ export function siteLocalBusinessSchema() {
     sameAs: [
       'https://www.linkedin.com/in/terencemeghani/',
       'https://www.trustpilot.com/review/bmdc.agency',
+      'https://g.page/r/CS13tYjkbwqMEBM',
     ],
     knowsAbout: [
       'WordPress development',
