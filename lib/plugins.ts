@@ -7,6 +7,10 @@ export type Plugin = {
   name: string;
   vertical: string;
   tagline: string;
+  /** One-line who-it's-for, surfaced on listing cards. */
+  whoItsFor?: string;
+  /** Display price band — "Free" / "£X" / "From £X/mo" / "Waitlist" / "Bespoke" / "Beta access". */
+  price?: string;
   status: PluginStatus;
   statusLabel: string;
   eta?: string;

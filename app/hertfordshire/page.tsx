@@ -206,6 +206,17 @@ export default function HertfordshirePage() {
                 rigour, same honest reporting. Hertfordshire clients don’t get a
                 stripped-down version of the offer because the postcode is closer.
               </p>
+              <p>
+                Some of that work has spun out into productised tooling — including a{' '}
+                <Link
+                  href="/plugins/#self-storage"
+                  style={{ color: 'var(--color-rocket)', textDecoration: 'none', borderBottom: '1px solid currentColor' }}
+                >
+                  self-storage suite
+                </Link>{' '}
+                of WordPress plugins built around quoting, booking, and Stora
+                integration, used by operators across the UK.
+              </p>
             </div>
           </div>
         </div>

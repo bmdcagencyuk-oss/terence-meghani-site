@@ -113,6 +113,10 @@ export function Services() {
 
         <nav className="also-offering" aria-label="Also offering">
           <span className="ao-label">Also offering</span>
+          <Link className="ao-item" href="/plugins/">
+            WordPress plugins <span className="arrow">→</span>
+          </Link>
+          <span className="ao-divider" aria-hidden="true" />
           <Link className="ao-item" href="/services/web-development/">
             Web Development <span className="arrow">→</span>
           </Link>

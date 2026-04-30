@@ -35,14 +35,14 @@ export function Footer() {
           </div>
 
           <div className="f-col">
-            <h5>Plugins</h5>
+            <h5>WordPress plugins</h5>
             <ul>
               {plugins.map((p) => (
                 <li key={p.slug}>
                   <Link href={`/plugins/${p.slug}/`}>{p.name}</Link>
                 </li>
               ))}
-              <li className="primary"><Link href="/plugins/">All plugins →</Link></li>
+              <li className="primary"><Link href="/plugins/">WordPress plugins →</Link></li>
             </ul>
           </div>
 

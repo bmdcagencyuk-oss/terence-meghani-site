@@ -569,8 +569,8 @@ export default async function ServicePage({
                 gap: 20,
               }}
             >
-              {getAllPlugins().map((p, i) => (
-                <PluginCard key={p.slug} plugin={p} index={i} />
+              {getAllPlugins().map((p) => (
+                <PluginCard key={p.slug} plugin={p} />
               ))}
             </div>
           </div>

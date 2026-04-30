@@ -1,5 +1,8 @@
 import Link from 'next/link';
 import type { Plugin, PluginStatus } from '@/lib/plugins';
+import { WaitlistButton } from './WaitlistButton';
+
+const CALENDLY = 'https://calendly.com/terencemeghani';
 
 const STATUS_TONE: Record<PluginStatus, { fg: string; bg: string; border: string }> = {
   available: {
@@ -24,15 +27,56 @@ const STATUS_TONE: Record<PluginStatus, { fg: string; bg: string; border: string
   },
 };
 
-type Props = { plugin: Plugin; index?: number };
+type Props = { plugin: Plugin };
 
-export function PluginCard({ plugin, index }: Props) {
+const labelMono: React.CSSProperties = {
+  fontFamily: 'var(--font-mono)',
+  fontSize: 10,
+  letterSpacing: '0.18em',
+  textTransform: 'uppercase',
+};
+
+function PrimaryCTA({ plugin }: { plugin: Plugin }) {
+  switch (plugin.status) {
+    case 'in-production':
+      return <WaitlistButton pluginName={plugin.name} label="Join waitlist" />;
+    case 'beta':
+      return (
+        <a
+          href={CALENDLY}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="btn btn-primary"
+        >
+          Book demo
+        </a>
+      );
+    case 'bespoke':
+      return (
+        <a
+          href={CALENDLY}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="btn btn-primary"
+        >
+          Talk to me
+        </a>
+      );
+    case 'available':
+    default:
+      return (
+        <Link href={plugin.ctaHref || `/plugins/${plugin.slug}/`} className="btn btn-primary">
+          {plugin.ctaLabel || 'Install'}
+        </Link>
+      );
+  }
+}
+
+export function PluginCard({ plugin }: Props) {
   const tone = STATUS_TONE[plugin.status];
+  const detailHref = `/plugins/${plugin.slug}/`;
   return (
-    <Link
-      href={`/plugins/${plugin.slug}/`}
-      className="plugin-card"
-      data-cursor="link"
+    <article
       style={{
         position: 'relative',
         display: 'flex',
@@ -40,14 +84,13 @@ export function PluginCard({ plugin, index }: Props) {
         border: '1px solid rgba(255,255,255,0.08)',
         borderRadius: 6,
         background: 'var(--color-char-2)',
-        color: 'inherit',
-        textDecoration: 'none',
         overflow: 'hidden',
-        transition: 'border-color 0.2s, transform 0.2s, background 0.2s',
       }}
     >
       {plugin.heroImage && (
-        <div
+        <Link
+          href={detailHref}
+          aria-label={`${plugin.name} preview — open detail`}
           style={{
             position: 'relative',
             width: '100%',
@@ -55,6 +98,7 @@ export function PluginCard({ plugin, index }: Props) {
             background: 'var(--color-char)',
             borderBottom: '1px solid rgba(255,255,255,0.06)',
             overflow: 'hidden',
+            display: 'block',
           }}
         >
           {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -71,45 +115,25 @@ export function PluginCard({ plugin, index }: Props) {
               display: 'block',
             }}
           />
-        </div>
+        </Link>
       )}
 
-      <div
-        style={{
-          display: 'flex',
-          flexDirection: 'column',
-          gap: 16,
-          padding: '24px 26px 26px',
-          flex: 1,
-        }}
-      >
+      <div style={{ display: 'flex', flexDirection: 'column', gap: 14, padding: '22px 24px 24px', flex: 1 }}>
         <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 12 }}>
           <span
             style={{
-              fontFamily: 'var(--font-mono)',
-              fontSize: 10,
-              letterSpacing: '0.22em',
-              textTransform: 'uppercase',
-              color: 'var(--color-rocket)',
-            }}
-          >
-            {typeof index === 'number' ? `P / ${String(index + 1).padStart(2, '0')} · ` : ''}
-            {plugin.vertical}
-          </span>
-          <span
-            style={{
-              fontFamily: 'var(--font-mono)',
-              fontSize: 10,
-              letterSpacing: '0.18em',
-              textTransform: 'uppercase',
+              ...labelMono,
               color: tone.fg,
               border: `1px solid ${tone.border}`,
               background: tone.bg,
-              padding: '2px 8px',
+              padding: '3px 9px',
               borderRadius: 999,
             }}
           >
             {plugin.statusLabel}
+          </span>
+          <span style={{ ...labelMono, color: 'var(--color-fog)' }}>
+            {plugin.price ?? `v${plugin.version}`}
           </span>
         </div>
 
@@ -125,20 +149,34 @@ export function PluginCard({ plugin, index }: Props) {
               lineHeight: 1.15,
             }}
           >
-            {plugin.name}
+            <Link href={detailHref} style={{ color: 'inherit', textDecoration: 'none' }}>
+              {plugin.name}
+            </Link>
           </h3>
           <p
             style={{
-              marginTop: 8,
-              fontFamily: 'var(--font-italic)',
-              fontStyle: 'italic',
-              fontSize: 16,
-              color: 'var(--color-fog)',
+              marginTop: 6,
+              fontSize: 15,
+              color: '#fff',
               lineHeight: 1.45,
             }}
           >
             {plugin.tagline}
           </p>
+          {plugin.whoItsFor && (
+            <p
+              style={{
+                marginTop: 8,
+                fontFamily: 'var(--font-italic)',
+                fontStyle: 'italic',
+                fontSize: 14,
+                color: 'var(--color-fog)',
+                lineHeight: 1.45,
+              }}
+            >
+              For: {plugin.whoItsFor}
+            </p>
+          )}
         </div>
 
         <div
@@ -147,27 +185,24 @@ export function PluginCard({ plugin, index }: Props) {
             paddingTop: 14,
             borderTop: '1px solid rgba(255,255,255,0.06)',
             display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'space-between',
-            gap: 10,
+            flexDirection: 'column',
+            gap: 12,
           }}
         >
-          <span style={{ fontFamily: 'var(--font-mono)', fontSize: 11, color: 'var(--color-fog)', letterSpacing: '0.06em' }}>
-            v{plugin.version}
-          </span>
-          <span
+          <PrimaryCTA plugin={plugin} />
+          <Link
+            href={detailHref}
             style={{
-              fontFamily: 'var(--font-mono)',
-              fontSize: 11,
-              letterSpacing: '0.18em',
-              textTransform: 'uppercase',
+              ...labelMono,
               color: 'var(--color-rocket)',
+              textDecoration: 'none',
+              alignSelf: 'flex-start',
             }}
           >
-            View →
-          </span>
+            Docs →
+          </Link>
         </div>
       </div>
-    </Link>
+    </article>
   );
 }

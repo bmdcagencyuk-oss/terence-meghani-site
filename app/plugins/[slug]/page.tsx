@@ -4,7 +4,6 @@ import Link from 'next/link';
 import { Kicker } from '@/components/ui/Kicker';
 import { Button } from '@/components/ui/Button';
 import { PluginCard } from '@/components/plugins/PluginCard';
-import { LaunchCTA } from '@/components/launch/LaunchCTA';
 import {
   getAllPlugins,
   getPluginBySlug,
@@ -438,10 +437,58 @@ export default async function PluginDetailPage({
         </section>
       )}
 
-      <LaunchCTA
-        title="Talk plugins"
-        body="Want early access, want a bespoke build, or want to know if one of these fits your workflow? Thirty-minute call, no slides, no fluff."
-      />
+      {/* Closing CTA strip — implementation handoff */}
+      <section
+        className="section-pad"
+        style={{ background: 'var(--color-char-2)', paddingTop: 48, paddingBottom: 64 }}
+      >
+        <div className="wrap" style={{ maxWidth: 880 }}>
+          <div
+            style={{
+              display: 'flex',
+              flexWrap: 'wrap',
+              alignItems: 'center',
+              justifyContent: 'space-between',
+              gap: 20,
+              padding: '24px 28px',
+              border: '1px solid var(--color-rocket)',
+              borderRadius: 6,
+              background: 'rgba(255, 77, 23, 0.05)',
+            }}
+          >
+            <p
+              style={{
+                fontFamily: 'var(--font-display)',
+                fontVariationSettings: '"wdth" 90, "opsz" 72',
+                fontWeight: 500,
+                fontSize: 22,
+                color: '#fff',
+                lineHeight: 1.3,
+                margin: 0,
+                maxWidth: '52ch',
+              }}
+            >
+              Want this implemented for you?{' '}
+              <em
+                style={{
+                  fontFamily: 'var(--font-italic)',
+                  fontStyle: 'italic',
+                  color: 'var(--color-rocket)',
+                }}
+              >
+                Book a 30-min call.
+              </em>
+            </p>
+            <Button
+              href="https://calendly.com/terencemeghani"
+              external
+              variant="primary"
+            >
+              Book a 30-min call →
+            </Button>
+          </div>
+        </div>
+      </section>
     </>
   );
 }
