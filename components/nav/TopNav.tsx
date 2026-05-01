@@ -154,6 +154,13 @@ export function TopNav() {
             Plugins
           </Link>
         </li>
+        {/* TODO: enable when /notes section launches end of May 2026
+        <li role="none">
+          <Link href="/notes/" role="menuitem" onClick={closeAll} data-cursor="link">
+            Notes
+          </Link>
+        </li>
+        */}
         <li role="none">
           <Link href="/#why" role="menuitem" onClick={closeAll} data-cursor="link">
             Why me

@@ -53,6 +53,9 @@ export function Footer() {
               <li><Link href="/hertfordshire">Hertfordshire</Link></li>
               <li><Link href="/process/">Process</Link></li>
               <li><Link href="/engage/">Engage</Link></li>
+              {/* TODO: enable when /notes section launches end of May 2026
+              <li><Link href="/notes/">Notes</Link></li>
+              */}
               <li><Link href="/work/">Selected work</Link></li>
               <li><Link href="/reviews/">Reviews</Link></li>
               <li><Link href="/#faq">FAQ</Link></li>
