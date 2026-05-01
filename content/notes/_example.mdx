@@ -1,0 +1,66 @@
+---
+slug: example-post
+title: "Example post — schema reference"
+date: "2026-05-01"
+readingTime: 4
+tags:
+  - engineering
+  - process
+excerpt: "A reference template demonstrating every supported MDX feature for /notes posts. Copy this file when starting a new post."
+heroImage: "/notes/example-post-hero.svg"
+heroImageAlt: "Abstract terminal-style hero image with Terence Meghani Studio mark"
+published: false
+author: "Terence Meghani"
+---
+
+This is the opening paragraph. Lead with the punchline, not the wind-up. The
+excerpt above is what shows in cards, RSS, and meta tags — keep it tight.
+
+## Section heading (h2)
+
+A second paragraph carries the main argument. Use plain prose; reach for
+headings when the topic genuinely turns, not as a styling crutch.
+
+### Sub-section (h3)
+
+Use h3 sparingly. Lists usually do better than nested headings.
+
+## Lists, code, and quotes
+
+A short unordered list:
+
+- One item, one idea
+- Parallel grammar across siblings
+- Stop when the point is made
+
+An ordered list when sequence matters:
+
+1. First do this
+2. Then this
+3. Then ship
+
+Inline code lives mid-sentence: call `getAllNotes()` to load published notes
+sorted newest-first, then filter by tag if needed.
+
+A code block when an example would be clearer than prose:
+
+```ts
+import { getAllNotes } from '@/lib/notes';
+
+const recent = getAllNotes().slice(0, 3);
+```
+
+A blockquote for an external voice or a strong aside:
+
+> The job of a brand consultant is to remove the optionality the founder
+> has been quietly avoiding for two years.
+
+## Links
+
+Inline links sit naturally in body text: see the
+[plugins index](/plugins/) for the full catalogue, or the
+[hertfordshire studio page](/hertfordshire) for local context.
+
+## Wrap
+
+End with a clean closing line — not a summary, just a final thought.
