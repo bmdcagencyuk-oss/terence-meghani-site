@@ -6,6 +6,7 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { MegaMenu } from './MegaMenu';
 import { LiveIndicator } from './LiveIndicator';
+import { MobileMenu } from './MobileMenu';
 
 // Whether the Notes section is publicly discoverable. Wired to
 // NEXT_PUBLIC_NOTES_VISIBLE in a follow-up commit; until then this is a
@@ -188,13 +189,20 @@ export function TopNav() {
 
       <button
         type="button"
-        className="nav-hamburger"
+        className={`nav-hamburger nav-hamburger--two ${mobileOpen ? 'is-open' : ''}`}
         aria-label={mobileOpen ? 'Close menu' : 'Open menu'}
         aria-expanded={mobileOpen}
+        aria-controls="mobile-menu"
         onClick={toggleMobile}
       >
-        <span /><span /><span />
+        <span /><span />
       </button>
+
+      <MobileMenu
+        open={mobileOpen}
+        onClose={() => setMobileOpen(false)}
+        notesVisible={NOTES_VISIBLE}
+      />
     </nav>
   );
 }

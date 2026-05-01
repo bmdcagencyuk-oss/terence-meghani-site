@@ -2249,30 +2249,51 @@
   pointer-events: none;
 }
 
-/* Hamburger — mobile only */
+/* Hamburger — mobile only. Two strokes of varying length; on open, rotate
+ * into an X with the bottom stroke growing to full width. */
 .nav-hamburger {
   display: none;
-  width: 36px;
-  height: 36px;
+  width: 44px;
+  height: 44px;
   background: none;
-  border: 1px solid var(--color-hairline-2);
+  border: none;
   position: relative;
   cursor: pointer;
   padding: 0;
+  z-index: 110;
 }
-.nav-hamburger span {
+.nav-hamburger--two span {
   position: absolute;
-  left: 8px; right: 8px;
+  left: 50%;
   height: 1.5px;
   background: #fff;
-  transition: transform 0.3s var(--ease), opacity 0.2s ease, top 0.3s var(--ease);
+  border-radius: 1px;
+  transform-origin: center;
+  transition: transform 0.3s var(--ease), top 0.3s var(--ease), width 0.3s var(--ease);
 }
-.nav-hamburger span:nth-child(1) { top: 12px; }
-.nav-hamburger span:nth-child(2) { top: 17px; }
-.nav-hamburger span:nth-child(3) { top: 22px; }
-.nav-top.is-mobile-open .nav-hamburger span:nth-child(1) { top: 17px; transform: rotate(45deg); }
-.nav-top.is-mobile-open .nav-hamburger span:nth-child(2) { opacity: 0; }
-.nav-top.is-mobile-open .nav-hamburger span:nth-child(3) { top: 17px; transform: rotate(-45deg); }
+.nav-hamburger--two span:nth-child(1) {
+  top: 18px;
+  width: 22px;
+  transform: translateX(-50%);
+}
+.nav-hamburger--two span:nth-child(2) {
+  top: 25px;
+  width: 13px;
+  transform: translateX(-50%);
+}
+.nav-hamburger--two.is-open span:nth-child(1) {
+  top: 21px;
+  width: 22px;
+  transform: translateX(-50%) rotate(45deg);
+}
+.nav-hamburger--two.is-open span:nth-child(2) {
+  top: 21px;
+  width: 22px;
+  transform: translateX(-50%) rotate(-45deg);
+}
+@media (prefers-reduced-motion: reduce) {
+  .nav-hamburger--two span { transition: none; }
+}
 
 @media (max-width: 1080px) {
   .nav-hamburger {
@@ -2287,152 +2308,173 @@
   /* On mobile the lockup compresses to gorilla + name only — strap is suppressed
    * even before scroll so the row can host the hamburger comfortably. */
   .nav-lockup-strap { display: none; }
-
-  /* Mobile drawer: when .is-mobile-open, the nav becomes a 3-row grid so
-   * the menu and the right-side CTA stack BELOW the brand+hamburger row
-   * instead of sitting on top of each other (the previous absolute-on-
-   * absolute setup hid the CTA behind the menu).
-   */
-  .nav-top.is-mobile-open {
+  .nav-top {
     grid-template-columns: 1fr auto;
-    grid-template-rows: auto auto auto;
-    row-gap: 0;
-    padding: 12px 0 0;
   }
-  .nav-top.is-mobile-open > .nav-lockup {
-    grid-row: 1;
-    grid-column: 1;
-    padding-left: clamp(20px, 4vw, 28px);
-  }
-  .nav-top.is-mobile-open > .nav-hamburger {
-    grid-row: 1;
-    grid-column: 2;
-    margin-right: clamp(20px, 4vw, 28px);
-  }
-  .nav-top.is-mobile-open .nav-menu,
-  .nav-top.is-mobile-open .nav-right {
-    display: flex;
-    position: static;
-    flex-direction: column;
-    gap: 0;
-    background: var(--color-char);
-    padding: 4px clamp(20px, 4vw, 28px);
-    justify-self: stretch;
-    align-items: stretch;
-    grid-column: 1 / -1;
-  }
-  .nav-top.is-mobile-open .nav-menu {
-    grid-row: 2;
-    margin-top: 16px;
-    padding-bottom: 8px;
-    max-height: min(60vh, 540px);
-    overflow-y: auto;
-    overscroll-behavior: contain;
-  }
-  .nav-top.is-mobile-open .nav-right {
-    grid-row: 3;
-    padding-top: 12px;
-    padding-bottom: 20px;
-    border-top: 1px solid var(--color-hairline-2);
-  }
-
-  /* Top-level items: row with inline caret, dividers, big tap targets */
-  .nav-top.is-mobile-open .nav-menu > li {
-    border-bottom: 1px solid var(--color-hairline-2);
-  }
-  .nav-top.is-mobile-open .nav-menu > li:last-child { border-bottom: none; }
-
-  .nav-top.is-mobile-open .nav-menu > li > a,
-  .nav-top.is-mobile-open .nav-menu > li > button {
-    padding: 18px 4px;
-    width: 100%;
-    justify-content: flex-start;
-    gap: 10px;
-    font-size: 13px;
-    letter-spacing: 0.16em;
-    transform: none !important;   /* neutralise desktop translateX on hover */
-  }
-  /* Suppress the animated underline bar on mobile — swap for a row divider */
-  .nav-top.is-mobile-open .nav-menu > li > a::after,
-  .nav-top.is-mobile-open .nav-menu > li > button::after {
-    display: none;
-  }
-  /* Caret sits on the right, but still feels attached to "Services" */
-  .nav-top.is-mobile-open .nav-menu > li.has-dropdown > button {
-    justify-content: space-between;
-  }
-  .nav-top.is-mobile-open .nav-menu > li.has-dropdown > button .caret {
-    margin-left: auto;
-  }
-
-  /* Services mega-menu collapses to a clean stacked list on mobile */
-  .nav-top.is-mobile-open .mega-menu {
-    position: static;
-    transform: none !important;   /* override desktop translateX(-50%) */
-    inset: auto !important;       /* override desktop top/left positioning */
-    width: 100%;
-    grid-template-columns: 1fr;
-    padding: 4px 0 16px;
-    background: none;
-    border: none;
-    box-shadow: none;
-    gap: 10px;
-    display: none;
-    opacity: 0;
-  }
-  .nav-top.is-mobile-open .nav-menu > li.is-open .mega-menu {
-    display: grid;
-    opacity: 1;
-    pointer-events: auto;
-    transform: none !important;   /* and override the open-state transform too */
-  }
-  /* Drop the featured promo card on mobile — redundant with the primary CTA */
-  .nav-top.is-mobile-open .mega-menu .mm-featured { display: none; }
-
-  .nav-top.is-mobile-open .mega-menu h6 { margin-bottom: 8px; }
-  .nav-top.is-mobile-open .mega-menu .mm-item {
-    padding: 12px 10px;
-    background: rgba(255,255,255,0.02);
-  }
-  .nav-top.is-mobile-open .mega-menu .mm-item:hover {
-    transform: none;
-    background: color-mix(in srgb, var(--color-rocket) 12%, transparent);
-  }
-
-  /* Right-side CTA becomes a full-width prominent block */
-  .nav-top.is-mobile-open .nav-right {
-    padding: 16px clamp(20px, 4vw, 28px) 20px;
-    border-top: none;
-  }
-  .nav-top.is-mobile-open .nav-cta {
-    width: 100%;
-    justify-content: center;
-    padding: 16px 20px;
-    font-size: 13px;
-  }
-
-  /* Lock background scroll while the drawer is open */
-  .nav-top.is-mobile-open ~ main,
-  .nav-top.is-mobile-open ~ footer { pointer-events: none; }
-
-  .mega-menu::before { display: none; }
 }
 
-/* Prevent double-scroll on iOS when drawer is open */
-html:has(.nav-top.is-mobile-open) { overflow: hidden; }
-body:has(.nav-top.is-mobile-open) { overflow: hidden; }
-
-/* Scrim behind the mobile drawer — full-screen dim so the rocket CTA,
- * stats panel, and other content underneath don't bleed through. */
-.nav-top.is-mobile-open::after {
-  content: '';
+/* ============================================================
+   MOBILE MENU OVERLAY — typography-led full-screen panel
+   ============================================================ */
+.mobile-menu {
   position: fixed;
   inset: 0;
-  z-index: -1;                 /* behind the drawer chrome */
-  background: rgba(10, 10, 11, 0.78);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
+  z-index: 100;
+  background: linear-gradient(180deg, #1f2122 0%, #16181a 100%);
+  transform: translateX(100%);
+  transition: transform 0.32s ease-out, visibility 0s linear 0.32s;
+  visibility: hidden;
   pointer-events: none;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+}
+.mobile-menu.is-open {
+  transform: translateX(0);
+  visibility: visible;
+  pointer-events: auto;
+  transition: transform 0.32s ease-out, visibility 0s linear 0s;
+}
+.mobile-menu-noise {
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(circle at 25% 30%, rgba(255,255,255,0.02) 0%, transparent 60%);
+  pointer-events: none;
+}
+.mobile-menu-inner {
+  position: relative;
+  min-height: 100vh;
+  padding: 88px clamp(24px, 6vw, 40px) max(40px, env(safe-area-inset-bottom));
+  display: flex;
+  flex-direction: column;
+  gap: 36px;
+}
+.mobile-menu-eyebrow {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.5);
+  margin: 0;
+}
+.mobile-menu-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+  flex: 1;
+}
+.mobile-menu-row {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  text-decoration: none;
+  color: #fff;
+  background: none;
+  border: none;
+  padding: 6px 0;
+  cursor: pointer;
+  text-align: left;
+  width: 100%;
+  font: inherit;
+}
+.mobile-menu li.is-active .mobile-menu-row .mobile-menu-label,
+.mobile-menu-row[aria-current="page"] .mobile-menu-label {
+  color: var(--color-rocket);
+}
+.mobile-menu-num {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.16em;
+  color: rgba(255, 255, 255, 0.4);
+}
+.mobile-menu-label {
+  font-family: var(--font-display);
+  font-variation-settings: "wdth" 100, "opsz" 32;
+  font-weight: 500;
+  font-size: 32px;
+  letter-spacing: -0.01em;
+  color: #fff;
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
+  line-height: 1.05;
+}
+.mobile-menu-caret {
+  font-family: var(--font-mono);
+  font-size: 24px;
+  font-weight: 400;
+  color: var(--color-rocket);
+  margin-left: 8px;
+}
+.mobile-menu-sub {
+  list-style: none;
+  margin: 14px 0 0 0;
+  padding: 0 0 0 8px;
+  border-left: 1px solid var(--color-hairline-2);
+  display: none;
+  flex-direction: column;
+  gap: 12px;
+}
+.mobile-menu-sub.is-open { display: flex; }
+.mobile-menu-sub a {
+  display: block;
+  padding: 6px 0 6px 12px;
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: 17px;
+  color: rgba(255, 255, 255, 0.78);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+.mobile-menu-sub a:hover,
+.mobile-menu-sub a[aria-current="page"] { color: var(--color-rocket); }
+
+.mobile-menu-live { align-self: flex-start; }
+
+.mobile-menu-cta {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: 100%;
+  height: 56px;
+  background: var(--color-rocket);
+  color: #fff;
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 16px;
+  letter-spacing: -0.005em;
+  text-decoration: none;
+  border-radius: 2px;
+  transition: background-color 0.2s ease;
+}
+.mobile-menu-cta:hover { background: var(--color-rocket-deep); }
+
+.mobile-menu-secondary {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: rgba(255, 255, 255, 0.4);
+  letter-spacing: 0.08em;
+}
+.mobile-menu-secondary a {
+  color: rgba(255, 255, 255, 0.5);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+.mobile-menu-secondary a:hover { color: #fff; }
+
+@media (min-width: 1081px) {
+  /* Desktop never renders the overlay even if the JS state slips. */
+  .mobile-menu { display: none; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .mobile-menu { transition: visibility 0s linear 0s; }
+  .mobile-menu.is-open { transition: visibility 0s linear 0s; }
 }
 
 /* ============================================================
