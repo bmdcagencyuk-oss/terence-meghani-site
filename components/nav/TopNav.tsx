@@ -8,10 +8,12 @@ import { MegaMenu } from './MegaMenu';
 import { LiveIndicator } from './LiveIndicator';
 import { MobileMenu } from './MobileMenu';
 
-// Whether the Notes section is publicly discoverable. Wired to
-// NEXT_PUBLIC_NOTES_VISIBLE in a follow-up commit; until then this is a
-// hardcoded false so the link is built but not rendered.
-const NOTES_VISIBLE = false;
+// Whether the Notes section is publicly discoverable. Set
+// NEXT_PUBLIC_NOTES_VISIBLE=true in the Vercel env (production, preview,
+// development) when you're ready to surface the Notes nav link, the
+// "Latest:" live-indicator entry, and the mobile-menu Notes row. Default
+// is false so /notes URLs stay reachable but unlinked.
+const NOTES_VISIBLE = process.env.NEXT_PUBLIC_NOTES_VISIBLE === 'true';
 
 /**
  * Top navigation. Two layouts share the same component:
