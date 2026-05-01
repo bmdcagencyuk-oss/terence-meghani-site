@@ -14,7 +14,11 @@ import {
   type Note,
   type NoteTag,
 } from '@/lib/notes';
-import { breadcrumbSchema, ldJsonProps } from '@/lib/schema';
+import {
+  articleSchema,
+  breadcrumbSchema,
+  ldJsonProps,
+} from '@/lib/schema';
 
 export function generateStaticParams() {
   return getAllNotes().map((n) => ({ slug: n.slug }));
@@ -144,6 +148,7 @@ export default async function NotePage({
 
   return (
     <>
+      <script {...ldJsonProps(articleSchema(note))} />
       <script
         {...ldJsonProps(
           breadcrumbSchema([

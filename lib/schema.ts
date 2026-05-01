@@ -325,6 +325,51 @@ export function localBusinessSchema() {
   };
 }
 
+/**
+ * Article entity for /notes/[slug] — used for Google's article rich result
+ * and to keep author / publisher / date relationships explicit. The note's
+ * heroImage may be a relative path; absoluteUrl handles both.
+ */
+export function articleSchema(note: {
+  slug: string;
+  title: string;
+  date: string;
+  excerpt: string;
+  heroImage: string;
+  author: string;
+}) {
+  const url = absoluteUrl(`/notes/${note.slug}/`);
+  const image = note.heroImage
+    ? note.heroImage.startsWith('http')
+      ? note.heroImage
+      : absoluteUrl(note.heroImage)
+    : undefined;
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'Article',
+    headline: note.title,
+    description: note.excerpt,
+    datePublished: note.date,
+    dateModified: note.date,
+    author: {
+      '@type': 'Person',
+      name: note.author,
+      url: absoluteUrl('/about'),
+    },
+    publisher: {
+      '@type': 'Organization',
+      name: SITE.studioName,
+      logo: {
+        '@type': 'ImageObject',
+        url: absoluteUrl('/brand/emblem-gorilla.svg'),
+      },
+    },
+    image,
+    url,
+    mainEntityOfPage: { '@type': 'WebPage', '@id': url },
+  };
+}
+
 /** FAQPage entity from a list of {q, a} pairs. */
 export function faqPageSchema(items: Array<{ q: string; aPlain: string }>) {
   return {
