@@ -3,18 +3,23 @@
 /* eslint-disable @next/next/no-img-element */
 import { useEffect, useRef, useState } from 'react';
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import { MegaMenu } from './MegaMenu';
+import { LiveIndicator } from './LiveIndicator';
+
+// Whether the Notes section is publicly discoverable. Wired to
+// NEXT_PUBLIC_NOTES_VISIBLE in a follow-up commit; until then this is a
+// hardcoded false so the link is built but not rendered.
+const NOTES_VISIBLE = false;
 
 /**
- * Top navigation, ported from v23.
+ * Top navigation. Two layouts share the same component:
+ *  - Desktop (>= 1080px): logo + lockup, left-grouped items, live indicator,
+ *    outline CTA. Compacts on scroll past 60px.
+ *  - Mobile (< 1080px): hamburger toggle reveals a stacked drawer menu.
  *
- * Behaviours:
- * - `.is-scrolled` class added when user scrolls past 60px (padding shrinks,
- *   backdrop darkens, shadow appears).
- * - Services trigger opens a mega-menu dropdown. Click outside / Escape closes.
- * - Mobile (≤ 1080px): hamburger toggle reveals full-width menu stack.
- * - All nav links are standard `<Link>` — use /#section for in-page anchors
- *   from other routes; on the home page those resolve to hash navigation.
+ * The Notes link is conditional on NOTES_VISIBLE so the rest of the section
+ * can ship while it stays hidden behind a flag.
  */
 export function TopNav() {
   const [scrolled, setScrolled] = useState(false);
@@ -22,8 +27,8 @@ export function TopNav() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const navRef = useRef<HTMLElement | null>(null);
   const servicesLiRef = useRef<HTMLLIElement | null>(null);
+  const pathname = usePathname();
 
-  // Scroll-aware state
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 60);
     onScroll();
@@ -31,16 +36,12 @@ export function TopNav() {
     return () => window.removeEventListener('scroll', onScroll);
   }, []);
 
-  // Close mega-menu on: click outside, Escape, route change (via anchor click)
   useEffect(() => {
     if (!servicesOpen) return;
-
     const onKey = (e: KeyboardEvent) => {
       if (e.key === 'Escape') {
         setServicesOpen(false);
-        // Return focus to the trigger button for screen-reader users
-        const btn = servicesLiRef.current?.querySelector('button');
-        btn?.focus();
+        servicesLiRef.current?.querySelector('button')?.focus();
       }
     };
     const onClick = (e: MouseEvent) => {
@@ -50,7 +51,6 @@ export function TopNav() {
         setServicesOpen(false);
       }
     };
-
     document.addEventListener('keydown', onKey);
     document.addEventListener('mousedown', onClick);
     return () => {
@@ -58,11 +58,6 @@ export function TopNav() {
       document.removeEventListener('mousedown', onClick);
     };
   }, [servicesOpen]);
-
-  // When mobile menu closes (either via hamburger or link click), we also
-  // want any open submenu closed. This is handled in the click handlers
-  // (closeAll / the hamburger toggle) rather than as an effect — a cascading
-  // setState in an effect is a react-hooks/set-state-in-effect violation.
 
   const closeAll = () => {
     setServicesOpen(false);
@@ -72,53 +67,76 @@ export function TopNav() {
   const toggleMobile = () => {
     setMobileOpen((v) => {
       const next = !v;
-      if (!next) setServicesOpen(false);   // closing mobile → close submenu too
+      if (!next) setServicesOpen(false);
       return next;
     });
   };
 
+  const isActive = (href: string): boolean => {
+    if (!pathname) return false;
+    if (href === '/') return pathname === '/';
+    return pathname === href || pathname.startsWith(href + '/') || pathname === href.replace(/\/$/, '');
+  };
+
   const navClass = [
     'nav-top',
-    scrolled   ? 'is-scrolled'    : '',
+    scrolled ? 'is-scrolled' : '',
     mobileOpen ? 'is-mobile-open' : '',
   ]
     .filter(Boolean)
     .join(' ');
 
+  type Item = { href: string; label: string };
+  const baseItems: Item[] = [
+    ...(NOTES_VISIBLE ? [{ href: '/notes/', label: 'Notes' }] : []),
+    { href: '/about/', label: 'About' },
+  ];
+  const tailItems: Item[] = [
+    { href: '/work/', label: 'Work' },
+    { href: '/plugins/', label: 'Plugins' },
+    { href: '/engage/', label: 'Engage' },
+  ];
+
   return (
     <nav ref={navRef} className={navClass} id="nav" aria-label="Primary">
-      {/* Brand mark — gorilla emblem only, no wordmark. */}
       <Link
         href="/"
-        className="nav-brand nav-brand--mark"
+        className="nav-lockup"
         onClick={closeAll}
         data-cursor="link"
-        aria-label="Meghani Studio — home"
+        aria-label="Terence Meghani Studio — home"
       >
         <img
           className="nav-gorilla"
           src="/brand/emblem-gorilla.svg"
-          alt="Meghani Studio"
+          alt=""
+          aria-hidden="true"
         />
+        <span className="nav-lockup-text">
+          <span className="nav-lockup-name">terence meghani</span>
+          <span className="nav-lockup-strap">studio · est. 2014</span>
+        </span>
       </Link>
 
-      {/* Center menu */}
       <ul className="nav-menu" role="menubar">
-        <li role="none">
-          <Link href="/about/" role="menuitem" onClick={closeAll} data-cursor="link">
-            About
-          </Link>
-        </li>
-        <li role="none">
-          <Link href="/process/" role="menuitem" onClick={closeAll} data-cursor="link">
-            Process
-          </Link>
-        </li>
+        {baseItems.map((item) => (
+          <li key={item.href} role="none" className={isActive(item.href) ? 'is-active' : ''}>
+            <Link
+              href={item.href}
+              role="menuitem"
+              onClick={closeAll}
+              data-cursor="link"
+              aria-current={isActive(item.href) ? 'page' : undefined}
+            >
+              {item.label}
+            </Link>
+          </li>
+        ))}
 
         <li
           ref={servicesLiRef}
           role="none"
-          className={`has-dropdown ${servicesOpen ? 'is-open' : ''}`}
+          className={`has-dropdown ${servicesOpen ? 'is-open' : ''} ${pathname?.startsWith('/services') ? 'is-active' : ''}`}
         >
           <button
             type="button"
@@ -139,41 +157,23 @@ export function TopNav() {
           />
         </li>
 
-        <li role="none">
-          <Link href="/engage/" role="menuitem" onClick={closeAll} data-cursor="link">
-            Engage
-          </Link>
-        </li>
-        <li role="none">
-          <Link href="/work/" role="menuitem" onClick={closeAll} data-cursor="link">
-            Work
-          </Link>
-        </li>
-        <li role="none">
-          <Link href="/plugins/" role="menuitem" onClick={closeAll} data-cursor="link">
-            Plugins
-          </Link>
-        </li>
-        {/* TODO: enable when /notes section launches end of May 2026
-        <li role="none">
-          <Link href="/notes/" role="menuitem" onClick={closeAll} data-cursor="link">
-            Notes
-          </Link>
-        </li>
-        */}
-        <li role="none">
-          <Link href="/#why" role="menuitem" onClick={closeAll} data-cursor="link">
-            Why me
-          </Link>
-        </li>
-        <li role="none">
-          <Link href="/reviews/" role="menuitem" onClick={closeAll} data-cursor="link">
-            Reviews
-          </Link>
-        </li>
+        {tailItems.map((item) => (
+          <li key={item.href} role="none" className={isActive(item.href) ? 'is-active' : ''}>
+            <Link
+              href={item.href}
+              role="menuitem"
+              onClick={closeAll}
+              data-cursor="link"
+              aria-current={isActive(item.href) ? 'page' : undefined}
+            >
+              {item.label}
+            </Link>
+          </li>
+        ))}
       </ul>
 
-      {/* Right-side CTA */}
+      <LiveIndicator notesVisible={NOTES_VISIBLE} variant="desktop" />
+
       <div className="nav-right">
         <a
           href="https://calendly.com/terencemeghani"
@@ -182,11 +182,10 @@ export function TopNav() {
           className="nav-cta"
           data-cursor="go"
         >
-          🚀 Book a call
+          Book a discovery <span aria-hidden="true">→</span>
         </a>
       </div>
 
-      {/* Hamburger toggle (mobile only, CSS-hidden above 1080px) */}
       <button
         type="button"
         className="nav-hamburger"

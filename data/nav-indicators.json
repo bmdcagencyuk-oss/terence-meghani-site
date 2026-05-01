@@ -1,0 +1,9 @@
+{
+  "indicators": [
+    { "label": "2 slots open · Q3 2026" },
+    { "label": "Latest: Twelve years in →", "href": "/notes/twelve-years-in/", "requiresNotes": true },
+    { "label": "Now booking · WP audits" },
+    { "label": "6 plugins shipping Q2" },
+    { "label": "Studio of one · brand and code" }
+  ]
+}

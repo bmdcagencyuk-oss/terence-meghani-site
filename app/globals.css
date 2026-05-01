@@ -1782,11 +1782,11 @@
   position: fixed;
   inset: 0 0 auto 0;
   z-index: 60;
-  padding: 16px clamp(20px, 3vw, 40px);
+  padding: 14px clamp(20px, 3vw, 40px);
   display: grid;
-  grid-template-columns: auto 1fr auto;
+  grid-template-columns: auto auto 1fr auto auto;
   align-items: center;
-  gap: 24px;
+  column-gap: 24px;
   background: color-mix(in srgb, var(--color-char) 72%, transparent);
   backdrop-filter: blur(18px);
   -webkit-backdrop-filter: blur(18px);
@@ -1797,47 +1797,61 @@
               box-shadow 0.3s var(--ease);
 }
 .nav-top.is-scrolled {
-  padding: 10px clamp(20px, 3vw, 40px);
+  padding: 8px clamp(20px, 3vw, 40px);
   background: color-mix(in srgb, var(--color-char) 90%, transparent);
   border-bottom-color: var(--color-hairline-2);
   box-shadow: 0 12px 30px -20px rgba(0,0,0,0.6);
 }
 
-/* Brand lockup */
-.nav-brand {
+/* Brand lockup — gorilla emblem + two-line wordmark */
+.nav-lockup {
   display: inline-flex;
   align-items: center;
   gap: 12px;
-  font-family: var(--font-mono);
-  font-size: 12px;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  font-weight: 500;
-  color: #fff;
   text-decoration: none;
+  color: #fff;
+  transition: opacity 0.2s ease;
 }
-.nav-brand--mark {
-  display: inline-flex;
-  align-items: center; justify-content: center;
-  background: transparent;
-  padding: 0;
-  border-radius: 0;
-  box-shadow: none;
-  transition: transform 0.35s var(--ease-bounce);
-}
-.nav-brand--mark:hover { transform: rotate(-2deg) scale(1.05); }
-.nav-brand .nav-gorilla {
-  height: 44px;
+.nav-lockup:hover { opacity: 0.86; }
+.nav-gorilla {
+  height: 40px;
   width: auto;
   flex-shrink: 0;
   display: block;
-  /* White silhouette of the silverback so it reads cleanly on the dark nav. */
   filter: brightness(0) invert(1);
-  transition: filter 0.3s ease;
+  transition: height 0.3s var(--ease), filter 0.3s ease;
 }
-.nav-top.is-scrolled .nav-brand .nav-gorilla { height: 36px; }
-.nav-brand--mark:hover .nav-gorilla {
-  filter: brightness(0) invert(1) drop-shadow(0 0 12px color-mix(in srgb, var(--color-rocket) 60%, transparent));
+.nav-top.is-scrolled .nav-gorilla { height: 32px; }
+.nav-lockup:hover .nav-gorilla {
+  filter: brightness(0) invert(1) drop-shadow(0 0 10px color-mix(in srgb, var(--color-rocket) 55%, transparent));
+}
+.nav-lockup-text {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.1;
+  gap: 2px;
+}
+.nav-lockup-name {
+  font-family: var(--font-display);
+  font-variation-settings: "wdth" 95, "opsz" 18;
+  font-weight: 600;
+  font-size: 14px;
+  letter-spacing: -0.005em;
+  color: #fff;
+}
+.nav-lockup-strap {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.5);
+  transition: opacity 0.25s var(--ease), max-height 0.25s var(--ease);
+}
+.nav-top.is-scrolled .nav-lockup-strap {
+  opacity: 0;
+  max-height: 0;
+  overflow: hidden;
+  pointer-events: none;
 }
 /* Legacy rocket tile retained as orphan rules for older snapshots; superseded
    by .nav-gorilla above and no longer rendered. */
@@ -1867,12 +1881,12 @@
   filter: brightness(0) invert(1);
 }
 
-/* Center menu */
+/* Left-grouped primary menu — lowercase, display font, restrained tracking */
 .nav-menu {
   display: flex;
-  gap: 4px;
+  gap: 2px;
   list-style: none;
-  justify-self: center;
+  justify-self: start;
   align-items: center;
   margin: 0;
   padding: 0;
@@ -1880,13 +1894,14 @@
 .nav-menu > li { position: relative; }
 .nav-menu > li > a,
 .nav-menu > li > button {
-  font-family: var(--font-mono);
-  font-size: 11.5px;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: var(--color-mist);
+  font-family: var(--font-display);
+  font-variation-settings: "wdth" 100, "opsz" 18;
+  font-size: 14px;
+  letter-spacing: -0.005em;
+  text-transform: none;
+  color: rgba(255, 255, 255, 0.92);
   font-weight: 500;
-  padding: 10px 14px;
+  padding: 10px 12px;
   position: relative;
   display: inline-flex;
   align-items: center;
@@ -1896,24 +1911,25 @@
   cursor: pointer;
   transition: color 0.2s ease;
   text-decoration: none;
+  line-height: 1;
 }
 .nav-menu > li > a:hover,
 .nav-menu > li > button:hover,
 .nav-menu > li.is-active > a,
 .nav-menu > li.is-active > button,
-.nav-menu > li.is-open > button { color: #fff; }
+.nav-menu > li.is-open > button { color: var(--color-rocket); }
 
 .nav-menu > li > a::after,
 .nav-menu > li > button::after {
   content: '';
   position: absolute;
-  left: 14px; right: 14px;
-  bottom: 2px;
+  left: 12px; right: 12px;
+  bottom: 4px;
   height: 1px;
   background: var(--color-rocket);
   transform: scaleX(0);
   transform-origin: left center;
-  transition: transform 0.35s var(--ease);
+  transition: transform 0.2s ease-out;
 }
 .nav-menu > li.is-active > a::after,
 .nav-menu > li.is-active > button::after,
@@ -2156,22 +2172,82 @@
 }
 .nav-cta {
   padding: 10px 18px;
-  background: var(--color-rocket);
-  color: #fff;
-  font-family: var(--font-mono);
-  font-size: 11px;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  font-weight: 600;
-  transition: all 0.25s ease;
+  background: transparent;
+  color: var(--color-rocket);
+  font-family: var(--font-display);
+  font-variation-settings: "wdth" 100, "opsz" 18;
+  font-size: 14px;
+  letter-spacing: -0.005em;
+  text-transform: none;
+  font-weight: 500;
+  transition: background-color 0.2s ease-out, color 0.2s ease-out;
   display: inline-flex;
   align-items: center;
   gap: 6px;
   text-decoration: none;
-  border: none;
+  border: 1.5px solid var(--color-rocket);
+  border-radius: 2px;
+  line-height: 1;
 }
-.nav-cta:hover { background: var(--color-rocket-deep); }
-.nav-top.is-scrolled .nav-cta { padding: 8px 16px; font-size: 10.5px; }
+.nav-cta:hover { background: var(--color-rocket); color: #fff; }
+.nav-top.is-scrolled .nav-cta { padding: 8px 14px; font-size: 13px; }
+
+/* Live indicator — small pulsing dot + status label between menu and CTA */
+.live-indicator {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  justify-self: end;
+  white-space: nowrap;
+  transition: opacity 0.25s var(--ease), max-width 0.25s var(--ease);
+}
+.live-indicator--mobile { gap: 12px; }
+.live-indicator .live-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  text-decoration: none;
+  color: inherit;
+  transition: color 0.2s ease;
+}
+.live-indicator .live-link:hover { color: var(--color-rocket); }
+.live-indicator .live-link:hover .live-text { color: #fff; }
+.live-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--color-rocket);
+  flex-shrink: 0;
+  animation: livePulse 1.6s ease-in-out infinite;
+  box-shadow: 0 0 8px color-mix(in srgb, var(--color-rocket) 60%, transparent);
+}
+.live-dot--lg { width: 8px; height: 8px; }
+.live-text {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.7);
+  transition: color 0.2s ease;
+}
+.live-indicator--mobile .live-text {
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.6);
+  letter-spacing: 0.1em;
+}
+@keyframes livePulse {
+  0%, 100% { opacity: 1; }
+  50%      { opacity: 0.4; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .live-dot { animation: none; }
+}
+.nav-top.is-scrolled .live-indicator {
+  opacity: 0;
+  max-width: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
 
 /* Hamburger — mobile only */
 .nav-hamburger {
@@ -2206,7 +2282,11 @@
     justify-self: end;
   }
   .nav-menu,
-  .nav-right { display: none; }
+  .nav-right,
+  .live-indicator { display: none; }
+  /* On mobile the lockup compresses to gorilla + name only — strap is suppressed
+   * even before scroll so the row can host the hamburger comfortably. */
+  .nav-lockup-strap { display: none; }
 
   /* Mobile drawer: when .is-mobile-open, the nav becomes a 3-row grid so
    * the menu and the right-side CTA stack BELOW the brand+hamburger row
@@ -2219,7 +2299,7 @@
     row-gap: 0;
     padding: 12px 0 0;
   }
-  .nav-top.is-mobile-open > .nav-brand {
+  .nav-top.is-mobile-open > .nav-lockup {
     grid-row: 1;
     grid-column: 1;
     padding-left: clamp(20px, 4vw, 28px);
