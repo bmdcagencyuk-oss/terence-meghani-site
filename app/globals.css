@@ -5277,3 +5277,27 @@ footer .f-emblem-watermark {
   border: 0;
   border-top: 1px solid var(--hairline);
 }
+/* Image + caption pattern. MDX renders `![alt](src)` as <p><img></p>
+   and a following italic `*caption*` as <p><em>caption</em></p>. The
+   :has() selectors below upgrade that pair into a captioned figure
+   without needing a custom MDX component. */
+.prose-note p:has(> img:only-child) {
+  margin: 1.8em 0 8px;
+}
+.prose-note p:has(> img:only-child) > img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 6px;
+  box-shadow: 0 14px 32px rgba(0, 0, 0, 0.42);
+}
+.prose-note p:has(> img:only-child) + p:has(> em:only-child) {
+  margin-top: 8px;
+  margin-bottom: 32px;
+  text-align: center;
+  font-family: var(--f-italic);
+  font-style: italic;
+  font-size: 14px;
+  line-height: 1.45;
+  color: rgba(255, 255, 255, 0.64);
+}

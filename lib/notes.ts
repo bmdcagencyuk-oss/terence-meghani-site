@@ -49,7 +49,7 @@ function readAll(): Note[] {
   return files.map((file) => {
     const raw = fs.readFileSync(path.join(contentDir, file), 'utf8');
     const { data, content } = matter(raw);
-    const fm = data as Partial<NoteFrontmatter>;
+    const fm = data as Partial<NoteFrontmatter> & { heroAlt?: string };
     return {
       slug: fm.slug ?? file.replace(/\.mdx$/, ''),
       title: fm.title ?? 'Untitled',
@@ -58,7 +58,8 @@ function readAll(): Note[] {
       tags: (fm.tags ?? []) as NoteTag[],
       excerpt: fm.excerpt ?? '',
       heroImage: fm.heroImage ?? '',
-      heroImageAlt: fm.heroImageAlt ?? '',
+      // Accept either heroImageAlt or the shorter heroAlt alias.
+      heroImageAlt: fm.heroImageAlt ?? fm.heroAlt ?? '',
       published: fm.published === true,
       author: fm.author ?? 'Terence Meghani',
       body: content,
@@ -66,11 +67,14 @@ function readAll(): Note[] {
   });
 }
 
+// Cache only in production. In dev we re-read so MDX edits show up
+// without restarting the server.
 let cache: Note[] | null = null;
 function loadAll(): Note[] {
-  if (cache) return cache;
-  cache = readAll().sort((a, b) => (a.date < b.date ? 1 : -1));
-  return cache;
+  if (process.env.NODE_ENV === 'production' && cache) return cache;
+  const all = readAll().sort((a, b) => (a.date < b.date ? 1 : -1));
+  if (process.env.NODE_ENV === 'production') cache = all;
+  return all;
 }
 
 export function getAllNotes(): Note[] {
