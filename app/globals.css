@@ -2410,11 +2410,9 @@ body:has(.nav-top.is-mobile-open) { overflow: hidden; }
   display: none;
 }
 
-/* Code-fragment backdrop — REMOVED from hero render for senior-studio
- * register. The SVG asset stays in /public; the layer is no longer mounted
- * via display: none so the headline carries the visual weight alone. */
+/* Code-fragment backdrop — full-bleed mono lines hinting at the four
+ * practices, slowly scrolling. Sits behind every other hero layer. */
 .hero-code-backdrop {
-  display: none;
   position: absolute;
   top: 0; left: 0;
   width: 100%;

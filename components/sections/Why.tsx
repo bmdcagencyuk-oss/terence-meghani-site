@@ -78,8 +78,8 @@ export function Why() {
               ))}
             </ul>
             <div className="foot">
-              <span>Average cost</span>
-              <span className="val">£600/yr that doesn&rsquo;t move the needle</span>
+              <span>Cheap monthly fee</span>
+              <span className="val">Backups, not engineering.</span>
             </div>
           </div>
 

@@ -188,9 +188,14 @@ export function Hero() {
 
   return (
     <header className="hero">
-      {/* Hero in restraint mode — code-fragment backdrop and rocket canvas
-          retired here; the rocket trail still earns its place on the
-          T-MINUS closing CTA. Aurora retained dimmed for atmosphere. */}
+      {/* Code-fragment backdrop — sits behind aurora, grid, gorilla and copy. */}
+      {/* eslint-disable-next-line @next/next/no-img-element */}
+      <img
+        className="hero-code-backdrop"
+        src="/hero-code-backdrop.svg"
+        alt=""
+        aria-hidden="true"
+      />
       <div className="hero-aurora" aria-hidden="true">
         <span className="aurora-c" />
       </div>
