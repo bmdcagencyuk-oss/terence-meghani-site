@@ -1,0 +1,135 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800" preserveAspectRatio="xMidYMid meet" role="img" aria-label="Stylised rendered website mockup with a small gorilla emblem in the navigation, drawn in particles">
+  <defs>
+    <radialGradient id="bg" cx="55%" cy="40%" r="80%">
+      <stop offset="0%" stop-color="#1c1230"/>
+      <stop offset="55%" stop-color="#0c0a18"/>
+      <stop offset="100%" stop-color="#06060a"/>
+    </radialGradient>
+    <radialGradient id="aurora" cx="80%" cy="30%" r="60%">
+      <stop offset="0%" stop-color="#9b3dff" stop-opacity="0.22"/>
+      <stop offset="100%" stop-color="#9b3dff" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="aurora2" cx="20%" cy="80%" r="55%">
+      <stop offset="0%" stop-color="#ff4d17" stop-opacity="0.18"/>
+      <stop offset="100%" stop-color="#ff4d17" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="dotW" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#ffffff" stop-opacity="1"/>
+      <stop offset="55%" stop-color="#ffffff" stop-opacity="0.55"/>
+      <stop offset="100%" stop-color="#ffffff" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="dotV" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#9b3dff" stop-opacity="1"/>
+      <stop offset="100%" stop-color="#9b3dff" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="dotO" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#ff7a3d" stop-opacity="1"/>
+      <stop offset="100%" stop-color="#ff4d17" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="dotC" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#00e1ff" stop-opacity="1"/>
+      <stop offset="100%" stop-color="#00e1ff" stop-opacity="0"/>
+    </radialGradient>
+
+    <pattern id="dots" x="0" y="0" width="14" height="14" patternUnits="userSpaceOnUse">
+      <circle cx="7" cy="7" r="1.05" fill="url(#dotW)" opacity="0.55"/>
+    </pattern>
+    <pattern id="dotsV" x="0" y="0" width="22" height="22" patternUnits="userSpaceOnUse">
+      <circle cx="11" cy="11" r="1.4" fill="url(#dotV)" opacity="0.7"/>
+    </pattern>
+    <pattern id="dotsO" x="0" y="0" width="22" height="22" patternUnits="userSpaceOnUse">
+      <circle cx="11" cy="11" r="1.4" fill="url(#dotO)" opacity="0.75"/>
+    </pattern>
+
+    <linearGradient id="strokeFade" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#ffffff" stop-opacity="0"/>
+      <stop offset="50%" stop-color="#ffffff" stop-opacity="0.35"/>
+      <stop offset="100%" stop-color="#ffffff" stop-opacity="0"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="1200" height="800" fill="url(#bg)"/>
+  <rect width="1200" height="800" fill="url(#aurora)"/>
+  <rect width="1200" height="800" fill="url(#aurora2)"/>
+
+  <rect width="1200" height="800" fill="url(#dots)" opacity="0.35"/>
+
+  <g opacity="0.85">
+    <rect x="80" y="70" width="1040" height="56" fill="url(#dots)" opacity="0.9"/>
+    <line x1="80" y1="135" x2="1120" y2="135" stroke="url(#strokeFade)" stroke-width="1"/>
+
+    <g transform="translate(108 86) scale(0.075)" fill="#ffffff" opacity="0.95">
+      <path d="M 397.84 340.16 L 324.84 340.16 L 324.84 321.41 C 324.84 321.41 336.63 315.93 334.93 304.55 C 333.27 293.17 320.59 282.61 317.23 253.96 C 313.88 225.30 311.75 213.27 296.60 200.42 C 281.44 187.56 275.13 180.84 275.13 180.84 C 275.13 180.84 279.08 195.17 287.52 201.07 C 295.95 206.96 300.61 211.80 294.71 216.87 C 288.81 221.94 258.68 220.23 258.68 220.23 C 258.68 220.23 206.32 251.54 176.37 247.71 C 146.47 243.93 128.96 223.47 128.96 223.47 C 128.96 223.47 141.16 243.76 160.15 251.54 C 179.14 259.32 203.96 253.84 203.96 253.84 C 203.96 253.84 202.31 300.01 208.62 308.44 C 214.93 316.87 220.82 319.17 221.30 322.95 C 221.59 325.89 222.18 335.68 222.42 340.16 L 154.61 340.16 C 154.43 333.15 153.25 313.28 146.65 292.64 C 138.45 266.93 123.06 252.36 123.06 252.36 C 123.06 252.36 118.40 262.27 117.40 268.82 C 116.34 275.36 99.24 275.77 86.80 289.04 C 74.41 302.31 72.05 309.03 72.05 309.03 C 72.05 309.03 88.09 320.53 88.09 330.32 C 88.09 333.50 87.74 336.92 87.27 340.16 L 16.80 340.16 L 0 315.46 C 0 315.46 15.80 253.96 19.58 250.18 C 23.35 246.35 50.77 237.51 51.18 229.49 C 51.59 221.47 59.38 161.20 93.52 127.95 C 127.66 94.63 150.83 99.29 177.02 102.65 C 190.81 104.42 200.78 105.25 210.09 101.71 C 207.44 114.80 208.44 130.01 208.44 130.01 C 208.44 130.01 209.21 123.59 212.80 113.62 C 216.34 103.77 232.27 83.66 232.80 83.02 C 233.68 81.89 234.63 80.72 235.57 79.48 C 255.79 52.89 291.64 54.18 301.31 42.80 C 311.04 31.42 333.57 -3.13 357.16 0.23 C 380.80 3.59 395.30 15.62 395.95 19.39 C 396.60 23.16 396.60 29.30 396.60 29.30 C 396.60 29.30 420.84 53.54 420.84 65.56 C 420.84 77.59 411.52 77.12 411.52 77.12 C 411.52 77.12 421.43 83.25 425.44 96.11 C 429.45 108.96 436.40 111.91 435.75 115.92 C 435.16 119.93 420.84 132.55 413.88 145.82 C 406.92 159.14 394.48 152.24 390.71 146.05 C 386.87 139.86 384.28 122.11 384.28 122.11 C 384.28 122.11 384.69 158.49 383.39 171.52 C 382.16 184.61 406.62 225.71 410.40 250.60 C 414.18 275.42 408.10 287.27 408.10 287.27 C 408.10 287.27 411.23 312.10 406.16 319.05 C 401.14 326.01 397.84 340.16 397.84 340.16 Z"/>
+    </g>
+    <text x="170" y="106" font-family="-apple-system,system-ui,sans-serif" font-size="14" font-weight="600" letter-spacing="0.18em" fill="#ffffff" opacity="0.85">TERENCE MEGHANI</text>
+
+    <g fill="#ffffff" opacity="0.55" font-family="-apple-system,system-ui,sans-serif" font-size="12" letter-spacing="0.16em">
+      <text x="780" y="106">WORK</text>
+      <text x="852" y="106">PROCESS</text>
+      <text x="940" y="106">NOTES</text>
+      <text x="1010" y="106">CONTACT</text>
+    </g>
+    <circle cx="1095" cy="100" r="14" fill="none" stroke="#ff4d17" stroke-width="1.5" opacity="0.85"/>
+    <circle cx="1095" cy="100" r="4" fill="#ff4d17" opacity="0.9"/>
+  </g>
+
+  <g>
+    <rect x="80" y="180" width="640" height="14" fill="url(#dots)" opacity="0.95"/>
+    <rect x="80" y="220" width="540" height="14" fill="url(#dots)" opacity="0.95"/>
+    <rect x="80" y="260" width="600" height="14" fill="url(#dotsV)" opacity="0.85"/>
+
+    <rect x="80" y="320" width="380" height="6" fill="url(#dots)" opacity="0.55"/>
+    <rect x="80" y="338" width="320" height="6" fill="url(#dots)" opacity="0.45"/>
+    <rect x="80" y="356" width="360" height="6" fill="url(#dots)" opacity="0.5"/>
+
+    <rect x="80" y="410" width="180" height="48" rx="6" fill="url(#dotsO)" opacity="0.95"/>
+    <rect x="80" y="410" width="180" height="48" rx="6" fill="none" stroke="#ff7a3d" stroke-width="1" opacity="0.7"/>
+    <rect x="280" y="410" width="160" height="48" rx="6" fill="none" stroke="#ffffff" stroke-width="1" opacity="0.35"/>
+  </g>
+
+  <g>
+    <rect x="780" y="180" width="340" height="260" rx="8" fill="url(#dots)" opacity="0.65"/>
+    <rect x="780" y="180" width="340" height="260" rx="8" fill="none" stroke="#ffffff" stroke-width="1" opacity="0.3"/>
+    <circle cx="950" cy="290" r="36" fill="none" stroke="#9b3dff" stroke-width="1.5" opacity="0.7"/>
+    <circle cx="950" cy="290" r="14" fill="url(#dotV)" opacity="0.9"/>
+    <rect x="800" y="395" width="140" height="6" fill="url(#dots)" opacity="0.55"/>
+    <rect x="800" y="411" width="200" height="6" fill="url(#dots)" opacity="0.45"/>
+  </g>
+
+  <g>
+    <rect x="80" y="500" width="320" height="220" rx="8" fill="url(#dots)" opacity="0.55"/>
+    <rect x="80" y="500" width="320" height="220" rx="8" fill="none" stroke="#ffffff" stroke-width="1" opacity="0.25"/>
+    <rect x="100" y="520" width="180" height="6" fill="url(#dots)" opacity="0.7"/>
+    <rect x="100" y="540" width="240" height="6" fill="url(#dots)" opacity="0.45"/>
+    <rect x="100" y="558" width="200" height="6" fill="url(#dots)" opacity="0.4"/>
+    <rect x="100" y="660" width="100" height="32" rx="4" fill="none" stroke="#ff7a3d" stroke-width="1" opacity="0.65"/>
+
+    <rect x="420" y="500" width="320" height="220" rx="8" fill="url(#dots)" opacity="0.55"/>
+    <rect x="420" y="500" width="320" height="220" rx="8" fill="none" stroke="#ffffff" stroke-width="1" opacity="0.25"/>
+    <rect x="440" y="520" width="200" height="6" fill="url(#dots)" opacity="0.7"/>
+    <rect x="440" y="540" width="240" height="6" fill="url(#dots)" opacity="0.45"/>
+    <rect x="440" y="558" width="180" height="6" fill="url(#dots)" opacity="0.4"/>
+    <rect x="440" y="660" width="100" height="32" rx="4" fill="none" stroke="#9b3dff" stroke-width="1" opacity="0.65"/>
+
+    <rect x="760" y="500" width="320" height="220" rx="8" fill="url(#dots)" opacity="0.55"/>
+    <rect x="760" y="500" width="320" height="220" rx="8" fill="none" stroke="#ffffff" stroke-width="1" opacity="0.25"/>
+    <rect x="780" y="520" width="160" height="6" fill="url(#dots)" opacity="0.7"/>
+    <rect x="780" y="540" width="240" height="6" fill="url(#dots)" opacity="0.45"/>
+    <rect x="780" y="558" width="220" height="6" fill="url(#dots)" opacity="0.4"/>
+    <rect x="780" y="660" width="100" height="32" rx="4" fill="none" stroke="#00e1ff" stroke-width="1" opacity="0.55"/>
+  </g>
+
+  <g opacity="0.85">
+    <circle cx="180" cy="200" r="2.4" fill="url(#dotO)"/>
+    <circle cx="320" cy="148" r="2" fill="url(#dotV)"/>
+    <circle cx="490" cy="430" r="2.6" fill="url(#dotO)"/>
+    <circle cx="640" cy="380" r="2" fill="url(#dotW)"/>
+    <circle cx="900" cy="170" r="2.2" fill="url(#dotV)"/>
+    <circle cx="1100" cy="450" r="2" fill="url(#dotC)"/>
+    <circle cx="60" cy="640" r="2" fill="url(#dotW)"/>
+    <circle cx="1140" cy="700" r="2.4" fill="url(#dotO)"/>
+    <circle cx="380" cy="760" r="2" fill="url(#dotV)"/>
+  </g>
+
+  <rect width="1200" height="800" fill="url(#aurora)" opacity="0.4"/>
+</svg>

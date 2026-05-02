@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useRef } from 'react';
+import { HeroVisual } from './HeroVisual';
 
 export function Hero() {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
@@ -288,22 +289,17 @@ export function Hero() {
         <span className="aurora-c" />
       </div>
 
-      {/* Plugin mockup fragment — bottom-right, partially clipped, hue-shifted
-          toward violet so it integrates with the mesh palette rather than
-          competing. Hidden under 720px. */}
-      {/* eslint-disable-next-line @next/next/no-img-element */}
-      <img
-        className="hero-mockup-fragment"
-        src="/plugins/storagequoter.svg"
-        alt=""
-        aria-hidden="true"
-      />
-
       <canvas
         ref={ambientCanvasRef}
         className="hero-ambient-canvas"
         aria-hidden="true"
       />
+
+      {/* Right-side focal element: WebGL particle morph on desktop, static
+          fallback on mobile / prefers-reduced-motion / ?nomorph=1. The
+          WebGL chunk is only loaded on the desktop branch so phones never
+          pay the Three.js cost. */}
+      <HeroVisual />
       <div className="grid-lines" aria-hidden="true" />
 
       {/* Silverback gorilla — secondary mark watermark, bottom-right behind copy. */}
