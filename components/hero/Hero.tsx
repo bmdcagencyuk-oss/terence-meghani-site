@@ -287,6 +287,18 @@ export function Hero() {
       <div className="hero-aurora" aria-hidden="true">
         <span className="aurora-c" />
       </div>
+
+      {/* Plugin mockup fragment — bottom-right, partially clipped, hue-shifted
+          toward violet so it integrates with the mesh palette rather than
+          competing. Hidden under 720px. */}
+      {/* eslint-disable-next-line @next/next/no-img-element */}
+      <img
+        className="hero-mockup-fragment"
+        src="/plugins/storagequoter.svg"
+        alt=""
+        aria-hidden="true"
+      />
+
       <canvas
         ref={ambientCanvasRef}
         className="hero-ambient-canvas"

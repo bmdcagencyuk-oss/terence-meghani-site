@@ -2645,6 +2645,46 @@
   display: block;
 }
 
+/* Plugin mockup fragment — partially-visible StorageQuoter SVG, bottom
+   right of the hero. Right edge extends beyond the viewport so only the
+   left ~60% reads. Hue-shifted toward violet to stop the warm yellow/red
+   palette competing with the headline. Gentle Y drift + hue oscillation
+   add aliveness without obvious motion. Hidden under 720px. */
+.hero-mockup-fragment {
+  position: absolute;
+  bottom: -40px;
+  right: -240px;
+  width: clamp(520px, 44vw, 760px);
+  height: auto;
+  z-index: 15;
+  opacity: 0.18;
+  filter: hue-rotate(15deg) saturate(0.85) blur(1px);
+  pointer-events: none;
+  user-select: none;
+  will-change: transform, filter;
+  animation:
+    heroMockupDrift 30s ease-in-out infinite,
+    heroMockupHue   20s ease-in-out infinite;
+}
+@keyframes heroMockupDrift {
+  0%, 100% { transform: translateY(-7.5px); }
+  50%      { transform: translateY( 7.5px); }
+}
+@keyframes heroMockupHue {
+  0%, 100% { filter: hue-rotate(10deg) saturate(0.85) blur(1px); }
+  50%      { filter: hue-rotate(25deg) saturate(0.85) blur(1px); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .hero-mockup-fragment {
+    animation: none;
+    transform: none;
+    filter: hue-rotate(15deg) saturate(0.85) blur(1px);
+  }
+}
+@media (max-width: 720px) {
+  .hero-mockup-fragment { display: none; }
+}
+
 .hero .grid-lines {
   position: absolute; inset: 0; z-index: 10; pointer-events: none;
   background-image:
