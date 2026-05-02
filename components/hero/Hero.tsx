@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useRef } from 'react';
+import { MorphingGorilla } from './MorphingGorilla';
 
 export function Hero() {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
@@ -288,22 +289,16 @@ export function Hero() {
         <span className="aurora-c" />
       </div>
 
-      {/* Plugin mockup fragment — bottom-right, partially clipped, hue-shifted
-          toward violet so it integrates with the mesh palette rather than
-          competing. Hidden under 720px. */}
-      {/* eslint-disable-next-line @next/next/no-img-element */}
-      <img
-        className="hero-mockup-fragment"
-        src="/plugins/storagequoter.svg"
-        alt=""
-        aria-hidden="true"
-      />
-
       <canvas
         ref={ambientCanvasRef}
         className="hero-ambient-canvas"
         aria-hidden="true"
       />
+
+      {/* WebGL morphing gorilla — replaces the static plugin mockup as the
+          right-side focal element. Six-stage particle morph (sketch → emblem
+          → code → wireframe → site → launch). Phase 1 ships a placeholder. */}
+      <MorphingGorilla />
       <div className="grid-lines" aria-hidden="true" />
 
       {/* Silverback gorilla — secondary mark watermark, bottom-right behind copy. */}

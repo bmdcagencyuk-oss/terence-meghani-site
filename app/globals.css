@@ -2685,6 +2685,30 @@
   .hero-mockup-fragment { display: none; }
 }
 
+/* WebGL morphing canvas — Three.js scene rendering the gorilla through six
+   particle stages (sketch → emblem → code → wireframe → site → launch).
+   Sits above ambient particles, below foreground content. Right ~45% on
+   desktop, full width on mobile (Phase 5 swaps it for a static fallback). */
+.hero-morph-canvas {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 45%;
+  height: 100%;
+  z-index: 25;
+  pointer-events: none;
+}
+.hero-morph-canvas > canvas {
+  display: block;
+  width: 100% !important;
+  height: 100% !important;
+}
+@media (max-width: 720px) {
+  .hero-morph-canvas {
+    width: 100%;
+  }
+}
+
 .hero .grid-lines {
   position: absolute; inset: 0; z-index: 10; pointer-events: none;
   background-image:
