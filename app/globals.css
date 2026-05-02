@@ -2486,7 +2486,10 @@
   padding: 88px 0 36px;
   display: flex; flex-direction: column;
   overflow: hidden;
-  background: radial-gradient(ellipse at center top, #1A0038 0%, #0A0014 55%, #0A0A0B 100%);
+  /* Anchor charcoal — the gradient-mesh layer (.hero-aurora) carries the
+     drifting violet/orange/magenta stops on top. Static, sane fallback if
+     JS or animations are off. */
+  background: #16181a;
 }
 .hero::before {
   content: ''; position: absolute; inset: 0;
@@ -2539,7 +2542,7 @@
   bottom: -40px;
   width: clamp(360px, 42vw, 640px);
   height: auto;
-  z-index: 0;
+  z-index: 8;
   opacity: 0.13;
   pointer-events: none;
   user-select: none;
@@ -2551,18 +2554,17 @@
   .hero-gorilla-watermark { display: none; }
 }
 
-/* New atmospheric aurora layer — three slow-drifting blurred colour clouds.
- * Replaces the visual weight the particle canvas used to carry; works
- * cleanly behind the stickers without competing with them. */
+/* Gradient mesh — three drifting colour stops over the charcoal anchor.
+ * Deep violet drifts clockwise; rocket orange counter-clockwise;
+ * magenta-violet traces a slow lemniscate. 60s cycle, infinite, GPU-only
+ * transforms. The eye should never be drawn here — it's atmospheric. */
 .hero-aurora {
   position: absolute;
   inset: 0;
   pointer-events: none;
-  z-index: 0;
+  z-index: 5;
   overflow: hidden;
-  /* Dimmed 50% as part of the senior-register pass — atmospheric only,
-     no longer competes with the headline. */
-  opacity: 0.5;
+  opacity: 0.85;
 }
 .hero-aurora::before,
 .hero-aurora::after,
@@ -2570,51 +2572,60 @@
   content: '';
   position: absolute;
   border-radius: 50%;
-  filter: blur(80px);
-  opacity: 0.55;
+  filter: blur(90px);
   mix-blend-mode: screen;
   will-change: transform;
 }
 .hero-aurora::before {
-  /* rocket cloud — bottom-left, slow drift */
+  /* Deep violet — clockwise orbit, anchor stop. */
   width: 70vmax; height: 70vmax;
-  left: -25%;
-  bottom: -35%;
-  background: radial-gradient(circle, var(--rocket) 0%, transparent 65%);
-  animation: auroraDriftA 28s ease-in-out infinite alternate;
+  left: 50%; top: 50%;
+  margin-left: -35vmax; margin-top: -35vmax;
+  background: radial-gradient(circle, #4A0FD4 0%, transparent 62%);
+  opacity: 0.85;
+  animation: heroMeshClockwise 60s linear infinite;
 }
 .hero-aurora::after {
-  /* violet cloud — top-right */
+  /* Rocket orange — counter-clockwise orbit, 30% intensity. */
   width: 60vmax; height: 60vmax;
-  right: -25%;
-  top: -25%;
-  background: radial-gradient(circle, var(--violet) 0%, transparent 60%);
-  animation: auroraDriftB 32s ease-in-out infinite alternate;
+  left: 50%; top: 50%;
+  margin-left: -30vmax; margin-top: -30vmax;
+  background: radial-gradient(circle, rgba(255, 77, 23, 0.30) 0%, transparent 60%);
+  animation: heroMeshCounter 60s linear infinite;
 }
 .hero-aurora .aurora-c {
-  /* tertiary accent — middle, smaller, faster.
-   * Dropped cyan in favour of a deeper violet — keeps the chromatic
-   * pairing tight (rocket + violet) and stops cyan from floating into
-   * foreground perception. */
-  width: 50vmax; height: 50vmax;
-  left: 50%;
-  top: 30%;
-  transform: translate(-50%, -50%);
-  background: radial-gradient(circle, var(--color-violet-2) 0%, transparent 65%);
-  opacity: 0.16;
-  animation: auroraDriftC 24s ease-in-out infinite alternate;
+  /* Magenta-violet — slow lemniscate, 40% intensity. */
+  width: 55vmax; height: 55vmax;
+  left: 50%; top: 50%;
+  margin-left: -27.5vmax; margin-top: -27.5vmax;
+  background: radial-gradient(circle, rgba(155, 61, 255, 0.40) 0%, transparent 62%);
+  animation: heroMeshLemniscate 60s ease-in-out infinite;
 }
-@keyframes auroraDriftA {
-  from { transform: translate(0,    0)    scale(1);    }
-  to   { transform: translate(8vw,  -6vw) scale(1.12); }
+@keyframes heroMeshClockwise {
+  0%   { transform: translate(-18vw, -10vw); }
+  25%  { transform: translate( 12vw, -14vw); }
+  50%  { transform: translate( 16vw,  10vw); }
+  75%  { transform: translate(-10vw,  14vw); }
+  100% { transform: translate(-18vw, -10vw); }
 }
-@keyframes auroraDriftB {
-  from { transform: translate(0,    0)    scale(1);    }
-  to   { transform: translate(-6vw, 5vw)  scale(0.92); }
+@keyframes heroMeshCounter {
+  0%   { transform: translate( 14vw,  10vw); }
+  25%  { transform: translate(-12vw,  14vw); }
+  50%  { transform: translate(-16vw,  -8vw); }
+  75%  { transform: translate( 10vw, -12vw); }
+  100% { transform: translate( 14vw,  10vw); }
 }
-@keyframes auroraDriftC {
-  from { transform: translate(-50%, -50%) scale(0.9); }
-  to   { transform: translate(-46%, -48%) scale(1.08); }
+@keyframes heroMeshLemniscate {
+  /* Figure-eight: x oscillates twice per cycle, y once. */
+  0%   { transform: translate(-12vw,  0); }
+  12.5%{ transform: translate( -6vw, -6vw); }
+  25%  { transform: translate(  0,    0); }
+  37.5%{ transform: translate(  6vw,  6vw); }
+  50%  { transform: translate( 12vw,  0); }
+  62.5%{ transform: translate(  6vw, -6vw); }
+  75%  { transform: translate(  0,    0); }
+  87.5%{ transform: translate( -6vw,  6vw); }
+  100% { transform: translate(-12vw,  0); }
 }
 @media (prefers-reduced-motion: reduce) {
   .hero-aurora::before,
@@ -2622,7 +2633,7 @@
   .hero-aurora .aurora-c { animation: none; }
 }
 .hero .grid-lines {
-  position: absolute; inset: 0; z-index: 2; pointer-events: none;
+  position: absolute; inset: 0; z-index: 10; pointer-events: none;
   background-image:
     linear-gradient(var(--hairline-2) 1px, transparent 1px),
     linear-gradient(90deg, var(--hairline-2) 1px, transparent 1px);
@@ -2632,7 +2643,7 @@
   -webkit-mask-image: radial-gradient(ellipse at center, #000 20%, transparent 80%);
 }
 .hero .wrap {
-  position: relative; z-index: 5;
+  position: relative; z-index: 50;
   height: 100%; display: flex; flex-direction: column;
 }
 .hero-top {
