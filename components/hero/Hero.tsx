@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect, useRef } from 'react';
-import { MorphingGorilla } from './MorphingGorilla';
+import { HeroVisual } from './HeroVisual';
 
 export function Hero() {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
@@ -295,10 +295,11 @@ export function Hero() {
         aria-hidden="true"
       />
 
-      {/* WebGL morphing gorilla — replaces the static plugin mockup as the
-          right-side focal element. Six-stage particle morph (sketch → emblem
-          → code → wireframe → site → launch). Phase 1 ships a placeholder. */}
-      <MorphingGorilla />
+      {/* Right-side focal element: WebGL particle morph on desktop, static
+          fallback on mobile / prefers-reduced-motion / ?nomorph=1. The
+          WebGL chunk is only loaded on the desktop branch so phones never
+          pay the Three.js cost. */}
+      <HeroVisual />
       <div className="grid-lines" aria-hidden="true" />
 
       {/* Silverback gorilla — secondary mark watermark, bottom-right behind copy. */}

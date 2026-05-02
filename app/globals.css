@@ -2703,9 +2703,31 @@
   width: 100% !important;
   height: 100% !important;
 }
+/* Static fallback variant — same slot as the WebGL canvas. The SVG is
+   contained, anchored bottom-right so the gorilla emblem in its nav
+   sits roughly where the desktop morph resolves on launch. Slightly
+   dimmed because there's no bloom/aurora compensating in the static. */
+.hero-morph-canvas--static {
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-end;
+}
+.hero-morph-canvas--static > img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: right bottom;
+  opacity: 0.9;
+}
 @media (max-width: 720px) {
   .hero-morph-canvas {
     width: 100%;
+  }
+  /* On phones the static is inset so it never crowds copy. */
+  .hero-morph-canvas--static {
+    width: 70%;
+    max-width: 380px;
+    height: 60%;
   }
 }
 
