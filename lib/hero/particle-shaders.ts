@@ -1,16 +1,20 @@
 /**
  * Vertex shader: each particle interpolates aSourcePos → aTargetPos over
  * uMorphProgress with a per-particle aDelay (0..1) inside a 30% stagger
- * window — early particles finish before late particles start. Easing is
- * ease-in-out cubic. Two motion overlays:
+ * window — early particles finish before late particles start. The easing
+ * function applied to local progress is selected per-transition by
+ * uEasingMode:
+ *   0 = ease-in-out cubic   (smooth refinement)
+ *   1 = ease-in expo        (slow start, explosive end)
+ *   2 = ease-out cubic      (fast start, settles into target)
+ *   3 = ease-in cubic       (slow start, accelerating end — used for launch)
+ *   4 = linear              (fallback)
+ *
+ * Two motion overlays:
  *   - Mid-flight wobble: peaks at the midpoint of the eased journey, fades
  *     to zero at the endpoints. Reads as organic drift during the morph.
  *   - Hold drift: a slow continuous wander applied at all times, scaled by
- *     uHoldDrift. Stage 1 sets this to ~1 (sketch breathes); Stage 2 to 0
- *     (refined sits still). The CPU lerps uHoldDrift across transitions.
- *
- * Particle size is in CSS pixels — simple, predictable, no perspective
- * attenuation since particles all sit near z=0.
+ *     uHoldDrift. CPU lerps uHoldDrift across transitions.
  */
 export const particleVertexShader = /* glsl */ `
   attribute vec3 aSourcePos;
@@ -25,6 +29,7 @@ export const particleVertexShader = /* glsl */ `
   uniform float uTime;
   uniform float uPixelRatio;
   uniform float uHoldDrift;
+  uniform float uEasingMode;
 
   varying vec3 vColor;
   varying float vGlow;
@@ -34,16 +39,31 @@ export const particleVertexShader = /* glsl */ `
       ? 4.0 * x * x * x
       : 1.0 - pow(-2.0 * x + 2.0, 3.0) * 0.5;
   }
+  float easeInExpo(float x) {
+    return x <= 0.0 ? 0.0 : pow(2.0, 10.0 * x - 10.0);
+  }
+  float easeOutCubic(float x) {
+    return 1.0 - pow(1.0 - x, 3.0);
+  }
+  float easeInCubic(float x) {
+    return x * x * x;
+  }
+  float applyEase(float x) {
+    if (uEasingMode < 0.5) return easeInOutCubic(x);
+    if (uEasingMode < 1.5) return easeInExpo(x);
+    if (uEasingMode < 2.5) return easeOutCubic(x);
+    if (uEasingMode < 3.5) return easeInCubic(x);
+    return x;
+  }
 
   void main() {
-    // 30% of the cycle is start-time spread. Particle 0 (delay=0) runs from
-    // progress 0.0 → 0.7; particle ∞ (delay=1) runs from 0.3 → 1.0. All
-    // particles arrive by progress=1.0.
+    // 30% start-time spread. Particle delay=0 runs progress [0.0, 0.7];
+    // delay=1 runs [0.3, 1.0]. All particles arrive by progress=1.
     float window = 0.30;
     float startT = aDelay * window;
     float span = 1.0 - window;
     float local = clamp((uMorphProgress - startT) / max(span, 1e-4), 0.0, 1.0);
-    float eased = easeInOutCubic(local);
+    float eased = applyEase(local);
 
     vec3 pos = mix(aSourcePos, aTargetPos, eased);
 
