@@ -10,7 +10,6 @@ export type StageData = {
 export type AllStages = {
   sketch: StageData;
   refined: StageData;
-  code: StageData;
   wireframe: StageData;
   rendered: StageData;
   /** Rocket has just formed at the nav position; non-rocket particles still in site layout. */
@@ -98,85 +97,10 @@ function buildRefinedStage(cleanPoints: Point[], particleCount: number): StageDa
   return { positions, colors, holdDrift: 0.0 };
 }
 
-// =============================================================================
-// Stage 3 — code form
-// =============================================================================
-function buildCodeStage(particleCount: number): StageData {
-  // 16 chars per line × 10 lines = 160 cells. With 4000 particles = 25/cell.
-  const CODE_LINES = [
-    '<svg viewBox="0 ',
-    '  <path d="M 120',
-    '  148 96 L 168 1',
-    '  190 130 Q 200 ',
-    '  210 160 Z"    ',
-    '  fill="#FF4D17"',
-    'brand.dispatch({',
-    '  ship: true,   ',
-    '  built: true })',
-    '// ready to laun',
-  ];
-  const COLS = 16;
-  const ROWS = 10;
-  const CELL_W = 0.20;
-  const CELL_H = 0.32;
-  const gridLeft = -(COLS * CELL_W) / 2;
-  const gridTop = (ROWS * CELL_H) / 2;
-
-  const perCell = Math.floor(particleCount / (COLS * ROWS));
-  const remainder = particleCount - perCell * (COLS * ROWS);
-
-  const positions = new Float32Array(particleCount * 3);
-  const colors = new Float32Array(particleCount * 3);
-  const baseColor = scl(hex('#CBD5E1'), 0.7);
-  const accentColor = scl(hex('#FF4D17'), 0.9);
-  const blank: RGB = [0, 0, 0];
-
-  let idx = 0;
-  for (let row = 0; row < ROWS; row++) {
-    const text = CODE_LINES[row] || '';
-    let inString = false;
-    for (let col = 0; col < COLS; col++) {
-      const ch = text.charAt(col);
-      const isQuote = ch === '"';
-      const isDigit = ch >= '0' && ch <= '9';
-      let accent = false;
-      if (isQuote) {
-        accent = true;
-        inString = !inString;
-      } else if (inString) {
-        accent = true;
-      } else if (isDigit) {
-        accent = true;
-      }
-      const isSpace = ch === ' ' || ch === '';
-      const fill: RGB = isSpace ? blank : accent ? accentColor : baseColor;
-
-      const cellX = gridLeft + col * CELL_W + CELL_W * 0.5;
-      const cellY = gridTop - row * CELL_H - CELL_H * 0.5;
-
-      // Distribute remainder across early cells so all 4000 particles place.
-      const cellIndex = row * COLS + col;
-      const samplesThisCell = perCell + (cellIndex < remainder ? 1 : 0);
-      for (let p = 0; p < samplesThisCell; p++) {
-        // 5×5 cluster within cell, with small random jitter
-        const subRow = Math.floor((p % 25) / 5);
-        const subCol = (p % 25) % 5;
-        const localX = (subCol - 2) * 0.024 + (Math.random() - 0.5) * 0.010;
-        const localY = (subRow - 2) * 0.046 + (Math.random() - 0.5) * 0.014;
-        writePos(
-          positions,
-          idx,
-          cellX + localX,
-          cellY + localY,
-          (Math.random() - 0.5) * 0.06,
-        );
-        writeColor(colors, idx, fill);
-        idx++;
-      }
-    }
-  }
-  return { positions, colors, holdDrift: 0.18 };
-}
+// Stage 3 (code form) was removed — replaced by a procedural spiral
+// compression vortex implemented entirely in the vertex shader. See the
+// `uStage3Mode` branch of particle-shaders.ts and the spiral state machine
+// in components/hero/MorphingGorilla.tsx.
 
 // =============================================================================
 // Stage 4 — wireframe
@@ -434,11 +358,10 @@ export async function buildAllStages(
 
   const sketch = buildSketchStage(cleanGorilla, particleCount);
   const refined = buildRefinedStage(cleanGorilla, particleCount);
-  const code = buildCodeStage(particleCount);
   const wireframe = buildWireframeStage(particleCount);
   const rendered = buildRenderedStage(cleanGorilla, particleCount);
   const launchStart = buildLaunchStartStage(rendered, particleCount);
   const launchEnd = buildLaunchEndStage(particleCount);
 
-  return { sketch, refined, code, wireframe, rendered, launchStart, launchEnd };
+  return { sketch, refined, wireframe, rendered, launchStart, launchEnd };
 }

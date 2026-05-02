@@ -1,20 +1,32 @@
 /**
- * Vertex shader: each particle interpolates aSourcePos → aTargetPos over
- * uMorphProgress with a per-particle aDelay (0..1) inside a 30% stagger
- * window — early particles finish before late particles start. The easing
- * function applied to local progress is selected per-transition by
- * uEasingMode:
- *   0 = ease-in-out cubic   (smooth refinement)
- *   1 = ease-in expo        (slow start, explosive end)
- *   2 = ease-out cubic      (fast start, settles into target)
- *   3 = ease-in cubic       (slow start, accelerating end — used for launch)
- *   4 = linear              (fallback)
+ * Vertex shader runs in two modes:
  *
- * Two motion overlays:
- *   - Mid-flight wobble: peaks at the midpoint of the eased journey, fades
- *     to zero at the endpoints. Reads as organic drift during the morph.
- *   - Hold drift: a slow continuous wander applied at all times, scaled by
- *     uHoldDrift. CPU lerps uHoldDrift across transitions.
+ * NORMAL MODE (uStage3Mode = 0):
+ *   Each particle interpolates aSourcePos → aTargetPos over uMorphProgress
+ *   with a per-particle aDelay inside a 30% stagger window. Easing is
+ *   selected per-transition by uEasingMode (5 functions). Mid-flight wobble
+ *   peaks at the midpoint and fades at endpoints. Hold-drift overlay is
+ *   always present, scaled by uHoldDrift.
+ *
+ * SPIRAL MODE (uStage3Mode = 1):
+ *   Replaces the Stage 2 → Stage 4 transition. Particles compute their
+ *   position procedurally as a function of uStage3Time ∈ [0, 3] seconds,
+ *   running through five sub-phases:
+ *
+ *     0.0–0.4s  Disperse outward (ease-out cubic radial expansion)
+ *     0.4–1.0s  Orbit at expanded radius (Keplerian ω = ω₀/r)
+ *     1.0–2.0s  Spiral inward (radius shrinks, rotation accelerates)
+ *     2.0–2.5s  Vortex collapse (radius → 0, glow ramps up)
+ *     2.5–3.0s  Explode outward to wireframe target (ease-out expo)
+ *
+ *   Angular position is integrated analytically per sub-phase: closed-form
+ *   for constant r (sub-phase 2), log for linear r-decrease (sub-phase 3),
+ *   and a fast-spin term for the collapse (sub-phase 4). The spiral centre
+ *   is the scene origin (Stage 2's gorilla is normalized around (0,0)).
+ *
+ *   Colour and glow are procedural functions of uStage3Time — orange →
+ *   white-violet → bright orange (singularity) → fading white. Hold-drift
+ *   is suppressed during the spiral since the motion is already complex.
  */
 export const particleVertexShader = /* glsl */ `
   attribute vec3 aSourcePos;
@@ -30,6 +42,8 @@ export const particleVertexShader = /* glsl */ `
   uniform float uPixelRatio;
   uniform float uHoldDrift;
   uniform float uEasingMode;
+  uniform float uStage3Mode;
+  uniform float uStage3Time;
 
   varying vec3 vColor;
   varying float vGlow;
@@ -48,6 +62,9 @@ export const particleVertexShader = /* glsl */ `
   float easeInCubic(float x) {
     return x * x * x;
   }
+  float easeOutExpo(float x) {
+    return x >= 1.0 ? 1.0 : 1.0 - pow(2.0, -10.0 * x);
+  }
   float applyEase(float x) {
     if (uEasingMode < 0.5) return easeInOutCubic(x);
     if (uEasingMode < 1.5) return easeInExpo(x);
@@ -56,48 +73,148 @@ export const particleVertexShader = /* glsl */ `
     return x;
   }
 
+  // ---- Spiral mode helpers -----------------------------------------------
+  vec3 stage3Position(float t, vec3 source, vec3 target) {
+    vec2 sp = source.xy;
+    float r0 = length(sp);
+    float theta0 = atan(sp.y, sp.x);
+    // Floor on r0 prevents particles at the gorilla's centre of mass from
+    // spinning at infinite angular velocity.
+    float r0safe = max(r0, 0.18);
+    float omega0 = 3.2;
+
+    // Sub-phase 5 (explode to target) has no spiral content — handle first
+    // so we can early-return.
+    if (t >= 2.5) {
+      float p5 = clamp((t - 2.5) / 0.5, 0.0, 1.0);
+      return mix(vec3(0.0), target, easeOutExpo(p5));
+    }
+
+    // Radius profile. Continuous at sub-phase boundaries.
+    float r;
+    if (t < 0.4) {
+      // Disperse outward — 1.0×r0 → 1.4×r0
+      float k = easeOutCubic(t / 0.4);
+      r = r0 * (1.0 + 0.4 * k);
+    } else if (t < 1.0) {
+      // Orbit at expanded radius — slight breathe (1.4×r0 constant)
+      r = r0 * 1.4;
+    } else if (t < 2.0) {
+      // Spiral inward — 1.4×r0 → 0.3×r0 with cubic acceleration
+      float k = easeInCubic((t - 1.0) / 1.0);
+      r = r0 * (1.4 - 1.1 * k);
+    } else {
+      // Vortex collapse — 0.3×r0 → ~0 with exponential acceleration
+      float k = easeInExpo((t - 2.0) / 0.5);
+      r = r0 * 0.3 * (1.0 - k);
+    }
+
+    // Angle accumulation. Each sub-phase contributes its rotational integral.
+    float theta = theta0;
+    if (t >= 0.4) {
+      // Sub-phase 2: r is constant at 1.4×r0safe over [0.4, 1.0].
+      float endT = min(t, 1.0);
+      theta += omega0 * (endT - 0.4) / (1.4 * r0safe);
+    }
+    if (t >= 1.0) {
+      // Sub-phase 3: r linear from 1.4×r0safe to 0.3×r0safe over [1.0, 2.0].
+      // ∫ ω₀/(r1+(r2-r1)u) du from 0 to s = ω₀ * ln(r(s)/r1) / (r2-r1)
+      float endT = min(t, 2.0);
+      float r1 = 1.4 * r0safe;
+      float r2 = 0.3 * r0safe;
+      float s = endT - 1.0;
+      float r_at_s = r1 + (r2 - r1) * s;
+      theta += omega0 * log(r_at_s / r1) / (r2 - r1);
+    }
+    if (t >= 2.0) {
+      // Sub-phase 4: r → 0. Use a fast-spin term proportional to 1/r0safe;
+      // analytic integration here would diverge, so we approximate with a
+      // 6× scaling factor that produces visually convincing whip-up.
+      float endT = min(t, 2.5);
+      theta += omega0 * (endT - 2.0) * 6.0 / r0safe;
+    }
+
+    // Z preserved at half magnitude for a touch of depth without breaking
+    // the 2D-spiral read.
+    return vec3(cos(theta) * r, sin(theta) * r, source.z * 0.5);
+  }
+
+  vec3 stage3Color(float t) {
+    vec3 orange = vec3(1.0, 0.302, 0.090) * 0.9;
+    vec3 violet = vec3(0.608, 0.239, 1.0);
+    vec3 white = vec3(1.0);
+    vec3 whiteViolet = mix(violet, white, 0.5);
+    vec3 brightOrange = vec3(1.0, 0.302, 0.090) * 1.4;
+    vec3 finalWhite = white * 0.8;
+
+    if (t < 1.0) return mix(orange, whiteViolet, t);
+    if (t < 2.0) return whiteViolet;
+    if (t < 2.5) return mix(whiteViolet, brightOrange, (t - 2.0) / 0.5);
+    return mix(brightOrange, finalWhite, (t - 2.5) / 0.5);
+  }
+
+  float stage3Glow(float t) {
+    if (t < 2.0) return 0.2;
+    if (t < 2.5) {
+      float p = (t - 2.0) / 0.5;
+      return 0.2 + p * 1.6;
+    }
+    if (t < 2.85) {
+      float p = (t - 2.5) / 0.35;
+      return mix(1.8, 0.5, p);
+    }
+    float p = (t - 2.85) / 0.15;
+    return mix(0.5, 0.0, p);
+  }
+
   void main() {
-    // 30% start-time spread. Particle delay=0 runs progress [0.0, 0.7];
-    // delay=1 runs [0.3, 1.0]. All particles arrive by progress=1.
-    float window = 0.30;
-    float startT = aDelay * window;
-    float span = 1.0 - window;
-    float local = clamp((uMorphProgress - startT) / max(span, 1e-4), 0.0, 1.0);
-    float eased = applyEase(local);
+    vec3 pos;
+    vec3 baseColor;
+    float glow;
 
-    vec3 pos = mix(aSourcePos, aTargetPos, eased);
+    if (uStage3Mode > 0.5) {
+      pos = stage3Position(uStage3Time, aSourcePos, aTargetPos);
+      baseColor = stage3Color(uStage3Time);
+      glow = stage3Glow(uStage3Time);
+    } else {
+      // Normal interpolation mode.
+      float window = 0.30;
+      float startT = aDelay * window;
+      float span = 1.0 - window;
+      float local = clamp((uMorphProgress - startT) / max(span, 1e-4), 0.0, 1.0);
+      float eased = applyEase(local);
 
-    // Mid-flight wobble — peaks at eased=0.5, vanishes at endpoints.
-    float midFactor = 4.0 * eased * (1.0 - eased);
-    pos += vec3(
-      sin(uTime * 2.2 + aWobblePhase)        * 0.05,
-      cos(uTime * 1.8 + aWobblePhase * 1.3)  * 0.05,
-      sin(uTime * 1.5 + aWobblePhase * 2.1)  * 0.03
-    ) * midFactor;
+      pos = mix(aSourcePos, aTargetPos, eased);
 
-    // Hold drift — slow, low-amplitude wander. Always on, scaled by
-    // uHoldDrift which CPU lerps between stage drift values.
+      float midFactor = 4.0 * eased * (1.0 - eased);
+      pos += vec3(
+        sin(uTime * 2.2 + aWobblePhase)        * 0.05,
+        cos(uTime * 1.8 + aWobblePhase * 1.3)  * 0.05,
+        sin(uTime * 1.5 + aWobblePhase * 2.1)  * 0.03
+      ) * midFactor;
+
+      baseColor = mix(aSourceColor, aTargetColor, eased);
+      glow = midFactor;
+    }
+
+    // Hold-drift overlay — suppressed during the spiral (where motion is
+    // already procedural and would conflict with the spiral path).
+    float driftAmt = (uStage3Mode > 0.5) ? 0.0 : uHoldDrift;
     pos += vec3(
       sin(uTime * 0.7 + aWobblePhase)        * 0.025,
       cos(uTime * 0.6 + aWobblePhase * 1.4)  * 0.025,
       sin(uTime * 0.4 + aWobblePhase * 1.7)  * 0.012
-    ) * uHoldDrift;
+    ) * driftAmt;
 
-    vColor = mix(aSourceColor, aTargetColor, eased);
-    vGlow = midFactor;
+    vColor = baseColor;
+    vGlow = glow;
 
     vec4 mv = modelViewMatrix * vec4(pos, 1.0);
     gl_Position = projectionMatrix * mv;
-    // Direct CSS-pixel sizing (multiplied by DPR for retina).
     gl_PointSize = aSize * uPixelRatio;
   }
 `;
 
-/**
- * Fragment shader: render each point as a soft circular sprite. Mid-transition
- * particles get a small additive boost (vGlow) so the swarm reads as alive
- * during the morph itself; held particles render as clean uniform dots.
- */
 export const particleFragmentShader = /* glsl */ `
   precision mediump float;
 

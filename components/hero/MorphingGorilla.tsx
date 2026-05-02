@@ -17,6 +17,13 @@ const EASE_IN_EXPO = 1;
 const EASE_OUT_CUBIC = 2;
 const EASE_IN_CUBIC = 3;
 
+/** Spiral runtime is fixed at 3 seconds across 5 sub-phases. */
+const SPIRAL_DURATION_MS = 3000;
+/** Baseline bloom strength matching Phase 1 setup. */
+const BLOOM_BASE = 0.6;
+/** Peak bloom during the singularity moment of sub-phase 4. */
+const BLOOM_PEAK = 1.2;
+
 type StageEntry = {
   name: string;
   data: StageData;
@@ -24,19 +31,25 @@ type StageEntry = {
   holdMs: number;
   /** ms for the transition LEAVING this stage to the next. */
   outMs: number;
-  /** Easing applied to the outgoing transition. */
+  /** Easing applied to a normal outgoing transition. Ignored if outMode='spiral'. */
   outEase: number;
+  /** Selects the transition machinery: 'normal' = mix(source, target);
+   *  'spiral' = procedural 5-sub-phase vortex from refined to wireframe. */
+  outMode: 'normal' | 'spiral';
 };
 
 /**
- * Phase 3 — full 6-stage morphing loop. The 7-entry stages array models the
- * loop as: sketch → emblem → code → wireframe → rendered → launchStart
- * (rocket forms) → launchEnd (rocket gone, particles dispersed) → sketch.
- * launchStart has holdMs=0 — the rocket forms and immediately ascends.
+ * Phase 4 — Stage 3 redesigned as a spiral compression vortex.
  *
- * Per-transition timings + easings come from the spec's stage table.
- * Total cycle is ~37 seconds: 4 + 1.2 + 5 + 1.2 + 5 + 1.2 + 4 + 1.2 + 6 +
- * 1 + (0 + 3) + (0.5 + 3).
+ * The original "code form" stage didn't read legibly at particle scale, so
+ * Stage 3 is now a pure 3-second transition from the refined emblem (Stage 2)
+ * to the wireframe (Stage 4) via 5 sub-phases: disperse → orbit → spiral-in
+ * → vortex collapse → explode-out. The spiral motion is computed entirely in
+ * the vertex shader; this component drives uStage3Time across the 3 s and
+ * modulates bloom strength during the sub-phase 4 singularity.
+ *
+ * The overall stage table contracts to 6 entries (no held code stage). Total
+ * loop ≈ 30 s.
  */
 export function MorphingGorilla() {
   const containerRef = useRef<HTMLDivElement | null>(null);
@@ -68,15 +81,14 @@ export function MorphingGorilla() {
 
       const all = await buildAllStages(GORILLA_SVG_URL, PARTICLE_COUNT);
 
-      // Stage table — outEase applies to the transition LEAVING this entry.
+      // 6-entry table. Spiral fires on the refined → wireframe transition.
       const stages: StageEntry[] = [
-        { name: 'sketch',      data: all.sketch,      holdMs: 4000, outMs: 1200, outEase: EASE_IN_OUT_CUBIC },
-        { name: 'refined',     data: all.refined,     holdMs: 5000, outMs: 1200, outEase: EASE_IN_EXPO },
-        { name: 'code',        data: all.code,        holdMs: 5000, outMs: 1200, outEase: EASE_OUT_CUBIC },
-        { name: 'wireframe',   data: all.wireframe,   holdMs: 4000, outMs: 1200, outEase: EASE_IN_OUT_CUBIC },
-        { name: 'rendered',    data: all.rendered,    holdMs: 6000, outMs: 1000, outEase: EASE_IN_CUBIC },
-        { name: 'launchStart', data: all.launchStart, holdMs:    0, outMs: 3000, outEase: EASE_IN_CUBIC },
-        { name: 'launchEnd',   data: all.launchEnd,   holdMs:  500, outMs: 3000, outEase: EASE_OUT_CUBIC },
+        { name: 'sketch',      data: all.sketch,      holdMs: 4000, outMs: 1200,                outEase: EASE_IN_OUT_CUBIC, outMode: 'normal' },
+        { name: 'refined',     data: all.refined,     holdMs: 5000, outMs: SPIRAL_DURATION_MS,  outEase: 0,                  outMode: 'spiral' },
+        { name: 'wireframe',   data: all.wireframe,   holdMs: 4000, outMs: 1200,                outEase: EASE_IN_OUT_CUBIC, outMode: 'normal' },
+        { name: 'rendered',    data: all.rendered,    holdMs: 6000, outMs: 1000,                outEase: EASE_IN_CUBIC,     outMode: 'normal' },
+        { name: 'launchStart', data: all.launchStart, holdMs:    0, outMs: 3000,                outEase: EASE_IN_CUBIC,     outMode: 'normal' },
+        { name: 'launchEnd',   data: all.launchEnd,   holdMs:  500, outMs: 1500,                outEase: EASE_OUT_CUBIC,    outMode: 'normal' },
       ];
 
       if (cancelled || !containerRef.current) return;
@@ -126,7 +138,7 @@ export function MorphingGorilla() {
       const delays = new Float32Array(PARTICLE_COUNT);
       const wobblePhases = new Float32Array(PARTICLE_COUNT);
       for (let i = 0; i < PARTICLE_COUNT; i++) {
-        sizes[i] = 1.5 + Math.random() * 2.0; // spec: 1.5–3.5 CSS px
+        sizes[i] = 1.5 + Math.random() * 2.0;
         delays[i] = Math.random();
         wobblePhases[i] = Math.random() * Math.PI * 2;
       }
@@ -149,8 +161,6 @@ export function MorphingGorilla() {
         'aWobblePhase',
         new THREE.BufferAttribute(wobblePhases, 1),
       );
-      // Generous bounding sphere — Stage 6 dispersal pushes some particles
-      // out to ~3.5 from origin, plus ascending rocket reaches y=4.5.
       geometry.boundingSphere = new THREE.Sphere(new THREE.Vector3(0, 0, 0), 12);
 
       const material = new THREE.ShaderMaterial({
@@ -165,6 +175,8 @@ export function MorphingGorilla() {
           uPixelRatio: { value: pixelRatio },
           uHoldDrift: { value: stages[0].data.holdDrift },
           uEasingMode: { value: stages[0].outEase },
+          uStage3Mode: { value: 0 },
+          uStage3Time: { value: 0 },
         },
       });
 
@@ -176,9 +188,13 @@ export function MorphingGorilla() {
       composer.setPixelRatio(pixelRatio);
       composer.setSize(width, height);
       composer.addPass(new RenderPass(scene, camera));
-      composer.addPass(
-        new UnrealBloomPass(new THREE.Vector2(width, height), 0.6, 0.4, 0.85),
+      const bloomPass = new UnrealBloomPass(
+        new THREE.Vector2(width, height),
+        BLOOM_BASE,
+        0.4,
+        0.85,
       );
+      composer.addPass(bloomPass);
 
       const ChromaticAberrationShader = {
         uniforms: {
@@ -228,9 +244,6 @@ export function MorphingGorilla() {
       let modeStart = performance.now();
       let driftFrom = stages[stageIdx].data.holdDrift;
       let driftTo = driftFrom;
-      // First transition will be sketch → refined; queue refined as the
-      // initial target attribute (already done via initial buffer copy).
-      // After the initial hold, we'll rebuild the target from the next stage.
 
       const advanceTarget = (nextIdx: number) => {
         aTargetPos.array.set(stages[nextIdx].data.positions);
@@ -254,12 +267,15 @@ export function MorphingGorilla() {
         advanceTarget(nextIdx);
         mode = 'transition';
         modeStart = now;
+        if (stages[stageIdx].outMode === 'spiral') {
+          material.uniforms.uStage3Mode.value = 1;
+          material.uniforms.uStage3Time.value = 0;
+        }
       };
 
       const enterHoldOrSkip = (now: number) => {
         const stage = stages[stageIdx];
         if (stage.holdMs <= 0) {
-          // Skip hold and chain straight into the next transition.
           beginTransition(now);
         } else {
           mode = 'hold';
@@ -268,6 +284,23 @@ export function MorphingGorilla() {
           driftFrom = stage.data.holdDrift;
           driftTo = driftFrom;
         }
+      };
+
+      // Bloom envelope across the spiral. Sub-phase 4 (t ∈ [2.0, 2.5]) is
+      // the singularity; we ramp BLOOM_BASE → BLOOM_PEAK following a sine
+      // half-cycle, then decay back over the next 0.2 s as the explosion
+      // begins. Outside this window, bloom holds at BLOOM_BASE.
+      const computeSpiralBloom = (tSec: number): number => {
+        if (tSec < 2.0) return BLOOM_BASE;
+        if (tSec < 2.5) {
+          const k = Math.sin(((tSec - 2.0) / 0.5) * Math.PI);
+          return BLOOM_BASE + (BLOOM_PEAK - BLOOM_BASE) * k;
+        }
+        if (tSec < 2.7) {
+          const k = 1 - (tSec - 2.5) / 0.2;
+          return BLOOM_BASE + (BLOOM_PEAK - BLOOM_BASE) * Math.max(0, k) * 0.5;
+        }
+        return BLOOM_BASE;
       };
 
       const clock = new THREE.Clock();
@@ -286,15 +319,32 @@ export function MorphingGorilla() {
             beginTransition(now);
           }
         } else {
-          const t = Math.min(1, elapsed / stages[stageIdx].outMs);
-          material.uniforms.uMorphProgress.value = t;
-          material.uniforms.uHoldDrift.value =
-            driftFrom + (driftTo - driftFrom) * t;
-          if (t >= 1) {
-            stageIdx = (stageIdx + 1) % stages.length;
-            finalizeTransition();
-            material.uniforms.uMorphProgress.value = 0;
-            enterHoldOrSkip(now);
+          const stage = stages[stageIdx];
+          if (stage.outMode === 'spiral') {
+            const tSec = elapsed / 1000;
+            material.uniforms.uStage3Time.value = Math.min(3.0, tSec);
+            bloomPass.strength = computeSpiralBloom(tSec);
+
+            if (tSec >= SPIRAL_DURATION_MS / 1000) {
+              material.uniforms.uStage3Mode.value = 0;
+              material.uniforms.uStage3Time.value = 0;
+              bloomPass.strength = BLOOM_BASE;
+              material.uniforms.uMorphProgress.value = 0;
+              stageIdx = (stageIdx + 1) % stages.length;
+              finalizeTransition();
+              enterHoldOrSkip(now);
+            }
+          } else {
+            const t = Math.min(1, elapsed / stage.outMs);
+            material.uniforms.uMorphProgress.value = t;
+            material.uniforms.uHoldDrift.value =
+              driftFrom + (driftTo - driftFrom) * t;
+            if (t >= 1) {
+              stageIdx = (stageIdx + 1) % stages.length;
+              finalizeTransition();
+              material.uniforms.uMorphProgress.value = 0;
+              enterHoldOrSkip(now);
+            }
           }
         }
 
@@ -316,7 +366,6 @@ export function MorphingGorilla() {
         }
       };
     })().catch((err) => {
-      // Phase 5 adds a graceful static fallback; for now we just warn.
       console.warn('[MorphingGorilla] init failed', err);
     });
 
