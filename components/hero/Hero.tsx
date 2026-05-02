@@ -4,6 +4,7 @@ import { useEffect, useRef } from 'react';
 
 export function Hero() {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
+  const ambientCanvasRef = useRef<HTMLCanvasElement | null>(null);
   const megaRef = useRef<HTMLHeadingElement | null>(null);
   const heroTimeRef = useRef<HTMLSpanElement | null>(null);
 
@@ -125,6 +126,101 @@ export function Hero() {
     };
   }, []);
 
+  /* Ambient drifting particles — atmospheric layer across the hero. Distinct
+     from the rocket canvas (which is a concentrated CTA effect). 30-50 dots
+     in white/violet/orange, slow random drift with edge-wrap and gentle
+     opacity pulse. Paused under prefers-reduced-motion (one static frame). */
+  useEffect(() => {
+    const canvas = ambientCanvasRef.current;
+    if (!canvas) return;
+    const ctx = canvas.getContext('2d');
+    if (!ctx) return;
+
+    const dpr = Math.min(window.devicePixelRatio || 1, 2);
+    let W = canvas.clientWidth;
+    let H = canvas.clientHeight;
+
+    const resize = () => {
+      W = canvas.clientWidth;
+      H = canvas.clientHeight;
+      canvas.width = W * dpr;
+      canvas.height = H * dpr;
+      ctx.setTransform(1, 0, 0, 1, 0, 0);
+      ctx.scale(dpr, dpr);
+    };
+    resize();
+    window.addEventListener('resize', resize);
+
+    type Tone = { rgb: string; baseAlpha: number };
+    const tones: { tone: Tone; weight: number }[] = [
+      { tone: { rgb: '255, 255, 255', baseAlpha: 0.30 }, weight: 0.60 },
+      { tone: { rgb: '155, 61, 255',  baseAlpha: 0.35 }, weight: 0.25 },
+      { tone: { rgb: '255, 77, 23',   baseAlpha: 0.40 }, weight: 0.15 },
+    ];
+    const pickTone = (): Tone => {
+      const r = Math.random();
+      let acc = 0;
+      for (const t of tones) {
+        acc += t.weight;
+        if (r <= acc) return t.tone;
+      }
+      return tones[0].tone;
+    };
+
+    const COUNT = 40;
+    const particles = Array.from({ length: COUNT }, () => {
+      const tone = pickTone();
+      const angle = Math.random() * Math.PI * 2;
+      const speed = 0.05 + Math.random() * 0.15;
+      return {
+        x: Math.random() * W,
+        y: Math.random() * H,
+        vx: Math.cos(angle) * speed,
+        vy: Math.sin(angle) * speed,
+        r: 0.5 + Math.random() * 1, /* renders 1-3px diameter (radius * 2 + slight bloom) */
+        rgb: tone.rgb,
+        baseAlpha: tone.baseAlpha,
+        pulsePeriod: 4000 + Math.random() * 2000,
+        pulsePhase: Math.random() * Math.PI * 2,
+      };
+    });
+
+    const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    let raf = 0;
+    const draw = (t: number) => {
+      ctx.clearRect(0, 0, W, H);
+      for (const p of particles) {
+        if (!reduced) {
+          p.x += p.vx;
+          p.y += p.vy;
+          if (p.x < -2) p.x = W + 2;
+          else if (p.x > W + 2) p.x = -2;
+          if (p.y < -2) p.y = H + 2;
+          else if (p.y > H + 2) p.y = -2;
+        }
+        const pulse = reduced
+          ? 1
+          : 0.85 + 0.15 * Math.sin((t / p.pulsePeriod) * Math.PI * 2 + p.pulsePhase);
+        const alpha = p.baseAlpha * pulse;
+        ctx.fillStyle = `rgba(${p.rgb}, ${alpha})`;
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+        ctx.fill();
+      }
+      if (!reduced) raf = requestAnimationFrame(draw);
+    };
+    if (reduced) {
+      draw(0);
+    } else {
+      raf = requestAnimationFrame(draw);
+    }
+
+    return () => {
+      cancelAnimationFrame(raf);
+      window.removeEventListener('resize', resize);
+    };
+  }, []);
+
   /* Magnetic headline — non-fuel characters respond to pointer proximity */
   useEffect(() => {
     if (!window.matchMedia('(hover: hover) and (pointer: fine)').matches) return;
@@ -188,17 +284,26 @@ export function Hero() {
 
   return (
     <header className="hero">
-      {/* Code-fragment backdrop — sits behind aurora, grid, gorilla and copy. */}
-      {/* eslint-disable-next-line @next/next/no-img-element */}
-      <img
-        className="hero-code-backdrop"
-        src="/hero-code-backdrop.svg"
-        alt=""
-        aria-hidden="true"
-      />
       <div className="hero-aurora" aria-hidden="true">
         <span className="aurora-c" />
       </div>
+
+      {/* Plugin mockup fragment — bottom-right, partially clipped, hue-shifted
+          toward violet so it integrates with the mesh palette rather than
+          competing. Hidden under 720px. */}
+      {/* eslint-disable-next-line @next/next/no-img-element */}
+      <img
+        className="hero-mockup-fragment"
+        src="/plugins/storagequoter.svg"
+        alt=""
+        aria-hidden="true"
+      />
+
+      <canvas
+        ref={ambientCanvasRef}
+        className="hero-ambient-canvas"
+        aria-hidden="true"
+      />
       <div className="grid-lines" aria-hidden="true" />
 
       {/* Silverback gorilla — secondary mark watermark, bottom-right behind copy. */}
