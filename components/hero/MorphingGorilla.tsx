@@ -12,19 +12,21 @@ const PARTICLE_COUNT = 4000;
 const ROCKET_PARTICLES = 800;
 const GORILLA_SVG_URL = '/brand/emblem-gorilla.svg';
 
+// Easing IDs match the shader's uEasingMode switch.
 const EASE_IN_OUT_CUBIC = 0;
 const EASE_IN_EXPO = 1;
 const EASE_OUT_CUBIC = 2;
 const EASE_IN_CUBIC = 3;
+const EASE_AGGRESSIVE_SNAP = 5;
 
-const SPIRAL_DURATION_MS = 3000;
-const PRE_TRANSITION_MS = 400;
+const SPIRAL_DURATION_MS = 2400; // Phase 4.6 — 3 beats × shorter beats.
+const LEAN_IN_PHASE_MS = 400;
+const LEAN_OUT_PHASE_MS = 200;
 const IGNITION_DURATION_MS = 1000;
 const DETACH_FLASH_MS = 200;
 
 const BLOOM_BASE = 0.6;
-const BLOOM_PEAK_SINGULARITY = 1.2;
-const BLOOM_PEAK_EXPLOSION = 1.4;
+const BLOOM_PEAK_SINGULARITY = 1.6; // Phase 4.6 — louder spiral peak.
 const BLOOM_PEAK_DETACH = 1.0;
 
 type StageEntry = {
@@ -37,17 +39,27 @@ type StageEntry = {
 };
 
 /**
- * Phase 5 polish — the loop never appears static. Every held stage breathes
- * via a per-stage hold-drift; the last 400 ms of every hold + the first
- * 400 ms of every transition share a "pre-transition" envelope that
- * amplifies wobble 1.5× and biases particles outward, smoothing the seam
- * between hold and morph. The spiral's sub-phase 5 is now front-loaded
- * (70% of the journey in 0.15 s) with a paired bloom spike to 1.4 and a
- * brief pure-white colour flash. The launch's rendered → launchStart
- * transition flashes bloom to 1.0 at the moment of detachment, and the
- * launchStart → launchEnd ascent uses mixed easing — rocket particles
- * (aIsRocket=1) ease-in cubic for slow-start ascent, the dispersing site
- * particles ease-out cubic for the radial burst.
+ * Phase 4.6 — three coordinated continuity fixes:
+ *
+ *   1. Faster, event-like transitions: 0.7 s with aggressiveSnap easing
+ *      (smoothstep applied twice) for a clear anticipation/peak/settle
+ *      profile. Applies to sketch→refined, wireframe→rendered, launch
+ *      drift-back. The launch ascent and rendered→launchStart retain
+ *      their existing pacing.
+ *
+ *   2. Dissolved hold/transition boundary via a lean-in envelope. During
+ *      the last 400 ms of every hold and the first 200 ms of every
+ *      non-spiral transition, particles drift up to 8% toward their
+ *      next-stage target with a 3× wobble multiplier and 1.15× brightness
+ *      pulse. The transition then completes the remaining 92%.
+ *
+ *   3. Spiral rebuilt as 3 beats over 2.4 s — vortex pull (immediate
+ *      rotation + radial collapse), singularity (compress + pause), and
+ *      explosion (75% in 0.3 s, 25% over 0.7 s). Bloom peaks at 1.6 across
+ *      [0.9–1.4] s; a 10% screen-flash brightness lift across [1.4–1.55] s
+ *      reinforces the energy release.
+ *
+ * Total loop ≈ 28.8 s.
  */
 export function MorphingGorilla() {
   const containerRef = useRef<HTMLDivElement | null>(null);
@@ -79,13 +91,16 @@ export function MorphingGorilla() {
 
       const all = await buildAllStages(GORILLA_SVG_URL, PARTICLE_COUNT);
 
+      // 6-entry table. outMs is the duration of the transition LEAVING this
+      // stage; outEase / outMode select the mechanic. The spiral lives on
+      // the refined entry (outMode='spiral', outMs=2400).
       const stages: StageEntry[] = [
-        { name: 'sketch',      data: all.sketch,      holdMs: 4000, outMs: 1200,                outEase: EASE_IN_OUT_CUBIC, outMode: 'normal' },
-        { name: 'refined',     data: all.refined,     holdMs: 5000, outMs: SPIRAL_DURATION_MS,  outEase: 0,                  outMode: 'spiral' },
-        { name: 'wireframe',   data: all.wireframe,   holdMs: 4000, outMs: 1200,                outEase: EASE_IN_OUT_CUBIC, outMode: 'normal' },
-        { name: 'rendered',    data: all.rendered,    holdMs: 6000, outMs: 1000,                outEase: EASE_IN_CUBIC,     outMode: 'normal' },
-        { name: 'launchStart', data: all.launchStart, holdMs:    0, outMs: 3000,                outEase: EASE_IN_CUBIC,     outMode: 'normal' },
-        { name: 'launchEnd',   data: all.launchEnd,   holdMs:  500, outMs: 1500,                outEase: EASE_OUT_CUBIC,    outMode: 'normal' },
+        { name: 'sketch',      data: all.sketch,      holdMs: 4000, outMs:  700,                outEase: EASE_AGGRESSIVE_SNAP, outMode: 'normal' },
+        { name: 'refined',     data: all.refined,     holdMs: 5000, outMs: SPIRAL_DURATION_MS,  outEase: 0,                     outMode: 'spiral' },
+        { name: 'wireframe',   data: all.wireframe,   holdMs: 4000, outMs:  700,                outEase: EASE_AGGRESSIVE_SNAP, outMode: 'normal' },
+        { name: 'rendered',    data: all.rendered,    holdMs: 6000, outMs: 1000,                outEase: EASE_IN_CUBIC,         outMode: 'normal' },
+        { name: 'launchStart', data: all.launchStart, holdMs:    0, outMs: 3000,                outEase: EASE_IN_CUBIC,         outMode: 'normal' },
+        { name: 'launchEnd',   data: all.launchEnd,   holdMs:  500, outMs: 1500,                outEase: EASE_AGGRESSIVE_SNAP, outMode: 'normal' },
       ];
 
       if (cancelled || !containerRef.current) return;
@@ -137,7 +152,6 @@ export function MorphingGorilla() {
         sizes[i] = 1.5 + Math.random() * 2.0;
         delays[i] = Math.random();
         wobblePhases[i] = Math.random() * Math.PI * 2;
-        // First ROCKET_PARTICLES indices form the rocket cluster during launch.
         isRocket[i] = i < ROCKET_PARTICLES ? 1.0 : 0.0;
       }
 
@@ -176,7 +190,7 @@ export function MorphingGorilla() {
           uEasingMode: { value: stages[0].outEase },
           uStage3Mode: { value: 0 },
           uStage3Time: { value: 0 },
-          uPreTransitionAmp: { value: 0 },
+          uLeanInAmount: { value: 0 },
           uIgnitionBoost: { value: 0 },
           uUseRocketEasing: { value: 0 },
         },
@@ -197,6 +211,33 @@ export function MorphingGorilla() {
         0.85,
       );
       composer.addPass(bloomPass);
+
+      // Brightness pass — global multiplier driven by the spiral's BEAT 3
+      // onset for the 10% screen-flash energy release. Default 1.0.
+      const BrightnessShader = {
+        uniforms: {
+          tDiffuse: { value: null as THREE_NS.Texture | null },
+          multiplier: { value: 1.0 },
+        },
+        vertexShader: /* glsl */ `
+          varying vec2 vUv;
+          void main() {
+            vUv = uv;
+            gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
+          }
+        `,
+        fragmentShader: /* glsl */ `
+          uniform sampler2D tDiffuse;
+          uniform float multiplier;
+          varying vec2 vUv;
+          void main() {
+            vec4 c = texture2D(tDiffuse, vUv);
+            gl_FragColor = vec4(c.rgb * multiplier, c.a);
+          }
+        `,
+      };
+      const brightnessPass = new ShaderPass(BrightnessShader);
+      composer.addPass(brightnessPass);
 
       const ChromaticAberrationShader = {
         uniforms: {
@@ -246,8 +287,12 @@ export function MorphingGorilla() {
       let modeStart = performance.now();
       let driftFrom = stages[stageIdx].data.holdDrift;
       let driftTo = driftFrom;
+      // True once the lean-in window has preloaded next-stage data into
+      // aTargetPos (or, for spiral, deliberately not preloaded).
+      let leanInActive = false;
 
-      const advanceTarget = (nextIdx: number) => {
+      const preloadNext = () => {
+        const nextIdx = (stageIdx + 1) % stages.length;
         aTargetPos.array.set(stages[nextIdx].data.positions);
         aTargetPos.needsUpdate = true;
         aTargetColor.array.set(stages[nextIdx].data.colors);
@@ -265,16 +310,18 @@ export function MorphingGorilla() {
       };
 
       const beginTransition = (now: number) => {
-        const nextIdx = (stageIdx + 1) % stages.length;
-        const stage = stages[stageIdx];
-        advanceTarget(nextIdx);
+        // Always reload next stage at transition start. For non-spiral
+        // stages this is harmless (lean-in already loaded the same data);
+        // for spiral it loads wireframe (which lean-in skipped).
+        preloadNext();
+        leanInActive = false;
         mode = 'transition';
         modeStart = now;
+        const stage = stages[stageIdx];
         if (stage.outMode === 'spiral') {
           material.uniforms.uStage3Mode.value = 1;
           material.uniforms.uStage3Time.value = 0;
         }
-        // Engage mixed easing only on launchStart → launchEnd (the ascent).
         material.uniforms.uUseRocketEasing.value =
           stage.name === 'launchStart' ? 1 : 0;
       };
@@ -289,37 +336,44 @@ export function MorphingGorilla() {
           material.uniforms.uHoldDrift.value = stage.data.holdDrift;
           driftFrom = stage.data.holdDrift;
           driftTo = driftFrom;
+          leanInActive = false;
         }
       };
 
-      // Bloom envelopes.
-      const computeSpiralBloom = (tSec: number): number => {
-        if (tSec < 2.0) return BLOOM_BASE;
-        if (tSec < 2.5) {
-          // Sub-phase 4 singularity build-up — sin half-cycle (0 → 1 → 0).
-          const k = Math.sin(((tSec - 2.0) / 0.5) * Math.PI);
+      // Bloom envelope over the spiral.
+      const computeSpiralBloom = (t: number): number => {
+        if (t < 0.9) return BLOOM_BASE;
+        if (t < 1.3) {
+          // BEAT 2 buildup — linear ramp to peak.
+          const k = (t - 0.9) / 0.4;
           return BLOOM_BASE + (BLOOM_PEAK_SINGULARITY - BLOOM_BASE) * k;
         }
-        if (tSec < 2.55) {
-          // Sub-phase 5 explosion flash — rapid rise to peak.
-          const k = (tSec - 2.5) / 0.05;
-          return BLOOM_BASE + (BLOOM_PEAK_EXPLOSION - BLOOM_BASE) * k;
+        if (t < 1.4) {
+          return BLOOM_PEAK_SINGULARITY;
         }
-        if (tSec < 2.65) {
-          return BLOOM_PEAK_EXPLOSION;
-        }
-        if (tSec < 3.0) {
-          // Decay back to base over 0.35 s.
-          const k = 1 - (tSec - 2.65) / 0.35;
-          return BLOOM_BASE + (BLOOM_PEAK_EXPLOSION - BLOOM_BASE) * Math.max(0, k);
+        if (t < 1.55) {
+          // BEAT 3 onset — bloom drops back to base over 0.15 s.
+          const k = 1 - (t - 1.4) / 0.15;
+          return BLOOM_BASE + (BLOOM_PEAK_SINGULARITY - BLOOM_BASE) * Math.max(0, k);
         }
         return BLOOM_BASE;
       };
 
+      // Detach flash at the rendered → launchStart transition onset.
       const computeDetachBloom = (tMs: number): number => {
         if (tMs >= DETACH_FLASH_MS) return BLOOM_BASE;
         const k = Math.sin((tMs / DETACH_FLASH_MS) * Math.PI);
         return BLOOM_BASE + (BLOOM_PEAK_DETACH - BLOOM_BASE) * k;
+      };
+
+      // 10% screen-flash brightness lift across [1.4, 1.55] s of the spiral
+      // — 0.05 s ramp up, 0.05 s hold at 1.10×, 0.05 s ramp down.
+      const computeFlashMultiplier = (t: number): number => {
+        if (t < 1.4) return 1.0;
+        if (t < 1.45) return 1.0 + 0.10 * ((t - 1.4) / 0.05);
+        if (t < 1.50) return 1.10;
+        if (t < 1.55) return 1.0 + 0.10 * (1 - (t - 1.50) / 0.05);
+        return 1.0;
       };
 
       const clock = new THREE.Clock();
@@ -331,21 +385,29 @@ export function MorphingGorilla() {
 
         material.uniforms.uTime.value += dt;
 
-        // Pre-transition envelope — last 400 ms of hold and first 400 ms of
-        // any non-spiral transition. Spiral transitions skip this since the
-        // 5-sub-phase shader path drives its own motion.
-        let preAmp = 0;
+        // Lean-in envelope — last 400 ms of hold, first 200 ms of any
+        // non-spiral transition. Spiral skips lean-in entirely.
+        let leanInAmount = 0;
         if (mode === 'hold') {
           const remaining = stages[stageIdx].holdMs - elapsed;
-          if (remaining < PRE_TRANSITION_MS) {
-            preAmp = Math.max(0, 1 - remaining / PRE_TRANSITION_MS);
+          if (remaining < LEAN_IN_PHASE_MS) {
+            // First entry into the lean-in window: preload next-stage data
+            // (skip for spiral so the position lean is a no-op via
+            // mix(source, source, 0.08*amount) = source).
+            if (!leanInActive) {
+              if (stages[stageIdx].outMode !== 'spiral') {
+                preloadNext();
+              }
+              leanInActive = true;
+            }
+            leanInAmount = Math.max(0, 1 - remaining / LEAN_IN_PHASE_MS);
           }
         } else if (stages[stageIdx].outMode !== 'spiral') {
-          if (elapsed < PRE_TRANSITION_MS) {
-            preAmp = Math.max(0, 1 - elapsed / PRE_TRANSITION_MS);
+          if (elapsed < LEAN_OUT_PHASE_MS) {
+            leanInAmount = Math.max(0, 1 - elapsed / LEAN_OUT_PHASE_MS);
           }
         }
-        material.uniforms.uPreTransitionAmp.value = preAmp;
+        material.uniforms.uLeanInAmount.value = leanInAmount;
 
         // Ignition boost — first 1 s of the launch ascent (launchStart out).
         let ignition = 0;
@@ -356,8 +418,8 @@ export function MorphingGorilla() {
         }
         material.uniforms.uIgnitionBoost.value = ignition;
 
-        // Bloom — default to base, override during named transitions.
         let bloomTarget = BLOOM_BASE;
+        let flashMult = 1.0;
 
         if (mode === 'hold') {
           material.uniforms.uMorphProgress.value = 0;
@@ -369,8 +431,9 @@ export function MorphingGorilla() {
           const stage = stages[stageIdx];
           if (stage.outMode === 'spiral') {
             const tSec = elapsed / 1000;
-            material.uniforms.uStage3Time.value = Math.min(3.0, tSec);
+            material.uniforms.uStage3Time.value = Math.min(2.4, tSec);
             bloomTarget = computeSpiralBloom(tSec);
+            flashMult = computeFlashMultiplier(tSec);
 
             if (tSec >= SPIRAL_DURATION_MS / 1000) {
               material.uniforms.uStage3Mode.value = 0;
@@ -401,6 +464,8 @@ export function MorphingGorilla() {
         }
 
         bloomPass.strength = bloomTarget;
+        brightnessPass.uniforms.multiplier.value = flashMult;
+
         composer.render(dt);
         raf = requestAnimationFrame(tick);
       };
