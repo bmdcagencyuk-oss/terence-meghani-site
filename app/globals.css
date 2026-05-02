@@ -2685,6 +2685,30 @@
   .hero-mockup-fragment { display: none; }
 }
 
+/* WebGL morphing canvas — Three.js scene rendering particle morphs through
+   six stages (sketch → emblem → code → wireframe → site → launch). Phase 1
+   shows a placeholder rotating icosahedron. Right ~45% on desktop, full
+   width on mobile. Sits above ambient particles, below foreground content. */
+.hero-morph-canvas {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 45%;
+  height: 100%;
+  z-index: 25;
+  pointer-events: none;
+}
+.hero-morph-canvas > canvas {
+  display: block;
+  width: 100% !important;
+  height: 100% !important;
+}
+@media (max-width: 720px) {
+  .hero-morph-canvas {
+    width: 100%;
+  }
+}
+
 .hero .grid-lines {
   position: absolute; inset: 0; z-index: 10; pointer-events: none;
   background-image:

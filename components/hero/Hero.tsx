@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useRef } from 'react';
+import { MorphingGorilla } from './MorphingGorilla';
 
 export function Hero() {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
@@ -304,6 +305,9 @@ export function Hero() {
         className="hero-ambient-canvas"
         aria-hidden="true"
       />
+
+      <MorphingGorilla />
+
       <div className="grid-lines" aria-hidden="true" />
 
       {/* Silverback gorilla — secondary mark watermark, bottom-right behind copy. */}
