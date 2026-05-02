@@ -2632,6 +2632,19 @@
   .hero-aurora::after,
   .hero-aurora .aurora-c { animation: none; }
 }
+
+/* Ambient particle canvas — drifting dots across the hero. Mounts after
+   first paint via useEffect; canvas itself is empty pre-mount. */
+.hero-ambient-canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 20;
+  pointer-events: none;
+  display: block;
+}
+
 .hero .grid-lines {
   position: absolute; inset: 0; z-index: 10; pointer-events: none;
   background-image:
