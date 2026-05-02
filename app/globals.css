@@ -2723,11 +2723,22 @@
   .hero-morph-canvas {
     width: 100%;
   }
-  /* On phones the static is inset so it never crowds copy. */
+  /* On phones the static fallback shrinks to a corner texture: anchored
+     bottom-right, ~32% width, dimmed so the headline reads cleanly above
+     it. Never overlaps the copy column even at 320px. */
   .hero-morph-canvas--static {
-    width: 70%;
-    max-width: 380px;
-    height: 60%;
+    top: auto;
+    bottom: 0;
+    right: 0;
+    width: 32%;
+    max-width: 200px;
+    min-width: 96px;
+    height: auto;
+    aspect-ratio: 3 / 2;
+    opacity: 0.55;
+  }
+  .hero-morph-canvas--static > img {
+    opacity: 1;
   }
 }
 
