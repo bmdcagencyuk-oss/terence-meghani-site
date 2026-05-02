@@ -94,7 +94,7 @@ function buildRefinedStage(cleanPoints: Point[], particleCount: number): StageDa
   const colors = new Float32Array(particleCount * 3);
   const c = scl(hex('#FF4D17'), 0.9);
   for (let i = 0; i < particleCount; i++) writeColor(colors, i, c);
-  return { positions, colors, holdDrift: 0.0 };
+  return { positions, colors, holdDrift: 0.5 };
 }
 
 // Stage 3 (code form) was removed — replaced by a procedural spiral
@@ -174,7 +174,7 @@ function buildWireframeStage(particleCount: number): StageData {
     }
     allocated += samples;
   }
-  return { positions, colors, holdDrift: 0.06 };
+  return { positions, colors, holdDrift: 0.7 };
 }
 
 // =============================================================================
@@ -255,7 +255,7 @@ function buildRenderedStage(cleanGorilla: Point[], particleCount: number): Stage
     idx++;
   }
 
-  return { positions, colors, holdDrift: 0.05 };
+  return { positions, colors, holdDrift: 0.5 };
 }
 
 // =============================================================================

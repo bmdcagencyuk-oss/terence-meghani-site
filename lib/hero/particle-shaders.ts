@@ -4,29 +4,27 @@
  * NORMAL MODE (uStage3Mode = 0):
  *   Each particle interpolates aSourcePos → aTargetPos over uMorphProgress
  *   with a per-particle aDelay inside a 30% stagger window. Easing is
- *   selected per-transition by uEasingMode (5 functions). Mid-flight wobble
- *   peaks at the midpoint and fades at endpoints. Hold-drift overlay is
- *   always present, scaled by uHoldDrift.
+ *   selected by uEasingMode unless uUseRocketEasing is set, in which case
+ *   particles split: aIsRocket=1 use ease-in cubic (slow ascent), aIsRocket=0
+ *   use ease-out cubic (fast burst, settle). Mid-flight wobble peaks at the
+ *   midpoint; hold-drift overlay always present, scaled by uHoldDrift.
+ *
+ *   Pre-transition envelope (uPreTransitionAmp, set by CPU during the last
+ *   400 ms of hold and the first 400 ms of transition):
+ *     - Adds a small outward radial bias so particles "want to break formation"
+ *     - Multiplies hold-drift by 1.5x for amplified shimmer
+ *
+ *   Ignition boost (uIgnitionBoost, set by CPU during the first 1 s of the
+ *   launch ascent transition): multiplies vColor by (1 + uIgnitionBoost) for
+ *   a brighter trail at the moment of release.
  *
  * SPIRAL MODE (uStage3Mode = 1):
  *   Replaces the Stage 2 → Stage 4 transition. Particles compute their
- *   position procedurally as a function of uStage3Time ∈ [0, 3] seconds,
- *   running through five sub-phases:
- *
- *     0.0–0.4s  Disperse outward (ease-out cubic radial expansion)
- *     0.4–1.0s  Orbit at expanded radius (Keplerian ω = ω₀/r)
- *     1.0–2.0s  Spiral inward (radius shrinks, rotation accelerates)
- *     2.0–2.5s  Vortex collapse (radius → 0, glow ramps up)
- *     2.5–3.0s  Explode outward to wireframe target (ease-out expo)
- *
- *   Angular position is integrated analytically per sub-phase: closed-form
- *   for constant r (sub-phase 2), log for linear r-decrease (sub-phase 3),
- *   and a fast-spin term for the collapse (sub-phase 4). The spiral centre
- *   is the scene origin (Stage 2's gorilla is normalized around (0,0)).
- *
- *   Colour and glow are procedural functions of uStage3Time — orange →
- *   white-violet → bright orange (singularity) → fading white. Hold-drift
- *   is suppressed during the spiral since the motion is already complex.
+ *   position procedurally as a function of uStage3Time ∈ [0, 3] seconds
+ *   through five sub-phases. Sub-phase 5 (explosion to wireframe) is now
+ *   front-loaded: 70% of the journey in the first 0.15 s with ease-out expo,
+ *   the remaining 30% over 0.35 s with ease-out cubic. Colour briefly flashes
+ *   to pure white at the moment of explosion.
  */
 export const particleVertexShader = /* glsl */ `
   attribute vec3 aSourcePos;
@@ -36,6 +34,7 @@ export const particleVertexShader = /* glsl */ `
   attribute float aSize;
   attribute float aDelay;
   attribute float aWobblePhase;
+  attribute float aIsRocket;
 
   uniform float uMorphProgress;
   uniform float uTime;
@@ -44,6 +43,9 @@ export const particleVertexShader = /* glsl */ `
   uniform float uEasingMode;
   uniform float uStage3Mode;
   uniform float uStage3Time;
+  uniform float uPreTransitionAmp;
+  uniform float uIgnitionBoost;
+  uniform float uUseRocketEasing;
 
   varying vec3 vColor;
   varying float vGlow;
@@ -78,47 +80,47 @@ export const particleVertexShader = /* glsl */ `
     vec2 sp = source.xy;
     float r0 = length(sp);
     float theta0 = atan(sp.y, sp.x);
-    // Floor on r0 prevents particles at the gorilla's centre of mass from
-    // spinning at infinite angular velocity.
     float r0safe = max(r0, 0.18);
     float omega0 = 3.2;
 
-    // Sub-phase 5 (explode to target) has no spiral content — handle first
-    // so we can early-return.
+    // Sub-phase 5 (explode to target) — front-loaded burst.
     if (t >= 2.5) {
-      float p5 = clamp((t - 2.5) / 0.5, 0.0, 1.0);
-      return mix(vec3(0.0), target, easeOutExpo(p5));
+      float pTotal = clamp((t - 2.5) / 0.5, 0.0, 1.0);
+      float k;
+      if (t < 2.65) {
+        // First 0.15 s: 0 → 0.7 with ease-out expo (rapid burst).
+        float p = (t - 2.5) / 0.15;
+        k = 0.7 * easeOutExpo(p);
+      } else {
+        // Next 0.35 s: 0.7 → 1.0 with ease-out cubic (settle).
+        float p = (t - 2.65) / 0.35;
+        k = 0.7 + 0.3 * easeOutCubic(p);
+      }
+      // Suppress sub-phase 5 progress warning by referencing pTotal.
+      k = max(k, 0.0) * (pTotal > 0.0 ? 1.0 : 0.0);
+      return mix(vec3(0.0), target, k);
     }
 
-    // Radius profile. Continuous at sub-phase boundaries.
     float r;
     if (t < 0.4) {
-      // Disperse outward — 1.0×r0 → 1.4×r0
       float k = easeOutCubic(t / 0.4);
       r = r0 * (1.0 + 0.4 * k);
     } else if (t < 1.0) {
-      // Orbit at expanded radius — slight breathe (1.4×r0 constant)
       r = r0 * 1.4;
     } else if (t < 2.0) {
-      // Spiral inward — 1.4×r0 → 0.3×r0 with cubic acceleration
       float k = easeInCubic((t - 1.0) / 1.0);
       r = r0 * (1.4 - 1.1 * k);
     } else {
-      // Vortex collapse — 0.3×r0 → ~0 with exponential acceleration
       float k = easeInExpo((t - 2.0) / 0.5);
       r = r0 * 0.3 * (1.0 - k);
     }
 
-    // Angle accumulation. Each sub-phase contributes its rotational integral.
     float theta = theta0;
     if (t >= 0.4) {
-      // Sub-phase 2: r is constant at 1.4×r0safe over [0.4, 1.0].
       float endT = min(t, 1.0);
       theta += omega0 * (endT - 0.4) / (1.4 * r0safe);
     }
     if (t >= 1.0) {
-      // Sub-phase 3: r linear from 1.4×r0safe to 0.3×r0safe over [1.0, 2.0].
-      // ∫ ω₀/(r1+(r2-r1)u) du from 0 to s = ω₀ * ln(r(s)/r1) / (r2-r1)
       float endT = min(t, 2.0);
       float r1 = 1.4 * r0safe;
       float r2 = 0.3 * r0safe;
@@ -127,15 +129,10 @@ export const particleVertexShader = /* glsl */ `
       theta += omega0 * log(r_at_s / r1) / (r2 - r1);
     }
     if (t >= 2.0) {
-      // Sub-phase 4: r → 0. Use a fast-spin term proportional to 1/r0safe;
-      // analytic integration here would diverge, so we approximate with a
-      // 6× scaling factor that produces visually convincing whip-up.
       float endT = min(t, 2.5);
       theta += omega0 * (endT - 2.0) * 6.0 / r0safe;
     }
 
-    // Z preserved at half magnitude for a touch of depth without breaking
-    // the 2D-spiral read.
     return vec3(cos(theta) * r, sin(theta) * r, source.z * 0.5);
   }
 
@@ -150,7 +147,9 @@ export const particleVertexShader = /* glsl */ `
     if (t < 1.0) return mix(orange, whiteViolet, t);
     if (t < 2.0) return whiteViolet;
     if (t < 2.5) return mix(whiteViolet, brightOrange, (t - 2.0) / 0.5);
-    return mix(brightOrange, finalWhite, (t - 2.5) / 0.5);
+    // Sub-phase 5: brief pure-white flash, then settle to wireframe-white.
+    if (t < 2.6) return white;
+    return mix(white, finalWhite, (t - 2.6) / 0.4);
   }
 
   float stage3Glow(float t) {
@@ -159,8 +158,12 @@ export const particleVertexShader = /* glsl */ `
       float p = (t - 2.0) / 0.5;
       return 0.2 + p * 1.6;
     }
+    if (t < 2.65) {
+      // Sub-phase 5 explosion glow: hold near peak briefly.
+      return 1.8;
+    }
     if (t < 2.85) {
-      float p = (t - 2.5) / 0.35;
+      float p = (t - 2.65) / 0.20;
       return mix(1.8, 0.5, p);
     }
     float p = (t - 2.85) / 0.15;
@@ -177,12 +180,20 @@ export const particleVertexShader = /* glsl */ `
       baseColor = stage3Color(uStage3Time);
       glow = stage3Glow(uStage3Time);
     } else {
-      // Normal interpolation mode.
+      // Normal interpolation mode with optional rocket-vs-dispersed easing.
       float window = 0.30;
       float startT = aDelay * window;
       float span = 1.0 - window;
       float local = clamp((uMorphProgress - startT) / max(span, 1e-4), 0.0, 1.0);
-      float eased = applyEase(local);
+
+      float eased;
+      if (uUseRocketEasing > 0.5) {
+        // Launch ascent: rocket cluster slow-starts (ease-in cubic), the
+        // dispersing site particles burst out fast (ease-out cubic).
+        eased = aIsRocket > 0.5 ? easeInCubic(local) : easeOutCubic(local);
+      } else {
+        eased = applyEase(local);
+      }
 
       pos = mix(aSourcePos, aTargetPos, eased);
 
@@ -197,16 +208,28 @@ export const particleVertexShader = /* glsl */ `
       glow = midFactor;
     }
 
-    // Hold-drift overlay — suppressed during the spiral (where motion is
-    // already procedural and would conflict with the spiral path).
-    float driftAmt = (uStage3Mode > 0.5) ? 0.0 : uHoldDrift;
+    // Pre-transition outward bias — particles "want to leave formation"
+    // during the last 400 ms of a hold and gradually settle in the first
+    // 400 ms of the transition. Suppressed during the spiral.
+    if (uStage3Mode < 0.5 && uPreTransitionAmp > 0.0) {
+      vec2 outDir = length(pos.xy) > 0.05 ? normalize(pos.xy) : vec2(0.0);
+      pos.xy += outDir * 0.04 * uPreTransitionAmp;
+    }
+
+    // Hold-drift overlay — suppressed during the spiral. Pre-transition amp
+    // amplifies it 1.5x for the same-window tighter shimmer.
+    float driftAmt = (uStage3Mode > 0.5)
+      ? 0.0
+      : uHoldDrift * (1.0 + 0.5 * uPreTransitionAmp);
     pos += vec3(
       sin(uTime * 0.7 + aWobblePhase)        * 0.025,
       cos(uTime * 0.6 + aWobblePhase * 1.4)  * 0.025,
       sin(uTime * 0.4 + aWobblePhase * 1.7)  * 0.012
     ) * driftAmt;
 
-    vColor = baseColor;
+    // Ignition boost — brightens the rocket trail during the first ~1 s
+    // of the launch ascent.
+    vColor = baseColor * (1.0 + uIgnitionBoost);
     vGlow = glow;
 
     vec4 mv = modelViewMatrix * vec4(pos, 1.0);
