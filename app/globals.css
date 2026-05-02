@@ -2557,14 +2557,16 @@
 /* Gradient mesh — three drifting colour stops over the charcoal anchor.
  * Deep violet drifts clockwise; rocket orange counter-clockwise;
  * magenta-violet traces a slow lemniscate. 60s cycle, infinite, GPU-only
- * transforms. The eye should never be drawn here — it's atmospheric. */
+ * transforms. Intentionally not screen-blended — on the dark charcoal
+ * anchor, screen blend collapses peak intensity below perception.
+ * Painted with normal compositing instead, with each stop's stated
+ * alpha doing the visibility work. */
 .hero-aurora {
   position: absolute;
   inset: 0;
   pointer-events: none;
   z-index: 5;
   overflow: hidden;
-  opacity: 0.85;
 }
 .hero-aurora::before,
 .hero-aurora::after,
@@ -2572,33 +2574,31 @@
   content: '';
   position: absolute;
   border-radius: 50%;
-  filter: blur(90px);
-  mix-blend-mode: screen;
+  filter: blur(70px);
   will-change: transform;
 }
 .hero-aurora::before {
   /* Deep violet — clockwise orbit, anchor stop. */
-  width: 70vmax; height: 70vmax;
+  width: 75vmax; height: 75vmax;
   left: 50%; top: 50%;
-  margin-left: -35vmax; margin-top: -35vmax;
-  background: radial-gradient(circle, #4A0FD4 0%, transparent 62%);
-  opacity: 0.85;
+  margin-left: -37.5vmax; margin-top: -37.5vmax;
+  background: radial-gradient(circle, rgba(74, 15, 212, 0.95) 0%, transparent 60%);
   animation: heroMeshClockwise 60s linear infinite;
 }
 .hero-aurora::after {
-  /* Rocket orange — counter-clockwise orbit, 30% intensity. */
-  width: 60vmax; height: 60vmax;
+  /* Rocket orange — counter-clockwise orbit, 30% intensity per spec. */
+  width: 65vmax; height: 65vmax;
   left: 50%; top: 50%;
-  margin-left: -30vmax; margin-top: -30vmax;
-  background: radial-gradient(circle, rgba(255, 77, 23, 0.30) 0%, transparent 60%);
+  margin-left: -32.5vmax; margin-top: -32.5vmax;
+  background: radial-gradient(circle, rgba(255, 77, 23, 0.30) 0%, transparent 58%);
   animation: heroMeshCounter 60s linear infinite;
 }
 .hero-aurora .aurora-c {
-  /* Magenta-violet — slow lemniscate, 40% intensity. */
-  width: 55vmax; height: 55vmax;
+  /* Magenta-violet — slow lemniscate, 40% intensity per spec. */
+  width: 60vmax; height: 60vmax;
   left: 50%; top: 50%;
-  margin-left: -27.5vmax; margin-top: -27.5vmax;
-  background: radial-gradient(circle, rgba(155, 61, 255, 0.40) 0%, transparent 62%);
+  margin-left: -30vmax; margin-top: -30vmax;
+  background: radial-gradient(circle, rgba(155, 61, 255, 0.40) 0%, transparent 60%);
   animation: heroMeshLemniscate 60s ease-in-out infinite;
 }
 @keyframes heroMeshClockwise {
@@ -2657,8 +2657,8 @@
   width: clamp(520px, 44vw, 760px);
   height: auto;
   z-index: 15;
-  opacity: 0.18;
-  filter: hue-rotate(15deg) saturate(0.85) blur(1px);
+  opacity: 0.22;
+  filter: hue-rotate(15deg) saturate(0.85) blur(0.5px);
   pointer-events: none;
   user-select: none;
   will-change: transform, filter;
@@ -2667,18 +2667,19 @@
     heroMockupHue   20s ease-in-out infinite;
 }
 @keyframes heroMockupDrift {
-  0%, 100% { transform: translateY(-7.5px); }
-  50%      { transform: translateY( 7.5px); }
+  /* ±15px from rest per spec — full 30px peak-to-peak. */
+  0%, 100% { transform: translateY(-15px); }
+  50%      { transform: translateY( 15px); }
 }
 @keyframes heroMockupHue {
-  0%, 100% { filter: hue-rotate(10deg) saturate(0.85) blur(1px); }
-  50%      { filter: hue-rotate(25deg) saturate(0.85) blur(1px); }
+  0%, 100% { filter: hue-rotate(10deg) saturate(0.85) blur(0.5px); }
+  50%      { filter: hue-rotate(25deg) saturate(0.85) blur(0.5px); }
 }
 @media (prefers-reduced-motion: reduce) {
   .hero-mockup-fragment {
     animation: none;
     transform: none;
-    filter: hue-rotate(15deg) saturate(0.85) blur(1px);
+    filter: hue-rotate(15deg) saturate(0.85) blur(0.5px);
   }
 }
 @media (max-width: 720px) {

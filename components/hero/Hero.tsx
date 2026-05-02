@@ -152,10 +152,14 @@ export function Hero() {
     window.addEventListener('resize', resize);
 
     type Tone = { rgb: string; baseAlpha: number };
+    /* Alphas tuned upward from the original spec floor (30/35/40) — at
+       1-3px diameter on charcoal, the spec floor renders below perception.
+       0.55/0.60/0.70 keeps the chromatic mix intact while letting dots
+       actually register. */
     const tones: { tone: Tone; weight: number }[] = [
-      { tone: { rgb: '255, 255, 255', baseAlpha: 0.30 }, weight: 0.60 },
-      { tone: { rgb: '155, 61, 255',  baseAlpha: 0.35 }, weight: 0.25 },
-      { tone: { rgb: '255, 77, 23',   baseAlpha: 0.40 }, weight: 0.15 },
+      { tone: { rgb: '255, 255, 255', baseAlpha: 0.55 }, weight: 0.60 },
+      { tone: { rgb: '155, 61, 255',  baseAlpha: 0.60 }, weight: 0.25 },
+      { tone: { rgb: '255, 77, 23',   baseAlpha: 0.70 }, weight: 0.15 },
     ];
     const pickTone = (): Tone => {
       const r = Math.random();
@@ -167,17 +171,17 @@ export function Hero() {
       return tones[0].tone;
     };
 
-    const COUNT = 40;
+    const COUNT = 45;
     const particles = Array.from({ length: COUNT }, () => {
       const tone = pickTone();
       const angle = Math.random() * Math.PI * 2;
-      const speed = 0.05 + Math.random() * 0.15;
+      const speed = 0.10 + Math.random() * 0.20; /* 0.10-0.30 px/frame */
       return {
         x: Math.random() * W,
         y: Math.random() * H,
         vx: Math.cos(angle) * speed,
         vy: Math.sin(angle) * speed,
-        r: 0.5 + Math.random() * 1, /* renders 1-3px diameter (radius * 2 + slight bloom) */
+        r: 1.0 + Math.random() * 0.5, /* 2-3px diameter */
         rgb: tone.rgb,
         baseAlpha: tone.baseAlpha,
         pulsePeriod: 4000 + Math.random() * 2000,
