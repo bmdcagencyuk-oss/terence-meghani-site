@@ -2532,34 +2532,6 @@
   display: none;
 }
 
-/* Code-fragment backdrop — full-bleed mono lines hinting at the four
- * practices, slowly scrolling. Sits behind every other hero layer. */
-.hero-code-backdrop {
-  position: absolute;
-  top: 0; left: 0;
-  width: 100%;
-  height: auto;
-  z-index: 0;
-  pointer-events: none;
-  user-select: none;
-  opacity: 0.18;
-  filter: blur(0.5px);
-  -webkit-mask-image: radial-gradient(ellipse at center, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.4) 50%, rgba(0,0,0,0.1) 90%);
-          mask-image: radial-gradient(ellipse at center, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.4) 50%, rgba(0,0,0,0.1) 90%);
-  will-change: transform;
-  animation: heroCodeScroll 90s linear infinite;
-}
-@keyframes heroCodeScroll {
-  from { transform: translateY(0); }
-  to   { transform: translateY(-50%); }
-}
-@media (prefers-reduced-motion: reduce) {
-  .hero-code-backdrop { animation: none; transform: translateY(0); }
-}
-@media (max-width: 720px) {
-  .hero-code-backdrop { display: none; }
-}
-
 /* Silverback gorilla — secondary brand mark, watermarked behind hero copy. */
 .hero-gorilla-watermark {
   position: absolute;

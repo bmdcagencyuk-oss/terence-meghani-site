@@ -188,14 +188,6 @@ export function Hero() {
 
   return (
     <header className="hero">
-      {/* Code-fragment backdrop — sits behind aurora, grid, gorilla and copy. */}
-      {/* eslint-disable-next-line @next/next/no-img-element */}
-      <img
-        className="hero-code-backdrop"
-        src="/hero-code-backdrop.svg"
-        alt=""
-        aria-hidden="true"
-      />
       <div className="hero-aurora" aria-hidden="true">
         <span className="aurora-c" />
       </div>
