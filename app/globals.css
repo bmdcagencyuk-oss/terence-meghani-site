@@ -3243,6 +3243,17 @@
 .data-panel .dp-row .v { font-weight: 600; color: var(--rocket); font-size: 11.5px; min-width: 48px; text-align: right; }
 
 .hero-cta-wrap { display: flex; flex-direction: column; align-items: center; gap: 14px; }
+/* Composable transform pieces — magnetic translation is set by Hero.tsx
+   on mousemove (--cta-mx/--cta-my), hover layers in --cta-rot/--cta-scale.
+   @property-registering each as the right type so each piece can animate
+   on its own clock — magnetism is responsive (0.2s ease), hover is bouncy
+   (0.4s bounce). Without @property the transitions wouldn't apply to the
+   custom properties at all. */
+@property --cta-mx { syntax: '<length>'; inherits: false; initial-value: 0px; }
+@property --cta-my { syntax: '<length>'; inherits: false; initial-value: 0px; }
+@property --cta-rot { syntax: '<angle>'; inherits: false; initial-value: 0deg; }
+@property --cta-scale { syntax: '<number>'; inherits: false; initial-value: 1; }
+
 .hero-cta {
   width: 160px; height: 160px; border-radius: 50%;
   background: var(--rocket); color: var(--white);
@@ -3250,8 +3261,21 @@
   font-family: var(--f-mono); font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase; font-weight: 700;
   text-align: center; line-height: 1.2;
   position: relative; overflow: hidden;
-  transition: transform 0.4s var(--ease-bounce);
-  box-shadow: 0 20px 60px -10px color-mix(in srgb, var(--rocket) 70%, transparent), 0 0 0 4px var(--char), 0 0 0 5px var(--rocket);
+  --cta-mx: 0px;
+  --cta-my: 0px;
+  --cta-rot: 0deg;
+  --cta-scale: 1;
+  transform: translate(var(--cta-mx), var(--cta-my)) rotate(var(--cta-rot)) scale(var(--cta-scale));
+  transition:
+    --cta-mx 0.22s var(--ease),
+    --cta-my 0.22s var(--ease),
+    --cta-rot 0.4s var(--ease-bounce),
+    --cta-scale 0.4s var(--ease-bounce),
+    box-shadow 0.4s ease;
+  box-shadow:
+    0 20px 60px -10px color-mix(in srgb, var(--rocket) 70%, transparent),
+    0 0 0 4px var(--char),
+    0 0 0 5px var(--rocket);
 }
 .hero-cta::before {
   content: ''; position: absolute; inset: 0; border-radius: 50%;
@@ -3259,9 +3283,32 @@
   transform: scale(0); transition: transform 0.4s var(--ease);
 }
 .hero-cta:hover::before { transform: scale(1); }
-.hero-cta:hover { transform: rotate(-6deg) scale(1.06); }
+.hero-cta:hover {
+  --cta-rot: -6deg;
+  --cta-scale: 1.06;
+  box-shadow:
+    0 24px 80px -8px color-mix(in srgb, var(--rocket) 90%, transparent),
+    0 0 0 4px var(--char),
+    0 0 0 5px var(--rocket),
+    0 0 100px color-mix(in srgb, var(--rocket) 55%, transparent);
+}
 .hero-cta > * { position: relative; z-index: 1; }
-.hero-cta .icon { font-size: 30px; margin-bottom: 2px; }
+.hero-cta .icon {
+  font-size: 30px; margin-bottom: 2px;
+  display: inline-block;
+  transition: transform 0.25s ease;
+}
+.hero-cta:hover .icon {
+  animation: rocket-ignite 0.85s ease-in-out infinite;
+}
+@keyframes rocket-ignite {
+  0%, 100% { transform: translate(0, 0); }
+  35% { transform: translate(-1px, -5px); }
+  70% { transform: translate(1px, -3px); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .hero-cta:hover .icon { animation: none; }
+}
 .hero-cta-sec {
   font-family: var(--f-mono); font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase;
   color: var(--mist); display: inline-flex; align-items: center; gap: 8px;

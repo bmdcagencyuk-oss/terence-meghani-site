@@ -248,8 +248,12 @@ export function Hero() {
       (el) => !el.closest('.fuel-word'),
     );
 
+    const ctaEl = header.querySelector<HTMLElement>('.hero-cta');
+
     const radius = 240;
     const pullStrength = 6;
+    const ctaRadius = 260;
+    const ctaTilt = 14;
     let raf: number | null = null;
     let mx = 0;
     let my = 0;
@@ -272,6 +276,21 @@ export function Hero() {
         ch.style.fontVariationSettings = `"wdth" 100, "opsz" 96, "wght" ${Math.round(weight)}`;
         ch.style.transform = `translate(${tx.toFixed(2)}px, ${ty.toFixed(2)}px)`;
       });
+      if (ctaEl) {
+        const r = ctaEl.getBoundingClientRect();
+        const cx = r.left + r.width / 2;
+        const cy = r.top + r.height / 2;
+        const dx = mx - cx;
+        const dy = my - cy;
+        const d = Math.hypot(dx, dy);
+        const prox = Math.max(0, 1 - d / ctaRadius);
+        const eased = prox * prox;
+        const inv = d > 0.001 ? 1 / d : 0;
+        const tx = dx * inv * eased * ctaTilt;
+        const ty = dy * inv * eased * ctaTilt;
+        ctaEl.style.setProperty('--cta-mx', `${tx.toFixed(2)}px`);
+        ctaEl.style.setProperty('--cta-my', `${ty.toFixed(2)}px`);
+      }
     };
 
     const onMove = (e: MouseEvent) => {
@@ -280,13 +299,17 @@ export function Hero() {
       const r = header.getBoundingClientRect();
       header.style.setProperty('--hero-mx', `${e.clientX - r.left}px`);
       header.style.setProperty('--hero-my', `${e.clientY - r.top}px`);
-      if (raf === null && chars.length) raf = requestAnimationFrame(apply);
+      if (raf === null) raf = requestAnimationFrame(apply);
     };
     const onLeave = () => {
       chars.forEach((ch) => {
         ch.style.fontVariationSettings = '';
         ch.style.transform = '';
       });
+      if (ctaEl) {
+        ctaEl.style.removeProperty('--cta-mx');
+        ctaEl.style.removeProperty('--cta-my');
+      }
     };
 
     header.addEventListener('mousemove', onMove);

@@ -17,6 +17,11 @@ const PULL_STRENGTH = 1.4;
 const SPRING = 0.055;
 const FRICTION = 0.86;
 const PARTICLE_RADIUS = 1.15;
+/* When the cursor approaches the hero CTA, redirect the pull target
+   from the cursor toward the CTA centre. The gorilla "endorses" the
+   click — particles flow toward the conversion point as the user
+   approaches it. Falloff is quadratic so the redirect doesn't snap. */
+const CTA_INFLUENCE_RADIUS = 280;
 
 /* Same weighted palette as the ambient hero canvas (Hero.tsx). Sharing the
    tone set makes the gorilla read as a denser cluster of the same particle
@@ -92,6 +97,19 @@ export function HeroLogoDisplace() {
     let started = false;
     let startTime = 0;
 
+    const ctaEl = document.querySelector<HTMLElement>('.hero-cta');
+    let ctaLx = -9999;
+    let ctaLy = -9999;
+    let ctaKnown = false;
+    const updateCtaPos = () => {
+      if (!ctaEl) return;
+      const wRect = wrapper.getBoundingClientRect();
+      const cRect = ctaEl.getBoundingClientRect();
+      ctaLx = cRect.left + cRect.width / 2 - wRect.left;
+      ctaLy = cRect.top + cRect.height / 2 - wRect.top;
+      ctaKnown = true;
+    };
+
     const layout = () => {
       W = wrapper.clientWidth;
       H = wrapper.clientHeight;
@@ -125,10 +143,29 @@ export function HeroLogoDisplace() {
       raf = 0;
       if (!startTime) startTime = ts;
       const t = (ts - startTime) / 1000;
+      updateCtaPos();
       ctx.clearRect(0, 0, W, H);
       ctx.globalCompositeOperation = 'screen';
       const pushR2 = PUSH_RADIUS * PUSH_RADIUS;
       const pullR2 = PULL_RADIUS * PULL_RADIUS;
+
+      // Resolve the pull target. When the cursor approaches the CTA,
+      // blend toward the CTA centre with quadratic falloff so the gorilla
+      // pulls toward the conversion point. Push (close-range) always
+      // tracks the cursor itself — that's a direct interaction.
+      let pullX = mouseX;
+      let pullY = mouseY;
+      if (cursorActive && ctaKnown) {
+        const cdx = ctaLx - mouseX;
+        const cdy = ctaLy - mouseY;
+        const cd = Math.hypot(cdx, cdy);
+        if (cd < CTA_INFLUENCE_RADIUS) {
+          const inf = (CTA_INFLUENCE_RADIUS - cd) / CTA_INFLUENCE_RADIUS;
+          const eased = inf * inf;
+          pullX = mouseX + cdx * eased;
+          pullY = mouseY + cdy * eased;
+        }
+      }
 
       // Step physics for every particle once. Drawing is a separate pass
       // grouped by tone so we batch into 3 fills instead of 5000.
@@ -137,21 +174,26 @@ export function HeroLogoDisplace() {
         const ty = p.oy + Math.cos(t * p.freqY + p.phaseY) * p.ampY;
 
         if (cursorActive) {
-          const dx = p.x - mouseX;
-          const dy = p.y - mouseY;
-          const d2 = dx * dx + dy * dy;
-          if (d2 < pushR2 && d2 > 1) {
-            const d = Math.sqrt(d2);
+          const pdx = p.x - mouseX;
+          const pdy = p.y - mouseY;
+          const pd2 = pdx * pdx + pdy * pdy;
+          if (pd2 < pushR2 && pd2 > 1) {
+            const d = Math.sqrt(pd2);
             const norm = 1 - d / PUSH_RADIUS;
             const f = norm * norm * PUSH_STRENGTH;
-            p.vx += (dx / d) * f;
-            p.vy += (dy / d) * f;
-          } else if (d2 < pullR2) {
-            const d = Math.sqrt(d2);
-            const norm = (PULL_RADIUS - d) / (PULL_RADIUS - PUSH_RADIUS);
-            const f = norm * norm * PULL_STRENGTH;
-            p.vx -= (dx / d) * f;
-            p.vy -= (dy / d) * f;
+            p.vx += (pdx / d) * f;
+            p.vy += (pdy / d) * f;
+          } else {
+            const lx = p.x - pullX;
+            const ly = p.y - pullY;
+            const ld2 = lx * lx + ly * ly;
+            if (ld2 < pullR2 && ld2 > 1) {
+              const d = Math.sqrt(ld2);
+              const norm = (PULL_RADIUS - d) / (PULL_RADIUS - PUSH_RADIUS);
+              const f = norm * norm * PULL_STRENGTH;
+              p.vx -= (lx / d) * f;
+              p.vy -= (ly / d) * f;
+            }
           }
         }
         p.vx += (tx - p.x) * SPRING;
