@@ -5,11 +5,22 @@ import { useEffect, useRef } from 'react';
 const SVG_W = 435.798;
 const SVG_H = 340.165;
 const PARTICLE_COUNT = 5000;
-const HOVER_RADIUS = 150;
-const PUSH_STRENGTH = 6.0;
+const HOVER_RADIUS = 360;
+const PUSH_STRENGTH = 4.2;
 const SPRING = 0.05;
 const FRICTION = 0.86;
-const PARTICLE_RADIUS = 1.1;
+const PARTICLE_RADIUS = 1.15;
+
+/* Same weighted palette as the ambient hero canvas (Hero.tsx). Sharing the
+   tone set makes the gorilla read as a denser cluster of the same particle
+   layer rather than a separate element. Per-particle alpha is bumped vs.
+   the ambient layer because the gorilla is dense — too high and `screen`
+   blending blows the silhouette out to white. */
+const PALETTE: Array<{ fill: string; weight: number }> = [
+  { fill: 'rgba(255, 255, 255, 0.55)', weight: 0.6 },
+  { fill: 'rgba(155, 61, 255, 0.65)', weight: 0.25 },
+  { fill: 'rgba(255, 77, 23, 0.7)', weight: 0.15 },
+];
 
 interface Particle {
   ox: number;
@@ -24,14 +35,26 @@ interface Particle {
   freqY: number;
   phaseX: number;
   phaseY: number;
+  tone: number;
 }
+
+const pickTone = () => {
+  const r = Math.random();
+  let acc = 0;
+  for (let i = 0; i < PALETTE.length; i++) {
+    acc += PALETTE[i].weight;
+    if (r <= acc) return i;
+  }
+  return 0;
+};
 
 /**
  * Particle silhouette of the gorilla emblem with continuous ambient drift
- * and cursor-driven displacement on hover. Pointer detection runs on window
- * — the hero `.wrap` sits at z-index 50 above this canvas (z-index 25), so
- * a wrapper-scoped listener never fires. We test the cursor against the
- * wrapper's bounding rect each move instead.
+ * and cursor-driven displacement reaching across the entire hero. Pointer
+ * detection is window-level (the hero `.wrap` sits above this canvas at
+ * z-index 50, which would eat wrapper-scoped events). Composited via
+ * `screen` so particles glow into the gradient backdrop instead of sitting
+ * flat on top.
  */
 export function HeroLogoDisplace() {
   const wrapperRef = useRef<HTMLDivElement>(null);
@@ -56,7 +79,7 @@ export function HeroLogoDisplace() {
     let fitH = 0;
     let mouseX = -9999;
     let mouseY = -9999;
-    let hoverActive = false;
+    let cursorActive = false;
     let raf = 0;
     let mounted = true;
     let started = false;
@@ -96,23 +119,24 @@ export function HeroLogoDisplace() {
       if (!startTime) startTime = ts;
       const t = (ts - startTime) / 1000;
       ctx.clearRect(0, 0, W, H);
+      ctx.globalCompositeOperation = 'screen';
       const r = HOVER_RADIUS;
       const r2 = r * r;
 
-      ctx.fillStyle = 'rgba(232, 232, 240, 0.86)';
-      ctx.beginPath();
-
+      // Step physics for every particle once. Drawing is a separate pass
+      // grouped by tone so we batch into 3 fills instead of 5000.
       for (const p of particles) {
         const tx = p.ox + Math.sin(t * p.freqX + p.phaseX) * p.ampX;
         const ty = p.oy + Math.cos(t * p.freqY + p.phaseY) * p.ampY;
 
-        if (hoverActive) {
+        if (cursorActive) {
           const dx = p.x - mouseX;
           const dy = p.y - mouseY;
           const d2 = dx * dx + dy * dy;
           if (d2 < r2 && d2 > 0.001) {
             const d = Math.sqrt(d2);
-            const f = (1 - d / r) * PUSH_STRENGTH;
+            const norm = 1 - d / r;
+            const f = norm * norm * PUSH_STRENGTH;
             p.vx += (dx / d) * f;
             p.vy += (dy / d) * f;
           }
@@ -123,12 +147,20 @@ export function HeroLogoDisplace() {
         p.vy *= FRICTION;
         p.x += p.vx;
         p.y += p.vy;
-
-        ctx.moveTo(p.x + PARTICLE_RADIUS, p.y);
-        ctx.arc(p.x, p.y, PARTICLE_RADIUS, 0, Math.PI * 2);
       }
-      ctx.fill();
 
+      for (let toneIdx = 0; toneIdx < PALETTE.length; toneIdx++) {
+        ctx.fillStyle = PALETTE[toneIdx].fill;
+        ctx.beginPath();
+        for (const p of particles) {
+          if (p.tone !== toneIdx) continue;
+          ctx.moveTo(p.x + PARTICLE_RADIUS, p.y);
+          ctx.arc(p.x, p.y, PARTICLE_RADIUS, 0, Math.PI * 2);
+        }
+        ctx.fill();
+      }
+
+      ctx.globalCompositeOperation = 'source-over';
       if (mounted) raf = requestAnimationFrame(loop);
     };
 
@@ -192,6 +224,7 @@ export function HeroLogoDisplace() {
           freqY: 0.5 + Math.random() * 1.3,
           phaseX: Math.random() * Math.PI * 2,
           phaseY: Math.random() * Math.PI * 2,
+          tone: pickTone(),
         });
       }
       layout();
@@ -207,32 +240,23 @@ export function HeroLogoDisplace() {
 
     const hoverCap = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
 
+    /* Cursor anywhere in the document influences the gorilla — coords are
+       stored in wrapper-local space (negative or > W is fine, the radius
+       falloff handles it). Without this the gorilla feels dead while the
+       user is reading the headline. */
     const onWindowMove = (e: PointerEvent) => {
+      cursorActive = true;
       const rect = wrapper.getBoundingClientRect();
-      const inside =
-        e.clientX >= rect.left &&
-        e.clientX <= rect.right &&
-        e.clientY >= rect.top &&
-        e.clientY <= rect.bottom;
-      if (inside) {
-        hoverActive = true;
-        mouseX = e.clientX - rect.left;
-        mouseY = e.clientY - rect.top;
-      } else if (hoverActive) {
-        hoverActive = false;
-        mouseX = -9999;
-        mouseY = -9999;
-      }
+      mouseX = e.clientX - rect.left;
+      mouseY = e.clientY - rect.top;
     };
-    const onWindowLeave = () => {
-      hoverActive = false;
-      mouseX = -9999;
-      mouseY = -9999;
+    const onDocLeave = () => {
+      cursorActive = false;
     };
 
     if (hoverCap) {
       window.addEventListener('pointermove', onWindowMove, { passive: true });
-      window.addEventListener('pointerleave', onWindowLeave);
+      document.addEventListener('mouseleave', onDocLeave);
     }
 
     const onResize = () => layout();
@@ -246,7 +270,7 @@ export function HeroLogoDisplace() {
       window.removeEventListener('resize', onResize);
       if (hoverCap) {
         window.removeEventListener('pointermove', onWindowMove);
-        window.removeEventListener('pointerleave', onWindowLeave);
+        document.removeEventListener('mouseleave', onDocLeave);
       }
     };
   }, []);
