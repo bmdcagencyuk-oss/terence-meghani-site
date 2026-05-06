@@ -2685,10 +2685,36 @@
   .hero-mockup-fragment { display: none; }
 }
 
-/* WebGL morphing canvas — Three.js scene rendering the gorilla through six
-   particle stages (sketch → emblem → code → wireframe → site → launch).
-   Sits above ambient particles, below foreground content. Right ~45% on
-   desktop, full width on mobile (Phase 5 swaps it for a static fallback). */
+/* Cursor-driven radial spotlight that lights the hero. Updated by Hero.tsx
+   via --hero-mx/--hero-my CSS vars on the header element. mix-blend-mode:
+   screen brightens whatever sits below — the headline lifts as the cursor
+   crosses it, and the warm tint matches the rocket palette. Hidden on
+   coarse pointers and reduced-motion. */
+.hero-spotlight {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 51;
+  background: radial-gradient(
+    circle 360px at var(--hero-mx, 50%) var(--hero-my, 50%),
+    rgba(255, 215, 170, 0.22),
+    rgba(255, 215, 170, 0.07) 35%,
+    transparent 65%
+  );
+  mix-blend-mode: screen;
+  opacity: 0;
+  transition: opacity 0.45s ease;
+  isolation: isolate;
+}
+.hero:hover .hero-spotlight { opacity: 1; }
+@media (hover: none), (prefers-reduced-motion: reduce) {
+  .hero-spotlight { display: none; }
+}
+
+/* Particle morph slot — shared by the displacement variant (HeroLogoDisplace)
+   and the static fallback (HeroVisual's StaticLogo). Sits above the ambient
+   particle layer, below foreground content. Right ~45% on desktop, mobile
+   shrinks the static fallback to a corner texture. */
 .hero-morph-canvas {
   position: absolute;
   top: 0;
@@ -2834,8 +2860,11 @@
 .mega .ch {
   display: inline-block;
   font-variation-settings: "wdth" 100, "opsz" 96, "wght" 600;
-  transition: font-variation-settings 0.25s var(--ease), color 0.3s ease;
-  will-change: font-variation-settings;
+  transition:
+    font-variation-settings 0.25s var(--ease),
+    color 0.3s ease,
+    transform 0.18s var(--ease);
+  will-change: font-variation-settings, transform;
   vertical-align: baseline;
 }
 .mega .ch:hover { color: var(--rocket); }

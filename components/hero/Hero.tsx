@@ -3,9 +3,20 @@
 import { useEffect, useRef } from 'react';
 import { HeroVisual } from './HeroVisual';
 
+function splitChars(text: string) {
+  return Array.from(text).map((c, i) =>
+    c === ' ' ? (
+      <span key={i} className="sp" aria-hidden="true" />
+    ) : (
+      <span key={i} className="ch">{c}</span>
+    ),
+  );
+}
+
 export function Hero() {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
   const ambientCanvasRef = useRef<HTMLCanvasElement | null>(null);
+  const headerRef = useRef<HTMLElement | null>(null);
   const megaRef = useRef<HTMLHeadingElement | null>(null);
   const heroTimeRef = useRef<HTMLSpanElement | null>(null);
 
@@ -222,43 +233,67 @@ export function Hero() {
     };
   }, []);
 
-  /* Magnetic headline — non-fuel characters respond to pointer proximity */
+  /* Magnetic headline + cursor spotlight. Characters in non-fuel-word lines
+     respond to proximity by bulking up (font weight) AND pulling toward the
+     cursor; the hero element gets --hero-mx/--hero-my CSS vars driving a
+     radial-gradient spotlight overlay (see .hero-spotlight in globals.css)
+     so the same cursor input lights the text and animates the gorilla
+     particle field in one coherent system. */
   useEffect(() => {
     if (!window.matchMedia('(hover: hover) and (pointer: fine)').matches) return;
+    const header = headerRef.current;
     const mega = megaRef.current;
-    if (!mega) return;
+    if (!header || !mega) return;
     const chars = Array.from(mega.querySelectorAll<HTMLElement>('.ch')).filter(
       (el) => !el.closest('.fuel-word'),
     );
-    if (!chars.length) return;
 
-    const radius = 220;
+    const radius = 240;
+    const pullStrength = 6;
     let raf: number | null = null;
     let mx = 0;
     let my = 0;
+
     const apply = () => {
+      raf = null;
       chars.forEach((ch) => {
         const r = ch.getBoundingClientRect();
         const cx = r.left + r.width / 2;
         const cy = r.top + r.height / 2;
-        const d = Math.hypot(mx - cx, my - cy);
+        const dx = mx - cx;
+        const dy = my - cy;
+        const d = Math.hypot(dx, dy);
         const prox = Math.max(0, 1 - d / radius);
-        const weight = 400 + prox * 400;
+        const weight = 400 + prox * 420;
+        const eased = prox * prox;
+        const inv = d > 0.001 ? 1 / d : 0;
+        const tx = dx * inv * eased * pullStrength;
+        const ty = dy * inv * eased * pullStrength;
         ch.style.fontVariationSettings = `"wdth" 100, "opsz" 96, "wght" ${Math.round(weight)}`;
+        ch.style.transform = `translate(${tx.toFixed(2)}px, ${ty.toFixed(2)}px)`;
       });
-      raf = null;
     };
+
     const onMove = (e: MouseEvent) => {
       mx = e.clientX;
       my = e.clientY;
-      if (raf === null) raf = requestAnimationFrame(apply);
+      const r = header.getBoundingClientRect();
+      header.style.setProperty('--hero-mx', `${e.clientX - r.left}px`);
+      header.style.setProperty('--hero-my', `${e.clientY - r.top}px`);
+      if (raf === null && chars.length) raf = requestAnimationFrame(apply);
     };
-    const onLeave = () => chars.forEach((ch) => (ch.style.fontVariationSettings = ''));
-    mega.addEventListener('mousemove', onMove);
-    mega.addEventListener('mouseleave', onLeave);
+    const onLeave = () => {
+      chars.forEach((ch) => {
+        ch.style.fontVariationSettings = '';
+        ch.style.transform = '';
+      });
+    };
+
+    header.addEventListener('mousemove', onMove);
+    header.addEventListener('mouseleave', onLeave);
     return () => {
-      mega.removeEventListener('mousemove', onMove);
-      mega.removeEventListener('mouseleave', onLeave);
+      header.removeEventListener('mousemove', onMove);
+      header.removeEventListener('mouseleave', onLeave);
       if (raf !== null) cancelAnimationFrame(raf);
     };
   }, []);
@@ -284,7 +319,7 @@ export function Hero() {
 
 
   return (
-    <header className="hero">
+    <header className="hero" ref={headerRef}>
       <div className="hero-aurora" aria-hidden="true">
         <span className="aurora-c" />
       </div>
@@ -294,6 +329,7 @@ export function Hero() {
         className="hero-ambient-canvas"
         aria-hidden="true"
       />
+      <div className="hero-spotlight" aria-hidden="true" />
 
       {/* Right-side focal element: WebGL particle morph on desktop, static
           fallback on mobile / prefers-reduced-motion / ?nomorph=1. The
@@ -340,9 +376,9 @@ export function Hero() {
           <h1 className="mega" ref={megaRef}>
             <span className="ln ln1">Hertfordshire · London</span>
 
-            <span className="ln ln-greet">Hi, I&rsquo;m Terence.</span>
+            <span className="ln ln-greet">{splitChars('Hi, I\u2019m Terence.')}</span>
 
-            <span className="ln ln-builds">I build brands</span>
+            <span className="ln ln-builds">{splitChars('I build brands')}</span>
 
             <span className="ln ln-fuel">
               <span className="fuel-word" id="fuelWord">
