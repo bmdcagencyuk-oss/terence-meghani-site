@@ -5,9 +5,16 @@ import { useEffect, useRef } from 'react';
 const SVG_W = 435.798;
 const SVG_H = 340.165;
 const PARTICLE_COUNT = 5000;
-const HOVER_RADIUS = 360;
-const PUSH_STRENGTH = 4.2;
-const SPRING = 0.05;
+/* Two-zone cursor field. Close in, the silhouette repels the cursor
+   (the original "displacement" feel). At long range across the rest
+   of the hero, particles are gently pulled toward the cursor — so the
+   gorilla leans toward the headline as the user reads, tying the two
+   halves of the hero together without any DOM connection. */
+const PUSH_RADIUS = 110;
+const PUSH_STRENGTH = 5.5;
+const PULL_RADIUS = 900;
+const PULL_STRENGTH = 1.4;
+const SPRING = 0.055;
 const FRICTION = 0.86;
 const PARTICLE_RADIUS = 1.15;
 
@@ -120,8 +127,8 @@ export function HeroLogoDisplace() {
       const t = (ts - startTime) / 1000;
       ctx.clearRect(0, 0, W, H);
       ctx.globalCompositeOperation = 'screen';
-      const r = HOVER_RADIUS;
-      const r2 = r * r;
+      const pushR2 = PUSH_RADIUS * PUSH_RADIUS;
+      const pullR2 = PULL_RADIUS * PULL_RADIUS;
 
       // Step physics for every particle once. Drawing is a separate pass
       // grouped by tone so we batch into 3 fills instead of 5000.
@@ -133,12 +140,18 @@ export function HeroLogoDisplace() {
           const dx = p.x - mouseX;
           const dy = p.y - mouseY;
           const d2 = dx * dx + dy * dy;
-          if (d2 < r2 && d2 > 0.001) {
+          if (d2 < pushR2 && d2 > 1) {
             const d = Math.sqrt(d2);
-            const norm = 1 - d / r;
+            const norm = 1 - d / PUSH_RADIUS;
             const f = norm * norm * PUSH_STRENGTH;
             p.vx += (dx / d) * f;
             p.vy += (dy / d) * f;
+          } else if (d2 < pullR2) {
+            const d = Math.sqrt(d2);
+            const norm = (PULL_RADIUS - d) / (PULL_RADIUS - PUSH_RADIUS);
+            const f = norm * norm * PULL_STRENGTH;
+            p.vx -= (dx / d) * f;
+            p.vy -= (dy / d) * f;
           }
         }
         p.vx += (tx - p.x) * SPRING;
