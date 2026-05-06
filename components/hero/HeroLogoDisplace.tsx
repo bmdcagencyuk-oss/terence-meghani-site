@@ -4,13 +4,12 @@ import { useEffect, useRef } from 'react';
 
 const SVG_W = 435.798;
 const SVG_H = 340.165;
-const PARTICLE_COUNT = 2800;
-const HOVER_RADIUS = 130;
-const PUSH_STRENGTH = 4.5;
-const SPRING = 0.06;
-const FRICTION = 0.82;
-const PARTICLE_RADIUS = 1.15;
-const SETTLE_THRESHOLD = 0.04;
+const PARTICLE_COUNT = 5000;
+const HOVER_RADIUS = 150;
+const PUSH_STRENGTH = 6.0;
+const SPRING = 0.05;
+const FRICTION = 0.86;
+const PARTICLE_RADIUS = 1.1;
 
 interface Particle {
   ox: number;
@@ -19,15 +18,20 @@ interface Particle {
   y: number;
   vx: number;
   vy: number;
+  ampX: number;
+  ampY: number;
+  freqX: number;
+  freqY: number;
+  phaseX: number;
+  phaseY: number;
 }
 
 /**
- * Particle silhouette of the gorilla emblem rendered to a 2D canvas.
- * The SVG is rasterised once into an offscreen canvas, alpha-thresholded,
- * and a fixed pool of points is drawn from the filled pixels. On hover the
- * cursor pushes nearby particles outward; spring + friction return them to
- * rest. Idle = static. Pointer interaction is gated on hover-capable, fine
- * pointer devices — coarse pointers see only the static silhouette.
+ * Particle silhouette of the gorilla emblem with continuous ambient drift
+ * and cursor-driven displacement on hover. Pointer detection runs on window
+ * — the hero `.wrap` sits at z-index 50 above this canvas (z-index 25), so
+ * a wrapper-scoped listener never fires. We test the cursor against the
+ * wrapper's bounding rect each move instead.
  */
 export function HeroLogoDisplace() {
   const wrapperRef = useRef<HTMLDivElement>(null);
@@ -55,7 +59,8 @@ export function HeroLogoDisplace() {
     let hoverActive = false;
     let raf = 0;
     let mounted = true;
-    let drewOnce = false;
+    let started = false;
+    let startTime = 0;
 
     const layout = () => {
       W = wrapper.clientWidth;
@@ -86,29 +91,21 @@ export function HeroLogoDisplace() {
       }
     };
 
-    const drawStatic = () => {
-      ctx.clearRect(0, 0, W, H);
-      ctx.fillStyle = 'rgba(232, 232, 240, 0.86)';
-      ctx.beginPath();
-      for (const p of particles) {
-        ctx.moveTo(p.x + PARTICLE_RADIUS, p.y);
-        ctx.arc(p.x, p.y, PARTICLE_RADIUS, 0, Math.PI * 2);
-      }
-      ctx.fill();
-      drewOnce = true;
-    };
-
-    const loop = () => {
+    const loop = (ts: number) => {
       raf = 0;
+      if (!startTime) startTime = ts;
+      const t = (ts - startTime) / 1000;
       ctx.clearRect(0, 0, W, H);
       const r = HOVER_RADIUS;
       const r2 = r * r;
-      let totalMovement = 0;
 
       ctx.fillStyle = 'rgba(232, 232, 240, 0.86)';
       ctx.beginPath();
 
       for (const p of particles) {
+        const tx = p.ox + Math.sin(t * p.freqX + p.phaseX) * p.ampX;
+        const ty = p.oy + Math.cos(t * p.freqY + p.phaseY) * p.ampY;
+
         if (hoverActive) {
           const dx = p.x - mouseX;
           const dy = p.y - mouseY;
@@ -120,28 +117,19 @@ export function HeroLogoDisplace() {
             p.vy += (dy / d) * f;
           }
         }
-        p.vx += (p.ox - p.x) * SPRING;
-        p.vy += (p.oy - p.y) * SPRING;
+        p.vx += (tx - p.x) * SPRING;
+        p.vy += (ty - p.y) * SPRING;
         p.vx *= FRICTION;
         p.vy *= FRICTION;
         p.x += p.vx;
         p.y += p.vy;
-        totalMovement += Math.abs(p.vx) + Math.abs(p.vy);
 
         ctx.moveTo(p.x + PARTICLE_RADIUS, p.y);
         ctx.arc(p.x, p.y, PARTICLE_RADIUS, 0, Math.PI * 2);
       }
       ctx.fill();
-      drewOnce = true;
 
-      const settled = totalMovement < particles.length * SETTLE_THRESHOLD;
-      if (hoverActive || !settled) {
-        raf = requestAnimationFrame(loop);
-      }
-    };
-
-    const ensureRaf = () => {
-      if (!raf) raf = requestAnimationFrame(loop);
+      if (mounted) raf = requestAnimationFrame(loop);
     };
 
     const sampleSvg = async () => {
@@ -155,7 +143,7 @@ export function HeroLogoDisplace() {
       }
       if (!mounted) return;
 
-      const SW = 600;
+      const SW = 800;
       const SH = Math.round(SW * (SVG_H / SVG_W));
       const off = document.createElement('canvas');
       off.width = SW;
@@ -184,56 +172,70 @@ export function HeroLogoDisplace() {
 
       samplePoints.length = 0;
       particles.length = 0;
-      const stride = Math.max(1, filled.length / PARTICLE_COUNT);
+      const stride = filled.length / PARTICLE_COUNT;
       for (let i = 0; i < PARTICLE_COUNT; i++) {
         const idx = Math.min(filled.length - 1, Math.floor(i * stride));
         const [u, v] = filled[idx];
-        const ju = u + (Math.random() - 0.5) * 0.005;
-        const jv = v + (Math.random() - 0.5) * 0.005;
+        const ju = u + (Math.random() - 0.5) * 0.004;
+        const jv = v + (Math.random() - 0.5) * 0.004;
         samplePoints.push([ju, jv]);
-        particles.push({ ox: 0, oy: 0, x: 0, y: 0, vx: 0, vy: 0 });
+        particles.push({
+          ox: 0,
+          oy: 0,
+          x: 0,
+          y: 0,
+          vx: 0,
+          vy: 0,
+          ampX: 0.7 + Math.random() * 1.8,
+          ampY: 0.7 + Math.random() * 1.8,
+          freqX: 0.5 + Math.random() * 1.3,
+          freqY: 0.5 + Math.random() * 1.3,
+          phaseX: Math.random() * Math.PI * 2,
+          phaseY: Math.random() * Math.PI * 2,
+        });
       }
       layout();
       for (const p of particles) {
         p.x = p.ox;
         p.y = p.oy;
       }
-      drawStatic();
+      if (!started) {
+        started = true;
+        raf = requestAnimationFrame(loop);
+      }
     };
 
     const hoverCap = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
 
-    const onEnter = (e: PointerEvent) => {
-      hoverActive = true;
+    const onWindowMove = (e: PointerEvent) => {
       const rect = wrapper.getBoundingClientRect();
-      mouseX = e.clientX - rect.left;
-      mouseY = e.clientY - rect.top;
-      ensureRaf();
+      const inside =
+        e.clientX >= rect.left &&
+        e.clientX <= rect.right &&
+        e.clientY >= rect.top &&
+        e.clientY <= rect.bottom;
+      if (inside) {
+        hoverActive = true;
+        mouseX = e.clientX - rect.left;
+        mouseY = e.clientY - rect.top;
+      } else if (hoverActive) {
+        hoverActive = false;
+        mouseX = -9999;
+        mouseY = -9999;
+      }
     };
-    const onMove = (e: PointerEvent) => {
-      if (!hoverActive) return;
-      const rect = wrapper.getBoundingClientRect();
-      mouseX = e.clientX - rect.left;
-      mouseY = e.clientY - rect.top;
-      ensureRaf();
-    };
-    const onLeave = () => {
+    const onWindowLeave = () => {
       hoverActive = false;
       mouseX = -9999;
       mouseY = -9999;
-      ensureRaf();
     };
 
     if (hoverCap) {
-      wrapper.addEventListener('pointerenter', onEnter);
-      wrapper.addEventListener('pointermove', onMove);
-      wrapper.addEventListener('pointerleave', onLeave);
+      window.addEventListener('pointermove', onWindowMove, { passive: true });
+      window.addEventListener('pointerleave', onWindowLeave);
     }
 
-    const onResize = () => {
-      layout();
-      if (drewOnce) drawStatic();
-    };
+    const onResize = () => layout();
     window.addEventListener('resize', onResize);
 
     sampleSvg();
@@ -243,9 +245,8 @@ export function HeroLogoDisplace() {
       if (raf) cancelAnimationFrame(raf);
       window.removeEventListener('resize', onResize);
       if (hoverCap) {
-        wrapper.removeEventListener('pointerenter', onEnter);
-        wrapper.removeEventListener('pointermove', onMove);
-        wrapper.removeEventListener('pointerleave', onLeave);
+        window.removeEventListener('pointermove', onWindowMove);
+        window.removeEventListener('pointerleave', onWindowLeave);
       }
     };
   }, []);
@@ -255,7 +256,6 @@ export function HeroLogoDisplace() {
       ref={wrapperRef}
       className="hero-morph-canvas hero-morph-canvas--displace"
       aria-hidden="true"
-      style={{ pointerEvents: 'auto' }}
     >
       <canvas ref={canvasRef} style={{ display: 'block' }} />
     </div>
