@@ -8,6 +8,7 @@
     "start": "next start",
     "lint": "eslint",
     "scrape": "node --env-file=.env scripts/scrape-leads.mjs",
+    "enrich": "node --env-file=.env scripts/enrich-leads.mjs",
     "send": "node --env-file=.env scripts/send-leads.mjs"
   },
   "dependencies": {
