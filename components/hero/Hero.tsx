@@ -20,8 +20,11 @@ export function Hero() {
   const megaRef = useRef<HTMLHeadingElement | null>(null);
   const heroTimeRef = useRef<HTMLSpanElement | null>(null);
 
-  /* Rocket particle canvas */
+  /* Rocket particle canvas — desktop only. The cursor-attracted exhaust trail
+     has no input on touch devices, and 110-particle RAF loops cost mobile LCP
+     more than they earn visually. Bail on coarse pointer / narrow viewport. */
   useEffect(() => {
+    if (window.matchMedia('(hover: none), (pointer: coarse), (max-width: 720px)').matches) return;
     const canvas = canvasRef.current;
     if (!canvas) return;
     const ctx = canvas.getContext('2d');
@@ -143,6 +146,7 @@ export function Hero() {
      in white/violet/orange, slow random drift with edge-wrap and gentle
      opacity pulse. Paused under prefers-reduced-motion (one static frame). */
   useEffect(() => {
+    if (window.matchMedia('(hover: none), (pointer: coarse), (max-width: 720px)').matches) return;
     const canvas = ambientCanvasRef.current;
     if (!canvas) return;
     const ctx = canvas.getContext('2d');

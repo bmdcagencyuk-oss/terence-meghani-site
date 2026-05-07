@@ -3336,23 +3336,37 @@
 }
 @media (max-width: 720px) {
   .hero {
-    min-height: clamp(560px, 80vh, 720px);
-    padding: 80px 0 24px;
+    min-height: clamp(520px, 80vh, 680px);
+    padding: 64px 0 20px;
   }
   .hero-top { gap: 12px; padding: 12px 0 0; }
   .hero-top .spinner { width: 72px; height: 72px; }
   .hero-top .spinner .core { width: 36px; height: 36px; padding: 8px; }
   .hero-center { padding: 8px 0; }
+  /* Hero canvases are gated off in JS on touch devices; hide the elements
+     too so they don't reserve layout. */
+  .rocket-canvas, .hero-ambient-canvas { display: none; }
   /* Allow "THAT" / "SHIP." to wrap on very narrow viewports rather than overflow. */
   .mega .ln-fuel { flex-wrap: wrap; }
   .mega .ln-greet { font-size: clamp(15px, 4vw, 20px); }
   .mega .ln-builds { font-size: clamp(20px, 5.4vw, 28px); }
   .mega .ln1 { font-size: 11px; letter-spacing: 0.18em; }
+  /* Shrink the launch CTA on phones so it sits within the first viewport on
+     standard handsets. 124px keeps the disc-shape branding while saving
+     ~36px of vertical space vs. the desktop 160px. */
+  .hero-bottom--simple .hero-cta { width: 124px; height: 124px; font-size: 11px; }
+  .hero-cta .icon { font-size: 24px; }
 }
 @media (max-width: 480px) {
-  .hero { min-height: clamp(540px, 78vh, 680px); }
+  .hero {
+    min-height: clamp(480px, 88vh, 600px);
+    padding: 56px 0 16px;
+  }
   .hero-top .left { padding: 6px 10px; gap: 10px; }
   .hero-top .left .label { display: none; }   /* keep just the dot + clock value */
+  /* Trim the supporting note on the smallest phones — keeps the CTA + meta
+     reachable within the first viewport without scrolling. */
+  .hero-bottom--simple .hero-bottom-note { display: none; }
 }
 
 /* WP Operations "Not a care plan" distinction block — two-column on desktop,

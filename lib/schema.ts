@@ -243,10 +243,10 @@ export function siteLocalBusinessSchema() {
   return {
     '@context': 'https://schema.org',
     '@type': 'ProfessionalService',
-    '@id': 'https://terencemeghani.com/#localbusiness',
+    '@id': 'https://www.terencemeghani.com/#localbusiness',
     name: 'Terence Meghani Studio',
-    image: 'https://terencemeghani.com/brand/emblem-gorilla.svg',
-    url: 'https://terencemeghani.com',
+    image: 'https://www.terencemeghani.com/brand/emblem-gorilla.svg',
+    url: 'https://www.terencemeghani.com',
     telephone: '+442045245111',
     email: 'hello@terencemeghani.com',
     priceRange: '££££',
