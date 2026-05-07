@@ -141,10 +141,15 @@ export function Hero() {
     };
   }, []);
 
-  /* Ambient drifting particles — atmospheric layer across the hero. Distinct
-     from the rocket canvas (which is a concentrated CTA effect). 30-50 dots
-     in white/violet/orange, slow random drift with edge-wrap and gentle
-     opacity pulse. Paused under prefers-reduced-motion (one static frame). */
+  /* Ambient drifting particles — atmospheric layer across the hero, designed
+     to read as a soft halo of the same palette/composite as the right-side
+     gorilla cloud (HeroLogoDisplace). White/violet/orange tones, screen
+     blended, slow random drift with edge-wrap and gentle opacity pulse.
+     Density tapers leftward (full at the gorilla, ~20% at the left edge);
+     the centre Y band is masked to zero so particles never sit behind the
+     headline. Four dedicated rocket-orange flecks live in the left third
+     to echo the right-side accent colour. Paused under
+     prefers-reduced-motion (one static frame). */
   useEffect(() => {
     if (window.matchMedia('(hover: none), (pointer: coarse), (max-width: 720px)').matches) return;
     const canvas = ambientCanvasRef.current;
@@ -182,14 +187,20 @@ export function Hero() {
       }
       return tones[0].tone;
     };
+    /* Brighter than the ambient orange weighting so 4 flecks read as a
+       deliberate accent rather than vanishing into the wash. */
+    const fleckTone: Tone = { rgb: '255, 77, 23', baseAlpha: 0.55 };
 
-    const COUNT = 40;
-    const particles = Array.from({ length: COUNT }, () => {
-      const tone = pickTone();
+    const COUNT_AMBIENT = 180;
+    const COUNT_FLECKS = 4;
+    const particles = Array.from({ length: COUNT_AMBIENT + COUNT_FLECKS }, (_, i) => {
+      const isFleck = i >= COUNT_AMBIENT;
+      const tone = isFleck ? fleckTone : pickTone();
       const angle = Math.random() * Math.PI * 2;
       const speed = 0.05 + Math.random() * 0.15;
       return {
-        x: Math.random() * W,
+        isFleck,
+        x: isFleck ? Math.random() * W * 0.33 : Math.random() * W,
         y: Math.random() * H,
         vx: Math.cos(angle) * speed,
         vy: Math.sin(angle) * speed,
@@ -201,28 +212,57 @@ export function Hero() {
       };
     });
 
+    /* Headline-band mask — zero density across the centre Y band where
+       "I build brands THAT SHIP." sits, with quadratic falloff to full
+       visibility above and below. Half-height 0.16 keeps a roughly 35-65%
+       Y exclusion zone; outside the band particles are unaffected. */
+    const HEADLINE_HALF = 0.16;
+    const headlineMask = (yNorm: number) => {
+      const d = Math.abs(yNorm - 0.5);
+      if (d >= HEADLINE_HALF) return 1;
+      const t = d / HEADLINE_HALF;
+      return t * t;
+    };
+
     const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     let raf = 0;
     const draw = (t: number) => {
       ctx.clearRect(0, 0, W, H);
+      ctx.globalCompositeOperation = 'screen';
+      const fleckMaxX = W * 0.33;
       for (const p of particles) {
         if (!reduced) {
           p.x += p.vx;
           p.y += p.vy;
-          if (p.x < -2) p.x = W + 2;
-          else if (p.x > W + 2) p.x = -2;
+          if (p.isFleck) {
+            /* Flecks wrap within the left third only — they're a contained
+               accent, not a roaming layer. */
+            if (p.x < -2) p.x = fleckMaxX;
+            else if (p.x > fleckMaxX + 2) p.x = -2;
+          } else {
+            if (p.x < -2) p.x = W + 2;
+            else if (p.x > W + 2) p.x = -2;
+          }
           if (p.y < -2) p.y = H + 2;
           else if (p.y > H + 2) p.y = -2;
         }
         const pulse = reduced
           ? 1
           : 0.85 + 0.15 * Math.sin((t / p.pulsePeriod) * Math.PI * 2 + p.pulsePhase);
-        const alpha = p.baseAlpha * pulse;
+        let mul = headlineMask(p.y / H);
+        /* Horizontal density taper for the ambient layer — left edge ~20%,
+           right edge 100%. Flecks ignore this (they're a fixed left accent). */
+        if (!p.isFleck) {
+          mul *= 0.2 + 0.8 * (p.x / W);
+        }
+        const alpha = p.baseAlpha * pulse * mul;
+        if (alpha < 0.005) continue;
         ctx.fillStyle = `rgba(${p.rgb}, ${alpha})`;
         ctx.beginPath();
         ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
         ctx.fill();
       }
+      ctx.globalCompositeOperation = 'source-over';
       if (!reduced) raf = requestAnimationFrame(draw);
     };
     if (reduced) {

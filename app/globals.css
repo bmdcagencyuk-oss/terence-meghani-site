@@ -2585,6 +2585,18 @@
   opacity: 0.85;
   animation: heroMeshClockwise 60s linear infinite;
 }
+/* Desktop-only violet bleed extension — bigger disc + softer falloff so the
+   wash reaches across the headline column at all points in the orbit cycle.
+   Mobile keeps the original 70vmax / 62% so the layout-tight phone hero
+   doesn't get bathed in violet. */
+@media (min-width: 720px) {
+  .hero-aurora::before {
+    width: 92vmax; height: 92vmax;
+    margin-left: -46vmax; margin-top: -46vmax;
+    background: radial-gradient(circle, #4A0FD4 0%, transparent 78%);
+    opacity: 0.72;
+  }
+}
 .hero-aurora::after {
   /* Rocket orange — counter-clockwise orbit, 30% intensity. */
   width: 60vmax; height: 60vmax;
