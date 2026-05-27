@@ -39,7 +39,6 @@ export function MobileMenu({ open, onClose, notesVisible }: Props) {
     { href: '/about/', label: 'About' },
     { href: '/services/', label: 'Services' },
     { href: '/work/', label: 'Work' },
-    { href: '/plugins/', label: 'Plugins' },
     { href: '/engage/', label: 'Engage' },
   ];
 

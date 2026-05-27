@@ -1,9 +1,7 @@
 /* eslint-disable @next/next/no-img-element */
 import Link from 'next/link';
-import { getAllPlugins } from '@/lib/plugins';
 
 export function Footer() {
-  const plugins = getAllPlugins();
   return (
     <footer id="contact">
       <span className="f-emblem-watermark" aria-hidden="true" />
@@ -31,18 +29,6 @@ export function Footer() {
               <li><Link href="/services/web-development/">Web Development</Link></li>
               <li><Link href="/services/seo-organic-growth/">SEO &amp; Organic Growth</Link></li>
               <li><Link href="/engage/growth-partnership/">Growth Partnership</Link></li>
-            </ul>
-          </div>
-
-          <div className="f-col">
-            <h5>WordPress plugins</h5>
-            <ul>
-              {plugins.map((p) => (
-                <li key={p.slug}>
-                  <Link href={`/plugins/${p.slug}/`}>{p.name}</Link>
-                </li>
-              ))}
-              <li className="primary"><Link href="/plugins/">WordPress plugins →</Link></li>
             </ul>
           </div>
 

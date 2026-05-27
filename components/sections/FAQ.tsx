@@ -50,15 +50,14 @@ export const FAQ_ITEMS: FAQItem[] = [
     n: '04',
     q: 'Do you build WordPress plugins from scratch?',
     aPlain:
-      "Yes — custom WordPress plugin development is a core specialism. I build bespoke plugins, API integrations, custom admin tooling and AI-powered plugin extensions. I also ship six productised plugins of my own. If there's no off-the-shelf plugin that does what you need — or the existing ones are bloated, insecure, or slowing your site — I'll build exactly what you need. Performance-first, properly documented, yours to keep.",
+      "Yes — custom WordPress plugin development is a core specialism. I build bespoke plugins, API integrations, custom admin tooling and AI-powered plugin extensions. If there's no off-the-shelf plugin that does what you need — or the existing ones are bloated, insecure, or slowing your site — I'll build exactly what you need. Performance-first, properly documented, yours to keep.",
     a: (
       <>
         Yes — <strong>custom WordPress plugin development</strong> is a core specialism. I build
         bespoke plugins, API integrations, custom admin tooling and AI-powered plugin extensions.
-        I also ship <strong>six productised plugins</strong> of my own. If there&rsquo;s no
-        off-the-shelf plugin that does what you need — or the existing ones are bloated, insecure,
-        or slowing your site — I&rsquo;ll build exactly what you need. Performance-first, properly
-        documented, yours to keep.
+        If there&rsquo;s no off-the-shelf plugin that does what you need — or the existing ones
+        are bloated, insecure, or slowing your site — I&rsquo;ll build exactly what you need.
+        Performance-first, properly documented, yours to keep.
       </>
     ),
   },

@@ -1,5 +1,4 @@
 import type { CaseStudy } from './case-studies';
-import type { Plugin, PluginLongForm } from './plugins';
 import type { Service } from './services';
 import { FAQ_ITEMS } from '@/components/sections/FAQ';
 import { TESTIMONIAL_ITEMS } from '@/components/sections/Testimonials';
@@ -187,27 +186,6 @@ export function wpOperationsSchema(opts: {
         },
       },
     ],
-  };
-}
-
-/** Plugin-detail SoftwareApplication entity. */
-export function pluginSchema(plugin: Plugin, longForm: PluginLongForm | undefined) {
-  const url = absoluteUrl(`/plugins/${plugin.slug}/`);
-  return {
-    '@context': 'https://schema.org',
-    '@type': 'SoftwareApplication',
-    '@id': `${url}#software`,
-    name: plugin.name,
-    applicationCategory: 'BusinessApplication',
-    operatingSystem: 'WordPress',
-    url,
-    softwareVersion: plugin.version,
-    description: longForm?.whatItDoes?.[0] ?? plugin.tagline,
-    creator: { '@id': SITE.ids.studio },
-    offers:
-      plugin.status === 'available'
-        ? { '@type': 'Offer', availability: 'https://schema.org/InStock', priceCurrency: 'GBP' }
-        : { '@type': 'Offer', availability: 'https://schema.org/PreOrder', priceCurrency: 'GBP' },
   };
 }
 

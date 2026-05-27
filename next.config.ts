@@ -61,6 +61,19 @@ const nextConfig: NextConfig = {
         destination: "/#services",
         permanent: true,
       },
+
+      // /plugins section sunset — funnel former plugin-index and plugin-detail
+      // traffic to the closest semantic match, the Plugin Development service.
+      {
+        source: "/plugins",
+        destination: "/services/wordpress-plugin-development",
+        permanent: true,
+      },
+      {
+        source: "/plugins/:slug*",
+        destination: "/services/wordpress-plugin-development",
+        permanent: true,
+      },
     ];
   },
   images: {

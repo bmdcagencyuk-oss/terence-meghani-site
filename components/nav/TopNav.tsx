@@ -96,7 +96,6 @@ export function TopNav() {
   ];
   const tailItems: Item[] = [
     { href: '/work/', label: 'Work' },
-    { href: '/plugins/', label: 'Plugins' },
     { href: '/engage/', label: 'Engage' },
   ];
 

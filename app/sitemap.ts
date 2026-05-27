@@ -1,7 +1,6 @@
 import type { MetadataRoute } from 'next';
 import { getAllCaseStudies } from '@/lib/case-studies';
 import { getAllServices } from '@/lib/services';
-import { getAllPlugins } from '@/lib/plugins';
 import { getAllNotes } from '@/lib/notes';
 import { SITE } from '@/lib/site';
 
@@ -13,7 +12,6 @@ const STATIC_PATHS = [
   '/engage/',
   '/hertfordshire',
   '/work/',
-  '/plugins/',
   '/reviews/',
   '/contact/',
   '/engage/growth-partnership/',
@@ -30,7 +28,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const lastModified = new Date();
 
   const caseStudyPaths = getAllCaseStudies().map((s) => `/work/${s.slug}/`);
-  const pluginPaths = getAllPlugins().map((p) => `/plugins/${p.slug}/`);
   const servicePaths = getAllServices()
     .map((s) => s.url)
     // de-dupe in case of collision with /engage/growth-partnership/
@@ -46,7 +43,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const allPaths = [
     ...STATIC_PATHS,
     ...caseStudyPaths,
-    ...pluginPaths,
     ...servicePaths,
     ...notePaths,
   ].filter((p) => !EXCLUDED.has(p));
@@ -58,7 +54,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
       path === '/' ? 1.0 :
       path.startsWith('/work/') ? 0.8 :
       path.startsWith('/services/') || path === '/services/wordpress-operations/' ? 0.8 :
-      path.startsWith('/plugins/') ? 0.8 :
       path === '/hertfordshire' ? 0.7 :
       path.startsWith('/notes/') ? 0.7 :
       0.6,

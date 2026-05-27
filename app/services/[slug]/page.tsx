@@ -37,8 +37,6 @@ import {
 import servicesData from '@/data/services.json';
 import { getAllServices, getServiceBySlug } from '@/lib/services';
 import { getAllCaseStudies } from '@/lib/case-studies';
-import { getAllPlugins } from '@/lib/plugins';
-import { PluginCard } from '@/components/plugins/PluginCard';
 import { breadcrumbSchema, ldJsonProps, serviceSchema } from '@/lib/schema';
 import { Kicker } from '@/components/ui/Kicker';
 import { Button } from '@/components/ui/Button';
@@ -535,44 +533,6 @@ export default async function ServicePage({
                 </li>
               ))}
             </ol>
-          </div>
-        </section>
-      )}
-
-      {/* Productised plugins — only on the WordPress Plugin Development page */}
-      {slug === 'wordpress-plugin-development' && (
-        <section className="section-pad" style={{ background: 'var(--color-char-2)' }}>
-          <div className="wrap">
-            <div className="sec-head">
-              <div>
-                <span className="sec-eyebrow"><Kicker>Productised plugins</Kicker></span>
-                <h2>
-                  Six productised plugins, <em>three verticals.</em>
-                </h2>
-              </div>
-              <Link
-                href="/plugins/"
-                className="sec-aside"
-                style={{ display: 'inline-flex', alignItems: 'center', gap: 8, color: 'var(--color-rocket)' }}
-              >
-                View all plugins <ArrowRight size={14} aria-hidden="true" />
-              </Link>
-            </div>
-            <p style={{ marginTop: -8, marginBottom: 24, color: 'var(--color-fog)', fontSize: 15.5, lineHeight: 1.6, maxWidth: '64ch' }}>
-              What we ship to clients also runs as productised plugins for the wider market.
-              Same architecture, same engineering standards.
-            </p>
-            <div
-              style={{
-                display: 'grid',
-                gridTemplateColumns: 'repeat(auto-fill, minmax(320px, 1fr))',
-                gap: 20,
-              }}
-            >
-              {getAllPlugins().map((p) => (
-                <PluginCard key={p.slug} plugin={p} />
-              ))}
-            </div>
           </div>
         </section>
       )}
