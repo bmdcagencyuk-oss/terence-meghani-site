@@ -6,10 +6,7 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint",
-    "scrape": "node --env-file=.env scripts/scrape-leads.mjs",
-    "enrich": "node --env-file=.env scripts/enrich-leads.mjs",
-    "send": "node --env-file=.env scripts/send-leads.mjs"
+    "lint": "eslint"
   },
   "dependencies": {
     "@react-email/components": "^1.0.12",
